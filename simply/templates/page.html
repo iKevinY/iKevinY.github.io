@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ SITENAME }} | {{ page.title }}{% endblock %}
+{% block content %}
+
+<h3 class="entry-title"><a href="/{{ page.url }}" title="{{ page.title }}">{{page.title}}</a></h3>
+<div class="entry-content">
+	{{ page.content }}
+</div>
+
+<div class="back-to-home"><a href="{{ SITEURL }}">← Back to Home</a></div>
+
+{% endblock %}

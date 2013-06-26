@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ SITENAME }} | Home{% endblock %}
+{% block content %}
+
+  {% for article in articles %}
+
+    <h3 class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></h3>
+    <h6 class="article-date">{{ article.locale_date }}</h6>
+	  <hr class="large">
+  
+  {% endfor %}
+
+{% endblock %}

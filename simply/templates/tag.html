@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Posts tagged '{{tag}}' | {{ SITENAME }} {% endblock %}
+
+{% block content %}
+<div class="sixteen columns">
+
+  <div class="ten columns">
+    <div class="entry-title"><h3>Posts tagged '{{ tag }}':</h3></div>
+
+    {% for article in articles%}
+    <h4 class="article-title"><a href="{{article.url}}" title="{{article.title}}">{{article.title}}</a></h3>
+
+<div id="entrymeta">{{article.locale_date}}</div><br/>
+{% endfor %}
+</div>
+<br class="clear" />
+
+</div>
+{% endblock %}

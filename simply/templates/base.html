@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="description" content="">
+	<meta name="author" content="Kevin Yap">
+
+	<!-- Facebook Open Graph
+  ================================================== -->
+  <meta property="og:title" content="{{ TITLE }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://www.kevinyap.ca">
+  <meta property="og:image" content="http://www.kevinyap.ca/theme/images/avatar.png">
+  <meta property="og:description" content="{{ DESCRIPTION }}">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/base.css">
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/skeleton.css">
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/layout.css">
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/simply.css">
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/font-awesome.css">
+	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- JavaScript
+	=================================================== -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript">
+	  function trackOutboundLink(link, category, action) {
+	    try { 
+	      _gaq.push(['_trackEvent', category , action]); 
+	    } catch(err){}
+	   
+	    setTimeout(function() { document.location.href = link.href; }, 100);
+	  }
+	</script> -->
+
+	<!-- Favicons
+	================================================== -->
+	<!-- <link rel="shortcut icon" href="./theme/images/favicon.ico"> -->
+	<link rel="apple-touch-icon" href="./theme/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="./theme/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="./theme/images/apple-touch-icon-114x114.png">
+
+</head>
+
+<body>
+
+	<!-- Primary Page Layout
+	================================================== -->
+	<div class="container">
+		<div id="sidebar" class="three columns">
+			<a href="{{ SITEURL }}"><img id="avatar" src="{{ SITEURL }}/theme/images/avatar.png"></img></a>
+			<h3 id="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></h3>
+	    <p id="bio" style="text-align: center">{{ BIO_TEXT }}</p>
+	    <hr class="small" /> 
+    	<div id="social">
+    	
+    		{% for link in SOCIAL %}
+    			<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="{{ link[2] }}"></i></a>
+    		{% endfor %}
+    	
+    	</div> <!-- social -->
+    	
+    	<!--
+    	<hr class="small" />
+    	<a style="text-align:center;" href="{{ SITEURL }}/about/">About Me</a> -->
+		</div> <!-- sidebar -->
+
+		<section id="content" class="twelve columns offset-by-one">
+			{% block content %}{% endblock %}
+		</section>
+
+		<footer class="twelve columns offset-by-one">
+			<!-- <hr class="small"> -->
+			<p>{{ FOOTER_TEXT }}</p>
+		</footer>
+		
+	</div><!-- container -->
+
+	<!-- Google Analytics -->
+	{% include "analytics.html" %}
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

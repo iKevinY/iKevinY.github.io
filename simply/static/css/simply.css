@@ -1,0 +1,148 @@
+/*
+* Greg Reda
+* Styling based on the Skeleton documention (http://www.getskeleton.com/)
+* 11/25/2012
+* Use it however you want
+*/
+
+/*
+TODO:
+- CLEAN UP A TAG LINKS - Use inheritance
+- Fix code syntax on mobile
+*/
+
+{margin: 0; padding: 0;}
+html, body { height: 100%; }
+div.container {
+	padding-top: 50px;
+	min-height: 100%;
+	/*margin-bottom: -50px;*/
+	/*position: relative;*/
+}
+footer {
+	float: right !important;
+	/*height: 50px;*/
+	/*position: relative;*/
+	text-align: center;
+	/*clear: both;*/
+}
+
+#logo {
+	margin-bottom: 10px;	
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing: -1px;
+	font-weight: bold;
+	text-align: center;
+}
+hr.large {
+	border: none;
+	height: 4px;
+	background-color: #ebebeb;
+	margin: 10px 10px;
+}
+hr.small {
+	margin: 10px 0;
+}
+section#content {
+	margin-top: 30px 0;
+	float: right; /*Had to add this - not sure if it's the right way*/
+}
+#content img {
+	max-width: 675px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto; 
+}
+
+#avatar {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	display: block;
+	width: 140px;
+	/* border: 2px solid #555; */
+	/* border-radius: 70px; */
+
+}
+
+.codehilite {
+	font-family: "Source Code Pro", sans-serif;
+	font-size: 12px;
+	/*background-color: #555;*/
+	line-height: 125%;
+	padding: 5px 10px 5px 10px;
+	border: 2px solid #222;
+}
+
+#sidebar {
+	position: fixed;
+	width: 160px;
+}
+#bio {
+	margin-bottom: 0;
+	font-size: 90%;
+}
+#social {
+	text-align: center;
+}
+a, a:visited {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.icon, a:visited.icon, a:active.icon {
+	padding: 0 3px;
+	font-size: 20px;
+	color: #555;
+	font-weight: bold;
+}
+a:hover.icon, a:focus.icon { color: #222; }
+
+
+
+/*ARTICLE CLASSES*/
+.article-title {
+	clear: both;
+	float: left;
+	/*padding-top: 2.5%;*/
+}
+.article-date {
+	font-style: italic;
+	float: right;
+	margin: 8px 10px;
+}
+.article-summary { clear: both; }
+.article-content { clear: both; overflow: hidden; }
+.article-content img { border: 1px solid #222; }
+
+h4 { margin-top: 20px; }
+h5 { margin-top: 10px; }
+p { margin: 12px 0px 12px 0px !important;}
+
+.back-to-home { 
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+/*MOBILE*/
+@media only screen and (max-width: 760px) {
+    #sidebar {
+        position: absolute;
+        width: 100%;
+        top: 8px;
+    }
+    
+    #sidebar img { float: left; width: 140px; margin-right: 10px; }
+    
+    #content {
+        float: none;
+        margin-top: 190px;
+    }
+    
+    #content img {
+		max-width: 85%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto; 
+	}
+}

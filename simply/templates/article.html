@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}{{ SITENAME }} | {{ article.title }}{% endblock %}
+{% block content %}
+
+  <h3 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h3>
+  <h6 class="article-date">{{ article.locale_date }}</h6>
+  <div class="article-content">
+    {{ article.content }}
+  </div>
+    {{ ARTICLE_FOOTER }}
+
+    {% if article.related_posts %}
+      <div id="related-posts">
+        <h4>Related Posts</h4>
+        <ul>
+          {% for post in article.related_posts %}
+          <li><a href="/{{ post.url }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <br/>
+      </div>
+    {% endif %}
+
+    <a href="https://twitter.com/{{ TWITTER_USERNAME }}" class="twitter-follow-button" data-show-count="false">Follow @{{ TWITTER_USERNAME }}</a>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ TWITTER_USERNAME }}" data-count="none">Tweet</a>
+    <div class="back-to-home"><a href="{{ SITEURL }}">← Back to Home</a></div>
+    <hr class="large">
+    
+    <!-- DISQUS -->
+    {% if DISQUS_SITENAME %}
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = '{{ DISQUS_SITENAME }}'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    {% endif %}
+
+<!-- twitter.js -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{% endblock %}
