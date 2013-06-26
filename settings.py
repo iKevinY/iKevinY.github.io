@@ -11,6 +11,7 @@ AUTHOR = 'Kevin Yap'
 SITENAME = 'Kevin Yap'
 SITEURL = 'http://www.kevinyap.ca'
 
+# Custom text for biography and footer
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Generated with <a href="http://getpelican.com">Pelican</a>. Theme designed by <a href="http://www.gregreda.com/">Greg Reda</a>. Hosted with <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech</a>.'
 
@@ -44,7 +45,7 @@ TRANSLATION_FEED_ATOM = None
 DELETE_OUTPUT_DIRECTORY = False
 PATH = "content/"
 
-# In the format ('link', 'hover text', 'icon')
+# Creates icons for social links using the format ('link', 'hover text', 'icon')
 SOCIAL = (  ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'icon-envelope'),
           	('http://twitter.com/iKevinY', 'Twitter', 'icon-twitter'),
 						('http://plus.google.com/110479238274720428388', 'Google+', 'icon-google-plus'),
