@@ -11,7 +11,8 @@ AUTHOR = 'Kevin Yap'
 SITENAME = 'Kevin Yap'
 SITEURL = 'http://www.kevinyap.ca'
 
-# Custom text for biography and footer
+# Custom text for index page meta description, biography, and footer
+INDEX_DESCRIPTION = 'Developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Generated with <a href="http://getpelican.com">Pelican</a>. Theme designed by <a href="http://www.gregreda.com/">Greg Reda</a>. Hosted with <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech</a>.'
 
