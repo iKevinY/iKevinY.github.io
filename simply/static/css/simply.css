@@ -65,13 +65,21 @@ section#content {
 
 }
 
-.codehilite {
-	font-family: "Source Code Pro", sans-serif;
+.highlight {
+	font-family: "Source Code Pro", monospace;
 	font-size: 12px;
-	/*background-color: #555;*/
+	background-color: #555;
 	line-height: 125%;
 	padding: 5px 10px 5px 10px;
 	border: 2px solid #222;
+	overflow: auto;
+}
+
+.highlighttable {
+	font-family: "Source Code Pro", monospace;
+	font-size: 12px;
+	line-height: 125%;
+	padding: 5px 10px 5px 10px;
 }
 
 #sidebar {

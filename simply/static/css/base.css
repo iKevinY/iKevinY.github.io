@@ -90,10 +90,7 @@
 	blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
 
 	hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
-	
-/* Code */
-	code, pre { font-family: "Source Code Pro", monospace; background-color: #eeeeee; padding: 1px 5px 1px 5px; overflow: auto; }
-	
+
 	
 
 /* #Links

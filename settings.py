@@ -48,7 +48,7 @@ TRANSLATION_FEED_ATOM = None
 # FEED_DOMAIN = SITEURL
 # FEED_RSS = 'feed.xml'
 
-# MD_EXTENSIONS = [ 'codehilite' ]
+MD_EXTENSIONS = [ 'codehilite(css_class=highlight, linenums=False)', 'extra' ]
 
 DELETE_OUTPUT_DIRECTORY = False
 PATH = "content/"
