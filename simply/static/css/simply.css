@@ -65,6 +65,14 @@ section#content {
 
 }
 
+
+code { font-family: "Source Code Pro", monospace;
+				background-color: #eeeeee;
+				padding: 1px 5px 1px 5px;
+				overflow: auto;
+}
+	
+
 .highlight {
 	font-family: "Source Code Pro", monospace;
 	font-size: 12px;
