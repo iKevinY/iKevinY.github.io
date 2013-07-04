@@ -65,30 +65,107 @@ section#content {
 
 }
 
+/* Custom CSS */
 
-code { font-family: "Source Code Pro", monospace;
-				background-color: #eeeeee;
-				padding: 1px 5px 1px 5px;
-				overflow: auto;
+ul {
+	list-style-type: disc;
+	margin-left: 30px;
+}
+
+ol {
+	list-style-type: decimal;
+	margin-left: 30px;
+}
+
+
+/* Abbreviation CSS from Markdown-Extra extension */
+abbr, acronym, span.abbr {
+  cursor: help;
+  border-bottom: 1px dashed #444;
+}
+
+
+/* Definition CSS from Markdown-Extra extension */
+
+dl {
+	
+}
+
+dt {
+	float: left;
+  clear: left;
+  text-align: right;
+  font-weight: bold;
+}
+
+dt:after {
+	content: ":";
+}
+
+dd {
+	padding-left: 10px;
+}
+
+/* Table CSS from Markdown-Extra extension */
+
+table {
+	text-align: center;
+	padding: 4px;
+	/* border: 2px solid #444; */
+}
+
+thead {
+	font-weight: bold;
+	/* border-bottom: 1px solid #555; */
+}
+
+tbody {
+
+}
+
+th, td {
+	padding: 2px 8px;
+}
+
+
+/* Footnote CSS from Markdown-Extra extension */
+
+.footnote-ref {
+	padding-left: 1px;
+  font-size: .75em;
+  line-height: 0.5em;
+  vertical-align: baseline;
+  position: relative;
+	top: -0.5em;
+}
+
+
+/* Code and CodeHilite CSS */
+
+code {
+	font-family: "Source Code Pro", monospace;
+	background-color: #eeeeee;
+	padding: 1px 5px 1px 5px;
 }
 	
-
 .highlight {
 	font-family: "Source Code Pro", monospace;
 	font-size: 12px;
 	background-color: #555;
 	line-height: 125%;
-	padding: 5px 10px 5px 10px;
+	padding: 5px 10px;
 	border: 2px solid #222;
 	overflow: auto;
 }
 
+/* This class is used if line numbers are enabled in codehilite
 .highlighttable {
 	font-family: "Source Code Pro", monospace;
 	font-size: 12px;
 	line-height: 125%;
 	padding: 5px 10px 5px 10px;
-}
+} */
+
 
 #sidebar {
 	position: fixed;
@@ -112,21 +189,23 @@ a.icon, a:visited.icon, a:active.icon {
 	color: #555;
 	font-weight: bold;
 }
+
 a:hover.icon, a:focus.icon { color: #222; }
 
 
 
-/*ARTICLE CLASSES*/
+/* Article Classes */
 .article-title {
 	clear: both;
 	float: left;
-	/*padding-top: 2.5%;*/
+	/* padding-top: 2.5%; */
 }
 .article-date {
 	font-style: italic;
 	float: right;
 	margin: 8px 10px;
 }
+
 .article-summary { clear: both; }
 .article-content { clear: both; overflow: hidden; }
 .article-content img { border: 1px solid #222; }
@@ -140,22 +219,23 @@ p { margin: 12px 0px 12px 0px !important;}
 	margin-bottom: 10px;
 }
 
-/*MOBILE*/
+
+/* Mobile Styling */
 @media only screen and (max-width: 760px) {
-    #sidebar {
-        position: absolute;
-        width: 100%;
-        top: 8px;
-    }
+	#sidebar {
+	  position: absolute;
+	  width: 100%;
+    top: 8px;
+  }
     
-    #sidebar img { float: left; width: 140px; margin-right: 10px; }
+  #sidebar img { float: left; width: 140px; margin-right: 10px; }
     
-    #content {
-        float: none;
-        margin-top: 190px;
-    }
+  #content {
+    float: none;
+    margin-top: 190px;
+  }
     
-    #content img {
+  #content img {
 		max-width: 85%;
 		display: block;
 		margin-left: auto;
