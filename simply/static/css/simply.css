@@ -178,8 +178,10 @@ th, td {
 
 code {
 	font-family: "Source Code Pro", monospace;
-	background-color: #eeeeee;
+	background-color: #eee;
 	padding: 1px 5px 1px 5px;
+	border: 1px solid #ddd;
+	border-radius: 2px;
 }
 	
 .highlight {
