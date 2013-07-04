@@ -6,8 +6,8 @@
 
   {% for article in articles %}
 
-    <h3 class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></h3>
-    <h6 class="article-date">{{ article.locale_date }}</h6>
+    <h1 class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></h1>
+    <h4 class="article-date">{{ article.locale_date }}</h4>
 	  <hr class="large">
   
   {% endfor %}

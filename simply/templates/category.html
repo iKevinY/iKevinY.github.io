@@ -3,14 +3,14 @@
 
 {% block content %}
 
-	<h3><a href="/{{ page_name }}">List of {{ category }} Posts</a></h3>
+	<h1><a href="/{{ page_name }}">List of {{ category }} Posts</a></h1>
 	
 	<hr class="small">
 	<br/>
 	
   {% for article in dates %}
-    <h3 class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></h3>
-    <h6 class="article-date">{{ article.locale_date }}</h6>
+    <p class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></p>
+    <p class="article-date">{{ article.locale_date }}</p>
 	  <hr class="large">
   {% endfor %}
 
