@@ -164,6 +164,10 @@ th, td {
 
 /* Footnote CSS from Markdown-Extra extension */
 
+.footnote hr {
+	margin: 20px 0px;
+}
+
 .footnote-ref {
 	padding-left: 1px;
   font-size: .75em;

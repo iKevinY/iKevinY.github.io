@@ -90,4 +90,3 @@ Content Cell  | Content       | Not so much
 [^!DEF]: The definition of a footnote.
 
 
-///Footnotes Go Here///
