@@ -5,12 +5,6 @@
 * Use it however you want
 */
 
-/*
-TODO:
-- CLEAN UP A TAG LINKS - Use inheritance
-- Fix code syntax on mobile
-*/
-
 {margin: 0; padding: 0;}
 html, body { height: 100%; }
 div.container {
@@ -195,6 +189,7 @@ code {
 	line-height: 125%;
 	padding: 5px 10px;
 	border: 2px solid #222;
+	margin: 20px 0px;
 	overflow: auto;
 }
 

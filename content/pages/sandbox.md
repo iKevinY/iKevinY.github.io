@@ -11,19 +11,9 @@ Lollipop pudding bear claw tootsie roll danish sweet. Caramels tootsie roll wafe
 ### Third Paragraph
 Pudding donut bonbon sweet jelly sesame snaps croissant. Bonbon applicake donut muffin cupcake brownie souffle. Chocolate bar jelly wafer chocolate cake chocolate cake. Brownie apple pie lemon drops dragee. Muffin dragee marzipan. Dragee pastry sweet roll chocolate cake lollipop pudding macaroon oat cake. Bear claw cotton candy dessert chupa chups pudding macaroon applicake fruitcake. Fruitcake danish pastry halvah chocolate cake.
 
-## Typically There Are
-Cupcake ipsum dolor sit amet applicake. Chocolate pudding caramels tootsie roll dragee cake wafer brownie halvah. Oat cake sesame snaps donut tootsie roll. Candy sugar plum biscuit. Donut chocolate cake icing marshmallow sweet chupa chups. Icing jelly pastry chocolate bar sweet roll souffle gummi bears applicake brownie. Donut muffin icing cookie applicake. Powder cotton candy croissant toffee topping.
-
-## Section Breaks Using
-Lollipop pudding bear claw tootsie roll danish sweet. Caramels tootsie roll wafer toffee cupcake toffee gingerbread pudding carrot cake. Donut pastry carrot cake halvah croissant. Gingerbread chocolate tiramisu liquorice sesame snaps macaroon. Liquorice brownie candy canes. Icing tiramisu gummi bears. Carrot cake wafer pastry jelly beans tart dessert chocolate bar souffle souffle. Oat cake marshmallow jelly beans caramels. Gummies brownie brownie bear claw biscuit bear claw marzipan. Fruitcake lollipop pastry gingerbread gummies pastry.
-
-## H2
-Pudding donut bonbon sweet jelly sesame snaps croissant. Bonbon applicake donut muffin cupcake brownie souffle. Chocolate bar jelly wafer chocolate cake chocolate cake. Brownie apple pie lemon drops dragee. Muffin dragee marzipan. Dragee pastry sweet roll chocolate cake lollipop pudding macaroon oat cake. Bear claw cotton candy dessert chupa chups pudding macaroon applicake fruitcake. Fruitcake danish pastry halvah chocolate cake.
-
 ## Code
 
 The following is `inline code`.
-
 
 ```lua
 for index, word in ipairs(wordTable) do
@@ -45,6 +35,11 @@ for index, word in ipairs(wordTable) do
     lineTable[n] = tostring(word)
   end
 end
+```
+
+```
+This time we have a code block with no syntax highlighting.
+It spans a couple of lines.
 ```
 
 ## Unordered Lists

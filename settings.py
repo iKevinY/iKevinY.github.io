@@ -36,6 +36,7 @@ MONTH_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/index.html'
 CATEGORY_URL = 'category/{slug}/'
 CATEGORY_SAVE_AS = 'category/{slug}/index.html'
 
+# Disables archive, author, and tag pages
 ARCHIVES_SAVE_AS = False
 AUTHOR_SAVE_AS = False
 TAGS_SAVE_AS= False
@@ -48,7 +49,7 @@ TRANSLATION_FEED_ATOM = None
 # FEED_DOMAIN = SITEURL
 # FEED_RSS = 'feed.xml'
 
-MD_EXTENSIONS = [ 'codehilite(css_class=highlight, linenums=False)', 'extra' ]
+MD_EXTENSIONS = ['codehilite(css_class = highlight, linenums = False)', 'extra']
 
 DELETE_OUTPUT_DIRECTORY = False
 PATH = "content/"
