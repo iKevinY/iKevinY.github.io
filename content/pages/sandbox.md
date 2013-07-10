@@ -11,6 +11,9 @@ Lollipop pudding bear claw tootsie roll danish sweet. Caramels tootsie roll wafe
 ### Third Paragraph
 Pudding donut bonbon sweet jelly sesame snaps croissant. Bonbon applicake donut muffin cupcake brownie souffle. Chocolate bar jelly wafer chocolate cake chocolate cake. Brownie apple pie lemon drops dragee. Muffin dragee marzipan. Dragee pastry sweet roll chocolate cake lollipop pudding macaroon oat cake. Bear claw cotton candy dessert chupa chups pudding macaroon applicake fruitcake. Fruitcake danish pastry halvah chocolate cake.
 
+> This quote is quite nice.
+> <cite>Kevin Yap</cite>
+
 ## Code
 
 The following is `inline code`.

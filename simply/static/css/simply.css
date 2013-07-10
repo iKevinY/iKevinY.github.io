@@ -105,6 +105,11 @@ ol {
 	list-style-type: decimal;
 }
 
+blockquote {
+	padding: 0px 20px 0px 20px !important;
+	border-left: 2px solid #ddd !important;
+}
+
 
 /* Abbreviation CSS from Markdown-Extra extension */
 abbr, acronym, span.abbr {
@@ -206,10 +211,12 @@ code {
 	position: fixed;
 	width: 160px;
 }
+
 #bio {
 	margin-bottom: 0;
 	font-size: 90%;
 }
+
 #social {
 	text-align: center;
 }
@@ -225,8 +232,9 @@ a.icon, a:visited.icon, a:active.icon {
 	font-weight: bold;
 }
 
-a:hover.icon, a:focus.icon { color: #222; }
-
+a:hover.icon, a:focus.icon {
+	color: #222;
+}
 
 
 /* Article Classes */
