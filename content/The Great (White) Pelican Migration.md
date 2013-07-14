@@ -1,0 +1,13 @@
+Title: The Great (White) Pelican Migration
+Date: 2013-07-14
+Category: meta
+
+When browsing [/r/programming](http://www.reddit.com/r/programming) a while back, I came across a link to a blog post written by [Greg Reda](http://www.gregreda.com). While reading the post, I noticed the platform that his website was generated with -- [Pelican](http://getpelican.com/) -- and at the time, I was in the process of searching for a replacement for WordPress. When I initially created kevinyap.ca, WordPress was appealing due to being easy-to-install CMS and versatile in its support and compatibility (themes and plugins), but over time I realized that it was too bulky; what I actually needed was a simple blogging platform rather than a full-fledged CMS.
+
+I decided that it would be wise to make the move to another platform sooner rather than later, so I began the migration to Pelican. The transition from WordPress to Pelican was quite simple; the installation itself was fairly straightforward, and I manually transferred over my previous blog posts. (Pelican does have an automatic blog importer, but with the tiny number of previous posts, it was simpler to just complete the process manually.)
+
+In my opinion, one of the most appealing features of using Pelican for a blog is the fact that posts (and pages) can be composed in Markdown, an easy-to-use and familiar markup language. This change also made it easier to incorporate [iA Writer](http://www.iawriter.com/) into my blog-writing workflow instead of fumbling around with the WordPress dashboard consistently. Also, iA Writer’s iCloud integration makes it easy to write anywhere.
+
+One minor hitch that I had was with setting up the [CodeHilite](http://pythonhosted.org/Markdown/extensions/code_hilite.html) extension for Markdown. In the configuration file for Pelican, I had the entry `MD_EXTENSIONS = ['codehilite']`, as the documentation stated that `MD_EXTENSIONS` needed to be defined as a list. Although this did not raise any warnings when generating the site through Pelican. When I added the [Markdown Extra](http://pythonhosted.org/Markdown/extensions/extra.html) to the list of extensions -- `MD_EXTENSIONS = ['codehilite', 'extra']` -- the code highlighting worked. Apparently there needed to be more than one item in the list of Markdown extensions.
+
+Many thanks to Greg Reda whose Pelican theme (which can be found in the [Github repository](http://github.com/gjreda/gregreda.com) for his website) I am currently using on my website.
