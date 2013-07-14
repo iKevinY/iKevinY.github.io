@@ -10,4 +10,4 @@ In my opinion, one of the most appealing features of using Pelican for a blog is
 
 One minor hitch that I had was with setting up the [CodeHilite](http://pythonhosted.org/Markdown/extensions/code_hilite.html) extension for Markdown. In the configuration file for Pelican, I had the entry `MD_EXTENSIONS = ['codehilite']`, as the documentation stated that `MD_EXTENSIONS` needed to be defined as a list. Although this did not raise any warnings when generating the site through Pelican. When I added the [Markdown Extra](http://pythonhosted.org/Markdown/extensions/extra.html) to the list of extensions -- `MD_EXTENSIONS = ['codehilite', 'extra']` -- the code highlighting worked. Apparently there needed to be more than one item in the list of Markdown extensions.
 
-Many thanks to Greg Reda whose Pelican theme (which can be found in the [Github repository](http://github.com/gjreda/gregreda.com) for his website) I am currently using on my website.
+Many thanks to Greg Reda whose Pelican theme (which can be found in the [GitHub repository](http://github.com/gjreda/gregreda.com) for his website) I am currently using on my website.
