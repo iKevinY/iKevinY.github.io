@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 # sys.path.append(os.curdir)
 # from pelicanconf import *
 
-AUTHOR = 'Kevin Yap'
+# `AUTHOR = 'Kevin Yap'
 SITENAME = 'Kevin Yap'
 SITEURL = 'http://www.kevinyap.ca'
 
@@ -39,7 +39,8 @@ CATEGORY_SAVE_AS = 'category/{slug}/index.html'
 # Disables archive, author, and tag pages
 ARCHIVES_SAVE_AS = False
 AUTHOR_SAVE_AS = False
-TAGS_SAVE_AS= False
+CATEGORIES_SAVE_AS = False
+TAGS_SAVE_AS = False
 
 # Disables Atom feed generation
 FEED_ALL_ATOM = None
@@ -51,12 +52,12 @@ TRANSLATION_FEED_ATOM = None
 
 MD_EXTENSIONS = ['codehilite(css_class = highlight, linenums = False)', 'extra']
 
-DELETE_OUTPUT_DIRECTORY = False
+DELETE_OUTPUT_DIRECTORY = True
 PATH = "content/"
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
-SOCIAL = (  ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'icon-envelope'),
-          	('http://twitter.com/iKevinY', 'Twitter', 'icon-twitter'),
+SOCIAL = (	('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'icon-envelope'),
+						('http://twitter.com/iKevinY', 'Twitter', 'icon-twitter'),
 						('http://plus.google.com/110479238274720428388', 'Google+', 'icon-google-plus'),
 						('http://github.com/iKevinY', 'GitHub', 'icon-github'),
 						('http://soundcloud.com/iKevinY', 'SoundCloud', 'icon-music'),
@@ -68,4 +69,4 @@ GOOGLE_ANALYTICS = "UA-41937659-1"
 
 DEFAULT_PAGINATION = 10
 
-OUTPUT_PATH = ''
+OUTPUT_PATH = 'output/'
