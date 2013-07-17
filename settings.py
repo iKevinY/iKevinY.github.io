@@ -56,11 +56,11 @@ DELETE_OUTPUT_DIRECTORY = True
 PATH = "content/"
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
-SOCIAL = (	('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'icon-envelope'),
-						('http://twitter.com/iKevinY', 'Twitter', 'icon-twitter'),
-						('http://plus.google.com/110479238274720428388', 'Google+', 'icon-google-plus'),
-						('http://github.com/iKevinY', 'GitHub', 'icon-github'),
-						('http://soundcloud.com/iKevinY', 'SoundCloud', 'icon-music'),
+SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'icon-envelope'),
+          ('http://twitter.com/iKevinY', 'Twitter', 'icon-twitter'),
+          ('http://plus.google.com/110479238274720428388', 'Google+', 'icon-google-plus'),
+          ('http://github.com/iKevinY', 'GitHub', 'icon-github'),
+          ('http://soundcloud.com/iKevinY', 'SoundCloud', 'icon-music'),
          )
 
 DISQUS_SITENAME = "kevinyap"
