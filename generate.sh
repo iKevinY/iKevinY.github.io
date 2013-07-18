@@ -4,7 +4,6 @@ pelican -s ./settings.py
 cp favicon.ico output/favicon.ico && echo "favicon.ico successfully copied."
 cp robots.txt output/robots.txt && echo "robots.txt successfully copied."
 cp .htaccess output/.htaccess && echo ".htaccess successfully copied."
-rm settings.pyc && echo "settings.pyc removed from main directory."
 
 # If -u flag is used, upload output folder via rsync
 if [ -z "$1" ]; then

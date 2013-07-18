@@ -1,4 +1,5 @@
 Title: Sandbox
+Latex:
 
 This page is a sandbox page for testing how the Markdown engine will render certain elements.
 
@@ -84,8 +85,12 @@ Footnotes[^1] have a label[^label] and a definition[^!DEF].
 <tr> <td style="font-weight:bold">Slack</td> <td>+1</td> <td>-2</td> </tr>
 </table>
 
+## LaTeX
+
+$x^2$ is inline math. The following math will be displayed on its own.
+
+$$J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}$$
+
 [^1]: This is a footnote
 [^label]: A footnote on "label"
 [^!DEF]: The definition of a footnote.
-
-

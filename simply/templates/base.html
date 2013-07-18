@@ -58,6 +58,15 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="./theme/images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="./theme/images/apple-touch-icon-114x114.png">
 
+	<!-- LaTeX
+	================================================== -->
+	{% if article and article.latex %}
+    {{ article.latex }}
+	{% endif %}
+	{% if page and page.latex %}
+    {{ page.latex }}
+	{% endif %}
+
 </head>
 
 <body>

@@ -52,6 +52,12 @@ TRANSLATION_FEED_ATOM = None
 
 MD_EXTENSIONS = ['codehilite(css_class = highlight, linenums = False)', 'extra']
 
+PLUGIN_PATH = "plugins"
+PLUGINS = ["latex"]
+
+# Only enable LaTeX with the "Latex:" metadat property
+LATEX = 'article'
+
 DELETE_OUTPUT_DIRECTORY = True
 PATH = "content/"
 
