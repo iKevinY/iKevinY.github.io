@@ -78,10 +78,11 @@ Footnotes[^1] have a label[^label] and a definition[^!DEF].
 
 ## Tables
 
-First Header  | Second Header | Third Header
-------------- | ------------- | ------------
-Content Cell  | Content       | Lots of content here
-Content Cell  | Content       | Not so much
+<table>
+<tr> <td></td> <td>Hunt</td> <td>Slack</td> </tr>
+<tr> <td style="font-weight:bold">Hunt</td> <td>0</td> <td>-3</td> </tr>
+<tr> <td style="font-weight:bold">Slack</td> <td>+1</td> <td>-2</td> </tr>
+</table>
 
 [^1]: This is a footnote
 [^label]: A footnote on "label"

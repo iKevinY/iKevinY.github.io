@@ -5,7 +5,7 @@
 * Use it however you want
 */
 
-{margin: 0; padding: 0;}
+{ margin: 0; padding: 0; }
 html, body { height: 100%; }
 div.container {
 	padding-top: 50px;
@@ -106,7 +106,7 @@ ol {
 }
 
 blockquote {
-	padding: 0px 20px 0px 20px !important;
+	padding: 0 20px 0 20px !important;
 	border-left: 2px solid #ddd !important;
 }
 
@@ -148,7 +148,7 @@ table {
 }
 
 thead {
-	font-weight: bold;
+	/* font-weight: bold; */
 	/* border-bottom: 1px solid #555; */
 }
 
@@ -164,7 +164,7 @@ th, td {
 /* Footnote CSS from Markdown-Extra extension */
 
 .footnote hr {
-	margin: 20px 0px;
+	margin: 20px 0;
 }
 
 .footnote-ref {
@@ -194,7 +194,7 @@ code {
 	line-height: 125%;
 	padding: 5px 10px;
 	border: 2px solid #222;
-	margin: 20px 0px;
+	margin: 20px 0;
 	overflow: auto;
 }
 
@@ -265,7 +265,7 @@ a:hover.icon, a:focus.icon {
 
 h4 { margin-top: 20px; }
 h5 { margin-top: 10px; }
-p { margin: 12px 0px 12px 0px !important;}
+p { margin: 12px 0 12px 0 !important;}
 
 .back-to-home { 
 	margin-top: 20px;
