@@ -87,7 +87,7 @@ Footnotes[^1] have a label[^label] and a definition[^!DEF].
 
 ## LaTeX
 
-$x^2$ is inline math. The following math will be displayed on its own.
+An important aspect of the challenge to keep in account is the `m` variable, which is set to a random integer value every round such that $0 &#8804; m &#8804; P(P-1)$. Assuming that this value is truly random, in order to calculate this value, I wrote code to track the average cooperation value of the tribe over time to determine the probability that `m` would be met for any given round. As the graph $y = P(P-1)$ (which can be rewritten as $y = P^2 - P$) is a quadratic equation, assuming each player has a reputation of 0.5, the probability that `m` will be reached increases when fewer players are remaining. The following math will be displayed on its own.
 
 $$J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}$$
 

@@ -1,18 +1,20 @@
 /*
-* Greg Reda
+* simply.css
+* Created by Greg Reda, modified by Kevin Yap
 * Styling based on the Skeleton documention (http://www.getskeleton.com/)
-* 11/25/2012
-* Use it however you want
 */
 
-{ margin: 0; padding: 0; }
-html, body { height: 100%; }
+html, body {
+	height: 100%;
+}
+
 div.container {
 	padding-top: 50px;
 	min-height: 100%;
 	/*margin-bottom: -50px;*/
 	/*position: relative;*/
 }
+
 footer {
 	float: right !important;
 	/*height: 50px;*/
@@ -31,7 +33,6 @@ footer {
 	/* Styling from h3 tag in Skeleton's base.css */
 	font-size: 28px;
 	line-height: 34px;
-	margin-bottom: 8px
 }
 
 hr.large {
@@ -46,8 +47,7 @@ hr.small {
 }
 
 section#content {
-	margin-top: 30px 0;
-	float: right; /*Had to add this - not sure if it's the right way*/
+	float: right; /* Had to add this - not sure if it's the right way */
 }
 
 #content img {
@@ -93,12 +93,9 @@ h4, h5, h6 {
 	font-size: 14px; line-height: 21px;
 }
 
-ul, ol {
-	margin-left: 30px;
-}
-
 ul {
 	list-style-type: disc;
+	margin-left: 30px;
 }
 
 ol {
@@ -120,10 +117,6 @@ abbr, acronym, span.abbr {
 
 /* Definition CSS from Markdown-Extra extension */
 
-dl {
-	
-}
-
 dt {
 	float: left;
   clear: left;
@@ -132,11 +125,7 @@ dt {
 }
 
 dt:after {
-	content: ":";
-}
-
-dd {
-	padding-left: 10px;
+	content: ": ";
 }
 
 /* Table CSS from Markdown-Extra extension */
@@ -144,16 +133,7 @@ dd {
 table {
 	text-align: center;
 	padding: 4px;
-	/* border: 2px solid #444; */
-}
-
-thead {
-	/* font-weight: bold; */
-	/* border-bottom: 1px solid #555; */
-}
-
-tbody {
-
+	border: 2px solid #444;
 }
 
 th, td {

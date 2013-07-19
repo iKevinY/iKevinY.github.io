@@ -11,7 +11,7 @@ if [ -z "$1" ]; then
 	exit
 elif [ $1 = "-u" ]; then
 	echo "Site generated successfully."
-	rsync -r ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
+	rsync -r --delete ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
 	echo "Output directory updated using rsync."
 fi
 
