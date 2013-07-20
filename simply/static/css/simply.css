@@ -133,7 +133,7 @@ dt:after {
 table {
 	text-align: center;
 	padding: 4px;
-	border: 2px solid #444;
+	/* border: 2px solid #444; */
 }
 
 th, td {
@@ -177,15 +177,6 @@ code {
 	margin: 20px 0;
 	overflow: auto;
 }
-
-/* This class is used if line numbers are enabled in codehilite
-.highlighttable {
-	font-family: "Source Code Pro", monospace;
-	font-size: 12px;
-	line-height: 125%;
-	padding: 5px 10px 5px 10px;
-} */
-
 
 #sidebar {
 	position: fixed;
