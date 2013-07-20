@@ -3,9 +3,9 @@ cd ~/Sites/Kevin\ Yap
 pelican -s ./settings.py
 
 # Run file copying/deletion commands
-cp favicon.ico output/favicon.ico || echo "Error copying favicon.ico."
-cp robots.txt output/robots.txt || echo "Error copying robots.txt."
-cp .htaccess output/.htaccess || echo "Error copying .htaccess."
+cp favicon.ico output/favicon.ico
+cp robots.txt output/robots.txt
+cp .htaccess output/.htaccess
 find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
 
 printf "\e[0;32mSite generated successfully.\e[0m\n"
