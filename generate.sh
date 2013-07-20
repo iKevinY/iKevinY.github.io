@@ -1,14 +1,16 @@
 #!/bin/bash
 cd ~/Sites/Kevin\ Yap
 pelican -s ./settings.py
-cp favicon.ico output/favicon.ico && echo "favicon.ico successfully copied."
-cp robots.txt output/robots.txt && echo "robots.txt successfully copied."
-cp .htaccess output/.htaccess && echo ".htaccess successfully copied."
-find . -name '*.DS_Store' -type f -delete && echo "Removed .DS_Store files."
+
+# Run file copying/deletion commands
+cp favicon.ico output/favicon.ico || echo "Error copying favicon.ico."
+cp robots.txt output/robots.txt || echo "Error copying robots.txt."
+cp .htaccess output/.htaccess || echo "Error copying .htaccess."
+find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
 
 printf "\e[0;32mSite generated successfully.\e[0m\n"
 
-# If -u flag is used, upload output folder via rsync
+# Check for options
 if [ -z "$1" ]; then # no flag
 	exit
 elif [ $1 = "-b" ]; then # backup
@@ -31,5 +33,3 @@ elif [ $1 = "-u" ]; then # upload
 		exit
 	fi
 fi
-
-# Note to self: update ~/.bash_profile file with 'alias generate="bash ~/Sites/Kevin\ Yap/generate.sh"'
