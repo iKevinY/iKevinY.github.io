@@ -91,6 +91,12 @@ An important aspect of the challenge to keep in account is the `m` variable, whi
 
 $$J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}$$
 
+However, the game is not quite that simple. In every round, a variable is set to a random value such that $\{ x \in \mathbb{Z} \wedge 0 \leq x \leq P(P-1) \}$ where $P = \text{number of players}$. The value $P(P-1)$ or $P^2-P$ comes up often; it is equal to twice the number of hunts that will take place in the current round. The total hunts in a a round is equal to $\binom{P}{2}$ (each player hunts with every other player).
+
+$$ \frac{P(P-1)}{2} = \binom{P}{2} $$
+
+Math is fun.
+
 [^1]: This is a footnote
 [^label]: A footnote on "label"
 [^!DEF]: The definition of a footnote.

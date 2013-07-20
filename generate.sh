@@ -11,7 +11,18 @@ if [ -z "$1" ]; then
 	exit
 elif [ $1 = "-u" ]; then
 	echo "Site generated successfully."
-	rsync -r --delete ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
+
+	echo -n "Confirm upload via rsync (y/n): "
+	read confirm
+
+	if [ $confirm == 'y' ]; then
+		echo "rsync confirmed."
+	else
+		echo "rsync terminated."
+		exit
+	fi
+
+	rsync -r --delete -e "ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
 	echo "Output directory updated using rsync."
 fi
 
