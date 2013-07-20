@@ -64,14 +64,11 @@ It spans a couple of lines.
 <tr> <td style="font-weight:bold">Slack</td> <td>+1</td> <td>-2</td> </tr>
 </table>
 
-## LaTeX
+## LaTeX $P(P-1)$
 
-An important aspect of the challenge to keep in account is the `m` variable, which is set to a random integer value every round such that $0 &#8804; m &#8804; P(P-1)$. Assuming that this value is truly random, in order to calculate this value, I wrote code to track the average cooperation value of the tribe over time to determine the probability that `m` would be met for any given round. As the graph $y = P(P-1)$ (which can be rewritten as $y = P^2 - P$) is a quadratic equation, assuming each player has a reputation of 0.5, the probability that `m` will be reached increases when fewer players are remaining. The following math will be displayed on its own.
+Remember that the `cooperation_threshold` variable is set to a random integer such that $0 \leq x \leq P(P-1)$. The value $P(P-1)$ is equal to twice the number of hunts that will take place in the current round. The total hunts in a a round is equal to $\binom{P}{2}$ (each player hunts with every other player).
 
-$$J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}$$
-
-However, the game is not quite that simple. In every round, a variable is set to a random value such that $\{ x \in \mathbb{Z} \wedge 0 \leq x \leq P(P-1) \}$ where $P = \text{number of players}$. The value $P(P-1)$ or $P^2-P$ comes up often; it is equal to twice the number of hunts that will take place in the current round. The total hunts in a a round is equal to $\binom{P}{2}$ (each player hunts with every other player).
-
-$$ \frac{P(P-1)}{2} = \binom{P}{2} $$
+$$ \frac{n!}{k!(n-k)!} = \binom{n}{k} $$
+$$ \frac{P(P-1)}{2} = \frac{P!}{2!(P-2)!} = \binom{P}{2} $$
 
 Math is fun.

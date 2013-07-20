@@ -2,11 +2,6 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-# import os
-# import sys
-# sys.path.append(os.curdir)
-# from pelicanconf import *
-
 # `AUTHOR = 'Kevin Yap'
 SITENAME = 'Kevin Yap'
 SITEURL = 'http://www.kevinyap.ca'
@@ -47,8 +42,8 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
-# FEED_DOMAIN = SITEURL
-# FEED_RSS = 'feed.xml'
+FEED_DOMAIN = SITEURL
+FEED_RSS = 'feed.rss'
 
 MD_EXTENSIONS = ['codehilite(css_class = highlight, linenums = False)', 'extra']
 
@@ -67,7 +62,8 @@ SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'E
           ('http://plus.google.com/110479238274720428388', 'Google+', 'icon-google-plus'),
           ('http://github.com/iKevinY', 'GitHub', 'icon-github'),
           ('http://soundcloud.com/iKevinY', 'SoundCloud', 'icon-music'),
-         )
+          ('http://www.kevinyap.ca/feed.rss', 'RSS Feed', 'icon-rss')
+          )
 
 DISQUS_SITENAME = "kevinyap"
 TWITTER_USERNAME = "iKevinY"

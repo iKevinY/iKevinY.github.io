@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ~/Sites/Kevin\ Yap
-pelican -s ./settings.py
+pelican -s settings.py
 
 # Run file copying/deletion commands
 cp favicon.ico output/favicon.ico
@@ -21,15 +21,18 @@ elif [ $1 = "-u" ]; then # upload
 	echo "Beginning dry run of rsync."
 	rsync --recursive --dry-run --verbose --checksum --human-readable --delete --rsh="ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
 
-	printf "\e[0;36mConfirm upload via rsync (y/n): \e[0m"
-	read confirm
+	read -n1 -p "Confirm upload via rsync (y/n): " confirm
+	printf "\n"
 
-	if [ $confirm == 'y' ]; then
-		rsync --recursive --checksum --delete --rsh="ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
-		printf "\e[0;32mOutput directory updated using rsync.\e[0m\n"
-		exit
-	else
-		printf "\e[0;31mrsync terminated.\e[0m\n"
-		exit
-	fi
+	case $confirm in  
+	  y|Y)
+			rsync --recursive --checksum --delete --rsh="ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
+			printf "\e[0;32mOutput directory updated using rsync.\e[0m\n"
+			exit ;;
+	  n|N)
+			printf "\e[0;31mrsync terminated.\e[0m\n"
+			exit ;;
+	  *)
+			echo "Unknown input." ;; 
+	esac
 fi
