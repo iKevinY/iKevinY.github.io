@@ -56,27 +56,6 @@ It spans a couple of lines.
 1. Ordered lists
 2. Have numbers
 
-## Abbreviations
-
-The HTML specification 
-is maintained by the W3C.
-
-*[HTML]: Hyper Text Markup Language
-*[W3C]:  World Wide Web Consortium
-
-## Definitions
-
-Apple
-:   Pomaceous fruit of plants of the genus Malus in 
-    the family Rosaceae.
-
-Orange
-:   The fruit of an evergreen tree of the genus Citrus.
-
-## Footnotes
-
-Footnotes[^1] have a label[^label] and a definition[^!DEF].
-
 ## Tables
 
 <table>
@@ -96,7 +75,3 @@ However, the game is not quite that simple. In every round, a variable is set to
 $$ \frac{P(P-1)}{2} = \binom{P}{2} $$
 
 Math is fun.
-
-[^1]: This is a footnote
-[^label]: A footnote on "label"
-[^!DEF]: The definition of a footnote.
