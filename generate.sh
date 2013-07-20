@@ -19,13 +19,13 @@ elif [ $1 = "-b" ]; then # backup
 	exit
 elif [ $1 = "-u" ]; then # upload
 	echo "Beginning dry run of rsync."
-	rsync -rnvc --delete -e "ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
+	rsync --recursive --dry-run --verbose --checksum --human-readable --delete --rsh="ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
 
 	printf "\e[0;36mConfirm upload via rsync (y/n): \e[0m"
 	read confirm
 
 	if [ $confirm == 'y' ]; then
-		rsync -rc --delete -e "ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
+		rsync --recursive --checksum --delete --rsh="ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
 		printf "\e[0;32mOutput directory updated using rsync.\e[0m\n"
 		exit
 	else
