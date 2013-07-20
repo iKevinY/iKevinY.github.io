@@ -9,9 +9,13 @@ find . -name '*.DS_Store' -type f -delete && echo "Removed .DS_Store files."
 printf "\e[0;32mSite generated successfully.\e[0m\n"
 
 # If -u flag is used, upload output folder via rsync
-if [ -z "$1" ]; then
+if [ -z "$1" ]; then # no flag
 	exit
-elif [ $1 = "-u" ]; then
+elif [ $1 = "-b" ]; then # backup
+	rsync -a ~/Sites/Kevin\ Yap/ /Volumes/PETITEKEY/Website\ Backup
+	printf "\e[0;32mSite files backed up to PetiteKey.\e[0m\n"
+	exit
+elif [ $1 = "-u" ]; then # upload
 	echo "Beginning dry run of rsync."
 	rsync -rnvc --delete -e "ssh -i $HOME/.ssh/id_rsa" ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
 
