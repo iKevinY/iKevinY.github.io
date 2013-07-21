@@ -15,4 +15,35 @@ The fix for this was simple enough. Instead of searching for the first apostroph
 
 All in all, the script was certainly not pretty, but it did the job. I didn't notice any incorrectly reformatted names at first glance, but it is possible that a few oddly named songs were incorrectly renamed. I guess my point is that AppleScript was easy enough to work with (given rudimentary knowledge of how other programming languages function) that I was able to hack this very specifically-purposed script together in a short amount of time. Most of the code is based on words in English making it accessible to people who have never programmed before, and the AppleScript Editor gives an alert when saving or running the code if it is invalid.
 
-If you want to download the script to correct the names of the OverClocked ReMix torrent yourself (or just to examine my shoddily thrown together code), [here is a download link](/content/uploads/Reformat OverClocked ReMix Titles.scpt).
+If you want to use the script to rename to your own tracks (or just to examine my shoddily thrown together code), [here is a download link](/uploads/Reformat OverClocked ReMix Titles.scpt). Alternatively, here is the source code; to use the script, copy it into AppleScript Editor, select the tracks in iTunes, and run it.
+
+```applescript
+tell application "iTunes"
+	set sel to selection
+	if sel is not {} then
+		repeat with track in sel		
+			-- Set trackName variable to name of track (track) 
+			set trackName to (get name of track)
+			
+			-- Strip " OC ReMix" characters from end of track title
+			set trackName to text 1 thru -10 of trackName
+			
+			-- Find the location in the string where the song name begins (-2)
+			set songTitleBegins to (offset of " '" in trackName)
+			
+			-- Store name of song in songName string
+			set songName to text ((songTitleBegins) + 2) thru -2 of trackName
+			
+			-- Find name of game
+			set gameTitle to text 1 thru (songTitleBegins - 1) of trackName
+			
+			-- Format new track name
+			set newTrackName to songName & " " & "(" & gameTitle & ")"
+			
+			-- Set name of track to newly formatted track name
+			set name of track to newTrackName
+			
+		end repeat
+	end if
+end tell
+```
