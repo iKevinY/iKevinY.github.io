@@ -32,14 +32,14 @@ function confirm {
 if [ -z "$1" ]; then # no flag
 	exit
 elif [ $1 = "-b" ]; then # backup
-	backupPath=$(mount | grep '/Volumes/*' | awk '{print $3}')
+	backupPath=$(mount | grep '/Volumes/*' | awk 'NR==1{print $3}')
 
 	if [ -z $backupPath ]; then
 		printf "\e[0;31mNo external drives connected.\e[0m\n"
 		exit
 	else
 		rsync -a ~/Sites/Kevin\ Yap/ $backupPath/Website\ Backup
-		printf "\e[0;32mSite files backed up to $backupPath.\e[0m\n"
+		printf "\e[0;36mSite files backed up to $backupPath.\e[0m\n"
 		exit
 	fi
 elif [ $1 = "-u" ]; then # upload
