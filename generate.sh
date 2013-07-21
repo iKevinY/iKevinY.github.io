@@ -6,6 +6,7 @@ pelican -s settings.py
 cp favicon.ico output/favicon.ico
 cp robots.txt output/robots.txt
 cp .htaccess output/.htaccess
+cp -R uploads/ output/uploads/
 find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
 
 printf "\e[0;32mSite generated successfully.\e[0m\n"
