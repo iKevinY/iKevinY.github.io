@@ -32,8 +32,9 @@ function confirm {
 if [ -z "$1" ]; then # no flag
 	exit
 elif [ $1 = "-b" ]; then # backup
-	rsync -a ~/Sites/Kevin\ Yap/ /Volumes/PETITEKEY/Website\ Backup
-	printf "\e[0;32mSite files backed up to PetiteKey.\e[0m\n"
+	backupPath=$(mount | grep '/Volumes/*' | awk '{print $3}')
+	rsync -a ~/Sites/Kevin\ Yap/ $backupPath/Website\ Backup
+	printf "\e[0;32mSite files backed up to $backupPath.\e[0m\n"
 	exit
 elif [ $1 = "-u" ]; then # upload
 	echo "Beginning dry run of rsync."
