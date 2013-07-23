@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ~/Sites/Kevin\ Yap
-pelican -s settings.py
+pelican -q -s settings.py
 
 # Run file copying/deletion commands
 cp favicon.ico output/favicon.ico
