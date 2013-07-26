@@ -11,20 +11,19 @@ find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store file
 
 printf "\e[0;32mSite generated successfully.\e[0m\n"
 
-function confirm {
-	read -n1 -p "Confirm upload via rsync (y/n): " confirm
+confirm() {
+	read -n1 -p "$1" input
 	printf "\n"
-	case $confirm in
+
+	# Note to self: 0 is true and 1 is false.
+	case $input in
 	  y|Y)
-			rsync --recursive --checksum --delete ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
-			printf "\e[0;32mOutput directory updated using rsync.\e[0m\n"
-			exit ;;
+			return 0 ;;
 	  n|N)
-			printf "\e[0;31mrsync terminated.\e[0m\n"
-			exit ;;
+			return 1 ;;
 	  *)
 			printf "Unknown input. "
-			confirm ;;
+			confirm "$1" ;;
 	esac
 }
 
@@ -40,10 +39,23 @@ elif [ $1 = "-b" ]; then # backup
 	else
 		rsync -a ~/Sites/Kevin\ Yap/ $backupPath/Website\ Backup
 		printf "\e[0;36mSite files backed up to $backupPath.\e[0m\n"
+		if confirm $"Eject $backupPath (y/n): "; then
+			diskutil unmount $backupPath
+			exit
+		else
+			printf "$backupPath not ejected.\n"
+			exit
+		fi
 		exit
 	fi
 elif [ $1 = "-u" ]; then # upload
 	echo "Beginning dry run of rsync."
 	rsync --recursive --dry-run --verbose --checksum --human-readable --delete ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
-	confirm
+	if confirm $"Confirm upload via rsync (y/n): "; then
+		rsync --recursive --checksum --delete ~/Sites/Kevin\ Yap/output/ keviny_kevinyap@ssh.phx.nearlyfreespeech.net:/home/public/
+		printf "\e[0;32mOutput directory updated using rsync.\e[0m\n"
+	else
+		printf "\e[0;31mrsync terminated.\e[0m\n"
+	fi
+	exit
 fi
