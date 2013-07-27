@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+
+{% block opengraph %}
+  <meta property="og:title" content="{{ page.title }} | {{ SITENAME }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}`">
+  <meta property="og:description" content="{{ DESCRIPTION }}">
+{% endblock %}
+
 {% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
 {% block content %}
 
