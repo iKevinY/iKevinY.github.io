@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block opengraph %}
+	{{ super() }}
   <meta property="og:title" content="{{ page.title }} | {{ SITENAME }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}`">

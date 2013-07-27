@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ category }} Post Archive | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+
+	<h1><a href="/{{ page_name }}">Post Archive</a></h1>
+	
+	<hr class="small">
+	<br />
+	<ul>
+  {% for article in dates %}
+		<li>{{ article.locale_date }}: <a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a>
+  {% endfor %}
+	</ul>
+
+{% endblock %}
