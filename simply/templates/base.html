@@ -15,7 +15,7 @@
 	<!-- Open Graph
   ================================================== -->
   {% block opengraph %}
-  <meta property="og:image" content="http://www.kevinyap.ca/theme/images/avatar.png">
+  <meta property="og:image" content="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">
   {% endblock %}
 
 	<!-- Mobile Specific Metas
@@ -38,9 +38,12 @@
 
 	<!-- Favicons
   ================================================== -->
-	<link rel="apple-touch-icon" href="{{ SITEURL }}/theme/images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="{{ SITEURL }}/theme/images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="{{ SITEURL }}/theme/images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">
+	<link rel="apple-touch-icon" sizes="57x57" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=57">
+	<link rel="apple-touch-icon" sizes="72x72" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=72">
+	<link rel="apple-touch-icon" sizes="114x114" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=114">
+	<link rel="apple-touch-icon" sizes="120x120" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=120">
+	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">
 
 	<!-- LaTeX
 	================================================== -->
@@ -59,7 +62,7 @@
 	================================================== -->
 	<div class="container">
 		<div id="sidebar" class="three columns">
-			<a href="{{ SITEURL }}"><img id="avatar" src="{{ SITEURL }}/theme/images/avatar.png"></img></a>
+			<a href="{{ SITEURL }}"><img id="avatar" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></img></a>
 			<p id="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
 	    <p id="bio" style="text-align: center">{{ BIO_TEXT }}</p>
 	    <hr class="small" /> 
