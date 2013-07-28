@@ -11,16 +11,11 @@ html, body {
 div.container {
 	padding-top: 50px;
 	min-height: 100%;
-	/*margin-bottom: -50px;*/
-	/*position: relative;*/
 }
 
 footer {
 	float: right !important;
-	/*height: 50px;*/
-	/*position: relative;*/
 	text-align: center;
-	/*clear: both;*/
 }
 
 #logo {
@@ -47,7 +42,7 @@ hr.small {
 }
 
 section#content {
-	float: right; /* Had to add this - not sure if it's the right way */
+	float: right;
 }
 
 #content img {
@@ -63,14 +58,10 @@ section#content {
 	margin-bottom: 10px;
 	display: block;
 	width: 140px;
-	/* border: 2px solid #555; */
-	/* border-radius: 70px; */
-
 }
 
-/* Custom CSS */
 
-
+/* Skeleton Modifications */
 
 h1 {
 	font-size: 28px;
@@ -110,8 +101,8 @@ blockquote {
 
 /* Abbreviation CSS from Markdown-Extra extension */
 abbr, acronym, span.abbr {
-  cursor: help;
-  border-bottom: 1px dashed #444;
+	cursor: help;
+	border-bottom: 1px dashed #444;
 }
 
 
@@ -119,9 +110,9 @@ abbr, acronym, span.abbr {
 
 dt {
 	float: left;
-  clear: left;
-  text-align: right;
-  font-weight: bold;
+	clear: left;
+	text-align: right;
+	font-weight: bold;
 }
 
 dt:after {
@@ -149,10 +140,10 @@ th, td {
 
 .footnote-ref {
 	padding-left: 1px;
-  font-size: .75em;
-  line-height: 0.5em;
-  vertical-align: baseline;
-  position: relative;
+	font-size: .75em;
+	line-height: 0.5em;
+	vertical-align: baseline;
+	position: relative;
 	top: -0.5em;
 }
 
@@ -247,22 +238,32 @@ p { margin: 12px 0 12px 0 !important;}
 /* Mobile Styling */
 @media only screen and (max-width: 760px) {
 	#sidebar {
-	  position: absolute;
-	  width: 100%;
-    top: 8px;
-  }
-    
-  #sidebar img { float: left; width: 140px; margin-right: 10px; }
-    
-  #content {
-    float: none;
-    margin-top: 190px;
-  }
-    
-  #content img {
+		position: absolute;
+		width: 100%;
+		top: 8px;
+	}
+		
+	#sidebar img { float: left; width: 140px; margin-right: 10px; }
+		
+	#content {
+		float: none;
+		margin-top: 190px;
+	}
+		
+	#content img {
 		max-width: 85%;
 		display: block;
 		margin-left: auto;
 		margin-right: auto; 
+	}
+
+	.article-title, .entry-title {
+		text-align: center;
+		float: none;
+	}
+
+	.article-date {
+		text-align: center;
+		float: none;
 	}
 }
