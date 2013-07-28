@@ -15,23 +15,7 @@
 
   <h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h1>
   <h6 class="article-date">{{ article.locale_date }}</h6>
-  <div class="article-content">
-    {{ article.content }}
-  </div>
-
-  {{ ARTICLE_FOOTER }}
-
-  {% if article.related_posts %}
-    <div id="related-posts">
-      <h2>Related Posts</h2>
-      <ul>
-        {% for post in article.related_posts %}
-        <li><a href="/{{ post.url }}">{{ post.title }}</a></li>
-        {% endfor %}
-      </ul>
-      <br/>
-    </div>
-  {% endif %}
+  <div class="article-content">{{ article.content }}</div>
 
   <a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ TWITTER_USERNAME }}" data-count="none">Tweet</a>
   <div class="g-plusone" data-size="medium" data-annotation="none" data-width="300"></div>
