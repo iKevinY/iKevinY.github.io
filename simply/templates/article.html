@@ -23,7 +23,7 @@
   <hr class="large">
     
   <!-- Disqus -->
-  {% if DISQUS_SITENAME %}
+  {% if DISQUS_SITENAME and article.status != "draft" %}
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_shortname = '{{ DISQUS_SITENAME }}';
