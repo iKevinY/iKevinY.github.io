@@ -236,7 +236,7 @@ p { margin: 12px 0 12px 0 !important;}
 
 
 /* Mobile Styling */
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 767px) {
 	#sidebar {
 		position: absolute;
 		width: 100%;
