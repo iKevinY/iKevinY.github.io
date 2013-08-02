@@ -58,4 +58,7 @@ elif [ $1 = "-u" ]; then # upload
 		printf "\e[0;31mrsync terminated.\e[0m\n"
 	fi
 	exit
+elif [ $1 = "-p" ]; then
+	cd ~/Sites/Kevin\ Yap/output
+	python -m SimpleHTTPServer
 fi
