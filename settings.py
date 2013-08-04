@@ -28,12 +28,10 @@ PAGE_SAVE_AS = '{slug}/index.html'
 YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 
-CATEGORY_URL = 'category/{slug}/'
-CATEGORY_SAVE_AS = 'category/{slug}/index.html'
-
 # Disables archive, author, and tag pages
 ARCHIVES_SAVE_AS = False
 AUTHOR_SAVE_AS = False
+CATEGORY_SAVE_AS = False
 CATEGORIES_SAVE_AS = False
 TAGS_SAVE_AS = False
 
@@ -45,16 +43,17 @@ TRANSLATION_FEED_ATOM = None
 FEED_DOMAIN = SITEURL
 FEED_RSS = 'feed.rss'
 
-MD_EXTENSIONS = ['codehilite(css_class = highlight, linenums = False)', 'extra']
+MD_EXTENSIONS = ['codehilite(css_class = highlight)', 'extra']
 
-PLUGIN_PATH = "plugins"
-PLUGINS = ["latex"]
+PLUGIN_PATH = 'plugins'
+PLUGINS = ['latex']
 
-# Only enable LaTeX with the "Latex:" metadat property
+# Only enable LaTeX with the "Latex:" metadata property
 LATEX = 'article'
 
 DELETE_OUTPUT_DIRECTORY = True
-PATH = "content/"
+OUTPUT_PATH = 'output/'
+PATH = 'content/'
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
 SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'icon-envelope'),
@@ -66,13 +65,11 @@ SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'E
           )
 
 # MD5 hash of email address for Gravatar
-GRAVATAR_HASH = "0d1d263a229548db35dffba8c55e19f7"
+GRAVATAR_HASH = '0d1d263a229548db35dffba8c55e19f7'
 
-DISQUS_SITENAME = "kevinyap"
-TWITTER_USERNAME = "iKevinY"
-GOOGLE_ANALYTICS = "UA-41937659-1"
-GAUGES_ID = "51fa9979f5a1f538c7000028"
+DISQUS_SITENAME = 'kevinyap'
+TWITTER_USERNAME = 'iKevinY'
+GOOGLE_ANALYTICS = 'UA-41937659-1'
+GAUGES_ID = '51fa9979f5a1f538c7000028'
 
 DEFAULT_PAGINATION = False
-
-OUTPUT_PATH = 'output/'
