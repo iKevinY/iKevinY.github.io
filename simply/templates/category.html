@@ -8,10 +8,10 @@
 	<hr class="small">
 	<br/>
 	
-  {% for article in dates %}
-    <p class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></p>
-    <p class="article-date">{{ article.locale_date }}</p>
-	  <hr class="large">
-  {% endfor %}
+	{% for article in dates %}
+		<p class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></p>
+		<p class="article-date">{{ article.locale_date }}</p>
+		<hr class="large">
+	{% endfor %}
 
 {% endblock %}

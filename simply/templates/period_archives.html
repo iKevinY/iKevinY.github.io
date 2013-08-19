@@ -8,9 +8,9 @@
 	<hr class="small">
 	<br />
 	<ul>
-  {% for article in dates %}
+	{% for article in dates %}
 		<li>{{ article.locale_date }}: <a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a>
-  {% endfor %}
+	{% endfor %}
 	</ul>
 
 {% endblock %}

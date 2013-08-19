@@ -3,10 +3,11 @@ cd ~/Sites/Kevin\ Yap
 pelican -q -s settings.py
 
 # Run file copying/deletion commands
-cp favicon.ico output/favicon.ico
-cp robots.txt output/robots.txt
-cp .htaccess output/.htaccess
-cp -R uploads/ output/uploads/
+cd ~/Sites/Kevin\ Yap/output
+cp ../favicon.ico favicon.ico
+cp ../robots.txt robots.txt
+cp ../.htaccess .htaccess
+cp -R ../uploads/ uploads/
 find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
 
 printf "\e[0;32mSite generated successfully.\e[0m\n"
@@ -27,7 +28,7 @@ confirm() {
 	esac
 }
 
-# Check for options
+# Check for backup/upload options
 if [ -z "$1" ]; then # no flag
 	exit
 elif [ $1 = "-b" ]; then # backup
@@ -59,6 +60,5 @@ elif [ $1 = "-u" ]; then # upload
 	fi
 	exit
 elif [ $1 = "-p" ]; then
-	cd ~/Sites/Kevin\ Yap/output
 	python -m SimpleHTTPServer
 fi

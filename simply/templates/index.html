@@ -2,10 +2,10 @@
 
 {% block opengraph %}
 	{{ super() }}
-  <meta property="og:title" content="{{ SITENAME }}">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ SITEURL }}">
-  <meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
+	<meta property="og:title" content="{{ SITENAME }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ SITEURL }}">
+	<meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
 {% endblock %}
 
 {% block title %}Home | {{ SITENAME }}{% endblock %}
@@ -13,12 +13,12 @@
 
 {% block content %}
 
-  {% for article in articles %}
+	{% for article in articles %}
 
-    <h1 class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></h1>
-    <h4 class="article-date">{{ article.locale_date }}</h4>
-	  <hr class="large">
-  
-  {% endfor %}
+		<h1 class="article-title"><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></h1>
+		<h4 class="article-date">{{ article.locale_date }}</h4>
+		<hr class="large">
+	
+	{% endfor %}
 
 {% endblock %}

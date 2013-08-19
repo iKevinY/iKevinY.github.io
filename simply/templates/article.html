@@ -1,52 +1,52 @@
 {% extends 'base.html' %}
 
 {% block opengraph %}
-  {{ super() }}
-  <meta property="og:title" content="{{ article.title }} | {{ SITENAME }}">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="{{ SITEURL }}">
-  <meta property="og:description" content="{{ DESCRIPTION }}">
-  <meta property="og:article:published_time" content="{{ article.date }}">
-  <meta property="og:article:author" content="{{ SITENAME }}">
+	{{ super() }}
+	<meta property="og:title" content="{{ article.title }} | {{ SITENAME }}">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="{{ SITEURL }}">
+	<meta property="og:description" content="{{ DESCRIPTION }}">
+	<meta property="og:article:published_time" content="{{ article.date }}">
+	<meta property="og:article:author" content="{{ SITENAME }}">
 {% endblock %}
 
 {% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
 {% block content %}
 
-  <h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h1>
-  <h6 class="article-date">{{ article.locale_date }}</h6>
-  <div class="article-content">{{ article.content }}</div>
+	<h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h1>
+	<h6 class="article-date">{{ article.locale_date }}</h6>
+	<div class="article-content">{{ article.content }}</div>
 
-  <a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ TWITTER_USERNAME }}" data-count="none">Tweet</a>
-  <div class="g-plusone" data-size="medium" data-annotation="none" data-width="300"></div>
-  <div class="back-to-home"><a href="{{ SITEURL }}">← Back to Home</a></div>
-  <hr class="large">
-    
-  <!-- Disqus -->
-  {% if DISQUS_SITENAME and article.status != "draft" %}
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_shortname = '{{ DISQUS_SITENAME }}';
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  {% endif %}
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ TWITTER_USERNAME }}" data-count="none">Tweet</a>
+	<div class="g-plusone" data-size="medium" data-annotation="none" data-width="300"></div>
+	<div class="back-to-home"><a href="{{ SITEURL }}">← Back to Home</a></div>
+	<hr class="large">
+		
+	<!-- Disqus -->
+	{% if DISQUS_SITENAME and article.status != "draft" %}
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = '{{ DISQUS_SITENAME }}';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	{% endif %}
 
-  <!-- Twitter -->
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<!-- Twitter -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-  <!-- Google+ -->
-  <script type="text/javascript">
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
-  </script>
+	<!-- Google+ -->
+	<script type="text/javascript">
+		(function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		})();
+	</script>
 
 {% endblock %}

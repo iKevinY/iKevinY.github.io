@@ -1,3 +1,4 @@
 /output/
 *.pyc
 sandbox.html
+*.DS_Store
