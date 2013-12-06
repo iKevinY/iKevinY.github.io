@@ -31,6 +31,7 @@ MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 # Disables archive, author, and tag pages
 ARCHIVES_SAVE_AS = False
 AUTHOR_SAVE_AS = False
+AUTHORS_SAVE_AS = False
 CATEGORY_SAVE_AS = False
 CATEGORIES_SAVE_AS = False
 TAGS_SAVE_AS = False
