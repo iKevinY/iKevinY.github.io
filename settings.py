@@ -9,7 +9,7 @@ SITEURL = 'http://www.kevinyap.ca'
 # Custom text for index page meta description, biography, and footer
 INDEX_DESCRIPTION = 'Developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
-FOOTER_TEXT = 'Generated with <a href="http://getpelican.com">Pelican</a>. Theme designed by <a href="http://www.gregreda.com/">Greg Reda</a>. Hosted with <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech</a>.'
+FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>. Theme designed by <a href="http://www.gregreda.com/">Greg Reda</a>. Hosted with <a href="http://pages.github.com">GitHub Pages</a>.'
 
 RELATIVE_URLS = False
 
@@ -51,7 +51,7 @@ PLUGINS = ['latex']
 # Only enable LaTeX with the "Latex:" metadata property
 LATEX = 'article'
 
-DELETE_OUTPUT_DIRECTORY = True
+DELETE_OUTPUT_DIRECTORY = False
 OUTPUT_PATH = 'output/'
 PATH = 'content/'
 
