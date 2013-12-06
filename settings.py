@@ -9,7 +9,7 @@ SITEURL = 'http://www.kevinyap.ca'
 # Custom text for index page meta description, biography, and footer
 INDEX_DESCRIPTION = 'Developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
-FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>. Theme designed by <a href="http://www.gregreda.com/">Greg&nbsp;Reda</a>. Hosted with <a href="http://pages.github.com">GitHub Pages</a>.'
+FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>. Designed by <a href="http://www.gregreda.com/">Greg&nbsp;Reda</a>. Hosted with <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 
 RELATIVE_URLS = False
 
