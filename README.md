@@ -1,1 +1,1 @@
-Source code for www.kevinyap.ca, a website powered by [Pelican](http://getpelican.com).
+This repository contains both the source code and also the static site files for www.kevinyap.ca. The site is generated with [Pelican](http://getpelican.com). In order to host with [GitHub Pages](http://pages.github.com), the repository contains two branches; the `src` branch houses the source files that Pelican uses to generate the static files and the `master` branch contains said files.
