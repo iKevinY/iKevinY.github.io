@@ -6,7 +6,7 @@ pelican -q -s settings.py
 cd ~/Sites/Kevin\ Yap/output
 cp ../favicon.ico favicon.ico
 cp ../robots.txt robots.txt
-cp ../.htaccess .htaccess
+# cp ../.htaccess .htaccess
 cp ../CNAME CNAME
 cp -R ../uploads/ uploads/
 find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
