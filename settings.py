@@ -2,12 +2,11 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-# `AUTHOR = 'Kevin Yap'
 SITENAME = 'Kevin Yap'
-SITEURL = 'http://www.kevinyap.ca'
+SITEURL = 'http://kevinyap.ca'
 
 # Custom text for index page meta description, biography, and footer
-INDEX_DESCRIPTION = 'Developer and musician from Vancouver, BC.'
+INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>. Designed by <a href="http://www.gregreda.com/">Greg&nbsp;Reda</a>. Hosted with <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 
@@ -62,7 +61,7 @@ SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'E
           ('http://plus.google.com/110479238274720428388', 'Google+', 'icon-google-plus'),
           ('http://github.com/iKevinY', 'GitHub', 'icon-github'),
           ('http://soundcloud.com/iKevinY', 'SoundCloud', 'icon-music'),
-          ('http://www.kevinyap.ca/feed.rss', 'RSS Feed', 'icon-rss')
+          ('http://kevinyap.ca/feed.rss', 'RSS Feed', 'icon-rss')
           )
 
 # MD5 hash of email address for Gravatar
