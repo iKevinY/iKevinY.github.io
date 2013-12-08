@@ -19,12 +19,12 @@ footer {
 }
 
 #logo {
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	letter-spacing: -1px;
 	font-weight: bold;
 	text-align: center;
-	
+
 	/* Styling from h3 tag in Skeleton's base.css */
 	font-size: 28px;
 	line-height: 34px;
@@ -49,7 +49,7 @@ section#content {
 	max-width: 675px;
 	display: block;
 	margin-left: auto;
-	margin-right: auto; 
+	margin-right: auto;
 }
 
 #avatar {
@@ -154,7 +154,7 @@ code {
 	border: 1px solid #ddd;
 	border-radius: 2px;
 }
-	
+
 .highlight {
 	font-family: "Source Code Pro", monospace;
 	font-size: 12px;
@@ -163,6 +163,7 @@ code {
 	padding: 5px 10px;
 	border: 2px solid #222;
 	margin: 20px 0;
+	color: #f8f8f2;
 	overflow: auto;
 }
 
@@ -202,7 +203,7 @@ a:hover.icon, a:focus.icon {
 .article-title {
 	clear: both;
 	float: left;
-	
+
 	/* Styling from h3 tag in Skeleton's base.css */
 	font-size: 28px;
 	line-height: 34px;
@@ -213,7 +214,7 @@ a:hover.icon, a:focus.icon {
 	font-style: italic;
 	float: right;
 	margin: 8px 10px;
-	
+
 	/* Styling from h6 tag in Skeleton's base.css */
 	font-size: 14px;
 	line-height: 21px;
@@ -223,7 +224,7 @@ a:hover.icon, a:focus.icon {
 .article-content { clear: both; overflow: hidden; }
 .article-content img { border: 1px solid #222; }
 
-.back-to-home { 
+.back-to-home {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
@@ -236,19 +237,19 @@ a:hover.icon, a:focus.icon {
 		width: 100%;
 		top: 8px;
 	}
-		
+
 	#sidebar img { float: left; width: 140px; margin-right: 10px; }
-		
+
 	#content {
 		float: none;
 		margin-top: 175px;
 	}
-		
+
 	#content img {
 		max-width: 85%;
 		display: block;
 		margin-left: auto;
-		margin-right: auto; 
+		margin-right: auto;
 	}
 
 	.article-title, .entry-title, .article-date {
