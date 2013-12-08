@@ -56,12 +56,12 @@ OUTPUT_PATH = 'output/'
 PATH = 'content/'
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
-SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'icon-envelope'),
-          ('http://twitter.com/iKevinY', 'Twitter', 'icon-twitter'),
-          ('http://plus.google.com/+KevinYapCA', 'Google+', 'icon-google-plus'),
-          ('http://github.com/iKevinY', 'GitHub', 'icon-github'),
-          ('http://soundcloud.com/iKevinY', 'SoundCloud', 'icon-music'),
-          ('http://kevinyap.ca/feed.rss', 'RSS Feed', 'icon-rss')
+SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'envelope-o'),
+          ('http://twitter.com/iKevinY', 'Twitter', 'twitter'),
+          ('http://plus.google.com/+KevinYapCA', 'Google+', 'google-plus'),
+          ('http://github.com/iKevinY', 'GitHub', 'github'),
+          ('http://soundcloud.com/iKevinY', 'SoundCloud', 'music'),
+          ('http://kevinyap.ca/feed.rss', 'RSS Feed', 'rss')
           )
 
 # MD5 hash of email address for Gravatar

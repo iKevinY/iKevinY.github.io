@@ -31,6 +31,7 @@
 	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/monokai.css">
 	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/font-awesome.css">
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -71,7 +72,7 @@
 				<hr class="small" />
 				<div id="social">
 				{% for link in SOCIAL %}
-					<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="{{ link[2] }}"></i></a>
+					<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="fa fa-{{ link[2] }}"></i></a>
 				{% endfor %}
 				</div> <!-- social -->
 			{% endif %}
