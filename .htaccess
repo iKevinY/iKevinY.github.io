@@ -1,2 +1,0 @@
-ErrorDocument 404 /404/index.html
-RedirectMatch 301 posts(.*) $1
