@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /output/
 *.pyc
 sandbox.html
 *.DS_Store
-=======
-.DS_Store
->>>>>>> 5869cd132a0a352949c78d6edba001623c9ea43e
