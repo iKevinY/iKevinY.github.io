@@ -182,14 +182,15 @@ code {
 #social {
 	text-align: center;
 }
+
 a, a:visited {
 	text-decoration: none;
 	font-weight: bold;
 }
 
 a.icon, a:visited.icon, a:active.icon {
-	padding: 0 3px;
-	font-size: 20px;
+	padding: 0 2px;
+	font-size: 16px;
 	color: #555;
 	font-weight: bold;
 }
