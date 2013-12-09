@@ -1,4 +1,5 @@
-/output/
+output/
+preview/
 *.pyc
 sandbox.html
 *.DS_Store
