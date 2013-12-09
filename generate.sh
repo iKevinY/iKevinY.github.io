@@ -6,13 +6,13 @@ outputPath=${rootPath}/output
 cd $rootPath
 pelican -q -s settings.py
 
-# Run file copying/deletion commands
+# Copy/create/delete files
 cd $outputPath
 cp ../favicon.ico favicon.ico
 cp ../robots.txt robots.txt
-cp ../CNAME CNAME
 cp -R ../uploads/ uploads/
 find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
+echo "kevinyap.ca" > CNAME
 
 printf "\e[0;32mSite generated successfully.\e[0m\n"
 
