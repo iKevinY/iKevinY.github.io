@@ -48,7 +48,7 @@ DEFAULT_PAGINATION = False
 MD_EXTENSIONS = ['codehilite(css_class = highlight)', 'extra']
 
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['pelican.plugins.latex', 'neighbors']
+PLUGINS = ['latex', 'neighbors']
 
 # Only enable LaTeX with the "Latex:" metadata property
 LATEX = 'article'

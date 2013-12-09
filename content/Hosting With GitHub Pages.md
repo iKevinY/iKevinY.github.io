@@ -1,6 +1,5 @@
 Title: Hosting With GitHub Pages
 Date: 2013-12-07
-Slug: hosting-with-github-pages
 
 Over the past couple of days, I made the switch to using GitHub as the hosting platform for my website by using [GitHub Pages](http://pages.github.com). This felt like a natural progression as I already used GitHub for version control for the source of my website. I initially thought the move would be confusing and time-consuming, but after the DNS changes propagated, everything was up and running just as it had been before the move.
 

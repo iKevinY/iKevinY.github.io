@@ -1,7 +1,5 @@
 Title: The Power of AppleScript
 Date: 2012-11-28
-Category: Programming
-Slug: the-power-of-applescript
 
 One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were available to download via torrent, and that every file contained "complete and consistent ID3 tags". While the tags for most fields are great, I wasn't particularly fond of the format of the track titles. Instead of *TrackName (GameName)* like I would have preferred, the format was *GameName 'TrackName' OC ReMix*. There are a few reasons why I don't like the provided format (namely that the "OC ReMix" suffix feels redundant to me and it feels more appropriate to not see the songs grouped by their source game), but that's besides the point.
 

@@ -1,6 +1,5 @@
 Title: The Great (White) Pelican Migration
 Date: 2013-07-14
-Category: meta
 
 When browsing [/r/programming](http://www.reddit.com/r/programming) a while back, I came across a link to a blog post written by [Greg Reda](http://www.gregreda.com). While reading the post, I noticed the platform that his website was generated with -- [Pelican](http://getpelican.com/) -- and at the time, I was in the process of searching for a replacement for WordPress. When I initially created kevinyap.ca, WordPress was appealing due to being easy-to-install CMS and versatile in its support and compatibility (themes and plugins), but over time I realized that it was too bulky; what I actually needed was a simple blogging platform rather than a full-fledged CMS.
 

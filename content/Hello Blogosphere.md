@@ -1,7 +1,5 @@
 Title: Hello, Blogosphere!
 Date: 2011-10-15 19:35
-Category: Meta
-Slug: hello-blogosphere
 
 After much consideration, I've finally decided to start a blog. One reason is to expand my writing skills (I don't write nearly enough), but the main reason I've decided to do so is because I now have my own space on the Internet to write about, well, anything really.
 
