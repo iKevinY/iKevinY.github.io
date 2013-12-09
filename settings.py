@@ -46,7 +46,7 @@ FEED_RSS = 'feed.rss'
 MD_EXTENSIONS = ['codehilite(css_class = highlight)', 'extra']
 
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['pelican.plugins.latex']
+PLUGINS = ['pelican.plugins.latex', 'neighbors']
 
 # Only enable LaTeX with the "Latex:" metadata property
 LATEX = 'article'

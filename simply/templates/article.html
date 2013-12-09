@@ -19,9 +19,16 @@
 
 	<a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ TWITTER_USERNAME }}" data-count="none">Tweet</a>
 	<div class="g-plusone" data-size="medium" data-annotation="none" data-width="300"></div>
-	<div class="back-to-home"><a href="{{ SITEURL }}">← Back to Home</a></div>
+	<div class="related-articles">
+		{% if article.next_article %}
+	    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">← {{ article.next_article.title }} </a>
+		{% endif %}
+		{% if article.prev_article %}
+	    <a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title }} →</a>
+		{% endif %}
+	</div>
 	<hr class="large">
-		
+
 	<!-- Disqus -->
 	{% if DISQUS_SITENAME and article.status != "draft" %}
 		<div id="disqus_thread"></div>
