@@ -16,14 +16,16 @@
 	<h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h1>
 	<h6 class="article-date">{{ article.locale_date }}</h6>
 	<div class="article-content">{{ article.content }}</div>
-	<div class="related-articles">
-		{% if article.next_article %}
-	    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">← {{ article.next_article.title }} </a>
-		{% endif %}
-		{% if article.prev_article %}
-	    <a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title }} →</a>
-		{% endif %}
-	</div>
+	{% if article.next_article or article.prev_article %}
+		<div class="related-articles">
+			{% if article.next_article %}
+		    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">← {{ article.next_article.title }} </a>
+			{% endif %}
+			{% if article.prev_article %}
+		    <a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title }} →</a>
+			{% endif %}
+		</div>
+	{% endif %}
 	<hr class="large">
 
 	<!-- Disqus -->
