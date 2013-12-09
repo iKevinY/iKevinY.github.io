@@ -16,9 +16,6 @@
 	<h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h1>
 	<h6 class="article-date">{{ article.locale_date }}</h6>
 	<div class="article-content">{{ article.content }}</div>
-
-	<a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ TWITTER_USERNAME }}" data-count="none">Tweet</a>
-	<div class="g-plusone" data-size="medium" data-annotation="none" data-width="300"></div>
 	<div class="related-articles">
 		{% if article.next_article %}
 	    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">← {{ article.next_article.title }} </a>
@@ -43,17 +40,5 @@
 		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	{% endif %}
-
-	<!-- Twitter -->
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-	<!-- Google+ -->
-	<script type="text/javascript">
-		(function() {
-			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			po.src = 'https://apis.google.com/js/plusone.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-		})();
-	</script>
 
 {% endblock %}
