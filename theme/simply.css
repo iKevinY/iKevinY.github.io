@@ -225,9 +225,9 @@ a:hover.icon, a:focus.icon {
 .article-content { clear: both; overflow: hidden; }
 .article-content img { border: 1px solid #222; }
 
-.back-to-home {
+.related-articles {
 	margin-top: 20px;
-	margin-bottom: 10px;
+	padding-bottom: 20px;
 }
 
 
