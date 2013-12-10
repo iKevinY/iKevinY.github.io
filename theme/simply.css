@@ -150,7 +150,7 @@ th, td {
 code {
 	font-family: "Source Code Pro", monospace;
 	background-color: #eee;
-	padding: 1px 5px 1px 5px;
+	padding: 0 3px;
 	border: 1px solid #ddd;
 	border-radius: 2px;
 }
@@ -239,7 +239,11 @@ a:hover.icon, a:focus.icon {
 		top: 8px;
 	}
 
-	#sidebar img { float: left; width: 140px; margin-right: 10px; }
+	#sidebar img {
+		float: left;
+		width: 140px;
+		margin-right: 10px;
+	}
 
 	#content {
 		float: none;
