@@ -53,7 +53,7 @@ PLUGINS = ['latex', 'neighbors']
 LATEX = 'article'
 
 DELETE_OUTPUT_DIRECTORY = True
-OUTPUT_PATH = 'dev/'
+OUTPUT_PATH = 'develop/'
 PATH = 'content/'
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')

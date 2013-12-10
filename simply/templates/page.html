@@ -2,20 +2,20 @@
 
 {% block opengraph %}
 	{{ super() }}
-	<meta property="og:title" content="{{ page.title }} | {{ SITENAME }}">
+	<meta property="og:title" content="{{ page.title|striptags }} | {{ SITENAME }}">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ SITEURL }}/{{ page.url }}`">
+	<meta property="og:url" content="{{ SITEURL }}/{{ page.url }}">
 	<meta property="og:description" content="{{ DESCRIPTION }}">
 {% endblock %}
 
 {% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
 {% block content %}
 
-<h1 class="entry-title"><a href="/{{ page.url }}" title="{{ page.title }}">{{page.title}}</a></h1>
+<h1 class="entry-title"><a href="/{{ page.url }}" title="{{ page.title|striptags }}">{{ page.title|striptags }}</a></h1>
 <div class="entry-content">
 	{{ page.content }}
 </div>
 
-<div class="back-to-home"><a href="{{ SITEURL }}">← Back to Home</a></div>
+<div class="back-to-home"><a href="{{ SITEURL }}">&larr; Back to Home</a></div>
 
 {% endblock %}

@@ -4,12 +4,12 @@
 {% block content %}
 
 	<h1><a href="/{{ page_name }}">Post Archive</a></h1>
-	
+
 	<hr class="small">
 	<br />
 	<ul>
 	{% for article in dates %}
-		<li>{{ article.locale_date }}: <a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a>
+		<li>{{ article.locale_date }}: <a href="{{ article.url }}" title="{{ article.title|striptags }}">{{ article.title|striptags }}</a>
 	{% endfor %}
 	</ul>
 

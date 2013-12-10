@@ -14,9 +14,7 @@
 
 	<!-- Open Graph
 	================================================== -->
-	{% block opengraph %}
-	<meta property="og:image" content="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">
-	{% endblock %}
+	{% block opengraph %}<meta property="og:image" content="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">{% endblock %}
 
 	<!-- Mobile Specific Metas
 	================================================== -->
@@ -47,13 +45,11 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=144"> <!-- iPad, Retina -->
 	<link rel="apple-touch-icon" sizes="152x152" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=152"> <!-- iPad, Retina iOS 7 -->
 
-	<!-- LaTeX
-	================================================== -->
-	{% if article and article.latex %}
-		{{ article.latex }}
-	{% endif %}
-	{% if page and page.latex %}
-		{{ page.latex }}
+	{% if (article and article.latex) or (page and page.latex) %}
+		<!-- LaTeX
+		================================================== -->
+		{% if article %}{{ article.latex }}{% endif %}
+		{% if page %}{{ page.latex }}{% endif %}
 	{% endif %}
 
 </head>

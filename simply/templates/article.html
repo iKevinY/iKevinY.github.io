@@ -2,7 +2,7 @@
 
 {% block opengraph %}
 	{{ super() }}
-	<meta property="og:title" content="{{ article.title }} | {{ SITENAME }}">
+	<meta property="og:title" content="{{ article.title|striptags }} | {{ SITENAME }}">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="{{ SITEURL }}">
 	<meta property="og:description" content="{{ DESCRIPTION }}">
@@ -10,18 +10,18 @@
 	<meta property="og:article:author" content="{{ SITENAME }}">
 {% endblock %}
 
-{% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
+{% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
 {% block content %}
-	<h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h1>
+	<h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
 	<h6 class="article-date">{{ article.locale_date }}</h6>
 	<div class="article-content">{{ article.content }}</div>
 	{% if article.next_article or article.prev_article %}
 		<div class="related-articles">
 			{% if article.next_article %}
-		    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">← {{ article.next_article.title }} </a>
+		    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">&larr; {{ article.next_article.title|striptags }} </a>
 			{% endif %}
 			{% if article.prev_article %}
-		    <a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title }} →</a>
+		    <a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title|striptags }} &rarr;</a>
 			{% endif %}
 		</div>
 	{% endif %}

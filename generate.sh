@@ -28,9 +28,9 @@ upload() {
 	git push
 }
 
-dev() {
-	outputPath=${rootPath}/dev
-	pelican -s devsettings.py
+develop() {
+	outputPath=${rootPath}/develop
+	pelican -s develop.py
 
 	cd $outputPath
 	cp ../favicon.ico favicon.ico
@@ -40,16 +40,15 @@ dev() {
 	ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' # http://stackoverflow.com/a/13322549/239076
 	python -m SimpleHTTPServer
 	cd $rootPath
-	rm -rf dev
+	rm -rf develop
 }
 
-# Implpementation
 
 rootPath="$HOME/kevinyap.ca"
 cd $rootPath
 
-if [[ $1 = "-d" ]]; then
-	dev
+if [[ $1 = "-d" ]] || [[ $1 = "-p" ]]; then
+	develop
 elif [[ $1 = "-u" ]]; then
 	upload
 else
@@ -57,8 +56,8 @@ else
 	printf "\n"
 
 	case $input in
-	  d|D)
-	    dev ;;
+	  d|D|p|P)
+	    develop ;;
 	  u|U)
 	    upload ;;
 	  *)
