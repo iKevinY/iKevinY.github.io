@@ -12,7 +12,6 @@
 
 {% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
 {% block content %}
-
 	<h1 class="article-title"><a href="/{{ article.url }}" title="Permalink to {{ article.title }}">{{article.title}}</a></h1>
 	<h6 class="article-date">{{ article.locale_date }}</h6>
 	<div class="article-content">{{ article.content }}</div>
@@ -42,5 +41,4 @@
 		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	{% endif %}
-
 {% endblock %}

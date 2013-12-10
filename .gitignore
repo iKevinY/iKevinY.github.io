@@ -1,5 +1,4 @@
+dev/
 output/
-preview/
-*.pyc
-sandbox.html
 *.DS_Store
+*.pyc

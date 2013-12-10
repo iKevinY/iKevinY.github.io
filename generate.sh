@@ -28,9 +28,9 @@ upload() {
 	git push
 }
 
-preview() {
-	outputPath=${rootPath}/preview
-	pelican -s preview.py
+dev() {
+	outputPath=${rootPath}/dev
+	pelican -s devsettings.py
 
 	cd $outputPath
 	cp ../favicon.ico favicon.ico
@@ -40,7 +40,7 @@ preview() {
 	ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' # http://stackoverflow.com/a/13322549/239076
 	python -m SimpleHTTPServer
 	cd $rootPath
-	rm -rf preview
+	rm -rf dev
 }
 
 # Implpementation
@@ -48,17 +48,17 @@ preview() {
 rootPath="$HOME/kevinyap.ca"
 cd $rootPath
 
-if [[ $1 = "-p" ]]; then
-	preview
+if [[ $1 = "-d" ]]; then
+	dev
 elif [[ $1 = "-u" ]]; then
 	upload
 else
-	read -n1 -p "Preview or upload site? [P/U] " input
+	read -n1 -p "Development or upload site? [D/U] " input
 	printf "\n"
 
 	case $input in
-	  p|P)
-	    preview ;;
+	  d|D)
+	    dev ;;
 	  u|U)
 	    upload ;;
 	  *)
