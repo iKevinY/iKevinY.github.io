@@ -8,13 +8,12 @@ SITEURL = ''
 # Custom text for index page meta description, biography, and footer
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
-FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>. Hosted on <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
+FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 
 RELATIVE_URLS = True
 
 THEME = 'simply'
 TYPOGRIFY = True
-
 TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
 
