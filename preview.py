@@ -3,14 +3,14 @@
 from __future__ import unicode_literals
 
 SITENAME = 'Kevin Yap'
-SITEURL = 'http://localhost:8000'
+SITEURL = ''
 
 # Custom text for index page meta description, biography, and footer
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>. Designed by <a href="http://www.gregreda.com/">Greg&nbsp;Reda</a>. Hosted with <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 
-RELATIVE_URLS = False
+RELATIVE_URLS = True
 
 THEME = 'simply'
 TYPOGRIFY = True
