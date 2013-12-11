@@ -8,7 +8,7 @@ html, body {
 	height: 100%;
 }
 
-div.container {
+.container {
 	padding-top: 50px;
 	min-height: 100%;
 }
@@ -62,7 +62,6 @@ section#content {
 
 
 /* Skeleton Modifications */
-
 p {
 	margin: 12px 0;
 }
@@ -98,8 +97,16 @@ ol {
 }
 
 blockquote {
-	padding: 0 20px 0 20px;
+	padding: 1px 15px;
+	margin: 20px 0 20px 3px;
 	border-left: 2px solid #ddd;
+}
+
+blockquote p {
+	font-size: 14px;
+	font-style: normal;
+	line-height: 21px;
+	margin: 3px 0;
 }
 
 
@@ -119,16 +126,6 @@ dt {
 
 dt:after {
 	content: ": ";
-}
-
-/* Table CSS from Markdown-Extra extension */
-table {
-	text-align: center;
-	padding: 4px;
-}
-
-th, td {
-	padding: 2px 8px;
 }
 
 /* Footnote CSS from Markdown-Extra extension */
@@ -156,17 +153,31 @@ code {
 }
 
 .highlight {
-	font-family: "Source Code Pro", monospace;
-	font-size: 12px;
-	background-color: #555;
-	line-height: 125%;
-	padding: 5px 10px;
-	border: 2px solid #222;
-	margin: 20px 0;
-	color: #f8f8f2;
-	overflow: auto;
+	margin: 0 1em;
 }
 
+.highlighttable {
+	font-family: "Source Code Pro", monospace;
+	font-size: 12px;
+	text-align: left;
+	overflow: auto;
+	display: block;
+	border: solid 1px #d9d9d9;
+	border-radius: 3px;
+}
+
+.linenos {
+	border-right: 1px solid #d9d9d9;
+	background: #eee;
+	padding: 0.5em 0.8em;
+	opacity: 0.8;
+	-webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 #sidebar {
 	position: fixed;
