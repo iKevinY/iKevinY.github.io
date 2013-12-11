@@ -44,7 +44,7 @@ FEED_RSS = 'feed.rss'
 
 DEFAULT_PAGINATION = False
 
-MD_EXTENSIONS = ['codehilite(css_class = highlight, linenums = True)', 'extra']
+MD_EXTENSIONS = ['codehilite(linenums = True)', 'extra']
 
 PLUGIN_PATH = 'plugins'
 PLUGINS = ['latex', 'neighbors']
