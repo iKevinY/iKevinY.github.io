@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Metas
+	================================================== -->
+	<meta charset="utf-8">
+	<title>Styling Code Blocks Using Pelican | Kevin Yap</title>
+	<meta name="description" content="">
+	<meta name="author" content="Kevin Yap">
+
+	<!-- Open Graph
+	================================================== -->
+	<meta property="og:image" content="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=256">
+	<meta property="og:title" content="Styling Code Blocks Using Pelican | Kevin Yap">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca">
+	<meta property="og:description" content="">
+	<meta property="og:article:published_time" content="2013-12-10 00:00:00">
+	<meta property="og:article:author" content="Kevin Yap">
+
+	<!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+	================================================== -->
+	<link rel="stylesheet" href="http://kevinyap.ca/theme/base.css">
+	<link rel="stylesheet" href="http://kevinyap.ca/theme/skeleton.css">
+	<link rel="stylesheet" href="http://kevinyap.ca/theme/layout.css">
+	<link rel="stylesheet" href="http://kevinyap.ca/theme/simply.css">
+	<link rel="stylesheet" href="http://kevinyap.ca/theme/github.css">
+	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="apple-touch-icon" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=512"> 								<!-- Universal -->
+	<link rel="apple-touch-icon" sizes="57x57" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=57"> 		<!-- iPhone -->
+	<link rel="apple-touch-icon" sizes="72x72" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=72"> 		<!-- iPad -->
+	<link rel="apple-touch-icon" sizes="76x76" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=76"> 		<!-- iPad, iOS 7 -->
+	<link rel="apple-touch-icon" sizes="114x114" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=114"> <!-- iPhone, Retina -->
+	<link rel="apple-touch-icon" sizes="120x120" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=120"> <!-- iPhone, Retina iOS 7 -->
+	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=144"> <!-- iPad, Retina -->
+	<link rel="apple-touch-icon" sizes="152x152" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=152"> <!-- iPad, Retina iOS 7 -->
+
+
+</head>
+
+<body>
+
+	<!-- Primary Page Layout
+	================================================== -->
+	<div class="container">
+		<div id="sidebar" class="three columns">
+			<a href="http://kevinyap.ca"><img id="avatar" src="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=280"></img></a>
+			<p id="logo"><a href="http://kevinyap.ca">Kevin Yap</a></p>
+			<p id="bio">Developer and musician from Vancouver, BC.</p>
+				<hr class="small" />
+				<div id="social">
+					<a class="icon" href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca" title="Email"><i class="fa fa-envelope-o"></i></a>
+					<a class="icon" href="http://twitter.com/iKevinY" title="Twitter"><i class="fa fa-twitter"></i></a>
+					<a class="icon" href="http://plus.google.com/+KevinYapCA" title="Google+"><i class="fa fa-google-plus"></i></a>
+					<a class="icon" href="http://github.com/iKevinY" title="GitHub"><i class="fa fa-github"></i></a>
+					<a class="icon" href="http://soundcloud.com/iKevinY" title="SoundCloud"><i class="fa fa-music"></i></a>
+					<a class="icon" href="http://kevinyap.ca/feed.rss" title="RSS Feed"><i class="fa fa-rss"></i></a>
+				</div> <!-- social -->
+		</div> <!-- sidebar -->
+
+		<section id="content" class="twelve columns offset-by-one">
+	<h1 class="article-title"><a href="/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
+	<h6 class="article-date">December 10, 2013</h6>
+	<div class="article-content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
+<p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<p>The next step is to download a stylesheet that is compatible with Pygments. I used the one <a href="https://github.com/richleland/pygments-css/blob/master/github.css">linked in Alex&#8217;s tutorial</a>, but deleted the first line of the file because I did not need to change the background colour of the code block. This stylesheet should be linked to in the base template file of your website &#8212; <code>base.html</code> for the theme that I am currently&nbsp;using.</p>
+<p>Some custom styling is then done in order to change the appearance of the code blocks. The following three blocks of code would be placed in the primary stylesheet of the site&#8217;s theme. First of all, basic styling is added to the code block to control basic properties of the code, as well as create the border around the code block and ensure that it scrolls correctly if a line of code is too large for the block. While this is generally not an issue when being viewed on a computer screen, it is important for if the code is being viewed on a mobile&nbsp;device.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nc">.codehilitetable</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="o">:</span> <span class="s2">&quot;Source Code Pro&quot;</span><span class="o">,</span> <span class="k">monospace</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
+    <span class="k">overflow</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+    <span class="k">border</span><span class="o">:</span> <span class="k">solid</span> <span class="m">1px</span> <span class="m">#d9d9d9</span><span class="p">;</span>
+    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">3px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Following this, the line numbering is styled by modifying the <code>linenos</code> class. The background of the numbering is made grey, the sides of the actual line numbers are padded, and a border is added separating the numbering from the actual code. The multitude of vendor-prefixed <code>user-select</code> properties are added in order to make the line numbers unselectable making selecting and copying code a lot&nbsp;easier.</p>
+<p>The horizontal margins of the <code>codehilite</code> class, which controls the code itself, are increased to add spacing between the code snippets and the line&nbsp;numbers.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nc">.linenos</span> <span class="p">{</span>
+    <span class="k">border-right</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#d9d9d9</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">:</span> <span class="m">#eee</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0.5em</span> <span class="m">0.8em</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">khtml</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.codehilite</span> <span class="p">{</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>After following these steps, everything should be working properly. Of course, the stylesheet used and properties of the code blocks can be changed depending on personal&nbsp;preference.</p></div>
+		<div class="related-articles">
+		    <a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/" style="float: right;">Hosting With GitHub Pages &rarr;</a>
+		</div>
+	<hr class="large">
+
+	<!-- Disqus -->
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'kevinyap';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</section>
+
+		<footer class="twelve columns offset-by-one">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+
+	</div><!-- container -->
+
+		<!-- Google Analytics -->
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-41937659-1', '');
+			ga('send', 'pageview');
+		</script>
+
+
+</body>
+</html>
