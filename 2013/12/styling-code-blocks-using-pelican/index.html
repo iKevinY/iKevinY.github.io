@@ -11,13 +11,14 @@
 	<title>Styling Code Blocks Using Pelican | Kevin Yap</title>
 	<meta name="description" content="">
 	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 
 	<!-- Open Graph
 	================================================== -->
 	<meta property="og:image" content="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=256">
 	<meta property="og:title" content="Styling Code Blocks Using Pelican | Kevin Yap">
 	<meta property="og:type" content="article">
-	<meta property="og:url" content="http://kevinyap.ca">
+	<meta property="og:url" content="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/">
 	<meta property="og:description" content="">
 	<meta property="og:article:published_time" content="2013-12-10 00:00:00">
 	<meta property="og:article:author" content="Kevin Yap">
@@ -74,7 +75,7 @@
 		</div> <!-- sidebar -->
 
 		<section id="content" class="twelve columns offset-by-one">
-	<h1 class="article-title"><a href="/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
+	<h1 class="article-title"><a href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
 	<h6 class="article-date">December 10, 2013</h6>
 	<div class="article-content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
 <p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>

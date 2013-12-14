@@ -30,6 +30,10 @@ footer {
 	line-height: 34px;
 }
 
+hr {
+	margin: 25px 0;
+}
+
 hr.large {
 	border: none;
 	height: 4px;
