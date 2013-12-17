@@ -19,29 +19,27 @@ footer {
 }
 
 #logo {
+	font-size: 28px;
+	line-height: 34px;
 	margin-bottom: 10px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	letter-spacing: -1px;
 	font-weight: bold;
 	text-align: center;
-
-	/* Styling from h3 tag in Skeleton's base.css */
-	font-size: 28px;
-	line-height: 34px;
 }
 
 hr {
 	margin: 25px 0;
 }
 
-hr.large {
+.large {
 	border: none;
 	height: 4px;
 	background-color: #ebebeb;
 	margin: 10px 10px;
 }
 
-hr.small {
+.small {
 	margin: 10px 0;
 }
 
@@ -66,9 +64,7 @@ section#content {
 
 
 /* Skeleton Modifications */
-p {
-	margin: 12px 0;
-}
+p { margin: 12px 0; }
 
 h1 {
 	font-size: 28px;
@@ -84,11 +80,13 @@ h2 {
 }
 
 h3 {
-	font-size: 17px; line-height: 24px;
+	font-size: 17px;
+	line-height: 24px;
 }
 
 h4, h5, h6 {
-	font-size: 14px; line-height: 21px;
+	font-size: 14px;
+	line-height: 21px;
 }
 
 ul {
@@ -96,9 +94,7 @@ ul {
 	margin-left: 30px;
 }
 
-ol {
-	list-style-type: decimal;
-}
+ol { list-style-type: decimal; }
 
 blockquote {
 	padding: 1px 15px;
@@ -170,11 +166,11 @@ code {
 	background: #eee;
 	padding: 0.5em 0.8em;
 	opacity: 0.8;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .codehilite {
@@ -192,9 +188,7 @@ code {
 	text-align: center;
 }
 
-#social {
-	text-align: center;
-}
+#social { text-align: center; }
 
 a, a:visited {
 	text-decoration: none;
@@ -203,7 +197,7 @@ a, a:visited {
 
 a.icon, a:visited.icon, a:active.icon {
 	padding: 0 2px;
-	font-size: 18px;
+	font-size: 20px;
 	color: #555;
 	font-weight: bold;
 }
@@ -212,30 +206,21 @@ a:hover.icon, a:focus.icon {
 	color: #222;
 }
 
-
-/* Article Classes */
 .article-title {
 	clear: both;
 	float: left;
-
-	/* Styling from h3 tag in Skeleton's base.css */
-	font-size: 28px;
-	line-height: 34px;
-	margin-bottom: 8px;
 }
 
 .article-date {
 	font-style: italic;
 	float: right;
 	margin: 8px 10px;
-
-	/* Styling from h6 tag in Skeleton's base.css */
-	font-size: 14px;
-	line-height: 21px;
 }
 
-.article-summary { clear: both; }
-.article-content { clear: both; overflow: hidden; }
+.article-content {
+	clear: both;
+	overflow: hidden;
+}
 .article-content img { border: 1px solid #222; }
 
 .related-articles {

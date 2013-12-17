@@ -18,10 +18,10 @@ TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
-ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}/index.html'
+ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
 
-PAGE_URL = '{slug}.html'
-PAGE_SAVE_AS = '{slug}.html'
+PAGE_URL = '{slug}/'
+PAGE_SAVE_AS = PAGE_URL + 'index.html'
 
 YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
@@ -38,9 +38,6 @@ TAGS_SAVE_AS = False
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
-
-FEED_DOMAIN = SITEURL
-FEED_RSS = 'feed.rss'
 
 DEFAULT_PAGINATION = False
 
@@ -59,10 +56,9 @@ PATH = 'content/'
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
 SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'envelope-o'),
           ('http://twitter.com/iKevinY', 'Twitter', 'twitter'),
-          ('http://plus.google.com/+KevinYapCA', 'Google+', 'google-plus'),
+          ('http://plus.google.com/+KevinYapCA', 'Google+', 'google-plus-square'),
           ('http://github.com/iKevinY', 'GitHub', 'github'),
           ('http://soundcloud.com/iKevinY', 'SoundCloud', 'music'),
-          ('http://kevinyap.ca/feed.rss', 'RSS Feed', 'rss')
           )
 
 # MD5 hash of email address for Gravatar
