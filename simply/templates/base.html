@@ -60,14 +60,14 @@
 	================================================== -->
 	<div class="container">
 		<div id="sidebar" class="three columns">
-			<a href="{{ SITEURL }}"><img id="avatar" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></img></a>
-			<p id="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
-			<p id="bio">{{ BIO_TEXT }}</p>
+			<a href="{{ SITEURL }}"><img class="avatar" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></img></a>
+			<p class="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
+			<p class="bio">{{ BIO_TEXT }}</p>
 			{% if SOCIAL %}
 				<hr class="small" />
-				<div id="social">
+				<div class="social">
 				{% for link in SOCIAL %}
-					<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="fa fa-{{ link[2] }}"></i></a>
+					<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="{{ link[2] }}"></i></a>
 				{% endfor %}
 				</div> <!-- social -->
 			{% endif %}
@@ -80,8 +80,7 @@
 		<footer class="twelve columns offset-by-one">
 			<p>{{ FOOTER_TEXT }}</p>
 		</footer>
-
-	</div><!-- container -->
+	</div> <!-- container -->
 
 	{% if GOOGLE_ANALYTICS %}
 		<!-- Google Analytics -->

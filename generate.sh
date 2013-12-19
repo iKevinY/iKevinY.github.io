@@ -39,7 +39,7 @@ develop() {
 	cp 404/index.html 404.html && rm -R 404
 	printf "\e[0;32mSite generated successfully.\e[0m\n"
 	printf "Local IP address: "
-	ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' || "N/A" # http://stackoverflow.com/a/13322549/239076
+	ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' # http://stackoverflow.com/a/13322549/239076
 	python -m SimpleHTTPServer
 	cd $rootPath
 	rm -rf develop
