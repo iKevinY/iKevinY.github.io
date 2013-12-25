@@ -186,6 +186,7 @@ a.icon, a:visited.icon, a:active.icon {
 	padding: 0 2px;
 	font-size: 20px;
 	color: #555;
+	font-weight: bold;
 }
 
 a:hover.icon, a:focus.icon {
