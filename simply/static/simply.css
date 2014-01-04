@@ -10,29 +10,10 @@ html, body {
 
 .container {
 	padding-top: 50px;
-	min-height: 100%;
 }
 
 footer {
 	float: right !important;
-	text-align: center;
-}
-
-.avatar {
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 10px;
-	display: block;
-	width: 140px;
-}
-
-.logo {
-	font-size: 28px;
-	line-height: 34px;
-	margin-bottom: 10px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	letter-spacing: -1px;
-	font-weight: bold;
 	text-align: center;
 }
 
@@ -96,11 +77,30 @@ h4, h5, h6 {
 
 ul {
 	list-style-type: disc;
-	margin-left: 30px;
+	margin: 12px 0 12px 30px;
 }
 
 ol {
 	list-style-type: decimal;
+}
+
+li {
+	margin-bottom: 4px;
+}
+
+a, a:visited {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.icon, a:visited.icon, a:active.icon {
+	padding: 0 2px;
+	font-size: 20px;
+	color: #555;
+}
+
+a:hover.icon, a:focus.icon {
+	color: #222;
 }
 
 blockquote {
@@ -167,30 +167,39 @@ code {
 	margin: 0 1em;
 }
 
+.avatar {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	display: block;
+	width: 140px;
+	border-radius: 12px;
+}
+
+.logo {
+	font-size: 26px;
+	line-height: 34px;
+	margin-bottom: 10px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	letter-spacing: -0.5px;
+	text-align: center;
+}
+
 .bio {
-	margin-bottom: 0;
 	font-size: 90%;
 	text-align: center;
+	line-height: 18px;
+	color: #666666;
 }
 
 .social {
 	text-align: center;
 }
 
-a, a:visited {
-	text-decoration: none;
-	font-weight: bold;
-}
-
-a.icon, a:visited.icon, a:active.icon {
-	padding: 0 2px;
-	font-size: 20px;
-	color: #555;
-	font-weight: bold;
-}
-
-a:hover.icon, a:focus.icon {
-	color: #222;
+.sidebar-links {
+	text-align: center;
+	margin-top: 5px;
 }
 
 .article-title {
@@ -208,6 +217,7 @@ a:hover.icon, a:focus.icon {
 	clear: both;
 	overflow: hidden;
 }
+
 .article-content img {
 	border: 1px solid #222;
 }
@@ -215,6 +225,10 @@ a:hover.icon, a:focus.icon {
 .related-articles {
 	margin-top: 20px;
 	padding-bottom: 20px;
+}
+
+.back-to-home {
+	margin-top: 20px;
 }
 
 

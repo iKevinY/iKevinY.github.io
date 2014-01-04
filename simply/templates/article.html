@@ -17,7 +17,7 @@
 	{% if article.next_article or article.prev_article %}
 		<div class="related-articles">
 			{% if article.next_article %}
-		    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">&larr; {{ article.next_article.title|striptags }} </a>
+		    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">&larr; {{ article.next_article.title|striptags }}</a>
 			{% endif %}
 			{% if article.prev_article %}
 		    <a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title|striptags }} &rarr;</a>
