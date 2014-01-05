@@ -60,14 +60,17 @@
 			<a href="{{ SITEURL }}"><img class="avatar" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></img></a>
 			<p class="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
 			<p class="bio">{{ BIO_TEXT }}</p>
+			<div class="sidebar-links">
+				<h3><a href="{{ SITEURL }}/about">About</a>&ensp;•&ensp;<a href="{{ SITEURL }}/projects">Projects</a></h3>
+			</div>
 			{% if SOCIAL %}
-				<hr class="small" />
 				<div class="social">
 				{% for link in SOCIAL %}
 					<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="{{ link[2] }}"></i></a>
 				{% endfor %}
 				</div> <!-- social -->
 			{% endif %}
+			<hr class="large sidebar-divider" />
 		</div> <!-- sidebar -->
 
 		<section id="content" class="twelve columns offset-by-one">

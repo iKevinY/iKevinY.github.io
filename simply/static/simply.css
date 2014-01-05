@@ -197,9 +197,13 @@ code {
 	text-align: center;
 }
 
+.sidebar-divider {
+	display: none;
+}
+
 .sidebar-links {
 	text-align: center;
-	margin-top: 5px;
+	margin: 12px 0;
 }
 
 .article-title {
@@ -251,7 +255,7 @@ code {
 
 	#content {
 		float: none;
-		margin-top: 175px;
+		margin-top: 128px;
 	}
 
 	#content img {
@@ -259,6 +263,28 @@ code {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	.logo {
+		margin: 8px 0;
+	}
+
+	.bio {
+		margin: 4px 0;
+	}
+
+	.social {
+		text-align: center;
+		float: none;
+		margin: 4px 0;
+	}
+
+	.sidebar-links {
+		margin: 4px 0;
+	}
+
+	.sidebar-divider {
+		display: block;
 	}
 
 	.article-title, .entry-title, .article-date {
