@@ -7,7 +7,6 @@ upload() {
 	cd $outputPath
 	cp ../favicon.ico favicon.ico
 	cp ../robots.txt robots.txt
-	cp -R ../uploads/ uploads/
 	cp 404/index.html 404.html && rm -R 404
 	find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
 	echo "kevinyap.ca" > CNAME
@@ -35,7 +34,6 @@ develop() {
 
 	cd $outputPath
 	cp ../favicon.ico favicon.ico
-	cp -R ../uploads/ uploads/
 	cp 404/index.html 404.html && rm -R 404
 	printf "\e[0;32mSite generated successfully.\e[0m\n"
 	printf "Local IP address: "
@@ -44,7 +42,6 @@ develop() {
 	cd $rootPath
 	rm -rf develop
 }
-
 
 rootPath="$HOME/kevinyap.ca"
 cd $rootPath
