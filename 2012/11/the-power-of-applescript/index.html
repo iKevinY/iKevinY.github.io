@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
 
 	<!-- Basic Metas
@@ -62,7 +59,9 @@
 			<a href="http://kevinyap.ca"><img class="avatar" src="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=280"></img></a>
 			<p class="logo"><a href="http://kevinyap.ca">Kevin Yap</a></p>
 			<p class="bio">Developer and musician from Vancouver, BC.</p>
-				<hr class="small" />
+			<div class="sidebar-links">
+				<h3><a href="http://kevinyap.ca/about">About</a>&ensp;•&ensp;<a href="http://kevinyap.ca/projects">Projects</a></h3>
+			</div>
 				<div class="social">
 					<a class="icon" href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca" title="Email"><i class="fa fa-envelope-o"></i></a>
 					<a class="icon" href="http://twitter.com/iKevinY" title="Twitter"><i class="fa fa-twitter"></i></a>
@@ -70,6 +69,7 @@
 					<a class="icon" href="http://github.com/iKevinY" title="GitHub"><i class="fa fa-github"></i></a>
 					<a class="icon" href="http://soundcloud.com/iKevinY" title="SoundCloud"><i class="fa fa-music"></i></a>
 				</div> <!-- social -->
+			<hr class="large sidebar-divider" />
 		</div> <!-- sidebar -->
 
 		<section id="content" class="twelve columns offset-by-one">
@@ -81,7 +81,7 @@
 <p>After that, to search for the part of the string that contained the song name, I initially tried looking for the first apostrophe in the track title and used the next character as the beginning of the song name string, and ended the string one character before the end of the track title. In most cases, this would (as expected) take the text between the apostrophes &#8212; the song name &#8212; and store it in a dedicated song name string. Great! Fortunately, I tested this script in batches of 10 tracks or so at a time and manually vetted the result, as this definitely did not work. The flaw with this method may already be obvious; if the game name itself contained an apostrophe (for example, Legend of Zelda: Link&#8217;s Awakening), the script would use all the characters after this apostrophe until the final apostrophe as the song name, which is&nbsp;incorrect.</p>
 <p>The fix for this was simple enough. Instead of searching for the first apostrophe within the track title, I searched for the first space followed directly by an apostrophe, and altered the values that affect the length of the strings&nbsp;accordingly.</p>
 <p>All in all, the script was certainly not pretty, but it did the job. I didn&#8217;t notice any incorrectly reformatted names at first glance, but it is possible that a few oddly named songs were incorrectly renamed. I guess my point is that AppleScript was easy enough to work with (given rudimentary knowledge of how other programming languages function) that I was able to hack this very specifically-purposed script together in a short amount of time. Most of the code is based on words in English making it accessible to people who have never programmed before, and the AppleScript Editor gives an alert when saving or running the code if it is&nbsp;invalid.</p>
-<p>If you want to use the script to rename to your own tracks (or just to examine my shoddily thrown together code), <a href="/uploads/Reformat%20OverClocked%20ReMix%20Titles.scpt">here is a download link</a>. Alternatively, here is the source code; to use the script, copy it into AppleScript Editor, select the tracks in iTunes, and run&nbsp;it.</p>
+<p>If you want to use the script to rename to your own tracks (or just to examine my shoddily thrown together code), <a href="http://kevinyap.ca/uploads/ReformatOCR.scpt">here is a download link</a>. Alternatively, here is the source code; to use the script, copy it into AppleScript Editor, select the tracks in iTunes, and run&nbsp;it.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -105,8 +105,8 @@
 21</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;iTunes&quot;</span>
     <span class="k">set</span> <span class="nv">sel</span> <span class="k">to</span> <span class="nv">selection</span>
     <span class="k">if</span> <span class="nv">sel</span> <span class="ow">is not</span> <span class="p">{}</span> <span class="k">then</span>
-        <span class="k">repeat</span> <span class="nv">with</span> <span class="nv">track</span> <span class="k">in</span> <span class="nv">sel</span>        
-            <span class="c">-- Set trackName variable to name of track (track) </span>
+        <span class="k">repeat</span> <span class="nv">with</span> <span class="nv">track</span> <span class="k">in</span> <span class="nv">sel</span>
+            <span class="c">-- Set trackName variable to name of track (track)</span>
             <span class="k">set</span> <span class="nv">trackName</span> <span class="k">to</span> <span class="p">(</span><span class="k">get</span> <span class="na">name</span> <span class="k">of</span> <span class="nv">track</span><span class="p">)</span>
             <span class="c">-- Strip &quot; <span class="caps">OC</span> ReMix&quot; characters from end of track title</span>
             <span class="k">set</span> <span class="nv">trackName</span> <span class="k">to</span> <span class="nb">text</span> <span class="mi">1</span> <span class="nb">thru</span> <span class="o">-</span><span class="mi">10</span> <span class="k">of</span> <span class="nv">trackName</span>
@@ -126,7 +126,7 @@
 </pre></div>
 </td></tr></table></div>
 		<div class="related-articles">
-		    <a href="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/" style="float: left;">&larr; The Great (White) Pelican Migration </a>
+		    <a href="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/" style="float: left;">&larr; The Great (White) Pelican Migration</a>
 		    <a href="http://kevinyap.ca/2011/10/hello-blogosphere/" style="float: right;">Hello, Blogosphere! &rarr;</a>
 		</div>
 	<hr class="large">
