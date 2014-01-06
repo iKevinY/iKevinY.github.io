@@ -56,12 +56,12 @@
 	<!-- Primary Page Layout
 	================================================== -->
 	<div class="container">
-		<div id="sidebar" class="three columns">
+		<aside id="sidebar" class="three columns">
 			<a href="http://kevinyap.ca"><img class="avatar" alt="Kevin Yap" src="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=280"></a>
 			<p class="logo"><a href="http://kevinyap.ca">Kevin Yap</a></p>
 			<p class="bio">Developer and musician from Vancouver, BC.</p>
 			<div class="sidebar-links">
-				<h3><a href="http://kevinyap.ca/about">About</a>&ensp;•&ensp;<a href="http://kevinyap.ca/projects">Projects</a></h3>
+				<h3><a href="http://kevinyap.ca/about">About</a>&ensp;&bull;&ensp;<a href="http://kevinyap.ca/projects">Projects</a></h3>
 			</div>
 				<div class="social">
 					<a class="icon" href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca" title="Email"><i class="fa fa-envelope-o"></i></a>
@@ -71,9 +71,9 @@
 					<a class="icon" href="http://soundcloud.com/iKevinY" title="SoundCloud"><i class="fa fa-music"></i></a>
 				</div> <!-- social -->
 			<hr class="sidebar-divider">
-		</div> <!-- sidebar -->
+		</aside> <!-- sidebar -->
 
-		<section id="content" class="twelve columns offset-by-one">
+		<article id="content" class="twelve columns offset-by-one">
 	<h1 class="article-title"><a href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
 	<h6 class="article-date">December 10, 2013</h6>
 	<div class="article-content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
@@ -151,7 +151,7 @@
 					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 				})();
 		</script>
-		</section>
+		</article>
 
 		<footer class="twelve columns offset-by-one">
 			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
