@@ -18,18 +18,10 @@ footer {
 }
 
 hr {
-	margin: 25px 0;
-}
-
-.large {
 	border: none;
-	height: 4px;
+	height: 3px;
 	background-color: #ebebeb;
-	margin: 10px 10px;
-}
-
-.small {
-	margin: 10px 0;
+	margin: 10px;
 }
 
 section#content {

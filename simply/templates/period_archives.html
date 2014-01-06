@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
-{% block title %}{{ category }} Post Archive | {{ SITENAME }}{% endblock %}
-
+{% block title %}Post Archive {{ year }} | {{ SITENAME }}{% endblock %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
-
-	<h1><a href="/{{ page_name }}">Post Archive</a></h1>
-
-	<hr class="small">
-	<br />
-	<ul>
-	{% for article in dates %}
-		<li>{{ article.locale_date }}: <a href="{{ article.url }}" title="{{ article.title|striptags }}">{{ article.title|striptags }}</a>
-	{% endfor %}
-	</ul>
-
+	{% for year, date_year in dates | groupby('date.year') %}
+    <h1><a href="/{{ year }}">Post Archive | {{ year }}</a></h1>
+  	{% for month, date_month in dates | groupby('date.month') %}
+  		<h2><a href="/{{ date_month[0].date.strftime('%Y/%m') }}">{{ date_month[0].date.strftime('%B') }}</a></h1>
+	    <ul>
+		    {% for article in date_month | sort %}
+			    <li>{{ article.locale_date }} &raquo; <a href="/{{ article.url }}">{{ article.title }}</a></li>
+	      {% endfor %}
+	    </ul>
+    {% endfor %}
+  {% endfor %}
+  <div class="back-to-home"><a href="{{ SITEURL }}">&larr; Back to Home</a></div>
+  <hr>
 {% endblock %}

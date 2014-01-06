@@ -10,9 +10,13 @@
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 
+	{% block meta %}{% endblock %}
+
 	<!-- Open Graph
 	================================================== -->
-	{% block opengraph %}<meta property="og:image" content="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">{% endblock %}
+	{% block opengraph %}
+	<meta property="og:image" content="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">
+	{% endblock %}
 
 	<!-- Mobile Specific Metas
 	================================================== -->
@@ -70,7 +74,7 @@
 				{% endfor %}
 				</div> <!-- social -->
 			{% endif %}
-			<hr class="large sidebar-divider" />
+			<hr class="sidebar-divider">
 		</div> <!-- sidebar -->
 
 		<section id="content" class="twelve columns offset-by-one">
