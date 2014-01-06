@@ -9,7 +9,6 @@
 	<meta name="description" content="{% block description %}{% endblock %}">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
-
 	{% block meta %}{% endblock %}
 
 	<!-- Open Graph
@@ -61,7 +60,7 @@
 	================================================== -->
 	<div class="container">
 		<div id="sidebar" class="three columns">
-			<a href="{{ SITEURL }}"><img class="avatar" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></img></a>
+			<a href="{{ SITEURL }}"><img class="avatar" alt="{{ SITENAME }}" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></a>
 			<p class="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
 			<p class="bio">{{ BIO_TEXT }}</p>
 			<div class="sidebar-links">

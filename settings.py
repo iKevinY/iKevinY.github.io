@@ -23,11 +23,12 @@ ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = PAGE_URL + 'index.html'
 
+ARCHIVES_SAVE_AS = 'archive/index.html'
+
 YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 
-# Disables archive, author, and tag pages
-ARCHIVES_SAVE_AS = False
+# Disables author, category, and tag pages
 AUTHOR_SAVE_AS = False
 AUTHORS_SAVE_AS = False
 CATEGORY_SAVE_AS = False
