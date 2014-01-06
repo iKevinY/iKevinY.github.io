@@ -59,12 +59,12 @@
 	<!-- Primary Page Layout
 	================================================== -->
 	<div class="container">
-		<div id="sidebar" class="three columns">
+		<aside id="sidebar" class="three columns">
 			<a href="{{ SITEURL }}"><img class="avatar" alt="{{ SITENAME }}" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></a>
 			<p class="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
 			<p class="bio">{{ BIO_TEXT }}</p>
 			<div class="sidebar-links">
-				<h3><a href="{{ SITEURL }}/about">About</a>&ensp;•&ensp;<a href="{{ SITEURL }}/projects">Projects</a></h3>
+				<h3><a href="{{ SITEURL }}/about">About</a>&ensp;&bull;&ensp;<a href="{{ SITEURL }}/projects">Projects</a></h3>
 			</div>
 			{% if SOCIAL %}
 				<div class="social">
@@ -74,11 +74,11 @@
 				</div> <!-- social -->
 			{% endif %}
 			<hr class="sidebar-divider">
-		</div> <!-- sidebar -->
+		</aside> <!-- sidebar -->
 
-		<section id="content" class="twelve columns offset-by-one">
+		<article id="content" class="twelve columns offset-by-one">
 			{% block content %}{% endblock %}
-		</section>
+		</article>
 
 		<footer class="twelve columns offset-by-one">
 			<p>{{ FOOTER_TEXT }}</p>

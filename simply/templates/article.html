@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
+
 {% block content %}
 	<h1 class="article-title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
 	<h6 class="article-date">{{ article.locale_date }}</h6>
