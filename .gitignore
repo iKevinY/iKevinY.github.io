@@ -2,3 +2,5 @@ develop/
 output/
 *.DS_Store
 *.pyc
+
+simply/static/simply.min.css

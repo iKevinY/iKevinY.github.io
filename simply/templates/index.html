@@ -15,6 +15,6 @@
 	{% for article in articles %}
 		<h1 class="article-title"><a href="{{ article.url }}" title="{{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
 		<h4 class="article-date">{{ article.locale_date }}</h4>
-		<hr>
+		<hr class="large">
 	{% endfor %}
 {% endblock %}
