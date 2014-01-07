@@ -72,13 +72,8 @@
 	blockquote cite:before { content: "\2014 \0020"; }
 	blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
 
-	hr {
-		clear: both;
-		border: none;
-		height: 3px;
-		background-color: #ebebeb;
-		margin: 10px;
-	}
+	hr { clear: both; border: none; height: 1px; background-color: #ebebeb; margin: 20px 5px; }
+	hr.large { height: 3px; margin: 10px; }
 
 	a, a:visited { color: #333; text-decoration: none; font-weight: bold; outline: 0; }
 	a:hover, a:focus { color: #000; }
