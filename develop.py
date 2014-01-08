@@ -53,7 +53,12 @@ LATEX = 'article'
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_PATH = 'develop/'
 PATH = 'content/'
-STATIC_PATHS = ['images', 'uploads']
+STATIC_PATHS = ['images', 'uploads', 'extra/robots.txt', 'extra/favicon.ico', 'extra/CNAME']
+EXTRA_PATH_METADATA = {
+    'extra/robots.txt': {'path': 'robots.txt'},
+    'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/CNAME': {'path': 'CNAME'},
+    }
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
 SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'fa fa-envelope-o'),

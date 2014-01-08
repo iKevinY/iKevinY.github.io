@@ -5,11 +5,8 @@ upload() {
 	pelican -q -s settings.py
 
 	cd $outputPath
-	cp ../favicon.ico favicon.ico
-	cp ../robots.txt robots.txt
 	cp 404/index.html 404.html && rm -R 404
 	find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
-	echo "kevinyap.ca" > CNAME
 
 	printf "\e[0;32mSite generated successfully.\e[0m\n"
 
@@ -33,7 +30,6 @@ develop() {
 	pelican -s develop.py
 
 	cd $outputPath
-	cp ../favicon.ico favicon.ico
 	cp 404/index.html 404.html && rm -R 404
 	printf "\e[0;32mSite generated successfully.\e[0m\n"
 	printf "Local IP address: "
