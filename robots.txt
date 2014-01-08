@@ -1,4 +1,2 @@
 User-agent: *
-Disallow: /theme/
 Disallow: /drafts/
-Disallow: /CNAME
