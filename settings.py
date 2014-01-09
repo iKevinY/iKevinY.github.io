@@ -60,6 +60,8 @@ EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
     }
 
+TEMPLATE_PAGES = {'404.html': '404.html', }
+
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
 SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'fa fa-envelope-o'),
           ('http://twitter.com/iKevinY', 'Twitter', 'fa fa-twitter'),
