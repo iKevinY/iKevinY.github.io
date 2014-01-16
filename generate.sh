@@ -38,7 +38,6 @@ develop() {
 }
 
 rootPath="$HOME/kevinyap.ca"
-minify ${rootPath}/simply/static/simply.css
 cd $rootPath
 
 if [[ $1 = "-d" ]] || [[ $1 = "-p" ]]; then

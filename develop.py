@@ -45,7 +45,7 @@ DEFAULT_PAGINATION = False
 MD_EXTENSIONS = ['codehilite(linenums = True)', 'extra']
 
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['latex', 'neighbors']
+PLUGINS = ['assets', 'latex', 'neighbors']
 
 # Only enable LaTeX with the "Latex:" metadata property
 LATEX = 'article'
