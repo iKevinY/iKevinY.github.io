@@ -73,6 +73,9 @@ SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'E
 # MD5 hash of email address for Gravatar
 GRAVATAR_HASH = '0d1d263a229548db35dffba8c55e19f7'
 
+# Configuration for the Assets plugin
+ASSET_CONFIG = (('url_expire', False), )
+
 DISQUS_SITENAME = 'kevinyap'
 TWITTER_USERNAME = 'iKevinY'
 GOOGLE_ANALYTICS = 'UA-41937659-1'
