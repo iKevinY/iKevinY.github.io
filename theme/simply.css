@@ -313,7 +313,7 @@
 			margin: 0 0.75in;
 		}
 
-		a:link:after, a:visited:after {
+		a:after {
 			content:" ["attr(href)"]";
 		}
 
