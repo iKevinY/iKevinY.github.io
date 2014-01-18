@@ -58,10 +58,7 @@
 	strong { font-weight: bold; color: #333; }
 	small { font-size: 80%; }
 
-	blockquote {
-		margin: 20px 0 20px 3px;
-		padding: 1px 15px;
-		border-left: 2px solid #ddd; }
+	blockquote { margin: 20px 0 20px 3px; padding: 1px 15px; border-left: 2px solid #ddd; }
 	blockquote p {
 		font-size: 14px;
 		line-height: 21px;
@@ -97,208 +94,231 @@
 	li p { line-height: 21px; }
 
 
-/* Class Layout
+/* Layout
 ================================================== */
-html, body {
-	height: 100%;
-}
-
-.container {
-	padding-top: 50px;
-}
-
-footer {
-	float: right !important;
-	text-align: center;
-}
-
-article#content {
-	float: right;
-}
-
-#content img {
-	max-width: 675px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#sidebar {
-	position: fixed;
-	width: 160px;
-}
-
-abbr, acronym, .abbr {
-	cursor: help;
-	border-bottom: 1px dashed #444;
-}
-
-.footnote hr {
-	margin: 20px 0;
-}
-
-.footnote-ref {
-	padding-left: 1px;
-	font-size: .75em;
-	line-height: 0.5em;
-	vertical-align: baseline;
-	position: relative;
-	top: -0.5em;
-}
-
-code {
-	font-family: "Source Code Pro", monospace;
-	background-color: #eee;
-	padding: 0 3px;
-	border: 1px solid #ddd;
-	border-radius: 2px;
-}
-
-.codehilitetable {
-	font-family: "Source Code Pro", monospace;
-	font-size: 12px;
-	overflow: auto;
-	display: block;
-	border: solid 1px #d9d9d9;
-	border-radius: 3px;
-}
-
-.linenos {
-	border-right: 1px solid #d9d9d9;
-	background: #eee;
-	padding: 0.5em 0.8em;
-	opacity: 0.8;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.codehilite {
-	margin: 0 1em;
-}
-
-.avatar {
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 10px;
-	display: block;
-	width: 140px;
-	border-radius: 12px;
-}
-
-.logo {
-	font-size: 26px;
-	line-height: 34px;
-	margin-bottom: 10px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: bold;
-	letter-spacing: -0.5px;
-	text-align: center;
-}
-
-.bio {
-	font-size: 90%;
-	text-align: center;
-	line-height: 18px;
-	color: #666666;
-}
-
-.social {
-	text-align: center;
-}
-
-.sidebar-divider {
-	display: none;
-}
-
-.sidebar-links {
-	text-align: center;
-	margin: 12px 0;
-}
-
-.article-title {
-	clear: both;
-	float: left;
-}
-
-.article-date {
-	font-style: italic;
-	float: right;
-	margin: 8px 10px;
-}
-
-.article-content {
-	clear: both;
-	overflow: hidden;
-}
-
-.article-content img {
-	border: 1px solid #222;
-}
-
-.related-articles {
-	margin-top: 20px;
-	padding-bottom: 20px;
-}
-
-.back-to-home {
-	margin-top: 20px;
-}
-
-
-/* Media Queries
-================================================== */
-@media only screen and (max-width: 767px) {
-	#sidebar {
-		position: absolute;
-		width: 100%;
-		top: 8px;
+	html, body {
+		height: 100%;
 	}
 
-	#sidebar img {
-		float: left;
-		width: 140px;
-		margin-right: 10px;
+	.container {
+		padding-top: 50px;
 	}
 
-	#content {
-		float: none;
-		margin-top: 128px;
+	footer {
+		float: right !important;
+		text-align: center;
+	}
+
+	article#content {
+		float: right;
 	}
 
 	#content img {
-		max-width: 85%;
+		max-width: 675px;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
+	#sidebar {
+		position: fixed;
+		width: 160px;
+	}
+
+	abbr, acronym, .abbr {
+		cursor: help;
+		border-bottom: 1px dashed #444;
+	}
+
+	.footnote hr {
+		margin: 20px 0;
+	}
+
+	.footnote-ref {
+		padding-left: 1px;
+		font-size: .75em;
+		line-height: 0.5em;
+		vertical-align: baseline;
+		position: relative;
+		top: -0.5em;
+	}
+
+	code {
+		font-family: "Source Code Pro", monospace;
+		background-color: #eee;
+		padding: 0 3px;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+	}
+
+	.codehilitetable {
+		font-family: "Source Code Pro", monospace;
+		font-size: 12px;
+		overflow: auto;
+		display: block;
+		border: solid 1px #d9d9d9;
+		border-radius: 3px;
+	}
+
+	.linenos {
+		border-right: 1px solid #d9d9d9;
+		background: #eee;
+		padding: 0.5em 0.8em;
+		opacity: 0.8;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.codehilite {
+		margin: 0 1em;
+	}
+
+	.avatar {
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 10px;
+		display: block;
+		width: 140px;
+		border-radius: 12px;
+	}
+
 	.logo {
-		margin: 8px 0;
+		font-size: 26px;
+		line-height: 34px;
+		margin-bottom: 10px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		letter-spacing: -0.5px;
+		text-align: center;
 	}
 
 	.bio {
-		margin: 4px 0;
+		font-size: 90%;
+		text-align: center;
+		line-height: 18px;
+		color: #666666;
 	}
 
 	.social {
 		text-align: center;
-		float: none;
-		margin: 4px 0;
-	}
-
-	.sidebar-links {
-		margin: 4px 0;
 	}
 
 	.sidebar-divider {
-		display: block;
+		display: none;
 	}
 
-	.article-title, .entry-title, .article-date {
+	.sidebar-links {
 		text-align: center;
-		float: none;
+		margin: 12px 0;
 	}
-}
+
+	.article-title {
+		clear: both;
+		float: left;
+	}
+
+	.article-date {
+		font-style: italic;
+		float: right;
+		margin: 8px 10px;
+	}
+
+	.article-content {
+		clear: both;
+		overflow: hidden;
+	}
+
+	.article-content img {
+		border: 1px solid #222;
+	}
+
+	.related-articles {
+		margin-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.back-to-home {
+		margin-top: 20px;
+	}
+
+
+/* Mobile Layout
+================================================== */
+	@media only screen and (max-width: 767px) {
+		#sidebar {
+			position: absolute;
+			width: 100%;
+			top: 8px;
+		}
+
+		#sidebar img {
+			float: left;
+			width: 140px;
+			margin-right: 10px;
+		}
+
+		#content {
+			float: none;
+			margin-top: 128px;
+		}
+
+		#content img {
+			max-width: 85%;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.logo {
+			margin: 8px 0;
+		}
+
+		.bio {
+			margin: 4px 0;
+		}
+
+		.social {
+			text-align: center;
+			float: none;
+			margin: 4px 0;
+		}
+
+		.sidebar-links {
+			margin: 4px 0;
+		}
+
+		.sidebar-divider {
+			display: block;
+		}
+
+		.article-title, .entry-title, .article-date {
+			text-align: center;
+			float: none;
+		}
+	}
+
+/* Print-Friendly Layout
+================================================== */
+	@media only print {
+		footer, #sidebar, #disqus_thread, .related-articles {
+			display: none !important;
+		}
+
+		#content {
+			display: block;
+			position: absolute;
+			margin: 0 0.75in;
+		}
+
+		a:link:after, a:visited:after {
+			content:" ["attr(href)"]";
+		}
+
+		h1 a:after {
+			content: none !important;
+		}
+
+	}
