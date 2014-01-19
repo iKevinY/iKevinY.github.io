@@ -245,9 +245,9 @@
 	}
 
 
-/* Mobile Layout
+/* Handheld Layout (Mobile and Tablet)
 ================================================== */
-	@media only screen and (max-width: 767px) {
+	@media only screen and (max-width: 959px) {
 		#sidebar {
 			position: absolute;
 			width: 100%;
@@ -300,6 +300,12 @@
 		}
 	}
 
+/* Tablet-Specific Tweaks (Portrait)
+================================================== */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {
+		#sidebar img { margin-left: 80px; }
+	}
+
 /* Print-Friendly Layout
 ================================================== */
 	@media only print {
@@ -313,12 +319,6 @@
 			margin: 0 0.75in;
 		}
 
-		a:after {
-			content:" ["attr(href)"]";
-		}
-
-		h1 a:after {
-			content: none !important;
-		}
-
+		a:after { content:" ["attr(href)"]"; }
+		h1 a:after { content: " | Kevin Yap" !important; }
 	}

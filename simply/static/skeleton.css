@@ -9,44 +9,44 @@
 
 /* Base 960 Grid
 ================================================== */
-	.container                                  { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+	.container                           { position: relative; width: 960px; margin: 0 auto; padding: 0; }
 	.container .column,
-	.container .columns                         { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
-	.container .three.columns                   { width: 160px; }
-	.container .twelve.columns                  { width: 700px; }
-	.container .offset-by-one                   { padding-left: 60px;  }
+	.container .columns                  { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
+	.container .three.columns            { width: 160px; }
+	.container .twelve.columns           { width: 700px; }
+	.container .offset-by-one            { padding-left: 60px;  }
 
 
-/* Tablet (Portrait, width of 768px)
+/* Tablet (portrait, width of 768px)
 ================================================== */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
-		.container                                  { width: 768px; }
+		.container                         { width: 650px; }
 		.container .column,
-		.container .columns                         { margin-left: 10px; margin-right: 10px;  }
-		.container .three.columns                   { width: 124px; }
-		.container .twelve.columns                  { width: 556px; }
-		.container .offset-by-one                   { padding-left: 48px; }
+		.container .columns                { margin: 0; }
+		.container .three.columns          { width: 124px; }
+		.container .twelve.columns         { width: 650px; }
+		.container .offset-by-one          { padding-left: 0; }
 	}
 
 
-/* Mobile (Portrait, width of 320px)
+/* Mobile (portrait, width of 320px)
 ================================================== */
 	@media only screen and (max-width: 767px) {
-		.container { width: 300px; }
+		.container                         { width: 300px; }
 		.container .columns,
-		.container .column { margin: 0; }
+		.container .column                 { margin: 0; }
 		.container .three.columns,
-		.container .twelve.columns  { width: 300px; }
-		.container .offset-by-one { padding-left: 0; }
+		.container .twelve.columns         { width: 300px; }
+		.container .offset-by-one          { padding-left: 0; }
 	}
 
 
-/* #Mobile (Landscape, width of 480px)
+/* #Mobile (landscape, width of 480px)
 ================================================== */
 	@media only screen and (min-width: 480px) and (max-width: 767px) {
-		.container { width: 420px; }
+		.container                         { width: 420px; }
 		.container .columns,
-		.container .column { margin: 0; }
+		.container .column                 { margin: 0; }
 		.container .three.columns,
-		.container .twelve.columns { width: 420px; }
+		.container .twelve.columns         { width: 420px; }
 	}
