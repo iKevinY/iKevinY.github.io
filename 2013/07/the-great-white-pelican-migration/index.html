@@ -5,16 +5,22 @@
 	<!-- Basic Metas
 	================================================== -->
 	<meta charset="utf-8">
-	<title>The Great (White) Pelican Migration | Kevin Yap</title>
-	<meta name="description" content="">
+	<title>The Great (White) Pelican Migration | Kevin Yap</title>
+	<meta name="description" content="When browsing /r/programming a while back, I came across a link to a blog post written by Greg Reda. While reading the post, I noticed the platform that his ...">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 
+	<!-- Twitter Card
+	================================================== -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:title" content="The Great (White) Pelican Migration">
+	<meta name="twitter:description" content="When browsing /r/programming a while back, I came across a link to a blog post written by Greg Reda. While reading the post, I noticed the platform that his ...">
+
 	<!-- Open Graph
 	================================================== -->
-		<meta property="og:image" content="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=256">
-
-	<meta property="og:title" content="The Great (White) Pelican Migration | Kevin Yap">
+	<meta property="og:image" content="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=256">
+	<meta property="og:title" content="The Great (White) Pelican Migration | Kevin Yap">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/">
 	<meta property="og:article:published_time" content="2013-07-14 00:00:00">
@@ -46,7 +52,6 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=144"> <!-- iPad, Retina -->
 	<link rel="apple-touch-icon" sizes="152x152" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=152"> <!-- iPad, Retina iOS 7 -->
 
-
 </head>
 
 <body>
@@ -72,19 +77,19 @@
 		</aside> <!-- sidebar -->
 
 		<article id="content" class="twelve columns offset-by-one">
-	<h1 class="article-title"><a href="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/" title="Permalink to The Great (White) Pelican Migration">The Great (White) Pelican Migration</a></h1>
+	<h1 class="article-title"><a href="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/" title="Permalink to The Great (White) Pelican Migration">The Great (White) Pelican Migration</a></h1>
 	<h6 class="article-date">July 14, 2013</h6>
-	<div class="article-content"><p>When browsing <a href="http://www.reddit.com/r/programming">/r/programming</a> a while back, I came across a link to a blog post written by <a href="http://www.gregreda.com">Greg Reda</a>. While reading the post, I noticed the platform that his website was generated with &#8212; <a href="http://getpelican.com/">Pelican</a> &#8212; and at the time, I was in the process of searching for a replacement for WordPress. When I initially created kevinyap.ca, WordPress was appealing due to being easy-to-install <span class="caps">CMS</span> and versatile in its support and compatibility (themes and plugins), but over time I realized that it was too bulky; what I actually needed was a simple blogging platform rather than a full-fledged&nbsp;<span class="caps">CMS</span>.</p>
+	<div class="article-content"><p>When browsing <a href="http://www.reddit.com/r/programming">/r/programming</a> a while back, I came across a link to a blog post written by <a href="http://www.gregreda.com">Greg Reda</a>. While reading the post, I noticed the platform that his website was generated with &#8212; <a href="http://getpelican.com/">Pelican</a> &#8212; and at the time, I was in the process of searching for a replacement for WordPress. When I initially created kevinyap.ca, WordPress was appealing due to being easy-to-install <span class="caps">CMS</span> and versatile in its support and compatibility (themes and plugins), but over time I realized that it was too bulky; what I actually needed was a simple blogging platform rather than a full-fledged <span class="caps">CMS</span>.</p>
 <p>I decided that it would be wise to make the move to another platform sooner rather than later, so I began the migration to Pelican. The transition from WordPress to Pelican was quite simple; the installation itself was fairly straightforward, and I manually transferred over my previous blog posts. (Pelican does have an automatic blog importer, but with the tiny number of previous posts, it was simpler to just complete the process&nbsp;manually.)</p>
 <p>In my opinion, one of the most appealing features of using Pelican for a blog is the fact that posts (and pages) can be composed in Markdown, an easy-to-use and familiar markup language. This change also made it easier to incorporate <a href="http://www.iawriter.com/">iA Writer</a> into my blog-writing workflow instead of fumbling around with the WordPress dashboard consistently. Also, iA Writer’s iCloud integration makes it easy to write&nbsp;anywhere.</p>
 <p>One minor hitch that I had was with setting up the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for Markdown. In the configuration file for Pelican, I had the entry <code>MD_EXTENSIONS = ['codehilite']</code>, as the documentation stated that <code>MD_EXTENSIONS</code> needed to be defined as a list. Although this did not raise any warnings when generating the site through Pelican. When I added the <a href="http://pythonhosted.org/Markdown/extensions/extra.html">Markdown Extra</a> to the list of extensions &#8212; <code>MD_EXTENSIONS = ['codehilite', 'extra']</code> &#8212; the code highlighting worked. Apparently there needed to be more than one item in the list of Markdown&nbsp;extensions.</p>
 <p>Many thanks to Greg Reda whose Pelican theme (which can be found in the <a href="http://github.com/gjreda/gregreda.com">GitHub repository</a> for his website) I am currently using on my&nbsp;website.</p></div>
 		<div class="related-articles">
-		    <a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/" style="float: left;">&larr; Hosting With GitHub Pages</a>
-		    <a href="http://kevinyap.ca/2012/11/the-power-of-applescript/" style="float: right;">The Power of AppleScript &rarr;</a>
+				<a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/" style="float: left;">&larr; Hosting With GitHub Pages</a>
+				<a href="http://kevinyap.ca/2012/11/the-power-of-applescript/" style="float: right;">The Power of AppleScript &rarr;</a>
 		</div>
 	<hr class="large">
-	<!-- Disqus -->
+		<!-- Disqus -->
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
 			var disqus_shortname = 'kevinyap';
@@ -100,6 +105,7 @@
 			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
 		</footer>
 	</div> <!-- container -->
+
 
 		<!-- Google Analytics -->
 		<script>

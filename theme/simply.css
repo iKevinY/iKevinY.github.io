@@ -300,11 +300,13 @@
 		}
 	}
 
+
 /* Tablet-Specific Tweaks (Portrait)
 ================================================== */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
 		#sidebar img { margin-left: 80px; }
 	}
+
 
 /* Print-Friendly Layout
 ================================================== */
@@ -319,6 +321,6 @@
 			margin: 0 0.75in;
 		}
 
-		a:after { content:" ["attr(href)"]"; }
-		h1 a:after { content: " | Kevin Yap" !important; }
+		p a:after { content:" ["attr(href)"]"; }
+		h1 a:after { content: " | Kevin Yap" }
 	}

@@ -5,16 +5,22 @@
 	<!-- Basic Metas
 	================================================== -->
 	<meta charset="utf-8">
-	<title>The Power of AppleScript | Kevin Yap</title>
-	<meta name="description" content="">
+	<title>The Power of AppleScript | Kevin Yap</title>
+	<meta name="description" content="One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were ...">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 
+	<!-- Twitter Card
+	================================================== -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:title" content="The Power of AppleScript">
+	<meta name="twitter:description" content="One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were ...">
+
 	<!-- Open Graph
 	================================================== -->
-		<meta property="og:image" content="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=256">
-
-	<meta property="og:title" content="The Power of AppleScript | Kevin Yap">
+	<meta property="og:image" content="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=256">
+	<meta property="og:title" content="The Power of AppleScript | Kevin Yap">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2012/11/the-power-of-applescript/">
 	<meta property="og:article:published_time" content="2012-11-28 00:00:00">
@@ -46,7 +52,6 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=144"> <!-- iPad, Retina -->
 	<link rel="apple-touch-icon" sizes="152x152" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=152"> <!-- iPad, Retina iOS 7 -->
 
-
 </head>
 
 <body>
@@ -72,7 +77,7 @@
 		</aside> <!-- sidebar -->
 
 		<article id="content" class="twelve columns offset-by-one">
-	<h1 class="article-title"><a href="http://kevinyap.ca/2012/11/the-power-of-applescript/" title="Permalink to The Power of AppleScript">The Power of AppleScript</a></h1>
+	<h1 class="article-title"><a href="http://kevinyap.ca/2012/11/the-power-of-applescript/" title="Permalink to The Power of AppleScript">The Power of AppleScript</a></h1>
 	<h6 class="article-date">November 28, 2012</h6>
 	<div class="article-content"><p>One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were available to download via torrent, and that every file contained &#8220;complete and consistent <span class="caps">ID3</span> tags&#8221;. While the tags for most fields are great, I wasn&#8217;t particularly fond of the format of the track titles. Instead of <em>TrackName (GameName)</em> like I would have preferred, the format was <em>GameName &#8216;TrackName&#8217; <span class="caps">OC</span> ReMix</em>. There are a few reasons why I don&#8217;t like the provided format (namely that the &#8220;<span class="caps">OC</span> ReMix&#8221; suffix feels redundant to me and it feels more appropriate to not see the songs grouped by their source game), but that&#8217;s besides the&nbsp;point.</p>
 <p>Obviously, manually renaming nearly 2500 tracks in iTunes would be a ridiculous undertaking. Luckily, AppleScript happens to be the perfect tool to automate this task. While I had never used AppleScript previous to this, the syntax was easy enough to learn quickly. <a href="http://dougscripts.com/itunes/">Doug&#8217;s AppleScripts for iTunes</a> proved itself to be a useful resource for learning (and happens to be where I downloaded other scripts from in the past). It is also where I derived the skeleton of this script from. At first, I attempted to figured out how to handle regular expressions within strings in AppleScript, but I soon realized that a crude piece of code would work just as well; it just wouldn&#8217;t be useful for any other situation. I set off in search of AppleScript documentation to learn to to manipulate the track name string in the way that I&nbsp;wanted.</p>
@@ -107,7 +112,7 @@
         <span class="k">repeat</span> <span class="nv">with</span> <span class="nv">track</span> <span class="k">in</span> <span class="nv">sel</span>
             <span class="c">-- Set trackName variable to name of track (track)</span>
             <span class="k">set</span> <span class="nv">trackName</span> <span class="k">to</span> <span class="p">(</span><span class="k">get</span> <span class="na">name</span> <span class="k">of</span> <span class="nv">track</span><span class="p">)</span>
-            <span class="c">-- Strip &quot; <span class="caps">OC</span> ReMix&quot; characters from end of track title</span>
+            <span class="c">-- Strip &quot; OC ReMix&quot; characters from end of track title</span>
             <span class="k">set</span> <span class="nv">trackName</span> <span class="k">to</span> <span class="nb">text</span> <span class="mi">1</span> <span class="nb">thru</span> <span class="o">-</span><span class="mi">10</span> <span class="k">of</span> <span class="nv">trackName</span>
             <span class="c">-- Find the location in the string where the song name begins (-2)</span>
             <span class="k">set</span> <span class="nv">songTitleBegins</span> <span class="k">to</span> <span class="p">(</span><span class="nb">offset</span> <span class="k">of</span> <span class="s2">&quot; &#39;&quot;</span> <span class="k">in</span> <span class="nv">trackName</span><span class="p">)</span>
@@ -125,11 +130,11 @@
 </pre></div>
 </td></tr></table></div>
 		<div class="related-articles">
-		    <a href="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/" style="float: left;">&larr; The Great (White) Pelican Migration</a>
-		    <a href="http://kevinyap.ca/2011/10/hello-blogosphere/" style="float: right;">Hello, Blogosphere! &rarr;</a>
+				<a href="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/" style="float: left;">&larr; The Great (White) Pelican Migration</a>
+				<a href="http://kevinyap.ca/2011/10/hello-blogosphere/" style="float: right;">Hello, Blogosphere! &rarr;</a>
 		</div>
 	<hr class="large">
-	<!-- Disqus -->
+		<!-- Disqus -->
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
 			var disqus_shortname = 'kevinyap';
@@ -145,6 +150,7 @@
 			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
 		</footer>
 	</div> <!-- container -->
+
 
 		<!-- Google Analytics -->
 		<script>
