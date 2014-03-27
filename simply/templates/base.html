@@ -13,9 +13,7 @@
 
 	<!-- Open Graph
 	================================================== -->
-	{% block opengraph %}
-	<meta property="og:image" content="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">
-	{% endblock %}
+	{% block opengraph %}<meta property="og:image" content="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=256">{% endblock %}
 
 	<!-- Mobile Specific Metas
 	================================================== -->
@@ -44,13 +42,6 @@
 	<link rel="apple-touch-icon" sizes="120x120" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=120"> <!-- iPhone, Retina iOS 7 -->
 	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=144"> <!-- iPad, Retina -->
 	<link rel="apple-touch-icon" sizes="152x152" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=152"> <!-- iPad, Retina iOS 7 -->
-
-	{% if (article and article.latex) or (page and page.latex) %}
-		<!-- LaTeX
-		================================================== -->
-		{% if article %}{{ article.latex }}{% endif %}
-		{% if page %}{{ page.latex }}{% endif %}
-	{% endif %}
 
 </head>
 
@@ -84,6 +75,11 @@
 			<p>{{ FOOTER_TEXT }}</p>
 		</footer>
 	</div> <!-- container -->
+
+  {% if page and page.mathjax or article and article.mathjax %}
+  	<!-- MathJax -->
+    {{ MATHJAXSCRIPT }}
+  {% endif %}
 
 	{% if GOOGLE_ANALYTICS %}
 		<!-- Google Analytics -->

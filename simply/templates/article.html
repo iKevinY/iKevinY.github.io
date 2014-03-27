@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+
+	<!-- Twitter Card
+	================================================== -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:title" content="{{ article.title|striptags }}">
+	<meta name="twitter:description" content="{{ article.summary|striptags }}">
+{% endblock %}
+
 {% block opengraph %}
 	{{ super() }}
 	<meta property="og:title" content="{{ article.title|striptags }} | {{ SITENAME }}">
@@ -10,6 +20,7 @@
 {% endblock %}
 
 {% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
+{% block description %}{{ article.summary|striptags }}{% endblock %}
 
 {% block content %}
 	<h1 class="article-title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
@@ -18,16 +29,16 @@
 	{% if article.next_article or article.prev_article %}
 		<div class="related-articles">
 			{% if article.next_article %}
-		    <a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">&larr; {{ article.next_article.title|striptags }}</a>
+				<a href="{{ SITEURL }}/{{ article.next_article.url}}" style="float: left;">&larr; {{ article.next_article.title|striptags }}</a>
 			{% endif %}
 			{% if article.prev_article %}
-		    <a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title|striptags }} &rarr;</a>
+				<a href="{{ SITEURL }}/{{ article.prev_article.url}}" style="float: right;">{{ article.prev_article.title|striptags }} &rarr;</a>
 			{% endif %}
 		</div>
 	{% endif %}
 	<hr class="large">
-	<!-- Disqus -->
 	{% if DISQUS_SITENAME and article.status != "draft" %}
+		<!-- Disqus -->
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
 			var disqus_shortname = '{{ DISQUS_SITENAME }}';

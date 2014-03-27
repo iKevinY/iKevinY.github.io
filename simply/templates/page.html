@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+
+	<!-- Twitter Card
+	================================================== -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:title" content="{{ page.title|striptags }}">
+	<meta name="twitter:description" content="{{ page.summary|striptags }}">
+{% endblock %}
+
 {% block opengraph %}
 	{{ super() }}
 	<meta property="og:title" content="{{ page.title|striptags }} | {{ SITENAME }}">
@@ -9,6 +19,7 @@
 {% endblock %}
 
 {% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
+{% block description %}{{ page.summary|striptags }}{% endblock %}
 
 {% block content %}
 	<h1 class="entry-title"><a href="/{{ page.url }}" title="{{ page.title|striptags }}">{{ page.title|striptags }}</a></h1>

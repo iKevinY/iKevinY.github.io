@@ -42,13 +42,13 @@ TRANSLATION_FEED_ATOM = None
 
 DEFAULT_PAGINATION = False
 
+SUMMARY_MAX_LENGTH = 30
+
 MD_EXTENSIONS = ['codehilite(linenums = True)', 'extra']
 
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['assets', 'latex', 'neighbors']
-
-# Only enable LaTeX with the "Latex:" metadata property
-LATEX = 'article'
+PLUGINS = ['assets', 'neighbors', 'render_math']
+MATH = {'auto_insert': False }
 
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_PATH = 'develop/'
