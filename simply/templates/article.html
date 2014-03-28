@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-
-	<!-- Twitter Cards
+	<!-- Twitter Cards and Open Graph
 	================================================== -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:creator" content="@iKevinY">
 	<meta name="twitter:domain" content="{{ DOMAIN }}">
 	<meta name="twitter:site" content="@iKevinY">
-{% endblock %}
-
-{% block opengraph %}
-	{{ super() }}
 	<meta property="og:title" content="{{ article.title|striptags }}">
 	<meta property="og:description" content="{{ article.summary|striptags }}">
 	<meta property="og:type" content="article">
