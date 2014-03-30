@@ -93,10 +93,7 @@
 	ul.large li { line-height: 21px; }
 	li p { line-height: 21px; }
 
-	abbr, acronym, .abbr {
-		cursor: help;
-		border-bottom: 1px dashed #444;
-	}
+	abbr, acronym, .abbr { cursor: help; border-bottom: 1px dashed #444; }
 
 	.footnote hr {
 		margin: 20px 0;
