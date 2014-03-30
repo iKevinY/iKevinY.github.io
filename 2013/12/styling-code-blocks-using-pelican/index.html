@@ -20,8 +20,6 @@
 	<meta property="og:description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter ...">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/">
-	<meta property="og:article:published_time" content="2013-12-10 00:00:00">
-	<meta property="og:article:author" content="Kevin Yap">
 
 	<!-- Mobile Specific Metas
 	================================================== -->
@@ -40,14 +38,14 @@
 	<!-- Favicons
 	================================================== -->
 	<link rel="icon" href="http://kevinyap.ca/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=512"> 								<!-- Universal -->
-	<link rel="apple-touch-icon" sizes="57x57" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=57"> 		<!-- iPhone -->
-	<link rel="apple-touch-icon" sizes="72x72" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=72"> 		<!-- iPad -->
-	<link rel="apple-touch-icon" sizes="76x76" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=76"> 		<!-- iPad, iOS 7 -->
-	<link rel="apple-touch-icon" sizes="114x114" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=114"> <!-- iPhone, Retina -->
-	<link rel="apple-touch-icon" sizes="120x120" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=120"> <!-- iPhone, Retina iOS 7 -->
-	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=144"> <!-- iPad, Retina -->
-	<link rel="apple-touch-icon" sizes="152x152" href="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=152"> <!-- iPad, Retina iOS 7 -->
+	<link rel="apple-touch-icon" href="http://kevinyap.ca/theme/png/avatar512.png">           <!-- Universal -->
+	<link rel="apple-touch-icon" sizes="57x57" href="http://kevinyap.ca/theme/png/avatar57.png">    <!-- iPhone -->
+	<link rel="apple-touch-icon" sizes="72x72" href="http://kevinyap.ca/theme/png/avatar72.png">    <!-- iPad -->
+	<link rel="apple-touch-icon" sizes="76x76" href="http://kevinyap.ca/theme/png/avatar76.png">    <!-- iPad, iOS 7 -->
+	<link rel="apple-touch-icon" sizes="114x114" href="http://kevinyap.ca/theme/png/avatar114.png"> <!-- iPhone, Retina -->
+	<link rel="apple-touch-icon" sizes="120x120" href="http://kevinyap.ca/theme/png/avatar120.png"> <!-- iPhone, Retina iOS 7 -->
+	<link rel="apple-touch-icon" sizes="144x144" href="http://kevinyap.ca/theme/png/avatar144.png"> <!-- iPad, Retina -->
+	<link rel="apple-touch-icon" sizes="152x152" href="http://kevinyap.ca/theme/png/avatar152.png"> <!-- iPad, Retina iOS 7 -->
 
 </head>
 
@@ -57,26 +55,26 @@
 	================================================== -->
 	<div class="container">
 		<aside id="sidebar" class="three columns">
-			<a href="http://kevinyap.ca"><img class="avatar" alt="Kevin Yap" src="http://www.gravatar.com/avatar/0d1d263a229548db35dffba8c55e19f7?s=280"></a>
-			<p class="logo"><a href="http://kevinyap.ca">Kevin Yap</a></p>
-			<p class="bio">Developer and musician from Vancouver, BC.</p>
-			<div class="sidebar-links">
+			<a href="http://kevinyap.ca"><img id="avatar" alt="Kevin Yap" src="http://kevinyap.ca/theme/png/avatar.png"></a>
+			<p id="logo"><a href="http://kevinyap.ca">Kevin Yap</a></p>
+			<p id="bio">Developer and musician from Vancouver, BC.</p>
+			<div id="sidebar-links">
 				<h3><a href="http://kevinyap.ca/about/">About</a>&ensp;&bull;&ensp;<a href="http://kevinyap.ca/projects/">Projects</a></h3>
 			</div>
-				<div class="social">
+				<div id="social">
 					<a class="icon" href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca" title="Email"><i class="fa fa-envelope-o"></i></a>
 					<a class="icon" href="http://twitter.com/iKevinY" title="Twitter"><i class="fa fa-twitter"></i></a>
 					<a class="icon" href="http://plus.google.com/+KevinYapCA" title="Google+"><i class="fa fa-google-plus-square"></i></a>
 					<a class="icon" href="http://github.com/iKevinY" title="GitHub"><i class="fa fa-github"></i></a>
 					<a class="icon" href="http://soundcloud.com/iKevinY" title="SoundCloud"><i class="fa fa-music"></i></a>
 				</div> <!-- social -->
-			<hr class="sidebar-divider large">
+			<hr id="sidebar-divider" class="large">
 		</aside> <!-- sidebar -->
 
 		<article id="content" class="twelve columns offset-by-one">
-	<h1 class="article-title"><a href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
-	<h6 class="article-date">December 10, 2013</h6>
-	<div class="article-content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
+	<h1 id="title"><a href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
+	<h6 id="date">December 10, 2013</h6>
+	<div id="page-content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
 <p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
 </pre></div>
@@ -135,7 +133,7 @@
 </td></tr></table>
 
 <p>After following these steps, everything should be working properly. Of course, the stylesheet used and properties of the code blocks can be changed depending on personal&nbsp;preference.</p></div>
-		<div class="related-articles">
+		<div id="related-articles">
 				<a href="http://kevinyap.ca/2014/01/on-programming-and-turtles/" style="float: left;">&larr; On Programming and Turtles</a>
 				<a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/" style="float: right;">Hosting With GitHub Pages &rarr;</a>
 		</div>
