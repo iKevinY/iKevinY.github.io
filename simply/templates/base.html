@@ -18,7 +18,7 @@
 
 	<!-- Stylesheets
 	================================================== -->
-	{% assets filters="cssmin", output="style.min.css", "skeleton.css", "simply.css", "pygments.css" %}
+	{% assets filters="cssmin", output="style.min.css", "css/skeleton.css", "css/simply.css", "css/pygments.css" %}
 	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
 	{% endassets %}
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -31,14 +31,14 @@
 	<!-- Favicons
 	================================================== -->
 	<link rel="icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=512"> 								<!-- Universal -->
-	<link rel="apple-touch-icon" sizes="57x57" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=57"> 		<!-- iPhone -->
-	<link rel="apple-touch-icon" sizes="72x72" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=72"> 		<!-- iPad -->
-	<link rel="apple-touch-icon" sizes="76x76" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=76"> 		<!-- iPad, iOS 7 -->
-	<link rel="apple-touch-icon" sizes="114x114" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=114"> <!-- iPhone, Retina -->
-	<link rel="apple-touch-icon" sizes="120x120" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=120"> <!-- iPhone, Retina iOS 7 -->
-	<link rel="apple-touch-icon" sizes="144x144" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=144"> <!-- iPad, Retina -->
-	<link rel="apple-touch-icon" sizes="152x152" href="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=152"> <!-- iPad, Retina iOS 7 -->
+	<link rel="apple-touch-icon" href="{{ SITEURL }}/theme/png/avatar512.png">           <!-- Universal -->
+	<link rel="apple-touch-icon" sizes="57x57" href="{{ SITEURL }}/png/avatar57.png">    <!-- iPhone -->
+	<link rel="apple-touch-icon" sizes="72x72" href="{{ SITEURL }}/png/avatar72.png">    <!-- iPad -->
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ SITEURL }}/png/avatar76.png">    <!-- iPad, iOS 7 -->
+	<link rel="apple-touch-icon" sizes="114x114" href="{{ SITEURL }}/png/avatar114.png"> <!-- iPhone, Retina -->
+	<link rel="apple-touch-icon" sizes="120x120" href="{{ SITEURL }}/png/avatar120.png"> <!-- iPhone, Retina iOS 7 -->
+	<link rel="apple-touch-icon" sizes="144x144" href="{{ SITEURL }}/png/avatar144.png"> <!-- iPad, Retina -->
+	<link rel="apple-touch-icon" sizes="152x152" href="{{ SITEURL }}/png/avatar152.png"> <!-- iPad, Retina iOS 7 -->
 
 </head>
 
@@ -48,20 +48,20 @@
 	================================================== -->
 	<div class="container">
 		<aside id="sidebar" class="three columns">
-			<a href="{{ SITEURL }}"><img class="avatar" alt="{{ SITENAME }}" src="http://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=280"></a>
-			<p class="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
-			<p class="bio">{{ BIO_TEXT }}</p>
-			<div class="sidebar-links">
+			<a href="{{ SITEURL }}"><img id="avatar" alt="{{ SITENAME }}" src="{{ SITEURL }}/theme/png/avatar.png"></a>
+			<p id="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
+			<p id="bio">{{ BIO_TEXT }}</p>
+			<div id="sidebar-links">
 				<h3><a href="{{ SITEURL }}/about/">About</a>&ensp;&bull;&ensp;<a href="{{ SITEURL }}/projects/">Projects</a></h3>
 			</div>
 			{% if SOCIAL %}
-				<div class="social">
+				<div id="social">
 				{% for link in SOCIAL %}
 					<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="{{ link[2] }}"></i></a>
 				{% endfor %}
 				</div> <!-- social -->
 			{% endif %}
-			<hr class="sidebar-divider large">
+			<hr id="sidebar-divider" class="large">
 		</aside> <!-- sidebar -->
 
 		<article id="content" class="twelve columns offset-by-one">

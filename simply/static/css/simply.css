@@ -93,38 +93,6 @@
 	ul.large li { line-height: 21px; }
 	li p { line-height: 21px; }
 
-
-/* Layout
-================================================== */
-	html, body {
-		height: 100%;
-	}
-
-	.container {
-		padding-top: 50px;
-	}
-
-	footer {
-		float: right !important;
-		text-align: center;
-	}
-
-	article#content {
-		float: right;
-	}
-
-	#content img {
-		max-width: 675px;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	#sidebar {
-		position: fixed;
-		width: 160px;
-	}
-
 	abbr, acronym, .abbr {
 		cursor: help;
 		border-bottom: 1px dashed #444;
@@ -176,7 +144,39 @@
 		margin: 0 1em;
 	}
 
-	.avatar {
+
+/* Layout
+================================================== */
+	html, body {
+		height: 100%;
+	}
+
+	.container {
+		padding-top: 50px;
+	}
+
+	footer {
+		float: right !important;
+		text-align: center;
+	}
+
+	#content {
+		float: right;
+	}
+
+	#content img {
+		max-width: 675px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#sidebar {
+		position: fixed;
+		width: 160px;
+	}
+
+	#avatar {
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom: 10px;
@@ -185,62 +185,56 @@
 		border-radius: 12px;
 	}
 
-	.logo {
-		font-size: 26px;
-		line-height: 34px;
-		margin-bottom: 10px;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		font-weight: bold;
-		letter-spacing: -0.5px;
+	#logo, #bio, #sidebar-links, #social {
 		text-align: center;
 	}
 
-	.bio {
+	#logo {
+		font: bold 26px/34px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		margin-bottom: 10px;
+		letter-spacing: -0.5px;
+	}
+
+	#bio {
 		font-size: 90%;
-		text-align: center;
 		line-height: 18px;
 		color: #666666;
 	}
 
-	.social {
-		text-align: center;
-	}
-
-	.sidebar-divider {
-		display: none;
-	}
-
-	.sidebar-links {
-		text-align: center;
+	#sidebar-links {
 		margin: 12px 0;
 	}
 
-	.article-title {
+	#sidebar-divider {
+		display: none;
+	}
+
+	#title {
 		clear: both;
 		float: left;
 	}
 
-	.article-date {
+	#date {
 		font-style: italic;
 		float: right;
 		margin: 8px 10px;
 	}
 
-	.article-content {
+	#page-content {
 		clear: both;
 		overflow: hidden;
 	}
 
-	.article-content img {
+	#page-content img {
 		border: 1px solid #222;
 	}
 
-	.related-articles {
+	#related-articles {
 		margin-top: 20px;
 		padding-bottom: 20px;
 	}
 
-	.back-to-home {
+	#back-to-home {
 		margin-top: 20px;
 	}
 
@@ -261,8 +255,7 @@
 		}
 
 		#content {
-			float: none;
-			margin-top: 128px;
+			margin-top: 120px;
 		}
 
 		#content img {
@@ -272,29 +265,15 @@
 			margin-right: auto;
 		}
 
-		.logo {
-			margin: 8px 0;
-		}
-
-		.bio {
+		#logo, #bio, #sidebar-links, #social {
 			margin: 4px 0;
 		}
 
-		.social {
-			text-align: center;
-			float: none;
-			margin: 4px 0;
-		}
-
-		.sidebar-links {
-			margin: 4px 0;
-		}
-
-		.sidebar-divider {
+		#sidebar-divider {
 			display: block;
 		}
 
-		.article-title, .entry-title, .article-date {
+		#title, #date {
 			text-align: center;
 			float: none;
 		}
