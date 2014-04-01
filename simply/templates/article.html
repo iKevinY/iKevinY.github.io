@@ -17,9 +17,9 @@
 {% block description %}{{ article.summary|striptags }}{% endblock %}
 
 {% block content %}
-	<h1 id="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
-	<h6 id="date">{{ article.locale_date }}</h6>
-	<div id="page-content">{{ article.content }}</div>
+	<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
+	<h6 class="date">{{ article.locale_date }}</h6>
+	<div id="content">{{ article.content }}</div>
 	{% if article.next_article or article.prev_article %}
 		<div id="related-articles">
 			{% if article.next_article %}

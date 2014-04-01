@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 	<!-- Basic Metas
 	================================================== -->
 	<meta charset="utf-8">
@@ -9,12 +8,9 @@
 	<meta name="description" content="{% block description %}{% endblock %}">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	{% block meta %}{% endblock %}
-
-	<!-- Mobile Specific Metas
-	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- Stylesheets
 	================================================== -->
@@ -24,14 +20,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- Favicons
 	================================================== -->
 	<link rel="icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="{{ SITEURL }}/theme/png/avatar512.png">           <!-- Universal -->
+	<link rel="apple-touch-icon" href="{{ SITEURL }}/theme/png/avatar512.png">                 <!-- Universal -->
 	<link rel="apple-touch-icon" sizes="57x57" href="{{ SITEURL }}/theme/png/avatar57.png">    <!-- iPhone -->
 	<link rel="apple-touch-icon" sizes="72x72" href="{{ SITEURL }}/theme/png/avatar72.png">    <!-- iPad -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{ SITEURL }}/theme/png/avatar76.png">    <!-- iPad, iOS 7 -->
@@ -40,12 +32,12 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="{{ SITEURL }}/theme/png/avatar144.png"> <!-- iPad, Retina -->
 	<link rel="apple-touch-icon" sizes="152x152" href="{{ SITEURL }}/theme/png/avatar152.png"> <!-- iPad, Retina iOS 7 -->
 
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 
 <body>
-
-	<!-- Primary Page Layout
-	================================================== -->
 	<div class="container">
 		<aside id="sidebar" class="three columns">
 			<a href="{{ SITEURL }}"><img id="avatar" alt="{{ SITENAME }}" src="{{ SITEURL }}/theme/png/avatar.png"></a>
@@ -64,7 +56,7 @@
 			<hr id="sidebar-divider" class="large">
 		</aside> <!-- sidebar -->
 
-		<article id="content" class="twelve columns offset-by-one">
+		<article class="twelve columns offset-by-one">
 			{% block content %}{% endblock %}
 		</article>
 
@@ -107,6 +99,5 @@
 			})();
 		</script>
 	{% endif %}
-
 </body>
 </html>

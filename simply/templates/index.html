@@ -14,8 +14,8 @@
 
 {% block content %}
 	{% for article in articles %}
-		<h1 id="title"><a href="{{ article.url }}" title="{{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
-		<h4 id="date">{{ article.locale_date }}</h4>
+		<h1 class="title"><a href="{{ article.url }}" title="{{ article.title|striptags }}">{{ article.title|striptags }}</a></h1>
+		<h4 class="date">{{ article.locale_date }}</h4>
 		<hr class="large">
 	{% endfor %}
 {% endblock %}
