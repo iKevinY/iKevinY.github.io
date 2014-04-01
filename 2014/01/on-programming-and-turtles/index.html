@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 	<!-- Basic Metas
 	================================================== -->
 	<meta charset="utf-8">
@@ -9,6 +8,7 @@
 	<meta name="description" content="Minecraft is one of my favourite games. Over 13 million copies have been sold for the PC alone — an impressive statistic considering the game was in alpha merely three years ...">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<!-- Twitter Cards and Open Graph
 	================================================== -->
@@ -21,24 +21,16 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2014/01/on-programming-and-turtles/">
 
-	<!-- Mobile Specific Metas
-	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Stylesheets
 	================================================== -->
 	<link rel="stylesheet" href="http://kevinyap.ca/theme/style.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- Favicons
 	================================================== -->
 	<link rel="icon" href="http://kevinyap.ca/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="http://kevinyap.ca/theme/png/avatar512.png">           <!-- Universal -->
+	<link rel="apple-touch-icon" href="http://kevinyap.ca/theme/png/avatar512.png">                 <!-- Universal -->
 	<link rel="apple-touch-icon" sizes="57x57" href="http://kevinyap.ca/theme/png/avatar57.png">    <!-- iPhone -->
 	<link rel="apple-touch-icon" sizes="72x72" href="http://kevinyap.ca/theme/png/avatar72.png">    <!-- iPad -->
 	<link rel="apple-touch-icon" sizes="76x76" href="http://kevinyap.ca/theme/png/avatar76.png">    <!-- iPad, iOS 7 -->
@@ -47,12 +39,12 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="http://kevinyap.ca/theme/png/avatar144.png"> <!-- iPad, Retina -->
 	<link rel="apple-touch-icon" sizes="152x152" href="http://kevinyap.ca/theme/png/avatar152.png"> <!-- iPad, Retina iOS 7 -->
 
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 
 <body>
-
-	<!-- Primary Page Layout
-	================================================== -->
 	<div class="container">
 		<aside id="sidebar" class="three columns">
 			<a href="http://kevinyap.ca"><img id="avatar" alt="Kevin Yap" src="http://kevinyap.ca/theme/png/avatar.png"></a>
@@ -71,10 +63,10 @@
 			<hr id="sidebar-divider" class="large">
 		</aside> <!-- sidebar -->
 
-		<article id="content" class="twelve columns offset-by-one">
-	<h1 id="title"><a href="http://kevinyap.ca/2014/01/on-programming-and-turtles/" title="Permalink to On Programming and Turtles">On Programming and Turtles</a></h1>
-	<h6 id="date">January 05, 2014</h6>
-	<div id="page-content"><p>Minecraft is one of my favourite games. <a href="https://minecraft.net/stats">Over 13 million</a> copies have been sold for the <span class="caps">PC</span> alone &#8212; an impressive statistic considering the game was in alpha merely three years ago. Minecraft&#8217;s popularity is due primarily to its open-ended nature. The ever-growing variety of blocks appeals to those who enjoy the building aspect of the game, and survival mode only augments the gratification of building by having the player work for their building materials. As for PvP combat, there are numerous community-created custom maps with their own unique rulesets. Expanding on this, through the use of elaborate server-side modding, Minecraft functions more as a game engine than a standalone game, enabling players with unmodded clients to instantly connect to a server and play game modes such as a Minecraft version of the Hunger Games. There is a niche in the game for every type of&nbsp;player.</p>
+		<article class="twelve columns offset-by-one">
+	<h1 class="title"><a href="http://kevinyap.ca/2014/01/on-programming-and-turtles/" title="Permalink to On Programming and Turtles">On Programming and Turtles</a></h1>
+	<h6 class="date">January 05, 2014</h6>
+	<div id="content"><p>Minecraft is one of my favourite games. <a href="https://minecraft.net/stats">Over 13 million</a> copies have been sold for the <span class="caps">PC</span> alone &#8212; an impressive statistic considering the game was in alpha merely three years ago. Minecraft&#8217;s popularity is due primarily to its open-ended nature. The ever-growing variety of blocks appeals to those who enjoy the building aspect of the game, and survival mode only augments the gratification of building by having the player work for their building materials. As for PvP combat, there are numerous community-created custom maps with their own unique rulesets. Expanding on this, through the use of elaborate server-side modding, Minecraft functions more as a game engine than a standalone game, enabling players with unmodded clients to instantly connect to a server and play game modes such as a Minecraft version of the Hunger Games. There is a niche in the game for every type of&nbsp;player.</p>
 <p>Added in Minecraft Alpha 1.0.1, Redstone opened up an entirely new world in terms of gameplay. <a href="http://minecraft.gamepedia.com/Redstone#Redstone_Dust">Redstone Dust</a> carries a Redstone current between various Redstone components while <a href="http://minecraft.gamepedia.com/Redstone_Torch">Redstone Torches</a> function as a <a href="http://en.wikipedia.org/wiki/Inverter_(logic_gate)">signal inverter</a>. In conjunction with one another, it is possible to construct elementary logic gates, and therefore, fully functional <a href="http://en.wikipedia.org/wiki/Arithmetic_logic_unit">ALUs</a> and other more complex circuits. This means that Minecraft is Turing-complete, but I&nbsp;digress.</p>
 <p>The concept of Redstone captivated me even though I had no experience with anything involving logic gates prior to playing Minecraft. At first, using Redstone involved searching for designs that had the functionality that was required. However, as I became more exposed to it, it became increasingly second nature to build circuits based on their constituent logic gates rather than needing to search for schematics. With this learning process came realizations such as the fact that an <span class="caps">XOR</span> gate is what controls circuits where two light switches are linked to a single light bulb, or that an <span class="caps">AND</span> gate can be constructed as an <span class="caps">OR</span> gate with its inputs and output inverted (which <a href="http://en.wikipedia.org/wiki/De_Morgan%27s_laws)">De Morgan&#8217;s laws</a> prove). In other words, I learned about logic gates by playing Minecraft &#8212; a peculiar yet satisfying realization. Using boolean logic when programming felt very straightforward despite never having formally learned about&nbsp;it.</p>
 <p>My theory of why Redstone was so appealing is that situations arose where building a circuit was necessary in order to overcome a problem in-game. The lack of tangibility of learning boolean logic in a different manner would have probably been discouraging, or at least uninteresting. By learning through Minecraft, it felt substantial, even though in reality, the product being created was only changes made within a video game world. I thought back to this while learning how to program. Most coding examples that novice programmers are supplied with output text to a terminal without producing a tangible product. Many exercises attempt to teach the basics of writing a program, but to someone without much programming experience, it may prove difficult to bridge the cognitive gap between theory and practicality in terms of how lines of code can be applied to real-world&nbsp;scenarios.</p>
@@ -222,7 +214,6 @@
 			ga('create', 'UA-41937659-1', 'kevinyap.ca');
 			ga('send', 'pageview');
 		</script>
-
 
 </body>
 </html>

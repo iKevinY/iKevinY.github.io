@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 	<!-- Basic Metas
 	================================================== -->
 	<meta charset="utf-8">
@@ -9,6 +8,7 @@
 	<meta name="description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter ...">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<!-- Twitter Cards and Open Graph
 	================================================== -->
@@ -21,24 +21,16 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/">
 
-	<!-- Mobile Specific Metas
-	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Stylesheets
 	================================================== -->
 	<link rel="stylesheet" href="http://kevinyap.ca/theme/style.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- Favicons
 	================================================== -->
 	<link rel="icon" href="http://kevinyap.ca/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="http://kevinyap.ca/theme/png/avatar512.png">           <!-- Universal -->
+	<link rel="apple-touch-icon" href="http://kevinyap.ca/theme/png/avatar512.png">                 <!-- Universal -->
 	<link rel="apple-touch-icon" sizes="57x57" href="http://kevinyap.ca/theme/png/avatar57.png">    <!-- iPhone -->
 	<link rel="apple-touch-icon" sizes="72x72" href="http://kevinyap.ca/theme/png/avatar72.png">    <!-- iPad -->
 	<link rel="apple-touch-icon" sizes="76x76" href="http://kevinyap.ca/theme/png/avatar76.png">    <!-- iPad, iOS 7 -->
@@ -47,12 +39,12 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="http://kevinyap.ca/theme/png/avatar144.png"> <!-- iPad, Retina -->
 	<link rel="apple-touch-icon" sizes="152x152" href="http://kevinyap.ca/theme/png/avatar152.png"> <!-- iPad, Retina iOS 7 -->
 
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 
 <body>
-
-	<!-- Primary Page Layout
-	================================================== -->
 	<div class="container">
 		<aside id="sidebar" class="three columns">
 			<a href="http://kevinyap.ca"><img id="avatar" alt="Kevin Yap" src="http://kevinyap.ca/theme/png/avatar.png"></a>
@@ -71,10 +63,10 @@
 			<hr id="sidebar-divider" class="large">
 		</aside> <!-- sidebar -->
 
-		<article id="content" class="twelve columns offset-by-one">
-	<h1 id="title"><a href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
-	<h6 id="date">December 10, 2013</h6>
-	<div id="page-content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
+		<article class="twelve columns offset-by-one">
+	<h1 class="title"><a href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
+	<h6 class="date">December 10, 2013</h6>
+	<div id="content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
 <p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
 </pre></div>
@@ -166,7 +158,6 @@
 			ga('create', 'UA-41937659-1', 'kevinyap.ca');
 			ga('send', 'pageview');
 		</script>
-
 
 </body>
 </html>

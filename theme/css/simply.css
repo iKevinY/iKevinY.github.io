@@ -10,7 +10,7 @@
 * 6/20/2012
 */
 
-/* Reset & Basics (Inspired by E. Meyers)
+/* Reset & Basics (Inspired by Eric Meyer)
 ================================================== */
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
@@ -23,8 +23,7 @@
 	body { line-height: 1; }
 	ol, ul { list-style: none; }
 	blockquote, q { quotes: none; }
-	blockquote:before, blockquote:after,
-	q:before, q:after { content: ''; content: none; }
+	blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
 	table { border-collapse: collapse; border-spacing: 0; }
 
 
@@ -117,8 +116,7 @@
 	}
 
 	.codehilitetable {
-		font-family: "Source Code Pro", monospace;
-		font-size: 12px;
+		font: 12px/21px "Source Code Pro", monospace;
 		overflow: auto;
 		display: block;
 		border: solid 1px #d9d9d9;
@@ -157,11 +155,11 @@
 		text-align: center;
 	}
 
-	#content {
-		float: right;
+	article {
+		float: right !important;
 	}
 
-	#content img {
+	article img {
 		max-width: 675px;
 		display: block;
 		margin-left: auto;
@@ -206,18 +204,18 @@
 		display: none;
 	}
 
-	#title {
+	.title {
 		clear: both;
 		float: left;
 	}
 
-	#date {
+	.date {
 		font-style: italic;
 		float: right;
 		margin: 8px 10px;
 	}
 
-	#page-content {
+	#content {
 		clear: both;
 		overflow: hidden;
 	}
@@ -251,11 +249,11 @@
 			margin-right: 10px;
 		}
 
-		#content {
-			margin-top: 120px;
+		article {
+			margin-top: 118px !important;
 		}
 
-		#content img {
+		article img {
 			max-width: 85%;
 			display: block;
 			margin-left: auto;
@@ -270,7 +268,7 @@
 			display: block;
 		}
 
-		#title, #date {
+		.title, .date {
 			text-align: center;
 			float: none;
 		}
@@ -280,18 +278,31 @@
 /* Tablet-Specific Tweaks (Portrait)
 ================================================== */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
-		#sidebar img { margin-left: 80px; }
+		#sidebar img {
+			margin-left: 80px;
+		}
+
+		.title {
+			clear: both;
+			float: left;
+			padding-left: 10px;
+		}
+
+		.date {
+			float: right;
+			padding-right: 10px;
+		}
 	}
 
 
 /* Print-Friendly Layout
 ================================================== */
 	@media only print {
-		footer, #sidebar, #disqus_thread, .related-articles {
+		footer, #sidebar, #disqus_thread, #related-articles {
 			display: none !important;
 		}
 
-		#content {
+		article {
 			display: block;
 			position: absolute;
 			margin: 0 0.75in;
