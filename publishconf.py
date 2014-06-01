@@ -11,6 +11,9 @@ from pelicanconf import *
 SITEURL = 'http://kevinyap.ca'
 RELATIVE_URLS = False
 
+DELETE_OUTPUT_DIRECTORY = False
+OUTPUT_PATH = 'output/'
+
 DISQUS_SITENAME = 'kevinyap'
 TWITTER_USERNAME = 'iKevinY'
 GOOGLE_ANALYTICS = 'UA-41937659-1'

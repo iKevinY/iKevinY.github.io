@@ -2,7 +2,7 @@
 
 upload() {
 	outputPath=${rootPath}/output
-	pelican -q -s publishconf.py
+	pelican -s publishconf.py
 
 	cd $outputPath
 	find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
