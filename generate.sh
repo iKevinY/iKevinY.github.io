@@ -2,7 +2,7 @@
 
 upload() {
 	outputPath=${rootPath}/output
-	pelican -q -s settings.py
+	pelican -q -s publishconf.py
 
 	cd $outputPath
 	find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
@@ -25,16 +25,14 @@ upload() {
 }
 
 develop() {
-	outputPath=${rootPath}/develop
-	pelican -s develop.py
+	# Determine local IP http://stackoverflow.com/a/13322549/239076
+	localIP=`ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
 
-	cd $outputPath
-	printf "\e[0;32mSite generated successfully.\e[0m\n"
-	printf "Local IP address: "
-	ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' # http://stackoverflow.com/a/13322549/239076
-	python -m SimpleHTTPServer
-	cd $rootPath
-	rm -rf develop
+	developPath=${rootPath}/develop
+
+	(pelican -rs pelicanconf.py &) &&
+	(sleep 2; cd $developPath; echo "Local IP Address: ${localIP}"; python -m SimpleHTTPServer;
+		cd $rootPath && rm -rf develop &)
 }
 
 rootPath="$HOME/kevinyap.ca"
