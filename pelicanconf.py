@@ -66,7 +66,7 @@ SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'E
           ('http://twitter.com/iKevinY', 'Twitter', 'fa fa-twitter'),
           ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa fa-google-plus-square'),
           ('http://github.com/iKevinY', 'GitHub', 'fa fa-github'),
-          ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa fa-music'),
+          ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa fa-soundcloud'),
           )
 
 # Configuration for the Assets plugin
