@@ -27,12 +27,17 @@ upload() {
 develop() {
 	# Determine local IP http://stackoverflow.com/a/13322549/239076
 	localIP=`ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
-
 	developPath=${rootPath}/develop
 
-	(pelican -rs pelicanconf.py &) &&
-	(sleep 2; cd $developPath; echo "Local IP Address: ${localIP}"; python -m SimpleHTTPServer;
-		cd $rootPath && rm -rf develop &)
+	trap killgroup SIGINT
+	killgroup() {
+		cd $rootPath && rm -rf develop
+		kill 0
+	}
+
+	(pelican -rs pelicanconf.py) &
+	(sleep 2; cd $developPath; echo "Local IP Address: ${localIP}"; python -m SimpleHTTPServer;) &
+	wait
 }
 
 rootPath="$HOME/kevinyap.ca"

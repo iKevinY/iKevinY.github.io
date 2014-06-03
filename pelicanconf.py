@@ -1,9 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*- #
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 SITENAME = 'Kevin Yap'
-SITEURL = ''
 
 # Custom text for index page meta description, biography, and footer
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
@@ -53,24 +52,22 @@ MATH = {'auto_insert': False }
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_PATH = 'develop/'
 PATH = 'content/'
+TEMPLATE_PAGES = {'404.html': '404.html', }
 STATIC_PATHS = ['images', 'uploads', 'extra/robots.txt', 'extra/favicon.ico', 'extra/CNAME']
 EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/CNAME': {'path': 'CNAME'},
     }
-TEMPLATE_PAGES = {'404.html': '404.html', }
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
-SOCIAL = (('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'fa fa-envelope-o'),
-          ('http://twitter.com/iKevinY', 'Twitter', 'fa fa-twitter'),
-          ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa fa-google-plus-square'),
-          ('http://github.com/iKevinY', 'GitHub', 'fa fa-github'),
-          ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa fa-soundcloud'),
-          )
+SOCIAL = [
+    ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'fa fa-envelope-o'),
+    ('http://twitter.com/iKevinY', 'Twitter', 'fa fa-twitter'),
+    ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa fa-google-plus-square'),
+    ('http://github.com/iKevinY', 'GitHub', 'fa fa-github'),
+    ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa fa-soundcloud'),
+]
 
 # Configuration for the Assets plugin
 ASSET_CONFIG = (('url_expire', False), )
-
-# MD5 hash of email address for Gravatar
-GRAVATAR_HASH = '0d1d263a229548db35dffba8c55e19f7'

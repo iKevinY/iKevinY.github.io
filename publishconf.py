@@ -1,9 +1,9 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*- #
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import sys
-sys.path.append('.')
+import sys, os
+sys.path.append(os.getcwd())
 from pelicanconf import *
 
 """Contains settings that are only applied when publishing the site."""
