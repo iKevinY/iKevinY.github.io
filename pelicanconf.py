@@ -52,13 +52,15 @@ MATH = {'auto_insert': False }
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_PATH = 'develop/'
 PATH = 'content/'
-TEMPLATE_PAGES = {'404.html': '404.html', }
 STATIC_PATHS = ['images', 'uploads', 'extra/robots.txt', 'extra/favicon.ico', 'extra/CNAME']
+TEMPLATE_PAGES = {
+	'404.html': '404.html',
+}
 EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/CNAME': {'path': 'CNAME'},
-    }
+}
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
 SOCIAL = [
@@ -70,4 +72,9 @@ SOCIAL = [
 ]
 
 # Configuration for the Assets plugin
-ASSET_CONFIG = (('url_expire', False), )
+ASSET_CONFIG = (
+	('url_expire', False),
+	('versions', False),
+	('manifest', False),
+	('cache', False),
+)
