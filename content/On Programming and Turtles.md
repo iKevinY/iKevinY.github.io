@@ -1,5 +1,5 @@
 Title: On Programming and Turtles
-Date: 2014-1-5
+Date: 2014-01-05
 
 Minecraft is one of my favourite games. [Over 13 million][1] copies have been sold for the PC alone -- an impressive statistic considering the game was in alpha merely three years ago. Minecraft's popularity is due primarily to its open-ended nature. The ever-growing variety of blocks appeals to those who enjoy the building aspect of the game, and survival mode only augments the gratification of building by having the player work for their building materials. As for PvP combat, there are numerous community-created custom maps with their own unique rulesets. Expanding on this, through the use of elaborate server-side modding, Minecraft functions more as a game engine than a standalone game, enabling players with unmodded clients to instantly connect to a server and play game modes such as a Minecraft version of the Hunger Games. There is a niche in the game for every type of player.
 
@@ -24,7 +24,7 @@ function miningIteration()
   turtle.dig() -- digs the block in front
   turtle.forward() -- moves forward
   turtle.digUp() -- digs the block above
-  end
+end
 
 while true do
   for i = 1, 8 do miningIteration() end -- dig for eight blocks
