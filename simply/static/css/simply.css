@@ -138,6 +138,10 @@
 		margin: 0 1em;
 	}
 
+	.codehilite > pre {
+		padding-right: 2.5em;
+	}
+
 
 /* Layout
 ================================================== */
