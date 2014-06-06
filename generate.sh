@@ -19,7 +19,7 @@ upload() {
 	git checkout master
 
 	echo "Last commit: \"$commitMessage\""
-	read -n1 -p "Upload site files? [y/N] " response
+	read -p "Upload site files? [y/N] " response
 	printf "\n"
 
 	case $response in
