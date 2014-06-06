@@ -15,6 +15,8 @@ THEME = 'simply'
 TYPOGRIFY = True
 TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
+DEFAULT_PAGINATION = False
+SUMMARY_MAX_LENGTH = 30
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
@@ -39,23 +41,18 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
-DEFAULT_PAGINATION = False
-
-SUMMARY_MAX_LENGTH = 30
-
-MD_EXTENSIONS = ['codehilite(linenums = True)', 'extra']
-
-PLUGIN_PATH = 'plugins'
-PLUGINS = ['assets', 'neighbors', 'render_math']
-MATH = {'auto_insert': False }
+MD_EXTENSIONS = ['codehilite(linenums=True)', 'extra']
 
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_PATH = 'develop/'
 PATH = 'content/'
-STATIC_PATHS = ['images', 'uploads', 'extra/robots.txt', 'extra/favicon.ico', 'extra/CNAME']
+
 TEMPLATE_PAGES = {
 	'404.html': '404.html',
 }
+
+STATIC_PATHS = ['images', 'uploads', 'extra/robots.txt', 'extra/favicon.ico', 'extra/CNAME']
+
 EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
@@ -70,6 +67,10 @@ SOCIAL = [
     ('http://github.com/iKevinY', 'GitHub', 'fa fa-github'),
     ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa fa-soundcloud'),
 ]
+
+PLUGIN_PATH = 'plugins'
+PLUGINS = ['assets', 'neighbors', 'render_math']
+MATH = {'auto_insert': False }
 
 # Configuration for the Assets plugin
 ASSET_CONFIG = (
