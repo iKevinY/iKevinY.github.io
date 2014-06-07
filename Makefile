@@ -10,10 +10,9 @@ CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
 help:
-	@echo 'Makefile for a pelican Web site                                        '
 	@echo '                                                                       '
 	@echo 'Usage:                                                                 '
-	@echo '   make devserver [PORT=8000]       start local dev server             '
+	@echo '   make devserver                   start local dev server             '
 	@echo '   make github                      upload the web site via gh-pages   '
 	@echo '                                                                       '
 
