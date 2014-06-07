@@ -2,6 +2,7 @@
 
 upload() {
 	outputPath=${rootPath}/output
+	rm -rf output/* # Clean output folder
 	pelican -s publishconf.py
 
 	cd $outputPath
