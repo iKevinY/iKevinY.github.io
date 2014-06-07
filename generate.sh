@@ -42,8 +42,7 @@ develop() {
 
 	trap killgroup SIGINT
 	killgroup() {
-		cd $rootPath && rm -rf develop
-		echo "Deleted /develop directory successfully."
+		cd $rootPath && rm -rf develop && echo "Deleted develop directory successfully."
 		kill 0
 	}
 
