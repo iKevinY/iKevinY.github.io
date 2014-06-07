@@ -1,0 +1,14 @@
+language: python
+python: 2.7
+branches:
+  only:
+  - source
+env:
+  global:
+    secure: gZYVTY9bdudw6cJSj0IR5reYvkoAeOrOx5t+1H/t3ZHVhcVUhFwBpBkbc0iDFIdAFa43W76FymP5a0MAKrTaTcnEHRpKRVBdEDr7et5hWntGFaCKYN34qFuDsVVftBkPLhWkYufaOsX2f8NF04hC+E7NdzHKaDTXL4PjmayTydI=
+install:
+- pip install -r requirements.txt
+before_script:
+- git config --global user.name "Travis CI"
+script:
+- make publish github
