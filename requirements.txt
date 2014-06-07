@@ -3,3 +3,4 @@ pelican==3.3
 Markdown==2.4.1
 typogrify==2.0.4
 Pygments==1.6
+webassets==0.9
