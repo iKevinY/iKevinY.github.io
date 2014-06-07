@@ -41,7 +41,7 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
-MD_EXTENSIONS = ['codehilite(linenums=True)', 'extra']
+MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra']
 
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_PATH = 'develop/'

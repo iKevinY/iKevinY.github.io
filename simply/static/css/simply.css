@@ -139,7 +139,23 @@
 	}
 
 	.codehilite > pre {
+		/* Adds extra padding to right side of code when scrolling on mobile */
 		padding-right: 2.5em;
+	}
+
+	.admonition {
+	    background: #fafafa;
+	    margin: 20px 0;
+	    padding: 10px 25px;
+	    border-top: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+	}
+
+	.admonition-title {
+		color: #181818;
+		font-family: "Georgia", "Times New Roman", serif;
+		font-weight: normal;
+		font-size: 21px; line-height: 30px;
 	}
 
 
