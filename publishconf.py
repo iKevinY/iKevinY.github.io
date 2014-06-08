@@ -11,7 +11,7 @@ from pelicanconf import *
 SITEURL = 'http://kevinyap.ca'
 RELATIVE_URLS = False
 
-DELETE_OUTPUT_DIRECTORY = False
+OUTPUT_RETENTION = [".git"]
 OUTPUT_PATH = 'output/'
 
 DISQUS_SITENAME = 'kevinyap'

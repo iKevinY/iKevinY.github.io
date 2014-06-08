@@ -1,25 +1,22 @@
 #!/bin/bash
 
 upload() {
-	outputPath=${rootPath}/output
-	rm -rf output/* # Clean output folder
-	pelican -s publishconf.py
-
-	cd $outputPath
-	find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
-
-	printf "\e[0;32mSite generated successfully.\e[0m\n"
-
 	# Pull hash and commit message of most recent commit
 	cd $rootPath
 	commitHash=`git rev-parse HEAD`
 	commitMessage=`git log -1 --pretty=%B`
 
-	cd $outputPath
+	pelican -s publishconf.py
+
+	cd ${rootPath}/output
+	find . -name '*.DS_Store' -type f -delete || echo "Error deleting .DS_Store files."
+
+	printf "\e[0;32mSite generated successfully.\e[0m\n"
+
 	git add -A
 	git checkout master
 
-	echo "Last commit: \"$commitMessage\""
+	printf "Last commit: \e[1;37m$commitMessage\e[0m\n"
 	read -p "Upload site files? [y/N] " response
 	printf "\n"
 
