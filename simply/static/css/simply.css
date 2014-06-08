@@ -179,7 +179,7 @@
 	}
 
 	article img {
-		max-width: 675px;
+		max-width: 90%;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -239,10 +239,6 @@
 		overflow: hidden;
 	}
 
-	#page-content img {
-		border: 1px solid #222;
-	}
-
 	#related-articles {
 		margin-top: 20px;
 		padding-bottom: 20px;
@@ -270,13 +266,6 @@
 
 		article {
 			margin-top: 118px !important;
-		}
-
-		article img {
-			max-width: 85%;
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
 		}
 
 		#logo, #bio, #sidebar-links, #social {
