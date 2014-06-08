@@ -44,7 +44,7 @@ develop() {
 	}
 
 	(pelican -rs pelicanconf.py) &
-	(sleep 2; cd $developPath; printf "Serving HTTP at \e[1;37m${localIP}:8000.\e[0m\n";
+	(sleep 2; cd $developPath; printf "Serving HTTP at \e[1;37m${localIP}:8000\e[0m.\n";
 		python -m SimpleHTTPServer 8000 1>/dev/null) &
 	wait
 }

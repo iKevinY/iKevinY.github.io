@@ -11,7 +11,7 @@ FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a hre
 
 RELATIVE_URLS = True
 
-THEME = 'simply'
+THEME = 'theme'
 TYPOGRIFY = True
 TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
@@ -70,7 +70,7 @@ SOCIAL = [
 
 PLUGIN_PATH = 'plugins'
 PLUGINS = ['assets', 'neighbors', 'render_math']
-MATH = {'auto_insert': False }
+MATH = {'auto_insert': False}
 
 # Configuration for the Assets plugin
 ASSET_CONFIG = (
