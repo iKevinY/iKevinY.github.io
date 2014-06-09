@@ -1,6 +1,6 @@
 cssmin==0.2.0
 Markdown==2.4.1
-git+https://github.com/getpelican/pelican.git
+git+https://github.com/getpelican/pelican.git@ef967056778a6610fe7b61c349acec0990073dd7
 Pygments==1.6
 smartypants==1.8.3
 typogrify==2.0.4
