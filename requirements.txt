@@ -1,5 +1,4 @@
 cssmin==0.2.0
-ghp-import==0.4.1
 Markdown==2.4.1
 pelican==3.3
 Pygments==1.6
