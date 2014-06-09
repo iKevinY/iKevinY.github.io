@@ -1,6 +1,10 @@
 #!/bin/bash
 
 upload() {
+	outputPath="$rootPath/output"
+	cd $outputPath
+	git pull
+
 	# Pull hash and commit message of most recent commit
 	cd $rootPath
 	commitHash=`git rev-parse HEAD`
