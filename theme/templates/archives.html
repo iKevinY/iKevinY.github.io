@@ -4,7 +4,7 @@
 	<h1 class="title"><a href="/archive">Archive</a></h1>
 	<div id="content">
 		{% for year, date_year in dates | groupby('date.year') | sort %}
-		<h2><a href="/{{ date_year[0].date.strftime('%Y')}}">{{ date_year[0].date.strftime('%Y') }}</a></h2>
+		<h2><a href="/{{ date_year[0].date.strftime('%Y')}}/">{{ date_year[0].date.strftime('%Y') }}</a></h2>
 		<ul>
 			{% for article in date_year | sort(reverse = True) %}
 			<li>{{ article.locale_date }} &raquo; <a href="/{{ article.url }}">{{ article.title }}</a></li>
@@ -13,4 +13,5 @@
 		{% endfor %}
 	</div>
 	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
+	<hr class="large"
 {% endblock %}

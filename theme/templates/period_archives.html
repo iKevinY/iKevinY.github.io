@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
-{% block title %}Archive | {{ SITENAME }}{% endblock %}
+{% block title %}Archive for {{ period | reverse | join(' ') }} | {{ SITENAME }}{% endblock %}
 {% block meta %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
-	{% for year, date_year in dates | groupby('date.year') %}
-	<h1 class="title"><a href="/archive">Archive</a></h1>
+	<h1><a href=".">Archive for {{ period | reverse | join(' ') }}</a></h1>
 	<div id="content">
+	{% for year, date_year in dates | groupby('date.year') %}
 		{% for month, date_month in dates | groupby('date.month') %}
-			<h2><a href="/{{ date_month[0].date.strftime('%Y/%m') }}">{{ date_month[0].date.strftime('%B %Y') }}</a></h2>
-		<ul>
-			{% for article in date_month | sort %}
-			<li>{{ article.locale_date }} &raquo; <a href="/{{ article.url }}">{{ article.title }}</a></li>
-			{% endfor %}
-		</ul>
+			{% if not period[1] %}
+			<h2><a href="/{{ date_month[0].date.strftime('%Y/%m') }}/">{{ date_month[0].date.strftime('%B %Y') }}</a></h2>
+			{% endif %}
+			<ul>
+				{% for article in date_month | sort %}
+				<li>{{ article.locale_date }} &raquo; <a href="/{{ article.url }}">{{ article.title }}</a></li>
+				{% endfor %}
+			</ul>
 		{% endfor %}
-	</div>
 	{% endfor %}
+	</div>
 	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
 	<hr class="large">
 {% endblock %}

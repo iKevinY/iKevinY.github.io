@@ -14,6 +14,8 @@ GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
 
 # General Pelican settings
 RELATIVE_URLS = True
+SITEURL = 'http://localhost'
+CACHE_CONTENT = False
 
 THEME = 'theme'
 TYPOGRIFY = True
@@ -71,7 +73,7 @@ SOCIAL = [
     ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa fa-soundcloud'),
 ]
 
-PLUGIN_PATH = 'plugins'
+PLUGIN_PATH = ['plugins']
 PLUGINS = ['assets', 'neighbors', 'render_math']
 MATH = {'auto_insert': False}
 
