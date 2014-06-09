@@ -15,6 +15,5 @@ OUTPUT_RETENTION = [".git"]
 OUTPUT_PATH = 'output/'
 
 DISQUS_SITENAME = 'kevinyap'
-TWITTER_USERNAME = 'iKevinY'
 GOOGLE_ANALYTICS = 'UA-41937659-1'
 DOMAIN = 'kevinyap.ca'

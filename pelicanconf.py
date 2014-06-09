@@ -18,6 +18,10 @@ DEFAULT_DATE_FORMAT = '%B %d, %Y'
 DEFAULT_PAGINATION = False
 SUMMARY_MAX_LENGTH = 30
 
+SITE_AUTHOR = 'Kevin Yap'
+TWITTER_USERNAME = '@iKevinY'
+GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
+
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
 
@@ -29,12 +33,10 @@ ARCHIVES_SAVE_AS = 'archive/index.html'
 YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 
-# Disables author, category, and tag pages
-AUTHOR_SAVE_AS = False
+# Disables authors, categories, and tags pages
 AUTHORS_SAVE_AS = False
-CATEGORY_SAVE_AS = False
 CATEGORIES_SAVE_AS = False
-TAGS_SAVE_AS = False
+TAGS_SAVE_AS = ''
 
 # Disables Atom feed generation
 FEED_ALL_ATOM = None

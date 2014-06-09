@@ -4,9 +4,9 @@
 	<!-- Twitter Cards and Open Graph
 	================================================== -->
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
 	<meta name="twitter:domain" content="{{ DOMAIN }}">
-	<meta name="twitter:site" content="@iKevinY">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
 	<meta property="og:title" content="{{ page.title|striptags }}">
 	<meta property="og:description" content="{{ page.summary|striptags }}">
 	<meta property="og:image" content="{{ SITEURL }}/theme/png/avatar512.png">
@@ -22,6 +22,6 @@
 	<div id="content">
 		{{ page.content }}
 	</div>
-	<div id="back-to-home"><a href="{{ SITEURL }}">&larr; Back to Home</a></div>
+	<div id="back-to-home"><a href="/">&larr; Back to Home</a></div>
 	<hr class="large">
 {% endblock %}
