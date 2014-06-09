@@ -1,5 +1,4 @@
 develop/
 output/
-plugins/
 *.DS_Store
 *.pyc

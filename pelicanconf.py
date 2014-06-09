@@ -2,13 +2,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+# Site-specific settings (used by theme)
 SITENAME = 'Kevin Yap'
-
-# Custom text for index page meta description, biography, and footer
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 
+SITE_AUTHOR = 'Kevin Yap'
+TWITTER_USERNAME = '@iKevinY'
+GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
+
+# General Pelican settings
 RELATIVE_URLS = True
 
 THEME = 'theme'
@@ -17,10 +21,6 @@ TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
 DEFAULT_PAGINATION = False
 SUMMARY_MAX_LENGTH = 30
-
-SITE_AUTHOR = 'Kevin Yap'
-TWITTER_USERNAME = '@iKevinY'
-GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
