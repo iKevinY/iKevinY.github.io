@@ -9,6 +9,7 @@ These are some of the applications, websites, and technologies that I use on a r
 - [Sublime Text](http://www.sublimetext.com) -- source code editor with a wide variety of plugins available
 - [Ulysses III](http://www.ulyssesapp.com) -- OS X exclusive text editor for composing prose in Markdown
 - [GitHub](https://github.com) -- online Git-based project hosting
+- [TotalTerminal](http://totalterminal.binaryage.com) -- hotkey-activatable terminal overlay
 - [f.lux](http://justgetflux.com/) -- adjusts the colour temperature of displays at night to reduce eye strain
 - [Rainwave](http://rainwave.cc/) -- video game music Internet radio station
 - [Radium](http://catpigstudios.com) -- menu bar application for streaming Internet radio stations
