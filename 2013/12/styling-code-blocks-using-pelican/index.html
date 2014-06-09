@@ -24,7 +24,7 @@
 
 	<!-- Stylesheets
 	================================================== -->
-	<link rel="stylesheet" href="http://kevinyap.ca/theme/style.min.css">
+	<link rel="stylesheet" href="/theme/style.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -54,11 +54,11 @@
 <body>
 	<div class="container">
 		<aside id="sidebar" class="three columns">
-			<a href="http://kevinyap.ca"><img id="avatar" alt="Kevin Yap" src="http://kevinyap.ca/theme/images/avatar.png"></a>
-			<p id="logo"><a href="http://kevinyap.ca">Kevin Yap</a></p>
+			<a href="/"><img id="avatar" src="/theme/images/avatar.png"></a>
+			<p id="logo"><a href="/">Kevin Yap</a></p>
 			<p id="bio">Developer and musician from Vancouver, BC.</p>
 			<div id="sidebar-links">
-				<h3><a href="http://kevinyap.ca/about/">About</a>&ensp;&bull;&ensp;<a href="http://kevinyap.ca/projects/">Projects</a></h3>
+				<h3><a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a></h3>
 			</div>
 				<div id="social">
 					<a class="icon" href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca" title="Email"><i class="fa fa-envelope-o"></i></a>
@@ -71,7 +71,7 @@
 		</aside> <!-- sidebar -->
 
 		<article class="twelve columns offset-by-one">
-	<h1 class="title"><a href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
+	<h1 class="title"><a href="/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
 	<h6 class="date">December 10, 2013</h6>
 	<div id="content"><p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
 <p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
@@ -133,8 +133,8 @@
 
 <p>After following these steps, everything should be working properly. Of course, the stylesheet used and properties of the code blocks can be changed depending on personal&nbsp;preference.</p></div>
 		<div id="related-articles">
-				<a href="http://kevinyap.ca/2014/01/on-programming-and-turtles/" style="float: left;">&larr; On Programming and Turtles</a>
-				<a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/" style="float: right;">Hosting With GitHub Pages &rarr;</a>
+				<a href="/2014/01/on-programming-and-turtles/" style="float: left;">&larr; On Programming and Turtles</a>
+				<a href="/2013/12/hosting-with-github-pages/" style="float: right;">Hosting With GitHub Pages &rarr;</a>
 		</div>
 	<hr class="large">
 		<!-- Disqus -->
@@ -155,16 +155,16 @@
 	</div> <!-- container -->
 
 
-		<!-- Google Analytics -->
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			ga('create', 'UA-41937659-1', 'kevinyap.ca');
-			ga('send', 'pageview');
-		</script>
+		ga('create', 'UA-41937659-1', 'kevinyap.ca');
+		ga('send', 'pageview');
+	</script>
 
 </body>
 </html>

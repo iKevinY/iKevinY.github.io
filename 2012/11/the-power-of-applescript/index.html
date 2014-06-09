@@ -24,7 +24,7 @@
 
 	<!-- Stylesheets
 	================================================== -->
-	<link rel="stylesheet" href="http://kevinyap.ca/theme/style.min.css">
+	<link rel="stylesheet" href="/theme/style.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -54,11 +54,11 @@
 <body>
 	<div class="container">
 		<aside id="sidebar" class="three columns">
-			<a href="http://kevinyap.ca"><img id="avatar" alt="Kevin Yap" src="http://kevinyap.ca/theme/images/avatar.png"></a>
-			<p id="logo"><a href="http://kevinyap.ca">Kevin Yap</a></p>
+			<a href="/"><img id="avatar" src="/theme/images/avatar.png"></a>
+			<p id="logo"><a href="/">Kevin Yap</a></p>
 			<p id="bio">Developer and musician from Vancouver, BC.</p>
 			<div id="sidebar-links">
-				<h3><a href="http://kevinyap.ca/about/">About</a>&ensp;&bull;&ensp;<a href="http://kevinyap.ca/projects/">Projects</a></h3>
+				<h3><a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a></h3>
 			</div>
 				<div id="social">
 					<a class="icon" href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca" title="Email"><i class="fa fa-envelope-o"></i></a>
@@ -71,7 +71,7 @@
 		</aside> <!-- sidebar -->
 
 		<article class="twelve columns offset-by-one">
-	<h1 class="title"><a href="http://kevinyap.ca/2012/11/the-power-of-applescript/" title="Permalink to The Power of AppleScript">The Power of AppleScript</a></h1>
+	<h1 class="title"><a href="/2012/11/the-power-of-applescript/" title="Permalink to The Power of AppleScript">The Power of AppleScript</a></h1>
 	<h6 class="date">November 28, 2012</h6>
 	<div id="content"><p>One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were available to download via torrent, and that every file contained &#8220;complete and consistent <span class="caps">ID3</span> tags&#8221;. While the tags for most fields are great, I wasn&#8217;t particularly fond of the format of the track titles. Instead of <em>TrackName (GameName)</em> like I would have preferred, the format was <em>GameName &#8216;TrackName&#8217; <span class="caps">OC</span> ReMix</em>. There are a few reasons why I don&#8217;t like the provided format (namely that the &#8220;<span class="caps">OC</span> ReMix&#8221; suffix feels redundant to me and it feels more appropriate to not see the songs grouped by their source game), but that&#8217;s besides the&nbsp;point.</p>
 <p>Obviously, manually renaming nearly 2500 tracks in iTunes would be a ridiculous undertaking. Luckily, AppleScript happens to be the perfect tool to automate this task. While I had never used AppleScript previous to this, the syntax was easy enough to learn quickly. <a href="http://dougscripts.com/itunes/">Doug&#8217;s AppleScripts for iTunes</a> proved itself to be a useful resource for learning (and happens to be where I downloaded other scripts from in the past). It is also where I derived the skeleton of this script from. At first, I attempted to figured out how to handle regular expressions within strings in AppleScript, but I soon realized that a crude piece of code would work just as well; it just wouldn&#8217;t be useful for any other situation. I set off in search of AppleScript documentation to learn to to manipulate the track name string in the way that I&nbsp;wanted.</p>
@@ -124,8 +124,8 @@
 </pre></div>
 </td></tr></table></div>
 		<div id="related-articles">
-				<a href="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/" style="float: left;">&larr; The Great (White) Pelican Migration</a>
-				<a href="http://kevinyap.ca/2011/10/hello-blogosphere/" style="float: right;">Hello, Blogosphere! &rarr;</a>
+				<a href="/2013/07/the-great-white-pelican-migration/" style="float: left;">&larr; The Great (White) Pelican Migration</a>
+				<a href="/2011/10/hello-blogosphere/" style="float: right;">Hello, Blogosphere! &rarr;</a>
 		</div>
 	<hr class="large">
 		<!-- Disqus -->
@@ -146,16 +146,16 @@
 	</div> <!-- container -->
 
 
-		<!-- Google Analytics -->
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			ga('create', 'UA-41937659-1', 'kevinyap.ca');
-			ga('send', 'pageview');
-		</script>
+		ga('create', 'UA-41937659-1', 'kevinyap.ca');
+		ga('send', 'pageview');
+	</script>
 
 </body>
 </html>
