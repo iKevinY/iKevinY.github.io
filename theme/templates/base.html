@@ -14,7 +14,7 @@
 
 	<!-- Stylesheets
 	================================================== -->
-	{% assets filters="cssmin", output="style.min.css", "css/skeleton.css", "css/simply.css", "css/base16-eighties.dark.css" %}
+	{% assets filters="cssmin", output="style.min.css", "skeleton.css", "simply.css", "base16-eighties.dark.css" %}
 	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
 	{% endassets %}
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -22,15 +22,14 @@
 
 	<!-- Favicons
 	================================================== -->
-	<link rel="icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="{{ SITEURL }}/theme/png/avatar512.png">                 <!-- Universal -->
-	<link rel="apple-touch-icon" sizes="57x57" href="{{ SITEURL }}/theme/png/avatar57.png">    <!-- iPhone -->
-	<link rel="apple-touch-icon" sizes="72x72" href="{{ SITEURL }}/theme/png/avatar72.png">    <!-- iPad -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{{ SITEURL }}/theme/png/avatar76.png">    <!-- iPad, iOS 7 -->
-	<link rel="apple-touch-icon" sizes="114x114" href="{{ SITEURL }}/theme/png/avatar114.png"> <!-- iPhone, Retina -->
-	<link rel="apple-touch-icon" sizes="120x120" href="{{ SITEURL }}/theme/png/avatar120.png"> <!-- iPhone, Retina iOS 7 -->
-	<link rel="apple-touch-icon" sizes="144x144" href="{{ SITEURL }}/theme/png/avatar144.png"> <!-- iPad, Retina -->
-	<link rel="apple-touch-icon" sizes="152x152" href="{{ SITEURL }}/theme/png/avatar152.png"> <!-- iPad, Retina iOS 7 -->
+	<link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+	{% for size in (57, 60, 72, 76, 114, 120, 144, 152) %}
+	<link rel="apple-touch-icon" sizes="{{ size }}x{{ size }}" href="/theme/images/apple-touch-icon-{{ size }}x{{ size }}.png">
+	{% endfor %}
+
+	{% for size in (16, 32, 96, 160, 196) %}
+	<link rel="icon" type="image/png" href="/theme/images/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
+	{% endfor %}
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +39,7 @@
 <body>
 	<div class="container">
 		<aside id="sidebar" class="three columns">
-			<a href="{{ SITEURL }}"><img id="avatar" alt="{{ SITENAME }}" src="{{ SITEURL }}/theme/png/avatar.png"></a>
+			<a href="{{ SITEURL }}"><img id="avatar" alt="{{ SITENAME }}" src="{{ SITEURL }}/theme/images/avatar.png"></a>
 			<p id="logo"><a href="{{ SITEURL }}">{{ SITENAME }}</a></p>
 			<p id="bio">{{ BIO_TEXT }}</p>
 			<div id="sidebar-links">

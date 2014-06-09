@@ -51,12 +51,12 @@ TEMPLATE_PAGES = {
 	'404.html': '404.html',
 }
 
-STATIC_PATHS = ['images', 'uploads', 'extra/robots.txt', 'extra/favicon.ico', 'extra/CNAME']
+STATIC_PATHS = ['images', 'uploads', 'extra']
 
 EXTRA_PATH_METADATA = {
-    'extra/robots.txt': {'path': 'robots.txt'},
-    'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/CNAME': {'path': 'CNAME'},
+    'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/robots.txt': {'path': 'robots.txt'},
 }
 
 # Creates icons for social links using the format ('link', 'hover text', 'icon')
