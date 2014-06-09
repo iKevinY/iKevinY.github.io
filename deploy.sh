@@ -7,7 +7,7 @@ PELICAN_OUTPUT_FOLDER=output
 
 echo -e "Deploying site to GitHub Pages.\n"
 if [ "$TRAVIS" == "true" ]; then
-	git config --global user.email "contact@travis-ci.com"
+	git config --global user.email "travis@travis-ci.org"
 	git config --global user.name "Travis CI"
 fi
 
