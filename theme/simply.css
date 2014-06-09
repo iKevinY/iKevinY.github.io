@@ -246,6 +246,15 @@
 		margin-top: 20px;
 	}
 
+	#next-neighbour {
+		float: left;
+	}
+
+	#previous-neighbour {
+		float: right;
+	}
+
+
 
 /* Handheld Layout (Mobile and Tablet)
 ================================================== */
