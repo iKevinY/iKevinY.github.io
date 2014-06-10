@@ -45,10 +45,10 @@
 			<div id="sidebar-links">
 				<h3><a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a></h3>
 			</div>
-			{% if SOCIAL %}
+			{% if SOCIAL_ICONS %}
 				<div id="social">
-				{% for link in SOCIAL %}
-					<a class="icon" href="{{ link[0] }}" title="{{ link[1] }}"><i class="{{ link[2] }}"></i></a>
+				{% for icon in SOCIAL_ICONS %}
+					<a class="icon" href="{{ icon[0] }}" title="{{ icon[1] }}"><i class="{{ icon[2] }}"></i></a>
 				{% endfor %}
 				</div> <!-- social -->
 			{% endif %}
