@@ -4,13 +4,14 @@
 BRANCH=master
 TARGET_REPO=iKevinY/iKevinY.github.io.git
 PELICAN_OUTPUT_FOLDER=output
-REMOTE_OUTPUT_FOLDER=built_website
+REMOTE_OUTPUT_FOLDER=remote-site
 
 if [ "$TRAVIS" == "true" ]; then
 	echo -e "Deploying site to GitHub Pages via Travis CI.\n"
 	git config --global user.email "travis@travis-ci.org"
 	git config --global user.name "Travis CI"
 else
+	# If being run locally, site files need to be generated
 	pelican -s publishconf.py
 fi
 
@@ -59,7 +60,7 @@ else
 	esac
 
 	cd ..
-	rm -rf built_website/
+	rm -rf $REMOTE_OUTPUT_FOLDER
 	rm -rf output
 	if [[ $response != "y" ]] && [[ $response != "Y" ]]; then
 		exit 1

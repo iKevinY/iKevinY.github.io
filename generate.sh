@@ -21,7 +21,7 @@ develop() {
 	wait
 }
 
-rootPath="$HOME/kevinyap.ca"
+rootPath="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
 cd $rootPath
 
 case $1 in
