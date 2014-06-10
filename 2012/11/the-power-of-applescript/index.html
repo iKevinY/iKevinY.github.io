@@ -18,13 +18,13 @@
 	<meta name="twitter:site" content="@iKevinY">
 	<meta property="og:title" content="The Power of AppleScript">
 	<meta property="og:description" content="One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were ...">
-	<meta property="og:image" content="http://kevinyap.ca/theme/png/avatar512.png">
+	<meta property="og:image" content="http://kevinyap.ca/theme/images/avatar512.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2012/11/the-power-of-applescript/">
 
 	<!-- Stylesheets
 	================================================== -->
-	<link rel="stylesheet" href="/theme/style.min.css">
+	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -73,7 +73,8 @@
 		<article class="twelve columns offset-by-one">
 	<h1 class="title"><a href="/2012/11/the-power-of-applescript/" title="Permalink to The Power of AppleScript">The Power of AppleScript</a></h1>
 	<h6 class="date">November 28, 2012</h6>
-	<div id="content"><p>One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were available to download via torrent, and that every file contained &#8220;complete and consistent <span class="caps">ID3</span> tags&#8221;. While the tags for most fields are great, I wasn&#8217;t particularly fond of the format of the track titles. Instead of <em>TrackName (GameName)</em> like I would have preferred, the format was <em>GameName &#8216;TrackName&#8217; <span class="caps">OC</span> ReMix</em>. There are a few reasons why I don&#8217;t like the provided format (namely that the &#8220;<span class="caps">OC</span> ReMix&#8221; suffix feels redundant to me and it feels more appropriate to not see the songs grouped by their source game), but that&#8217;s besides the&nbsp;point.</p>
+	<div id="content">
+		<p>One of my favourite genres of music is video game music. Because of this, it was no surprise that I was ecstatic when OverClocked ReMix announced that ReMixes 1-2500 were available to download via torrent, and that every file contained &#8220;complete and consistent <span class="caps">ID3</span> tags&#8221;. While the tags for most fields are great, I wasn&#8217;t particularly fond of the format of the track titles. Instead of <em>TrackName (GameName)</em> like I would have preferred, the format was <em>GameName &#8216;TrackName&#8217; <span class="caps">OC</span> ReMix</em>. There are a few reasons why I don&#8217;t like the provided format (namely that the &#8220;<span class="caps">OC</span> ReMix&#8221; suffix feels redundant to me and it feels more appropriate to not see the songs grouped by their source game), but that&#8217;s besides the&nbsp;point.</p>
 <p>Obviously, manually renaming nearly 2500 tracks in iTunes would be a ridiculous undertaking. Luckily, AppleScript happens to be the perfect tool to automate this task. While I had never used AppleScript previous to this, the syntax was easy enough to learn quickly. <a href="http://dougscripts.com/itunes/">Doug&#8217;s AppleScripts for iTunes</a> proved itself to be a useful resource for learning (and happens to be where I downloaded other scripts from in the past). It is also where I derived the skeleton of this script from. At first, I attempted to figured out how to handle regular expressions within strings in AppleScript, but I soon realized that a crude piece of code would work just as well; it just wouldn&#8217;t be useful for any other situation. I set off in search of AppleScript documentation to learn to to manipulate the track name string in the way that I&nbsp;wanted.</p>
 <p>The easiest part of the track title to manipulate was removing the <em><span class="caps">OC</span> ReMix</em> text at the end of every track. The way I did it was by setting the track name track to itself after removing 9 characters from the end of the string (as it includes the leading space character). With AppleScript, this was very easy to do: <code>set trackName to text 1 thru -10 of trackName</code> (<code>-1</code> represents the last character in the string, so <code>-2</code> would remove the last character, and so&nbsp;on).</p>
 <p>After that, to search for the part of the string that contained the song name, I initially tried looking for the first apostrophe in the track title and used the next character as the beginning of the song name string, and ended the string one character before the end of the track title. In most cases, this would (as expected) take the text between the apostrophes &#8212; the song name &#8212; and store it in a dedicated song name string. Great! Fortunately, I tested this script in batches of 10 tracks or so at a time and manually vetted the result, as this definitely did not work. The flaw with this method may already be obvious; if the game name itself contained an apostrophe (for example, Legend of Zelda: Link&#8217;s Awakening), the script would use all the characters after this apostrophe until the final apostrophe as the song name, which is&nbsp;incorrect.</p>
@@ -122,7 +123,8 @@
     <span class="k">end</span> <span class="k">if</span>
 <span class="k">end</span> <span class="k">tell</span>
 </pre></div>
-</td></tr></table></div>
+</td></tr></table>
+	</div>
 		<div id="related-articles">
 				<a href="/2013/07/the-great-white-pelican-migration/" id="next-neighbour">&laquo; The Great (White) Pelican Migration</a>
 				<a href="/2011/10/hello-blogosphere/" id="previous-neighbour">Hello, Blogosphere! &raquo;</a>

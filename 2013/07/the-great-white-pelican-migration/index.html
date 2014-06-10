@@ -18,13 +18,13 @@
 	<meta name="twitter:site" content="@iKevinY">
 	<meta property="og:title" content="The Great (White) Pelican Migration">
 	<meta property="og:description" content="When browsing /r/programming a while back, I came across a link to a blog post written by Greg Reda. While reading the post, I noticed the platform that his ...">
-	<meta property="og:image" content="http://kevinyap.ca/theme/png/avatar512.png">
+	<meta property="og:image" content="http://kevinyap.ca/theme/images/avatar512.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2013/07/the-great-white-pelican-migration/">
 
 	<!-- Stylesheets
 	================================================== -->
-	<link rel="stylesheet" href="/theme/style.min.css">
+	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -73,11 +73,13 @@
 		<article class="twelve columns offset-by-one">
 	<h1 class="title"><a href="/2013/07/the-great-white-pelican-migration/" title="Permalink to The Great (White) Pelican Migration">The Great (White) Pelican Migration</a></h1>
 	<h6 class="date">July 14, 2013</h6>
-	<div id="content"><p>When browsing <a href="http://www.reddit.com/r/programming">/r/programming</a> a while back, I came across a link to a blog post written by <a href="http://www.gregreda.com">Greg Reda</a>. While reading the post, I noticed the platform that his website was generated with &#8212; <a href="http://getpelican.com/">Pelican</a> &#8212; and at the time, I was in the process of searching for a replacement for WordPress. When I initially created kevinyap.ca, WordPress was appealing due to being easy-to-install <span class="caps">CMS</span> and versatile in its support and compatibility (themes and plugins), but over time I realized that it was too bulky; what I actually needed was a simple blogging platform rather than a full-fledged <span class="caps">CMS</span>.</p>
+	<div id="content">
+		<p>When browsing <a href="http://www.reddit.com/r/programming">/r/programming</a> a while back, I came across a link to a blog post written by <a href="http://www.gregreda.com">Greg Reda</a>. While reading the post, I noticed the platform that his website was generated with &#8212; <a href="http://getpelican.com/">Pelican</a> &#8212; and at the time, I was in the process of searching for a replacement for WordPress. When I initially created kevinyap.ca, WordPress was appealing due to being easy-to-install <span class="caps">CMS</span> and versatile in its support and compatibility (themes and plugins), but over time I realized that it was too bulky; what I actually needed was a simple blogging platform rather than a full-fledged <span class="caps">CMS</span>.</p>
 <p>I decided that it would be wise to make the move to another platform sooner rather than later, so I began the migration to Pelican. The transition from WordPress to Pelican was quite simple; the installation itself was fairly straightforward, and I manually transferred over my previous blog posts. (Pelican does have an automatic blog importer, but with the tiny number of previous posts, it was simpler to just complete the process&nbsp;manually.)</p>
 <p>In my opinion, one of the most appealing features of using Pelican for a blog is the fact that posts (and pages) can be composed in Markdown, an easy-to-use and familiar markup language. This change also made it easier to incorporate <a href="http://www.iawriter.com/">iA Writer</a> into my blog-writing workflow instead of fumbling around with the WordPress dashboard consistently. Also, iA Writer’s iCloud integration makes it easy to write&nbsp;anywhere.</p>
 <p>One minor hitch that I had was with setting up the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for Markdown. In the configuration file for Pelican, I had the entry <code>MD_EXTENSIONS = ['codehilite']</code>, as the documentation stated that <code>MD_EXTENSIONS</code> needed to be defined as a list. Although this did not raise any warnings when generating the site through Pelican. When I added the <a href="http://pythonhosted.org/Markdown/extensions/extra.html">Markdown Extra</a> to the list of extensions &#8212; <code>MD_EXTENSIONS = ['codehilite', 'extra']</code> &#8212; the code highlighting worked. Apparently there needed to be more than one item in the list of Markdown&nbsp;extensions.</p>
-<p>Many thanks to Greg Reda whose Pelican theme (which can be found in the <a href="http://github.com/gjreda/gregreda.com">GitHub repository</a> for his website) I am currently using on my&nbsp;website.</p></div>
+<p>Many thanks to Greg Reda whose Pelican theme (which can be found in the <a href="http://github.com/gjreda/gregreda.com">GitHub repository</a> for his website) I am currently using on my&nbsp;website.</p>
+	</div>
 		<div id="related-articles">
 				<a href="/2013/12/hosting-with-github-pages/" id="next-neighbour">&laquo; Hosting With GitHub Pages</a>
 				<a href="/2012/11/the-power-of-applescript/" id="previous-neighbour">The Power of AppleScript &raquo;</a>
