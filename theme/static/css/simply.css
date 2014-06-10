@@ -110,9 +110,7 @@
 	code {
 		font-family: "Source Code Pro", monospace;
 		background-color: #eee;
-		padding: 0 3px;
-		border: 1px solid #ddd;
-		border-radius: 2px;
+		padding: 0.5px 3px;
 	}
 
 	.codehilitetable {
