@@ -7,7 +7,7 @@ PELICAN_OUTPUT_FOLDER=output
 REMOTE_OUTPUT_FOLDER=built_website
 
 if [ "$TRAVIS" == "true" ]; then
-	echo -e "Deploying site to GitHub Pages.\n"
+	echo -e "Deploying site to GitHub Pages via Travis CI.\n"
 	git config --global user.email "travis@travis-ci.org"
 	git config --global user.name "Travis CI"
 else
