@@ -14,8 +14,8 @@
 
 	<!-- Stylesheets
 	================================================== -->
-	{% assets filters="cssmin", output="style.min.css", "skeleton.css", "simply.css", "base16-eighties.dark.css" %}
-	<link rel="stylesheet" href="/{{ ASSET_URL }}">
+	{% assets filters="cssmin", output="style.min.css", "css/skeleton.css", "css/simply.css", "css/base16-eighties.dark.css" %}
+	<link href="/{{ ASSET_URL }}" rel="stylesheet">
 	{% endassets %}
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
