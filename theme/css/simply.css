@@ -155,13 +155,12 @@
 	}
 
 	/* Colourful social icons */
-	a.icon:hover { color: #555; }
-	.fa:hover { transition: color 0.25s ease; }
-	.fa-envelope:hover { color: #613967; }
-	.fa-twitter:hover { color: #55acee; }
-	.fa-google-plus-square:hover { color: #dd4b39; }
-	.fa-github:hover { color: #000; }
-	.fa-soundcloud:hover { color: #f76700; }
+	a.fa:hover { transition: color 0.25s ease; }
+	a.fa-envelope:hover { color: #613967; }
+	a.fa-twitter:hover { color: #55acee; }
+	a.fa-google-plus-square:hover { color: #dd4b39; }
+	a.fa-github:hover { color: #000; }
+	a.fa-soundcloud:hover { color: #f76700; }
 
 
 /* Layout
