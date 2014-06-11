@@ -48,7 +48,7 @@
 			{% if SOCIAL_ICONS %}
 				<div id="social">
 				{% for icon in SOCIAL_ICONS %}
-					<a class="icon" href="{{ icon[0] }}" title="{{ icon[1] }}"><i class="{{ icon[2] }}"></i></a>
+					<a href="{{ icon[0] }}" title="{{ icon[1] }}" class="icon {{ icon[2] }}"></a>
 				{% endfor %}
 				</div> <!-- social -->
 			{% endif %}
