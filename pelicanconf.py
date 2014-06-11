@@ -13,7 +13,7 @@ TWITTER_USERNAME = '@iKevinY'
 GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
 
 SOCIAL_ICONS = [
-    ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya%7&#48;&#46;ca', 'Email', 'fa fa-envelope'),
+    ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca', 'Email', 'fa fa-envelope'),
     ('http://twitter.com/iKevinY', 'Twitter', 'fa fa-twitter'),
     ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa fa-google-plus-square'),
     ('http://github.com/iKevinY', 'GitHub', 'fa fa-github'),
@@ -23,23 +23,18 @@ SOCIAL_ICONS = [
 # General Pelican settings
 RELATIVE_URLS = True
 SITEURL = 'http://localhost'
-CACHE_CONTENT = False
-
 THEME = 'theme'
-TYPOGRIFY = True
 TIMEZONE = 'America/Vancouver'
+
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
 DEFAULT_PAGINATION = False
 SUMMARY_MAX_LENGTH = 30
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
-
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = PAGE_URL + 'index.html'
-
 ARCHIVES_SAVE_AS = 'archive/index.html'
-
 YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 
@@ -54,10 +49,12 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
+TYPOGRIFY = True
 MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra']
 
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_PATH = 'develop/'
+CACHE_CONTENT = False
 PATH = 'content/'
 
 TEMPLATE_PAGES = {
@@ -75,8 +72,6 @@ EXTRA_PATH_METADATA = {
 PLUGIN_PATH = ['plugins']
 PLUGINS = ['assets', 'neighbors', 'render_math']
 MATH = {'auto_insert': False}
-
-# Configuration for the Assets plugin
 ASSET_CONFIG = (
 	('url_expire', False),
 	('versions', False),
