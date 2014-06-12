@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas
+	================================================== -->
+	<meta charset="utf-8">
+	<title>Deploying Pelican Sites Using Travis CI | Kevin Yap</title>
+	<meta name="description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on ...">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Twitter Cards and Open Graph
+	================================================== -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="Deploying Pelican Sites Using Travis CI">
+	<meta property="og:description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on ...">
+	<meta property="og:image" content="http://kevinyap.ca/theme/images/avatar512.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/">
+
+	<!-- Stylesheets
+	================================================== -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/theme/images/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/theme/images/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/theme/images/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/theme/images/apple-touch-icon-152x152.png">
+
+	<link rel="icon" type="image/png" href="/theme/images/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-196x196.png" sizes="196x196">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside id="sidebar" class="three columns">
+			<a href="/"><img id="avatar" src="/theme/images/avatar.png"></a>
+			<p id="logo"><a href="/">Kevin Yap</a></p>
+			<p id="bio">Developer and musician from Vancouver, BC.</p>
+			<div id="sidebar-links">
+				<h3><a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a></h3>
+			</div>
+				<div id="social">
+					<a href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca" title="Email" class="icon fa fa-envelope"></a>
+					<a href="http://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+					<a href="http://plus.google.com/+KevinYapCA" title="Google+" class="icon fa fa-google-plus-square"></a>
+					<a href="http://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+					<a href="http://soundcloud.com/iKevinY" title="SoundCloud" class="icon fa fa-soundcloud"></a>
+				</div> <!-- social -->
+			<hr id="sidebar-divider" class="large">
+		</aside> <!-- sidebar -->
+
+		<article class="twelve columns offset-by-one">
+	<h1 class="title"><a href="/2014/06/deploying-pelican-sites-using-travis-ci/" title="Permalink to Deploying Pelican Sites Using Travis CI">Deploying Pelican Sites Using Travis CI</a></h1>
+	<h6 class="date">June 11, 2014</h6>
+	<div id="content">
+		<p>After learning about Travis <span class="caps">CI</span> through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow <a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/">based on GitHub Pages</a>. Even though Pelican is a static site generator, adding Travis <span class="caps">CI</span> into the mix would allow changes to the theme or content to be made from anywhere that can push to a Git repository &#8212; even directly from the GitHub website &#8212; and the newly generated files would be pushed to the live server in a fairly timely manner, almost like a WordPress site. Thankfully, quite a few other people had already combined Pelican and Travis <span class="caps">CI</span>, so setting it up was fairly&nbsp;straightforward.</p>
+<p>Most of the solutions that I found suggested using the <a href="https://github.com/davisp/ghp-import"><code>ghp-import</code></a> package to handle pushing to the GitHub repository. I was not satisfied with this solution as I wanted to keep intact the incremental changes being tracked by the repository itself (one of the upsides of using GitHub Pages as a host, in my opinion). I came across <a href="http://zonca.github.io/2013/09/automatically-build-pelican-and-publish-to-github-pages.html">Andrea Zonca&#8217;s post</a>, which described a setup using <code>rsync</code> and <code>git clone</code> to update the branch. Since his blog post is written in a very detailed manner, I won&#8217;t rewrite it here verbatim. In&nbsp;short:</p>
+<ol>
+<li>Add <code>.travis.yml</code> (which describes to Travis how to build your project) and <code>requirements.txt</code> (which lists the packages to be installed via pip) to the source file branch of your site&#8217;s&nbsp;repository.</li>
+<li>Create an OAuth token from your <a href="https://github.com/settings/applications">GitHub applications page</a> which gets used by Travis to push changes to the GitHub Pages branch of your&nbsp;repository.</li>
+<li>Install the <code>travis</code> gem and encrypt the OAuth token using the <code>travis encrypt</code> command.</li>
+<li>Enable Travis <span class="caps">CI</span> for the repository and push&nbsp;changes.</li>
+</ol>
+<p>The <code>travis.yml</code> file works in stages. The <code>install</code> stage issues a <code>pip install</code> command which references <code>requirements.txt</code> for the list of packages to install. After that comes the <code>script</code> stage, which serves as the actual build phase for the project. Most projects would run tests here, but in this case, it executes the <code>pelican</code> command in order to generate the static site files. Following the build, <code>after_success</code> can be given commands to run which are executed after the build itself, and this is when new site files are pushed to the GitHub&nbsp;repository.</p>
+<p>One of the issues that I ran into in the process of setting this up was installing the <code>travis</code> gem, which is needed to encrypt the OAuth token that allows Travis to push to the GitHub repository. What ended up solving the problem in the end was updating the version of Ruby on my&nbsp;computer.</p>
+<p>Since I liked some of the features that I had previously included in my site generation Bash script, I rewrote Andrea&#8217;s <code>deploy.sh</code> script to work similarly to my existing workflow. The entirety of the file can be found <a href="https://github.com/iKevinY/iKevinY.github.io/blob/src/deploy.sh">in the GitHub repository</a> of my website&#8217;s source. My rewritten script grabs the hash and message of the most recent commit to the source&nbsp;branch:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">commitHash</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD<span class="sb">`</span>
+<span class="nv">commitMessage</span><span class="o">=</span><span class="sb">`</span>git log -1 --pretty<span class="o">=</span>%B<span class="sb">`</span>
+</pre></div>
+</td></tr></table>
+
+<p>These variables are used during the <code>git commit</code> command to create a descriptive commit message. The commit message in the source branch is used as the first line of the commit message, and the commit hash and Travis build number are included as the extended part of the commit&nbsp;message:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>git commit -m <span class="s2">&quot;$commitMessage&quot;</span> -m <span class="s2">&quot;Generated by commit $commitHash; pushed by Travis build $TRAVIS_BUILD_NUMBER.&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<p>There are a few minor changes I made to the <code>rsync</code> and <code>git</code> commands of Andrea&#8217;s script as well. Within the <code>rsync</code> command, I removed the asterisk from the source directory and added the <code>--delete</code> flag to instruct the script to delete files in the destination directory that are not present in the source directory. Simply adding the <code>--delete</code> flag to the version of the command present in Andrea&#8217;s script will not affect the command as a result of the to the wildcard search caused by the&nbsp;asterisk:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>rsync -r --exclude<span class="o">=</span>.git --delete ../<span class="nv">$PELICAN_OUTPUT_FOLDER</span>/ ./
+</pre></div>
+</td></tr></table>
+
+<p>I also changed the flag on <code>git add</code> to <code>-A</code> in order to stage deleted files as well as added and modified ones and added the <code>git status -s</code> command which echos a nice overview of what changes were actually staged (which gets stored in Travis&#8217; build&nbsp;logs):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>git status -s
+A  2014/06/deploying-pelican-sites-using-travis-ci/index.html
+A  2014/06/index.html
+M  2014/index.html
+M  archive/index.html
+M  index.html
+</pre></div>
+</td></tr></table>
+
+<p>Since my version of <code>deploy.sh</code> was based on the script that I used to test and deploy changes locally, I wrote it so that it could be executed from a local development machine by checking against the <code>$TRAVIS</code> variable. When run locally, it can be used to check what changes would be pushed to the GitHub Pages branch given the modifications that have been made locally. In practice, it wouldn&#8217;t ever be useful to push changes manually since Travis would automatically repeat the exact same steps, but if the integration between GitHub and Travis were to ever stop working, I would still have a way to make modifications to the GitHub Pages&nbsp;branch.</p>
+	</div>
+		<div id="related-articles">
+				<a href="/2014/01/on-programming-and-turtles/" id="previous-neighbour">On Programming and Turtles &raquo;</a>
+		</div>
+	<hr class="large">
+		<!-- Disqus -->
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'kevinyap';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+		</script>
+		</article>
+
+		<footer class="twelve columns offset-by-one">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div> <!-- container -->
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-41937659-1', 'kevinyap.ca');
+		ga('send', 'pageview');
+	</script>
+
+</body>
+</html>
