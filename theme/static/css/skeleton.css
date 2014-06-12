@@ -15,31 +15,20 @@
 	.container .twelve.columns           { width: 700px; padding-left: 60px; }
 
 
-/* Tablet (portrait, width of 768px)
+/* Tablet-Specific Layout
 ================================================== */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
 		.container                         { width: 650px; }
 		.container .columns                { margin: 0; }
-		.container .three.columns          { width: 124px; }
 		.container .twelve.columns         { width: 650px; padding-left: 0; }
 	}
 
 
-/* Mobile (portrait, width of 320px)
+/* Mobile-Specific Layout
 ================================================== */
 	@media only screen and (max-width: 767px) {
-		.container                         { width: 300px; }
+		.container                         { width: 95%; }
 		.container .columns                { margin: 0; }
 		.container .three.columns,
-		.container .twelve.columns         { width: 300px; padding-left: 0; }
-	}
-
-
-/* #Mobile (landscape, width of 480px)
-================================================== */
-	@media only screen and (min-width: 480px) and (max-width: 767px) {
-		.container                         { width: 420px; }
-		.container .columns                { margin: 0; }
-		.container .three.columns,
-		.container .twelve.columns         { width: 420px; padding-left: 0; }
+		.container .twelve.columns         { width: 100%; padding-left: 0; }
 	}

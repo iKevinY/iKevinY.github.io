@@ -289,16 +289,22 @@
 			text-align: center;
 			float: none;
 		}
+
+		#content {
+			margin: 0 10px;
+		}
+	}
+
+/* Hide sidebar divider when screen width is sufficiently large
+================================================== */
+	@media only screen and (min-width: 400px) {
+		#sidebar-divider { display: none; }
 	}
 
 
 /* Tablet-Specific Tweaks (Portrait)
 ================================================== */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
-		#sidebar-divider {
-			display: none;
-		}
-
 		.title {
 			clear: both;
 			float: left;
@@ -315,16 +321,11 @@
 /* Print-Friendly Layout
 ================================================== */
 	@media only print {
+		.container { width: 100%; }
+
 		footer, #sidebar, #disqus_thread, #related-articles {
 			display: none !important;
 		}
 
-		article {
-			display: block;
-			position: absolute;
-			margin: 0 0.75in;
-		}
-
 		p a:after { content:" ["attr(href)"]"; }
-		h1 a:after { content: " | Kevin Yap" }
 	}
