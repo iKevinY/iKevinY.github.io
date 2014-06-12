@@ -38,7 +38,7 @@
 
 <body>
 	<div class="container">
-		<aside id="sidebar" class="three columns">
+		<aside id="sidebar" class="side column">
 			<a href="/"><img id="avatar" src="/theme/images/avatar.png"></a>
 			<p id="logo"><a href="/">{{ SITENAME }}</a></p>
 			<p id="bio">{{ BIO_TEXT }}</p>
@@ -55,11 +55,11 @@
 			<hr id="sidebar-divider" class="large">
 		</aside> <!-- sidebar -->
 
-		<article class="twelve columns">
+		<article class="main column">
 			{% block content %}{% endblock %}
 		</article>
 
-		<footer class="twelve columns">
+		<footer class="main column">
 			<p>{{ FOOTER_TEXT }}</p>
 		</footer>
 	</div> <!-- container -->
