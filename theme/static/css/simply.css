@@ -261,14 +261,16 @@
 	@media only screen and (max-width: 959px) {
 		#sidebar {
 			position: absolute;
-			width: 100%;
+			width: 300px;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
 			top: 8px;
 		}
 
 		#sidebar img {
 			float: left;
-			width: 140px;
-			margin-right: 10px;
+			margin: 0 10px 0 4px;
 		}
 
 		article {
@@ -293,8 +295,8 @@
 /* Tablet-Specific Tweaks (Portrait)
 ================================================== */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
-		#sidebar img {
-			margin-left: 80px;
+		#sidebar-divider {
+			display: none;
 		}
 
 		.title {
