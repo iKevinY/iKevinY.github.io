@@ -238,7 +238,7 @@
 		overflow: hidden;
 	}
 
-	.readmore {
+	.read-more {
 		font-style: italic;
 		font-size: 90%;
 	}
@@ -273,9 +273,9 @@
 			position: absolute;
 			width: 300px;
 			margin: 0 auto;
+			top: 8px;
 			left: 0;
 			right: 0;
-			top: 8px;
 		}
 
 		#sidebar img {
@@ -305,8 +305,7 @@
 		}
 	}
 
-/* Hide sidebar divider when screen width is sufficiently large
-================================================== */
+	/* Hide sidebar divider when screen is sufficiently large */
 	@media only screen and (min-width: 400px) {
 		#sidebar-divider { display: none; }
 	}
