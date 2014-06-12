@@ -18,8 +18,8 @@
 {% block description %}{{ page.summary|striptags }}{% endblock %}
 
 {% block content %}
-	<h1 class="title"><a href="/{{ page.url }}" title="{{ page.title|striptags }}">{{ page.title|striptags }}</a></h1>
-	<div id="content">
+	<h1 class="title"><a href="/{{ page.url }}" title="{{ page.title|striptags }}">{{ page.title }}</a></h1>
+	<div class="content">
 		{{ page.content }}
 	</div>
 	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
