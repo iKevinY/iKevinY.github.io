@@ -12,37 +12,23 @@
 	.container                           { position: relative; width: 960px; margin: 0 auto; padding: 0; }
 	.container .columns                  { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
 	.container .three.columns            { width: 160px; }
-	.container .twelve.columns           { width: 700px; }
-	.container .offset-by-one            { padding-left: 60px;  }
+	.container .twelve.columns           { width: 700px; padding-left: 60px; }
 
 
-/* Tablet (portrait, width of 768px)
+/* Tablet-Specific Layout
 ================================================== */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
 		.container                         { width: 650px; }
 		.container .columns                { margin: 0; }
-		.container .three.columns          { width: 124px; }
-		.container .twelve.columns         { width: 650px; }
-		.container .offset-by-one          { padding-left: 0; }
+		.container .twelve.columns         { width: 650px; padding-left: 0; }
 	}
 
 
-/* Mobile (portrait, width of 320px)
+/* Mobile-Specific Layout
 ================================================== */
 	@media only screen and (max-width: 767px) {
-		.container                         { width: 300px; }
+		.container                         { width: 95%; }
 		.container .columns                { margin: 0; }
 		.container .three.columns,
-		.container .twelve.columns         { width: 300px; }
-		.container .offset-by-one          { padding-left: 0; }
-	}
-
-
-/* #Mobile (landscape, width of 480px)
-================================================== */
-	@media only screen and (min-width: 480px) and (max-width: 767px) {
-		.container                         { width: 420px; }
-		.container .columns                { margin: 0; }
-		.container .three.columns,
-		.container .twelve.columns         { width: 420px; }
+		.container .twelve.columns         { width: 100%; padding-left: 0; }
 	}
