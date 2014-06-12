@@ -233,9 +233,19 @@
 		margin: 8px 10px;
 	}
 
-	#content {
+	.content {
 		clear: both;
 		overflow: hidden;
+	}
+
+	.readmore {
+		font-style: italic;
+		font-size: 90%;
+	}
+
+	#view-archives {
+		margin-top: 5px;
+		text-align: right;
 	}
 
 	#related-articles {
@@ -290,7 +300,7 @@
 			float: none;
 		}
 
-		#content {
+		.content {
 			margin: 0 10px;
 		}
 	}

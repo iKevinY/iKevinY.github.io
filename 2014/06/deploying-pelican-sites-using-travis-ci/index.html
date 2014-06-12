@@ -5,7 +5,7 @@
 	================================================== -->
 	<meta charset="utf-8">
 	<title>Deploying Pelican Sites Using Travis CI | Kevin Yap</title>
-	<meta name="description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on ...">
+	<meta name="description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on GitHub Pages. Even though Pelican is a static site generator, adding Travis CI into the mix would allow changes to ...">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
 	<meta name="twitter:domain" content="kevinyap.ca">
 	<meta name="twitter:site" content="@iKevinY">
 	<meta property="og:title" content="Deploying Pelican Sites Using Travis CI">
-	<meta property="og:description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on ...">
+	<meta property="og:description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on GitHub Pages. Even though Pelican is a static site generator, adding Travis CI into the mix would allow changes to ...">
 	<meta property="og:image" content="http://kevinyap.ca/theme/images/avatar512.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/">
@@ -73,7 +73,7 @@
 		<article class="twelve columns">
 	<h1 class="title"><a href="/2014/06/deploying-pelican-sites-using-travis-ci/" title="Permalink to Deploying Pelican Sites Using Travis CI">Deploying Pelican Sites Using Travis CI</a></h1>
 	<h6 class="date">June 11, 2014</h6>
-	<div id="content">
+	<div class="content">
 		<p>After learning about Travis <span class="caps">CI</span> through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow <a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/">based on GitHub Pages</a>. Even though Pelican is a static site generator, adding Travis <span class="caps">CI</span> into the mix would allow changes to the theme or content to be made from anywhere that can push to a Git repository &#8212; even directly from the GitHub website &#8212; and the newly generated files would be pushed to the live server in a fairly timely manner, almost like a WordPress site. Thankfully, quite a few other people had already combined Pelican and Travis <span class="caps">CI</span>, so setting it up was fairly&nbsp;straightforward.</p>
 <p>Most of the solutions that I found suggested using the <a href="https://github.com/davisp/ghp-import"><code>ghp-import</code></a> package to handle pushing to the GitHub repository. I was not satisfied with this solution as I wanted to keep intact the incremental changes being tracked by the repository itself (one of the upsides of using GitHub Pages as a host, in my opinion). I came across <a href="http://zonca.github.io/2013/09/automatically-build-pelican-and-publish-to-github-pages.html">Andrea Zonca&#8217;s post</a>, which described a setup using <code>rsync</code> and <code>git clone</code> to update the branch. Since his blog post is written in a very detailed manner, I won&#8217;t rewrite it here verbatim. In&nbsp;short:</p>
 <ol>

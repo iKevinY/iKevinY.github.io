@@ -5,7 +5,7 @@
 	================================================== -->
 	<meta charset="utf-8">
 	<title>Styling Code Blocks Using Pelican | Kevin Yap</title>
-	<meta name="description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter ...">
+	<meta name="description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring ...">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
 	<meta name="twitter:domain" content="kevinyap.ca">
 	<meta name="twitter:site" content="@iKevinY">
 	<meta property="og:title" content="Styling Code Blocks Using Pelican">
-	<meta property="og:description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter ...">
+	<meta property="og:description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring ...">
 	<meta property="og:image" content="http://kevinyap.ca/theme/images/avatar512.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/">
@@ -73,7 +73,7 @@
 		<article class="twelve columns">
 	<h1 class="title"><a href="/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using Pelican</a></h1>
 	<h6 class="date">December 10, 2013</h6>
-	<div id="content">
+	<div class="content">
 		<p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
 <p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
