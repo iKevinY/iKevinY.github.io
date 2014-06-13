@@ -88,7 +88,6 @@
 	ol ol, ol ul { margin: 4px 0 5px 30px; font-size: 90%;  }
 	ul ul li, ul ol li,
 	ol ol li, ol ul li { margin-bottom: 6px; }
-	li { margin-bottom: 4px; }
 	ul.large li { line-height: 21px; }
 	li p { line-height: 21px; }
 
@@ -124,7 +123,6 @@
 		border-right: 1px solid #3d3d3d;
 		background: #eee;
 		padding: 0.5em 0.8em;
-		opacity: 0.8;
 		-webkit-user-select: none;
 		-khtml-user-select: none;
 		-moz-user-select: none;
@@ -136,8 +134,8 @@
 		margin: 0 1em;
 	}
 
+	/* Adds padding to code when scrolling long code blocks */
 	.codehilite > pre {
-		/* Adds padding on right when scrolling code blocks */
 		padding-right: 1em;
 	}
 
@@ -226,7 +224,6 @@
 	}
 
 	.date {
-		font-style: italic;
 		float: right;
 		margin: 8px 10px;
 	}
@@ -241,7 +238,6 @@
 	}
 
 	#view-archives {
-		margin-top: 5px;
 		text-align: right;
 	}
 
@@ -277,11 +273,11 @@
 
 		#sidebar img {
 			float: left;
-			margin: 0 10px 0 4px;
+			margin: 0 4px;
 		}
 
 		article {
-			margin-top: 118px !important;
+			margin-top: 120px !important;
 		}
 
 		#logo, #bio, #sidebar-links, #social {
@@ -302,11 +298,6 @@
 		}
 	}
 
-	/* Hide sidebar divider when screen is sufficiently large */
-	@media only screen and (min-width: 400px) {
-		#sidebar-divider { display: none; }
-	}
-
 
 /* Tablet-Specific Tweaks (Portrait)
 ================================================== */
@@ -320,6 +311,10 @@
 		.date {
 			float: right;
 			padding-right: 10px;
+		}
+
+		#sidebar-divider {
+			display: none;
 		}
 	}
 
