@@ -53,14 +53,14 @@
 
 <body>
 	<div class="container">
-		<aside id="sidebar" class="side column">
+		<aside id="sidebar" class="side-column">
 			<a href="/"><img id="avatar" src="/theme/images/avatar.png"></a>
-			<p id="logo"><a href="/">Kevin Yap</a></p>
-			<p id="bio">Developer and musician from Vancouver, BC.</p>
-			<div id="sidebar-links">
+			<p id="logo" class="text-center"><a href="/">Kevin Yap</a></p>
+			<p id="bio" class="text-center">Developer and musician from Vancouver, BC.</p>
+			<div id="sidebar-links" class="text-center">
 				<h3><a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a></h3>
 			</div>
-				<div id="social">
+				<div id="social" class="text-center">
 					<a href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca" title="Email" class="icon fa fa-envelope"></a>
 					<a href="http://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
 					<a href="http://plus.google.com/+KevinYapCA" title="Google+" class="icon fa fa-google-plus-square"></a>
@@ -70,7 +70,7 @@
 			<hr id="sidebar-divider" class="large">
 		</aside> <!-- sidebar -->
 
-		<article class="main column">
+		<article class="main-column">
 	<h1 class="title"><a href="/2014/06/deploying-pelican-sites-using-travis-ci/" title="Permalink to Deploying Pelican Sites Using Travis CI">Deploying Pelican Sites Using Travis CI</a></h1>
 	<h6 class="date">June 11, 2014</h6>
 	<div class="content">
@@ -119,7 +119,7 @@ M  index.html
 <p>Since my version of <code>deploy.sh</code> was based on the script that I used to test and deploy changes locally, I wrote it so that it could be executed from a local development machine by checking against the <code>$TRAVIS</code> variable. When run locally, it can be used to check what changes would be pushed to the GitHub Pages branch given the modifications that have been made locally. In practice, it wouldn&#8217;t ever be useful to push changes manually since Travis would automatically repeat the exact same steps, but if the integration between GitHub and Travis were to ever stop working, I would still have a way to make modifications to the GitHub Pages&nbsp;branch.</p>
 	</div>
 		<div id="related-articles">
-				<a href="/2014/01/on-programming-and-turtles/" id="previous-neighbour">On Programming and Turtles &raquo;</a>
+				<a href="/2014/01/on-programming-and-turtles/" id="prev-neighbour">On Programming and Turtles &raquo;</a>
 		</div>
 	<hr class="large">
 		<!-- Disqus -->
@@ -134,7 +134,7 @@ M  index.html
 		</script>
 		</article>
 
-		<footer class="main column">
+		<footer class="column main-column text-center">
 			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
 		</footer>
 	</div> <!-- container -->
