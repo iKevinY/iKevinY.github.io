@@ -72,10 +72,10 @@
 	hr.large { height: 3px; margin: 10px; }
 
 	a, a:visited { color: #333; text-decoration: none; font-weight: bold; outline: 0; }
-	a:hover, a:focus { color: #000; }
+	a:hover, a:focus { color: #000; text-decoration: underline; }
 	p a, p a:visited { line-height: inherit; }
 	a.icon, a:visited.icon, a:active.icon { padding: 0 2px; font-size: 20px; color: #555; }
-	a:hover.icon, a:focus.icon { color: #222; }
+	a:hover.icon, a:focus.icon { color: #222; text-decoration: none; }
 
 	ul, ol { margin: 12px 0 12px 30px; }
 	ul { list-style: none outside; list-style-type: disc; }
