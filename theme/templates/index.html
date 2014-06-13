@@ -21,9 +21,7 @@
 			<p>{{ article.summary|striptags }} <a class="read-more" href="{{ article.url }}">read more</a></p>
 		</div>
 		{% if loop.last %}
-		<div id="view-archives">
-			<a href="/archive">See all posts &raquo;</a>
-		</div>
+		<div id="view-archives"><a href="/archive">See all posts &raquo;</a></div>
 		{% endif %}
 		<hr class="large">
 	{% endfor %}
