@@ -33,8 +33,10 @@
 			{% endif %}
 		</div>
 	{% endif %}
-	<hr class="large">
+
 	{% if DISQUS_SITENAME and article.status != "draft" %}
+		<hr class="large">
+
 		<!-- Disqus -->
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
