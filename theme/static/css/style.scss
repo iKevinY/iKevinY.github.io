@@ -295,7 +295,9 @@ footer {
 }
 
 .date {
+	@extend h6;
 	float: right;
+	display: block;
 	margin: 6px 10px;
 }
 
