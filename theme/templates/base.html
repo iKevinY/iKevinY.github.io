@@ -31,9 +31,7 @@
 	<link rel="icon" type="image/png" href="/theme/images/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
 	{% endfor %}
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
 <body>
@@ -47,13 +45,13 @@
 			</div>
 			{% if SOCIAL_ICONS %}
 				<div id="social" class="text-center">
-				{% for icon in SOCIAL_ICONS %}
+					{% for icon in SOCIAL_ICONS %}
 					<a href="{{ icon[0] }}" title="{{ icon[1] }}" class="icon {{ icon[2] }}"></a>
-				{% endfor %}
-				</div> <!-- social -->
+					{% endfor %}
+				</div>
 			{% endif %}
 			<hr id="sidebar-divider" class="large">
-		</aside> <!-- sidebar -->
+		</aside>
 
 		<article class="main-column">
 			{% block content %}{% endblock %}
