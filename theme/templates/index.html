@@ -20,9 +20,7 @@
 		<div class="content">
 			<p>{{ article.summary|striptags }} <a class="read-more" href="{{ article.url }}">read more</a></p>
 		</div>
-		{% if not loop.last %}
-		<br>
-		{% endif %}
+		{% if not loop.last %}<br>{% endif %}
 	{% endfor %}
 	<div id="view-archives"><a href="/archive/">Older Posts &raquo;</a></div>
 {% endblock %}
