@@ -57,14 +57,12 @@ p {
 
 	img { margin: 0; }
 	.lead { font-size: 21px; line-height: 27px; color: #777; }
-	a, a:visited { line-height: inherit; }
+	a { line-height: inherit; }
 }
 
 em { font-style: italic; }
 strong { font-weight: bold; color: #333; }
 small { font-size: 80%; }
-
-.text-center { text-align: center; }
 
 blockquote {
 	margin: 20px 0 20px 3px;
@@ -134,17 +132,8 @@ ul, ol {
 	}
 }
 
-ul {
-	list-style: square outside;
-}
-
-ol {
-	list-style: decimal;
-}
-
-li p {
-	line-height: 21px;
-}
+ul { list-style: square outside; }
+ol { list-style: decimal; }
 
 abbr, acronym, .abbr {
 	cursor: help;
@@ -191,7 +180,7 @@ code {
 .codehilite {
 	margin: 0 1em;
 
-	// Adds padding to code when scrolling long code blocks
+	// Adds padding to edge of code when scrolling horizontally
 	> pre { padding-right: 1em; }
 }
 
@@ -199,18 +188,17 @@ code {
     background: #fafafa;
     margin: 20px 0;
     padding: 10px 25px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border: solid #ccc;
+    border-width: 1px 0;
 }
 
 .admonition-title {
-	font: 21px/30px "Georgia", "Times New Roman", serif;
-	color: #181818;
+	@extend h2;
+	margin: 12px 0;
 }
 
-.read-more {
-	font-size: 90%;
-}
+.read-more { font-size: 90%; }
+.text-center { text-align: center; }
 
 
 // Site Layout
@@ -227,7 +215,7 @@ $mobile: "only screen and (max-width: 699px)";
 	position: relative;
 	width: 960px;
 	margin: 0 auto;
-	padding: 50px 0 0 0;
+	padding-top: 50px;
 
 	@media #{$mobile} { width: 95%; }
 	@media #{$tablet} { width: 90%; }
@@ -254,14 +242,23 @@ $mobile: "only screen and (max-width: 699px)";
 	}
 }
 
-footer, article {
+article {
 	float: right !important;
+
+	img {
+		max-width: 90%;
+		margin: 0 auto;
+		display: block;
+	}
 }
 
-article img {
-	max-width: 90%;
-	margin: 0 auto;
-	display: block;
+footer {
+	float: right !important;
+
+	p {
+		text-align: center;
+		margin-bottom: 16px;
+	}
 }
 
 #avatar {
@@ -331,11 +328,11 @@ article img {
 		top: 8px;
 		left: 0;
 		right: 0;
-	}
 
-	#sidebar img {
-		float: left;
-		margin: 0 4px;
+		img {
+			float: left;
+			margin: 0 4px;
+		}
 	}
 
 	article {
