@@ -198,8 +198,7 @@ code {
 
 $desktop: "only screen and (min-width: 960px)";
 $handheld: "only screen and (max-width: 959px)";
-$tablet: "only screen and (min-width: 700px) and (max-width: 959px)";
-$mobile: "only screen and (max-width: 699px)";
+$mobile: "only screen and (max-width: 767px)";
 
 html, body {
 	height: 100%;
@@ -212,9 +211,7 @@ html, body {
 	padding-top: 50px;
 
 	@media only print { width: 80%; margin-top: -20px; }
-	@media #{$mobile} { width: 95%; }
-	@media #{$tablet} { width: 90%; }
-
+	@media #{$handheld} { width: 90%; }
 	@media #{$desktop} {
 		.side-column, .main-column {
 			margin: 0 10px;
@@ -234,7 +231,7 @@ html, body {
 }
 
 article img {
-	max-width: 90%;
+	max-width: 95%;
 	margin: 0 auto;
 	display: block;
 }
@@ -242,6 +239,10 @@ article img {
 footer p {
 	text-align: center;
 	padding-bottom: 10px;
+}
+
+#sidebar div {
+	margin: 12px 0;
 }
 
 #avatar {
@@ -254,7 +255,6 @@ footer p {
 #logo {
 	font-size: 26px;
 	line-height: 34px;
-	margin-bottom: 10px;
 	letter-spacing: -0.5px;
 }
 
@@ -266,7 +266,6 @@ footer p {
 
 #sidebar-links {
 	@extend h3;
-	margin: 12px 0;
 }
 
 #sidebar-divider {
@@ -309,25 +308,19 @@ footer p {
 @media #{$handheld} {
 	#sidebar {
 		position: absolute;
-		width: 300px;
+		width: 280px;
 		margin: 0 auto;
+		padding: 0 4px;
 		top: 8px;
 		left: 0;
 		right: 0;
+
+		div { margin: 5px 0; }
 	}
 
-	#avatar {
-		float: left;
-		margin: 0 4px;
-	}
-
-	#logo, #bio, #sidebar-links, #social {
-		margin: 5px 0;
-	}
-
-	article {
-		margin-top: 120px !important;
-	}
+	#avatar { float: left; }
+	#social .icon { padding: 0 1px; }
+	article { margin-top: 120px !important; }
 }
 
 @media #{$mobile} {
@@ -336,13 +329,7 @@ footer p {
 		float: none;
 	}
 
-	.content {
-		margin: 0 5px;
-	}
-
-	#sidebar-divider {
-		display: block;
-	}
+	#sidebar-divider { display: block; }
 }
 
 @media only print {
@@ -350,7 +337,5 @@ footer p {
 		display: none !important;
 	}
 
-	p a:after {
-		content:" ["attr(href)"]";
-	}
+	p a:after { content:" ["attr(href)"]"; }
 }
