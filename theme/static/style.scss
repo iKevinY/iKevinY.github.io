@@ -194,7 +194,7 @@ code {
 .text-center { text-align: center; }
 
 
-// Site Layout
+// Layout
 
 $desktop: "only screen and (min-width: 960px)";
 $handheld: "only screen and (max-width: 959px)";
@@ -213,17 +213,19 @@ html, body {
 	@media only print { width: 80%; margin-top: -20px; }
 	@media #{$handheld} { width: 90%; }
 	@media #{$desktop} {
-		.side-column, .main-column {
+		@mixin column {
 			margin: 0 10px;
 		}
 
 		.side-column {
+			@include column;
 			float: left;
 			width: 160px;
 			position: fixed;
 		}
 
 		.main-column {
+			@include column;
 			float: right;
 			width: 700px;
 		}
