@@ -69,8 +69,7 @@ EXTRA_PATH_METADATA = {
 }
 
 PLUGIN_PATH = ['plugins']
-PLUGINS = ['assets', 'neighbors', 'render_math']
-MATH = {'auto_insert': False}
+PLUGINS = ['assets', 'neighbors']
 ASSET_CONFIG = (
 	('url_expire', False),
 	('versions', False),
