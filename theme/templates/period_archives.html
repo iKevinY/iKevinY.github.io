@@ -10,7 +10,7 @@
 			<h2><a href="/{{ date_month[0].date.strftime('%Y/%m') }}/">{{ date_month[0].date.strftime('%B') }}</a></h2>
 			{% endif %}
 			<ul>
-				{% for article in date_month | sort(attribute='date', reverse=True) %}
+				{% for article in date_month | sort(attribute='date') %}
 				<li>{{ article.locale_date }} &raquo; <a href="/{{ article.url }}">{{ article.title }}</a></li>
 				{% endfor %}
 			</ul>
