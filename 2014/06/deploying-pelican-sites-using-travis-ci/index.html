@@ -69,7 +69,7 @@
 		</aside>
 
 		<article class="main-column">
-	<h1 class="title"><a href="/2014/06/deploying-pelican-sites-using-travis-ci/" title="Permalink to Deploying Pelican Sites Using Travis CI">Deploying Pelican Sites Using Travis CI</a></h1>
+	<h1 class="title"><a href="/2014/06/deploying-pelican-sites-using-travis-ci/" title="Permalink to Deploying Pelican Sites Using Travis CI">Deploying Pelican Sites Using Travis <span class="caps">CI</span></a></h1>
 	<time class="date" datetime="2014-06-11 00:00:00">June 11, 2014</time>
 	<div class="content">
 		<p>After learning about Travis <span class="caps">CI</span> through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow <a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/">based on GitHub Pages</a>. Even though Pelican is a static site generator, adding Travis <span class="caps">CI</span> into the mix would allow changes to the theme or content to be made from anywhere that can push to a Git repository &#8212; even directly from the GitHub website &#8212; and the newly generated files would be pushed to the live server in a fairly timely manner, almost like a WordPress site. Thankfully, quite a few other people had already combined Pelican and Travis <span class="caps">CI</span>, so setting it up was fairly&nbsp;straightforward.</p>
@@ -117,7 +117,7 @@ M  index.html
 <p>Since my version of <code>deploy.sh</code> was based on the script that I used to test and deploy changes locally, I wrote it so that it could be executed from a local development machine by checking against the <code>$TRAVIS</code> variable. When run locally, it can be used to check what changes would be pushed to the GitHub Pages branch given the modifications that have been made locally. In practice, it wouldn&#8217;t ever be useful to push changes manually since Travis would automatically repeat the exact same steps, but if the integration between GitHub and Travis were to ever stop working, I would still have a way to make modifications to the GitHub Pages&nbsp;branch.</p>
 	</div>
 		<div id="related-articles">
-				<a href="/2014/01/on-programming-and-turtles/" id="prev-neighbour">On Programming and Turtles &raquo;</a>
+				<a href="/2014/01/on-programming-and-turtles/" id="prev-neighbour">On Programming and Turtles &raquo;</a>
 		</div>
 
 		<hr class="large">
