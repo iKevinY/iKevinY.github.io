@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas
+	================================================== -->
+	<meta charset="utf-8">
+	<title>EulerPy — Streamlining Project Euler | Kevin Yap</title>
+	<meta name="description" content="As someone relatively new to the world of programming, I’m always looking for resources that will help me become more experienced. I had read the name Project Euler countless times, but had attempted to work through the problems before, and ultimately became annoyed at the process of solving the ...">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Twitter Cards and Open Graph
+	================================================== -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="EulerPy — Streamlining Project Euler">
+	<meta property="og:description" content="As someone relatively new to the world of programming, I’m always looking for resources that will help me become more experienced. I had read the name Project Euler countless times, but had attempted to work through the problems before, and ultimately became annoyed at the process of solving the ...">
+	<meta property="og:image" content="http://kevinyap.ca/theme/images/avatar512.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2014/06/eulerpy-streamlining-project-euler/">
+
+	<!-- Stylesheets
+	================================================== -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/theme/images/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/theme/images/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/theme/images/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/theme/images/apple-touch-icon-152x152.png">
+
+	<link rel="icon" type="image/png" href="/theme/images/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-196x196.png" sizes="196x196">
+
+	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside id="sidebar" class="side-column">
+			<a href="/"><img id="avatar" src="/theme/images/avatar.png"></a>
+			<div id="logo" class="text-center"><a href="/">Kevin Yap</a></div>
+			<div id="bio" class="text-center">Developer and musician from Vancouver, BC.</div>
+			<div id="sidebar-links" class="text-center">
+				<a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a>
+			</div>
+			<div id="social" class="text-center">
+				<a href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca" title="Email" class="icon fa fa-envelope"></a>
+				<a href="http://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="http://plus.google.com/+KevinYapCA" title="Google+" class="icon fa fa-google-plus-square"></a>
+				<a href="http://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+				<a href="http://soundcloud.com/iKevinY" title="SoundCloud" class="icon fa fa-soundcloud"></a>
+			</div>
+			<hr id="sidebar-divider" class="large">
+		</aside>
+
+		<article class="main-column">
+	<h1 class="title"><a href="/2014/06/eulerpy-streamlining-project-euler/" title="Permalink to EulerPy — Streamlining Project Euler">EulerPy &#8212; Streamlining Project&nbsp;Euler</a></h1>
+	<time class="date" datetime="2014-06-27 00:00:00">June 27, 2014</time>
+	<div class="content">
+		<p>As someone relatively new to the world of programming, I&#8217;m always looking for resources that will help me become more experienced. I had read the name <a href="http://projecteuler.net">Project Euler</a> countless times, but had attempted to work through the problems before, and ultimately became annoyed at the process of solving the problems. I had to switch between writing code in Sublime Text, debugging the output in Terminal, and finally, comparing my solution to the accepted solution found somewhere on the Internet. Because of this, I put Project Euler on the&nbsp;backburner.</p>
+<p>When learning about the world of programming, I was fascinated by the fact that you could install  packages or formulae with a simple <code>pip install</code> or <code>brew install</code> command from the terminal and instantly be able to run it, and was determined to write my own package (if only for the novelty of being able to <code>pip install</code> something that I had&nbsp;written).</p>
+<p>It wasn&#8217;t until a few weeks ago that the thought of going through the Project Euler problems revisited my mind, and of course, it was during the point of time when Project Euler was down. Remembering my prior experience with Project Euler, I set out to write a tool that would streamline the process of solving problems &#8212; <a href="https://github.com/iKevinY/EulerPy">EulerPy</a>. Essentially, it helps with two aspects of Project Euler: it creates a file containing a docstring with the problem as its body (for reference), and it verifies whether a problem has been solved&nbsp;correctly.</p>
+<p>I started out with an idea where the script would parse the problem&#8217;s page on Project Euler using a library like Beautiful Soup in order to determine the problem body. I had a working prototype and was testing it on problems, and all seemed to be well until I got to <a href="http://projecteuler.net/problem=4">problem #4</a>, where the times symbol is displayed as an image rather than a character. I then did some searching and found a feature on Project Euler where a minimal version of the problem text could be accessed through a <code>/minimal=n</code> page where <code>n</code> is the problem number. However, I think that this functionality was linked to the Project Euler account system, and since it was only brought back as a static site, it is not accessible anymore. While I could have improved the logic of the script to automatically translate images to their text-based equivalents, I realize that this wasn&#8217;t the best solution at all, since it would require Internet access to fetch new&nbsp;problems.</p>
+<p>After some more searching, I came across Kyle Keen&#8217;s <a href="http://kmkeen.com/local-euler/">Local Euler</a> project, which contains a text-only version of problems 1 through 202, which was plenty to get started with, so I rewrote the script to read from a modified version of this text file. There&#8217;s probably a much better way to store the problems that I&#8217;m simply not aware of, but I figured a text file is fairly good considering it can easily&nbsp;maintained.</p>
+<p>Making use of Armin Ronacher&#8217;s <a href="https://github.com/mitsuhiko/click">click</a> library to parse command line arguments, I put together EulerPy. I tried to make it as easy as possible to solve Project Euler problems. With this goal in mind, I wrote the package so that it would check the output of a <code>.py</code> file containing the attempted solution to the problem. Because of this, some of the problems can be solved with simple <code>print</code> one-liners, allowing the ability to quickly run <code>euler</code> to move on to the next&nbsp;problem.</p>
+<p>Also convenient is the fact that the <code>euler</code> command itself will automatically print the output of the Project Euler file to the terminal. Because of this, debugging is made (ever so slightly) easier by the fact that you don&#8217;t need to switch between two different commands when testing the output of the problem file and verifying if it outputs the correct&nbsp;solution.</p>
+<p>Having just been introduced to Travis <span class="caps">CI</span> after setting it up to <a href="http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/">automatically deploy</a> the latest version of my website, I figured it would be interesting to set it up for EulerPy as well. I ended up writting a couple of simple tests to ensure anyone updating <code>problems.txt</code> had not transcribed the problems in an errant&nbsp;fashion.</p>
+<p>Hopefully there aren&#8217;t too many <em>faux pas</em> in my coding, as EulerPy is one of my first Python&nbsp;projects.</p>
+	</div>
+		<div id="related-articles">
+				<a href="/2014/06/deploying-pelican-sites-using-travis-ci/" id="prev-neighbour">Deploying Pelican Sites Using Travis CI &raquo;</a>
+		</div>
+
+		<hr class="large">
+
+		<!-- Disqus -->
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'kevinyap';
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+			<hr class="large">
+		</article>
+
+		<footer class="column main-column">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div> <!-- container -->
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-41937659-1', 'kevinyap.ca');
+		ga('send', 'pageview');
+	</script>
+
+</body>
+</html>
