@@ -64,6 +64,7 @@ STATIC_PATHS = ['images', 'uploads', 'extra']
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/keybase.txt': {'path': 'keybase.txt'},
     'extra/robots.txt': {'path': 'robots.txt'},
 }
 
