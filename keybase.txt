@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/ikeviny
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://kevinyap.ca
+  * I am ikeviny (https://keybase.io/ikeviny) on keybase.
+  * I have a public key with fingerprint 9BD6 97EF 528B 303B 13B1  9572 A407 5683 03DB F75D
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "9bd697ef528b303b13b19572a407568303dbf75d",
+            "host": "keybase.io",
+            "key_id": "a407568303dbf75d",
+            "uid": "8004e158401f21618610915a01711900",
+            "username": "ikeviny"
+        },
+        "service": {
+            "hostname": "kevinyap.ca",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1405362821,
+    "expire_in": 157680000,
+    "prev": "d2b1cba9291de512f43330eb94127947c6bb559bdda6de7ffef0f524a3016128",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v0.1.23
+Comment: https://keybase.io/crypto
+
+yMHkAnicbZFrSBRdGMfXXLXsQlEvK0QXBlQMkXPmdln0DYoCP0RiWZHhMpczu4M6
+s87Mrm6LF7IQ8TV8LfsSWSJIfgmFNEEKEdEthaiQFF2k20uIrwpd0CD1jNm34MAw
+/+f3/z/POc/I7kRXakKRe7ShtSpemDA+tBRynRshbkQJyVAihDdKlKLNj6rpfmQG
+TU23CS8hSAorcEhlSF6iACVBfASGI0UacAzLY0mRVI5RiGwiYFiOA8dIooVyNANr
++MenKVj9Ax/aLPAA0AgyPA2gSkIW8iwEAmREADkIBQAc0EKmLpYjTGulKKzpEaI6
+m8BiWJOxGN3svAX8qovBHFnEzqBp2IZslOFCwLaDXsdnR4IOWIkk31aET9J0Bd8a
+G8LItDRDJ7wQk7KtOZmQBgzFkjwJswlUFdRM5NMcguFYPDwAThsUxpEKKUFZEgVS
+gApiIKnSFEUBJAk0JDmB5mRWkhgGv6gisgriVBWpAD8sLVIAX5zkcX8LVegG4aXw
+mKIfR1qaXxftkImI6uGhK25XQqorOWmbszdX6o69v7dZnZ6yxnhayih12vc9Xhqb
+urla3p+X9TameGZTXrhXuuZaS1DbTmsiqfOv2bw9M81oVLz/rfH80dZgi+tIZjxe
+M1y75L/2X6T3bK/QkX7IniwI/IM6LhweW79++u6Jx6faM+w0DY4VXYyVDM572c7n
+/R+2L8hLGcc99UP7JJL/5IL/VnRdSvxYHxh1f/lRkv95cbzumVDxYPmJJzdUMNf9
+aD0r+f97869X3xTXXf0aHShs06e68o3AmfZ1O1npmwmnNNS+jNS8X5lrTOobOLh/
+urtx8nbPRGZT1buHuyqXO2d6mouP5Xa8GsyyTjbpQsz+u/fn0zQzt/zWgrGWdufA
+5cUNhHwWzw==
+=+Q56
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ikeviny
+
+==================================================================
