@@ -31,6 +31,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 $body-font: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $header-font: "Georgia", "Times New Roman", serif;
 $code-font: "Source Code Pro", monospace;
+$typogrify-font: Baskerville, Palatino, "Book Antiqua", serif;
 
 body {
 	background: #fff;
@@ -46,6 +47,12 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 
 	a { font-weight: inherit; }
+
+	.amp {
+		font-style: italic;
+		font-family: $typogrify-font;
+		line-height: 0;
+	}
 }
 
 h1 { font-size: 28px; line-height: 34px; margin-bottom: 8px; }
