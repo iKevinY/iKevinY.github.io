@@ -68,7 +68,7 @@ EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
 }
 
-PLUGIN_PATH = ['plugins']
+PLUGIN_PATHS = ['plugins']
 PLUGINS = ['assets', 'neighbors']
 ASSET_CONFIG = (
 	('url_expire', False),
