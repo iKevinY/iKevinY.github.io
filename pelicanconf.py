@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-# Site-specific settings (used by theme)
+# Theme settings
 SITENAME = 'Kevin Yap'
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
