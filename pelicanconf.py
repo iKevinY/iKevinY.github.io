@@ -3,13 +3,13 @@ from __future__ import unicode_literals
 
 # Theme settings
 SITENAME = 'Kevin Yap'
-INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 
 SITE_AUTHOR = 'Kevin Yap'
 TWITTER_USERNAME = '@iKevinY'
 GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
+INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 
 SOCIAL_ICONS = [
     ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca', 'Email', 'fa fa-envelope'),
@@ -30,8 +30,10 @@ DEFAULT_PAGINATION = False
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
+
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = PAGE_URL + 'index.html'
+
 ARCHIVES_SAVE_AS = 'archive/index.html'
 YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
