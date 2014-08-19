@@ -11,12 +11,17 @@ TWITTER_USERNAME = '@iKevinY'
 GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 
+SIDEBAR_LINKS = [
+    '<a href="/about/">About</a>',
+    '<a href="/projects/">Projects</a>',
+]
+
 SOCIAL_ICONS = [
-    ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca', 'Email', 'fa fa-envelope'),
-    ('http://twitter.com/iKevinY', 'Twitter', 'fa fa-twitter'),
-    ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa fa-google-plus-square'),
-    ('http://github.com/iKevinY', 'GitHub', 'fa fa-github'),
-    ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa fa-soundcloud'),
+    ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca', 'Email', 'fa-envelope'),
+    ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
+    ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa-google-plus-square'),
+    ('http://github.com/iKevinY', 'GitHub', 'fa-github'),
+    ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa-soundcloud'),
 ]
 
 # General Pelican settings
