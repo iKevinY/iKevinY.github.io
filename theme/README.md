@@ -4,8 +4,8 @@ This Pelican theme is derived from a [theme](https://github.com/gjreda/gregreda.
 
 ## Screenshots
 
-[!Index Page](theme/screenshots/index.png?raw=true)
+![Index Page](screenshots/index.png?raw=true)
 
-[!Article](theme/screenshots/article.png?raw=true)
+![Article](screenshots/article.png?raw=true)
 
-[!Archive](theme/screenshots/archive.png?raw=true)
+![Archive](screenshots/archive.png?raw=true)
