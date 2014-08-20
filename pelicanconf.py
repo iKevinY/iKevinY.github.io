@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-# Theme settings
+# Theme-specific settings
 SITENAME = 'Kevin Yap'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
@@ -24,7 +21,7 @@ SOCIAL_ICONS = [
     ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa-soundcloud'),
 ]
 
-# General Pelican settings
+# Pelican settings
 RELATIVE_URLS = True
 SITEURL = 'http://localhost'
 THEME = 'theme'
@@ -62,18 +59,13 @@ OUTPUT_PATH = 'develop/'
 CACHE_CONTENT = False
 PATH = 'content/'
 
-TEMPLATE_PAGES = {
-	'404.html': '404.html',
-}
+templates = ['404.html']
+TEMPLATE_PAGES = {page: page for page in templates}
 
 STATIC_PATHS = ['images', 'uploads', 'extra']
 
-EXTRA_PATH_METADATA = {
-    'extra/CNAME': {'path': 'CNAME'},
-    'extra/favicon.ico': {'path': 'favicon.ico'},
-    'extra/keybase.txt': {'path': 'keybase.txt'},
-    'extra/robots.txt': {'path': 'robots.txt'},
-}
+extras = ['CNAME', 'favicon.ico', 'keybase.txt', 'robots.txt']
+EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
 PLUGINS = ['assets', 'neighbors']

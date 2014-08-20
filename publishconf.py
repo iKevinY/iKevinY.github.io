@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+"""Settings that are only applied when publishing the site."""
 
 import sys, os
 sys.path.append(os.getcwd())
-from pelicanconf import *
 
-"""Contains settings that are only applied when publishing the site."""
+from pelicanconf import *
 
 SITEURL = 'http://kevinyap.ca'
 RELATIVE_URLS = False
