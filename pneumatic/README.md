@@ -1,4 +1,8 @@
-This (currently nameless) single-author Pelican theme is derived from a [theme](https://github.com/gjreda/gregreda.com/tree/master/theme/simply) developed by [Greg Reda](http://www.gregreda.com) based on the [Skeleton](http://www.getskeleton.com) framework. There are no templates for author, category, and tag pages, so `AUTHORS_SAVE_AS`, `CATEGORY_SAVE_AS`, `CATEGORIES_SAVE_AS`, and `TAGS_SAVE_AS` should all be set to `''`. Here are theme-specific settings that should be present in the Pelican configuration file:
+# Pneumatic
+
+Pneumatic is a single-author [Pelican](http://getpelican.com) theme derived from a [theme](https://github.com/gjreda/gregreda.com/tree/master/theme/simply) developed by [Greg Reda](http://www.gregreda.com). It was named due to the fact that it is based on the [Skeleton](http://www.getskeleton.com) framework, and pelicans (like most birds) possess [skeletal pneumaticity](http://en.wikipedia.org/wiki/Skeletal_pneumaticity).
+
+There are no templates for author, category, and tag pages, so `AUTHORS_SAVE_AS`, `CATEGORY_SAVE_AS`, `CATEGORIES_SAVE_AS`, and `TAGS_SAVE_AS` should all be set to `''`. Here are theme-specific settings that should be present in the Pelican configuration file:
 
 |  Setting            | Description                                            |
 |:-------------------:|--------------------------------------------------------|
@@ -22,3 +26,5 @@ This (currently nameless) single-author Pelican theme is derived from a [theme](
 ![Article](screenshots/article.png?raw=true)
 
 ![Archive](screenshots/archive.png?raw=true)
+
+![Mobile](screenshots/mobile.png?raw=true)

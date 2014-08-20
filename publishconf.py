@@ -1,4 +1,4 @@
-"""Settings that are only applied when publishing the site."""
+"""Settings that are only applied when being published."""
 
 import sys, os
 sys.path.append(os.getcwd())

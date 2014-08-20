@@ -24,7 +24,7 @@ SOCIAL_ICONS = [
 # Pelican settings
 RELATIVE_URLS = True
 SITEURL = 'http://localhost'
-THEME = 'theme'
+THEME = 'pneumatic'
 TIMEZONE = 'America/Vancouver'
 
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
