@@ -1,6 +1,6 @@
 This (currently nameless) single-author Pelican theme is derived from a [theme](https://github.com/gjreda/gregreda.com/tree/master/theme/simply) developed by [Greg Reda](http://www.gregreda.com) based on the [Skeleton](http://www.getskeleton.com) framework. There are no templates for author, category, and tag pages, so `AUTHORS_SAVE_AS`, `CATEGORY_SAVE_AS`, `CATEGORIES_SAVE_AS`, and `TAGS_SAVE_AS` should all be set to `''`. Here are theme-specific settings that should be present in the Pelican configuration file:
 
-|  Variable           | Description                                            |
+|  Setting            | Description                                            |
 |:-------------------:|--------------------------------------------------------|
 | `SITENAME`          | Text displayed under avatar in sidebar                 |
 | `BIO_TEXT`          | Text displayed under site name                         |
@@ -11,6 +11,8 @@ This (currently nameless) single-author Pelican theme is derived from a [theme](
 | `INDEX_DESCRIPTION` | Used for description `<meta>` on index page            |
 | `SIDEBAR_LINKS`     | List of links displayed under bio text                 |
 | `SOCIAL_ICONS`      | List of tuples in the form `(link, title, icon-class)` |
+| `DISQUS_SITENAME`   | Disqus shortname                                       |
+| `GOOGLE_ANALYTICS`  | Google Analytics tracking code                         |
 
 
 ## Screenshots
