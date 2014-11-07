@@ -63,15 +63,17 @@ templates = ['404.html']
 TEMPLATE_PAGES = {page: page for page in templates}
 
 STATIC_PATHS = ['images', 'uploads', 'extra']
+IGNORE_FILES = ['.DS_Store']
 
 extras = ['CNAME', 'favicon.ico', 'keybase.txt', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
 PLUGINS = ['assets', 'neighbors']
-ASSET_CONFIG = (
-	('url_expire', False),
-	('versions', False),
-	('manifest', False),
-	('cache', False),
-)
+ASSET_SOURCE_PATHS = ['static']
+ASSET_CONFIG = [
+    ('cache', False),
+    ('manifest', False),
+    ('url_expire', False),
+    ('versions', False),
+]

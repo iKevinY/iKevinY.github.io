@@ -1,7 +1,6 @@
 cssmin==0.2.0
-Markdown==2.4.1
-pelican==3.4.0
+Markdown==2.5.1
+pelican==3.5.0
 Pygments==1.6
-smartypants==1.8.3
-typogrify==2.0.4
-webassets==0.9
+typogrify==2.0.7
+webassets==0.10.1
