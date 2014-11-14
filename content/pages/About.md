@@ -1,4 +1,5 @@
-Title: About
+Title: About Me
+Slug: about
 
 I am a developer and musician from Vancouver, BC, and can be found as [@iKevinY](https://twitter.com/iKevinY) on most online services. I enjoy programming, composing music, and playing the piano. Pictured in my avatar is the [lilac-breasted roller](https://en.wikipedia.org/wiki/Lilac-breasted_Roller).
 
