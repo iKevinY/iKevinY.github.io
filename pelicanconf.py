@@ -1,5 +1,6 @@
 # Theme-specific settings
 SITENAME = 'Kevin Yap'
+DOMAIN = 'kevinyap.ca'
 BIO_TEXT = 'Developer and musician from Vancouver, BC.'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 

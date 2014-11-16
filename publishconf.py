@@ -11,4 +11,3 @@ OUTPUT_PATH = 'output/'
 
 DISQUS_SITENAME = 'kevinyap'
 GOOGLE_ANALYTICS = 'UA-41937659-1'
-DOMAIN = 'kevinyap.ca'
