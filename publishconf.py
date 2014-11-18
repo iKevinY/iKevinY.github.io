@@ -1,5 +1,5 @@
-"""Settings that are only applied when being published."""
-
+# Add & modify settings that are only applied upon publish
+# (import settings that already exist in `pelicanconf.py`).
 import sys, os
 sys.path.append(os.getcwd())
 

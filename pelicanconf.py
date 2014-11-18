@@ -25,11 +25,11 @@ SOCIAL_ICONS = [
 # Pelican settings
 RELATIVE_URLS = True
 SITEURL = 'http://localhost'
-THEME = 'pneumatic'
 TIMEZONE = 'America/Vancouver'
-
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
 DEFAULT_PAGINATION = False
+
+THEME = 'pneumatic'
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
