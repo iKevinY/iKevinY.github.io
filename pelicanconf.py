@@ -14,6 +14,12 @@ SIDEBAR_LINKS = [
     '<a href="/projects/">Projects</a>',
 ]
 
+GOOGLE_FONTS = [
+    "Merriweather",
+    "Open Sans",
+    "Source Code Pro",
+]
+
 SOCIAL_ICONS = [
     ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca', 'Email', 'fa-envelope'),
     ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
