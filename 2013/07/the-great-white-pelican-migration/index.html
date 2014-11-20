@@ -58,9 +58,11 @@
 			<a href="/"><img id="avatar" alt="Site Avatar" src="/theme/images/avatar.png"></a>
 			<div id="logo" class="text-center"><a href="/">Kevin Yap</a></div>
 			<div id="bio" class="text-center">Developer and musician from Vancouver, BC.</div>
+
 			<div id="sidebar-links" class="text-center">
 				<a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a>
 			</div>
+
 			<div id="social" class="text-center">
 				<a href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca" title="Email" class="icon fa fa-envelope"></a>
 				<a href="http://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
@@ -68,6 +70,7 @@
 				<a href="http://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
 				<a href="http://soundcloud.com/iKevinY" title="SoundCloud" class="icon fa fa-soundcloud"></a>
 			</div>
+
 			<hr id="sidebar-divider" class="large">
 		</aside>
 
@@ -81,23 +84,24 @@
 <p>One minor hitch that I had was with setting up the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for Markdown. In the configuration file for Pelican, I had the entry <code>MD_EXTENSIONS = ['codehilite']</code>, as the documentation stated that <code>MD_EXTENSIONS</code> needed to be defined as a list. Although this did not raise any warnings when generating the site through Pelican. When I added the <a href="http://pythonhosted.org/Markdown/extensions/extra.html">Markdown Extra</a> to the list of extensions &#8212; <code>MD_EXTENSIONS = ['codehilite', 'extra']</code> &#8212; the code highlighting worked. Apparently there needed to be more than one item in the list of Markdown&nbsp;extensions.</p>
 <p>Many thanks to Greg Reda whose Pelican theme (which can be found in the <a href="http://github.com/gjreda/gregreda.com">GitHub repository</a> for his website) I am currently using on my&nbsp;website.</p>
 	</div>
-		<div id="related-articles">
-				<a href="/2013/12/hosting-with-github-pages/" id="next-neighbour">&laquo; Hosting With GitHub Pages</a>
-				<a href="/2012/11/the-power-of-applescript/" id="prev-neighbour">The Power of AppleScript &raquo;</a>
-		</div>
 
-		<hr class="large">
+	<div id="related-articles">
+		<a href="/2013/12/hosting-with-github-pages/" id="next-neighbour">&laquo; Hosting With GitHub Pages</a>
+		<a href="/2012/11/the-power-of-applescript/" id="prev-neighbour">The Power of AppleScript &raquo;</a>
+	</div>
 
-		<!-- Disqus -->
-		<div id="disqus_thread"></div>
-		<script type="text/javascript">
-			var disqus_shortname = 'kevinyap';
-			(function() {
-				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-			})();
-		</script>
+	<hr class="large">
+
+	<!-- Disqus -->
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'kevinyap';
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
 			<hr class="large">
 		</article>
 
