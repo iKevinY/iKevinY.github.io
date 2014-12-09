@@ -61,10 +61,10 @@ TRANSLATION_FEED_ATOM = None
 TYPOGRIFY = True
 MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra']
 
-DELETE_OUTPUT_DIRECTORY = True
-OUTPUT_PATH = 'develop/'
 CACHE_CONTENT = False
-PATH = 'content/'
+DELETE_OUTPUT_DIRECTORY = True
+OUTPUT_PATH = 'develop'
+PATH = 'content'
 
 templates = ['404.html']
 TEMPLATE_PAGES = {page: page for page in templates}
