@@ -15,8 +15,7 @@ SIDEBAR_LINKS = [
 ]
 
 GOOGLE_FONTS = [
-    "Merriweather",
-    "Open Sans",
+    "Raleway:400,600",
     "Source Code Pro",
 ]
 
