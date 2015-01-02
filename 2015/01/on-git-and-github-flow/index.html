@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>On Git and GitHub Flow | Kevin Yap</title>
+	<meta name="description" content="Recently, I have been making an added effort to seek out and contribute to open source projects on GitHub. The motivation behind this was largely the 24 Pull Requests project, which encourages developers to submit one pull request for each day in December leading up to Christmas. The prospect of ...">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="On Git and GitHub Flow">
+	<meta property="og:description" content="Recently, I have been making an added effort to seek out and contribute to open source projects on GitHub. The motivation behind this was largely the 24 Pull Requests project, which encourages developers to submit one pull request for each day in December leading up to Christmas. The prospect of ...">
+	<meta property="og:image" content="http://kevinyap.ca/theme/images/avatar512.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2015/01/on-git-and-github-flow/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Raleway:400,600|Source+Code+Pro" rel="stylesheet" type="text/css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/theme/images/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/theme/images/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/theme/images/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/theme/images/apple-touch-icon-152x152.png">
+
+	<link rel="icon" type="image/png" href="/theme/images/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="/theme/images/favicon-196x196.png" sizes="196x196">
+
+	<meta name="application-name" content="Kevin Yap">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-TileImage" content="theme/images/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="theme/images/mstile-small.png">
+	<meta name="msapplication-square150x150logo" content="theme/images/mstile-medium.png">
+	<meta name="msapplication-wide310x150logo" content="theme/images/mstile-wide.png">
+	<meta name="msapplication-square310x310logo" content="theme/images/mstile-large.png">
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside id="sidebar" class="side-column">
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/theme/images/avatar.png"></a>
+			<div id="logo" class="text-center"><a href="/">Kevin Yap</a></div>
+			<div id="bio" class="text-center">Developer and musician from Vancouver, BC.</div>
+
+			<div id="sidebar-links" class="text-center">
+				<a href="/about/">About</a>&ensp;&bull;&ensp;<a href="/projects/">Projects</a>
+			</div>
+
+			<div id="social" class="text-center">
+				<a href="m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca" title="Email" class="icon fa fa-envelope"></a>
+				<a href="http://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="http://plus.google.com/+KevinYapCA" title="Google+" class="icon fa fa-google-plus-square"></a>
+				<a href="http://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+				<a href="http://soundcloud.com/iKevinY" title="SoundCloud" class="icon fa fa-soundcloud"></a>
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article class="main-column">
+	<h1 class="title"><a href="/2015/01/on-git-and-github-flow/" title="Permalink to On Git and GitHub Flow">On Git and GitHub&nbsp;Flow</a></h1>
+	<time class="date" datetime="2015-01-01 00:00:00-08:00">January 01, 2015</time>
+	<div class="content">
+		<p>Recently, I have been making an added effort to seek out and contribute to open source projects on GitHub. The motivation behind this was largely the <a href="http://24pullrequests.com">24 Pull Requests</a> project, which encourages developers to submit one pull request for each day in December leading up to Christmas. The prospect of being a new contributor to a large, open source project can be daunting, especially to the novice programmer, so this little bit of extrinsic motivation was a nudge in the right&nbsp;direction.</p>
+<p>In learning how to properly make use of Git and GitHub, I&#8217;ve referenced a multitude of different resources. With 2015 having just arrived, I&#8217;m sure many people have &#8220;contribute to more open source projects&#8221; on their list of New Year&#8217;s resolutions as well, so hopefully this article serves as a useful starting&nbsp;point.</p>
+<h2>Finding a&nbsp;Project</h2>
+<p>Choosing a project is left as an exercise to the reader. However, here are my&nbsp;suggestions:</p>
+<ul>
+<li>
+<p>Look to see if any software you use on a regular basis is open source. Given your familiarity with the software, you will likely be able to identify (and hack on) some bugs or additional&nbsp;features.</p>
+</li>
+<li>
+<p>Check out <a href="https://github.com/trending">trending GitHub repositories</a> for languages that you&#8217;re familiar with or ones that you&#8217;re interested in learning, and pick one that seems friendly towards new contributors (most projects on GitHub are) and well-maintained. This technique is useful as you&#8217;ll be browsing across projects that your fellow open source developers have also deemed&nbsp;interesting.</p>
+</li>
+</ul>
+<p>Remember that even if you can&#8217;t contribute directly to the codebase due to lack of experience or being overwhelmed by the scale of the project, open source projects appreciate all sorts of contributions. While not as &#8220;prestigious&#8221;, documentation and unit tests are areas that inevitability need to be addressed, and are a good way to become familiar with the&nbsp;project.</p>
+<h2>Getting&nbsp;Started</h2>
+<p>The first step to using Git is installing it. You can do that from Git&#8217;s <a href="http://git-scm.com/downloads">download page</a>, or through a package manager like Homebrew. My suggestion is to learn Git from the command line, and to avoid using other Git clients; the command line is universal, so being familiar with it to start with will be beneficial in the long&nbsp;run.</p>
+<p>That being said, I do have <a href="https://mac.github.com">GitHub for Mac</a> installed and I use it fairly frequently for selectively choosing specific parts of a file to commit, which is fairly cumbersome to do from the command line. Also, I find looking through the changes that have been made is much easier with the GitHub application compared to using <code>git diff</code>.</p>
+<h2>Overview</h2>
+<p>Git tracks content modifications. It does so primarily through the use of commits. Commits can be thought of as snapshots in the development process, and contain authorship and timestamp information among other pieces of metadata. By committing frequently, it becomes trivial to rollback to an old commit if something goes disastrously (or if your simply don&#8217;t like the changes you made). Because of this, Git (and any other version control system) is extremely powerful, even for projects that aren&#8217;t collaborative in&nbsp;nature.</p>
+<p>There is a convention behind the formatting of commit messages that should be followed, given the collaborative nature of open source projects. The first (or only) line of the commit is a summary of the changes, 50 characters at most, in the imperative tense (as in <em>add</em>, not <em>added</em>). If you want to expand further, you should leave a blank line and on the third line, begin an extended description wrapped to 72&nbsp;characters.</p>
+<p>Unfortunately, after prolonged periods of time, the quality of commit messages tends to degrade (<a href="http://xkcd.com/1296/">relevant <span class="caps">XKCD</span></a>). Don&#8217;t worry about this, though, as you can avoid forcing others to look at your horribly crafted commit messages through a process known as <em>rebasing</em>, discussed later in this&nbsp;article.</p>
+<h2>Branches and Pull&nbsp;Requests</h2>
+<p>One concept that is central to Git and GitHub flow is branching. Branches are pointers to commits. When working on feature additions or fixes in a project, it is advisable to <em>always</em> work in a separate branch, and either merge or rebase &#8212; discussed later in much more detail &#8212; into the master branch upon&nbsp;competition.</p>
+<p>When you open a pull request on GitHub, the branch that you chose is noted. Pushing additional commits to that specific branch will result in them appearing in the pull request. This is one of the strongest cases for using a new branch for every feature or bug fix &#8212; it makes it trivial to open a pull request for that specific change, without incorporating any unrelated&nbsp;changes.</p>
+<h2>To Merge or Not to&nbsp;Merge</h2>
+<p>Merging is the process of merging the commits made in two branches into one branch. This is done when a branch that is being worked on is deemed complete, and the changes are to be merged into the master branch. In the simplest case (where the only commits that have been made are in the topic branch), this is known as a fast-forward merge, and the commits are &#8220;played on top of&#8221; the master branch. Fast-forward merges can be performed automatically by Git and require no additional effort on the part of the user performing the merge. In other cases, merging either results in a merge commit or the manual resolution of merge conflicts (if the changes made in the branches contradict one&nbsp;another).</p>
+<p>Something that Git tutorials tend to gloss over is the rebase command. The reason for this is that rebasing involves <em>rewriting history</em>. When you rebase a set of commits, they will change, and if the older set of commits have already been pushed to a remote repository that others have pulled from, pushing new changes will cause a break in continuity for others who try to pull these newly pushed commits. Because of this, it is recommended to only rebase local commits in most&nbsp;cases.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>git rebase -i HEAD~n  <span class="c"># rebase the last n commits</span>
+</pre></div>
+</td></tr></table>
+
+<p>The <code>-i</code> flag stands for <em>interactive</em>. Upon executing the command, your <code>$EDITOR</code> of choice will open with a list of commits from least recent to most recent preceded by the word&nbsp;&#8220;pick&#8221;:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre>pick a5b977a Ensure all expected resource files exist
+pick f08e801 Add problems 311–320
+pick 969f9e5 Update tests to ensure resource correspondence
+</pre></div>
+</td></tr></table>
+
+<p>Below the list of commits are some instructions about rebasing, including the available commands. To actually rebase, you make changes to the text in the editor and then close it. Here are the operations that you can&nbsp;perform:</p>
+<ul>
+<li>Delete the line, which will remove the commit&nbsp;entirely.</li>
+<li>Change &#8220;pick&#8221; to a different command, causing the rebase to execute that command&nbsp;instead.</li>
+<li>Rearrange the lines, which will rearrange the order of the&nbsp;commits.</li>
+</ul>
+<p>Typically, a project maintainer might ask for you to squash your pull request. What this actually involves doing is rebasing and using the &#8220;squash&#8221; command to turn multiple commits into just one or a couple logical commits. For example, if you wanted to turn the three commits listed above into one larger commit, you would edit the file to look like the&nbsp;following:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre>pick a5b977a Ensure all expected resource files exist
+squash f08e801 Add problems 311–320
+squash 969f9e5 Update tests to ensure resource correspondence
+</pre></div>
+</td></tr></table>
+
+<p>Upon closing the editor, a new editor will open up that allows you to edit the commit message of the newly created single commit. The commit messages of each of the commits being squashed are included for the sake of convenience, and when the editor is closed, the non-commented lines become the new commit&nbsp;message.</p>
+<p>I mentioned before that rebasing should only be done with local changes that have not been pushed to a remote repository, but in a pull request, by definition, the commits have already been pushed to your fork of the main repository. In this case, it is fine to rebase and push, since it can be assumed that people have not been actively making changes on the feature/fix branch that your pull request is based on. However, Git will not let you push the rebased commits using <code>git push</code> out of safety; you have to use <code>git push -f</code> to <em>force</em> the push to&nbsp;happen.</p>
+<p>For other Git-related problems that one may run into, Google can usually provide the answer. Be sure to look at <a href="https://help.github.com">GitHub&#8217;s help page</a> and the <a href="http://git-scm.com/doc">Git documentation</a> itself. Here&#8217;s to lots of open source contributions in&nbsp;2015!</p>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2014/06/eulerpy-streamlining-project-euler/" id="prev-neighbour">EulerPy — Streamlining Project Euler &raquo;</a>
+	</div>
+
+	<hr>
+
+	<!-- Disqus -->
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'kevinyap';
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+			<hr>
+		</article>
+
+		<footer class="main-column">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div>
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-41937659-1', 'kevinyap.ca');
+		ga('send', 'pageview');
+	</script>
+
+</body>
+</html>
