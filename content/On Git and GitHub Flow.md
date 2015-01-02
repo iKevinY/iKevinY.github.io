@@ -71,7 +71,9 @@ Upon closing the editor, a new editor will open up that allows you to edit the c
 
 I mentioned before that rebasing should only be done with local changes that have not been pushed to a remote repository, but in a pull request, by definition, the commits have already been pushed to your fork of the main repository. In this case, it is fine to rebase and push, since it can be assumed that people have not been actively making changes on the feature/fix branch that your pull request is based on. However, Git will not let you push the rebased commits using `git push` out of safety; you have to use `git push -f` to *force* the push to happen.
 
-Putting all of this together, the typical GitHub workflow might look like this (after forking the repository on GitHub):
+## Putting It All Together
+
+After forking the project on GitHub, the typical GitHub workflow might look something like this:
 
 ```sh
 git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
@@ -91,8 +93,8 @@ git push
 4. Switch to the newly created `my-feature` branch.
 5. Make changes to `README.md`.
 6. Remove `silly-file.txt`.
-7. Stage all (`-A`) changes made, including file creations and deletions.
-8. Commit the changes that have been staged.
+7. Stage all (`-A`) changes made, including file creations and deletions. You can specify certain files rather than using the `-A` flag to selectively stage changes.
+8. Commit the changes that have been staged. Continue to commit new changes and rebase when needed.
 9. Push the branch to your fork and open a pull request using GitHub's web interface!
 
 For other Git-related problems that one may run into, Google can usually provide the answer. Be sure to look at [GitHub's help page](https://help.github.com) and the [Git documentation](http://git-scm.com/doc) itself. Here's to lots of open source contributions in 2015!
