@@ -1,6 +1,5 @@
 branches:
-  only:
-  - src
+  only: src
 language: python
 python: "2.7"
 sudo: false
@@ -11,7 +10,7 @@ cache:
   directories:
     - $HOME/.pip-cache/
 install:
-- pip install -r requirements.txt --download-cache $HOME/.pip-cache
-- gem install sass
+  - pip install -r requirements.txt --download-cache $HOME/.pip-cache
+  - gem install sass
 script: pelican -s publishconf.py
 after_success: bash deploy.sh
