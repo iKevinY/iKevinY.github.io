@@ -84,7 +84,7 @@ nano README.md
 rm silly-file.txt
 git add -A
 git commit
-git push
+git push -u origin my-feature
 ```
 
 1. Clone your fork to your local development machine.
@@ -95,6 +95,6 @@ git push
 6. Remove `silly-file.txt`.
 7. Stage all (`-A`) changes made, including file creations and deletions. You can specify certain files rather than using the `-A` flag to selectively stage changes.
 8. Commit the changes that have been staged. Continue to commit new changes and rebase when needed.
-9. Push the branch to your fork and open a pull request using GitHub's web interface!
+9. Push the `my-feature` branch to remote repository aliased as `origin` (your fork), using the `-u` flag to add the branch as a remote tracking branch. (Subsequent pushes will only requre a `git push` with no additional parameters.) Then, open a pull request using GitHub's web interface!
 
 For other Git-related problems that one may run into, Google can usually provide the answer. Be sure to look at [GitHub's help page](https://help.github.com) and the [Git documentation](http://git-scm.com/doc) itself. Here's to lots of open source contributions in 2015!
