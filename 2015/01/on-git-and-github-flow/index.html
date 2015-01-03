@@ -156,7 +156,7 @@ nano README.md
 rm silly-file.txt
 git add -A
 git commit
-git push
+git push -u origin my-feature
 </pre></div>
 </td></tr></table>
 
@@ -169,7 +169,7 @@ git push
 <li>Remove <code>silly-file.txt</code>.</li>
 <li>Stage all (<code>-A</code>) changes made, including file creations and deletions. You can specify certain files rather than using the <code>-A</code> flag to selectively stage&nbsp;changes.</li>
 <li>Commit the changes that have been staged. Continue to commit new changes and rebase when&nbsp;needed.</li>
-<li>Push the branch to your fork and open a pull request using GitHub&#8217;s web&nbsp;interface!</li>
+<li>Push the <code>my-feature</code> branch to remote repository aliased as <code>origin</code> (your fork), using the <code>-u</code> flag to add the branch as a remote tracking branch. (Subsequent pushes will only requre a <code>git push</code> with no additional parameters.) Then, open a pull request using GitHub&#8217;s web&nbsp;interface!</li>
 </ol>
 <p>For other Git-related problems that one may run into, Google can usually provide the answer. Be sure to look at <a href="https://help.github.com">GitHub&#8217;s help page</a> and the <a href="http://git-scm.com/doc">Git documentation</a> itself. Here&#8217;s to lots of open source contributions in&nbsp;2015!</p>
 	</div>
