@@ -31,6 +31,7 @@ SOCIAL_ICONS = [
 RELATIVE_URLS = True
 SITEURL = 'http://localhost'
 TIMEZONE = 'America/Vancouver'
+DEFAULT_DATE = 'fs'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
 DEFAULT_PAGINATION = False
 
