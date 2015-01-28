@@ -9,5 +9,4 @@ SITEURL = 'http://kevinyap.ca'
 RELATIVE_URLS = False
 OUTPUT_PATH = 'output/'
 
-DISQUS_SITENAME = 'kevinyap'
 GOOGLE_ANALYTICS = 'UA-41937659-1'
