@@ -1,0 +1,3 @@
+[submodule "pneumatic"]
+	path = pneumatic
+	url = git://github.com/iKevinY/pneumatic.git
