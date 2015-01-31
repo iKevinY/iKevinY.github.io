@@ -20,7 +20,7 @@ GOOGLE_FONTS = [
 ]
 
 SOCIAL_ICONS = [
-    ('m&#97;&#105;l&#116;o&#58;me&#64;&#107;e&#118;inya&#112;&#46;ca', 'Email', 'fa-envelope'),
+    ('mailto:me@kevinyap.ca', 'Email (me@kevinyap.ca)', 'fa-envelope'),
     ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
     ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa-google-plus-square'),
     ('http://github.com/iKevinY', 'GitHub', 'fa-github'),
