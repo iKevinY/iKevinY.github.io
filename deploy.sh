@@ -8,8 +8,8 @@ REMOTE_DIR=remote-site
 
 if [ "$TRAVIS" == "true" ]; then
   echo "Deploying site to GitHub Pages via Travis CI."
-  git config user.email "travis@travis-ci.org"
-  git config user.name "Travis CI"
+  git config --global user.email "travis@travis-ci.org"
+  git config --global user.name "Travis CI"
 else
   # If being run locally, Pelican needs to generate site files first
   rootPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
