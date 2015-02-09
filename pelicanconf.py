@@ -14,6 +14,8 @@ SIDEBAR_LINKS = [
     '<a href="/projects/">Projects</a>',
 ]
 
+ICONS_PATH = 'images/icons'
+
 GOOGLE_FONTS = [
     "Raleway:400,600",
     "Source Code Pro",
