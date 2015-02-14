@@ -1,8 +1,6 @@
-# Add & modify settings that are only applied upon publish
-# (import settings that already exist in `pelicanconf.py`).
-import sys, os
-sys.path.append(os.getcwd())
-
+# Extend pelicanconf.py and apply some additional settings
+import os, sys
+sys.path.append(os.curdir)
 from pelicanconf import *
 
 SITEURL = 'http://kevinyap.ca'
