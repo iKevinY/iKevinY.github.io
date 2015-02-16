@@ -6,11 +6,9 @@ sudo: false
 env:
   global:
     secure: QXXzxugLtvm8LnOwUmOsmoq/Utainfdkf+oAhS84rpF446cEsdEeL5L3ppeGWeRNVwrPhami41eMtVtympI3GpYUICvr5cP+GzYOg0Sus6Um+POASKx5fDUnZqQgINVxuU5DgfJZnDQtODtFY7hj3BTM7DAxRhffbiXdJ70SrlU=
-cache:
-  directories:
-    - $HOME/.pip-cache/
+cache: pip
 install:
-  - pip install -r requirements.txt --download-cache $HOME/.pip-cache
+  - pip install -r requirements.txt
   - gem install sass
 script: pelican -s publishconf.py
 after_success: bash deploy.sh
