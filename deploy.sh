@@ -14,7 +14,7 @@ else
   # If being run locally, Pelican needs to generate site files first
   rootPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   GH_TOKEN="git" # set GH_TOKEN variable to "git" for correct GITHUB_REPO URL
-  cd $rootPath
+  cd "$rootPath"
   pelican -s publishconf.py
 fi
 
