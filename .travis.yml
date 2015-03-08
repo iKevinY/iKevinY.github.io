@@ -9,4 +9,4 @@ env:
 cache: pip
 before_script: gem install sass
 script: pelican -s publishconf.py
-after_success: bash deploy.sh
+after_success: ./deploy.sh
