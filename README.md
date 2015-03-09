@@ -6,7 +6,7 @@ theme ([Pneumatic]) is based on a theme developed by [Greg Reda] using the
 [Skeleton] framework. In order to host with [GitHub Pages], the repository
 contains two distinct branches; the `src` branch contains the source files
 that Pelican uses to generate the static files which are automatically
-[pushed][deploy.sh] to the `master` branch by Travis CI (see
+[pushed][generate.sh] to the `master` branch by Travis CI (see
 [this blog post][travis-article] for more information on the process).
 
 Articles are licensed under a [Creative Commons Attribution 4.0 International License][cc-by-4.0].
@@ -20,6 +20,6 @@ Articles are licensed under a [Creative Commons Attribution 4.0 International Li
 [Greg Reda]: http://www.gregreda.com
 [Skeleton]: http://www.getskeleton.com
 [GitHub Pages]: http://pages.github.com
-[deploy.sh]: https://github.com/iKevinY/iKevinY.github.io/blob/src/deploy.sh#L35
+[generate.sh]: https://github.com/iKevinY/iKevinY.github.io/blob/src/generate.sh#L44
 [travis-article]: http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/
 [cc-by-4.0]: http://creativecommons.org/licenses/by/4.0/
