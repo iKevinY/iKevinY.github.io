@@ -9,7 +9,8 @@ that Pelican uses to generate the static files which are automatically
 [pushed][generate.sh] to the `master` branch by Travis CI (see
 [this blog post][travis-article] for more information on the process).
 
-Articles are licensed under a [Creative Commons Attribution 4.0 International License][cc-by-4.0].
+Code is licensed under the [MIT License], and articles under a [Creative
+Commons Attribution License].
 
 [1]: http://img.shields.io/travis/iKevinY/iKevinY.github.io/src.svg?style=flat "Build Status"
 [2]: https://travis-ci.org/iKevinY/iKevinY.github.io
@@ -22,4 +23,5 @@ Articles are licensed under a [Creative Commons Attribution 4.0 International Li
 [GitHub Pages]: http://pages.github.com
 [generate.sh]: https://github.com/iKevinY/iKevinY.github.io/blob/src/generate.sh#L44
 [travis-article]: http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/
-[cc-by-4.0]: http://creativecommons.org/licenses/by/4.0/
+[MIT License]: http://github.com/iKevinY/iKevinY.github.io/blob/src/LICENSE
+[Creative Commons Attribution License]: http://creativecommons.org/licenses/by/4.0/
