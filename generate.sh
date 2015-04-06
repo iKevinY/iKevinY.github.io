@@ -7,11 +7,16 @@ Commands:
   diff       Compare locally generated site to remote site
   serve      Generate and host site locally"
 
-TARGET_REPO=iKevinY/iKevinY.github.io
-GH_PAGES_BRANCH=master
-OUTPUT_DIR=output
-REMOTE_DIR=remote-site
-PORT=8000
+TARGET_REPO="iKevinY/iKevinY.github.io"
+GH_PAGES_BRANCH="master"
+
+DEVELOP_CONF="pelicanconf.py"
+PUBLISH_CONF="publishconf.py"
+
+OUTPUT_DIR="output"
+REMOTE_DIR="remote"
+
+PORT="8000"
 
 rootPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -23,7 +28,7 @@ generate_site() {
     git config --global user.name "Travis CI"
   else
     cd "$rootPath"
-    pelican -s publishconf.py
+    pelican -s $PUBLISH_CONF
   fi
 
   # Pull hash and commit message of the most recent commit
@@ -74,7 +79,7 @@ case "$1" in
     serve_msg="Serving HTTP at \e[1;37m${local_ip}:${PORT}\e[0m."
 
     trap 'cd $rootPath && rm -r develop && kill 0' SIGINT
-    cd "$rootPath" && pelican -s pelicanconf.py > /dev/null # seed directory with site content
+    cd "$rootPath" && pelican -s $DEVELOP_CONF > /dev/null # seed directory with site content
 
     (pelican -rs pelicanconf.py) &
     (cd "$developPath"; echo -e "$serve_msg"; python -m SimpleHTTPServer $PORT 1> /dev/null) &
