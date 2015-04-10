@@ -53,7 +53,7 @@ MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 DIRECT_TEMPLATES = ['index', 'archives']
 CATEGORY_SAVE_AS = ''
 
-# Disables Atom feed generation
+# Disable Atom feed generation
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
