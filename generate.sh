@@ -76,13 +76,20 @@ case "$1" in
   'serve')
     developPath=${rootPath}/develop
     local_ip=$(ifconfig | grep 'inet ' | awk 'NR==2 {print $2}')
-    serve_msg="Serving HTTP at \e[1;37m${local_ip}:${PORT}\e[0m."
 
-    trap 'cd $rootPath && rm -r develop && kill 0' SIGINT
-    cd "$rootPath" && pelican -s $DEVELOP_CONF > /dev/null # seed directory with site content
+    # Seed directory with site content
+    cd "$rootPath" && pelican -s $DEVELOP_CONF > /dev/null
+    echo -e "Serving HTTP at \e[1;37m${local_ip}:${PORT}\e[0m."
 
-    (pelican -rs pelicanconf.py) &
-    (cd "$developPath"; echo -e "$serve_msg"; python -m SimpleHTTPServer $PORT 1> /dev/null) &
+    cleanup() {
+      cd "$rootPath" && rm -r "$developPath"
+      pgrep -f 'SimpleHTTPServer' && kill $(pgrep -f SimpleHTTPServer)
+    }
+
+    trap cleanup SIGINT
+
+    (pelican -rs $DEVELOP_CONF) &
+    (cd "$developPath"; python -m SimpleHTTPServer $PORT 1> /dev/null) &
     wait
     ;;
 
