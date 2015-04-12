@@ -4,8 +4,8 @@ usage="Usage: $(basename "$0") (deploy | diff | serve)
 
 Commands:
   deploy     Upload site to Github Pages
-  diff       Compare locally generated site to remote site
-  serve      Generate and host site locally"
+  diff       Compare locally generated site to live site
+  serve      Generate and serve site (auto-reloads on changes)"
 
 TARGET_REPO="iKevinY/iKevinY.github.io"
 GH_PAGES_BRANCH="master"
@@ -16,6 +16,8 @@ PUBLISH_CONF="publishconf.py"
 OUTPUT_DIR="output"
 REMOTE_DIR="remote"
 
+PY_CMD="python3"
+SERVER="http.server"
 PORT="8000"
 
 rootPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -37,14 +39,14 @@ generate_site() {
 
   # Clone the GitHub Pages branch and rsync it with the newly generated files
   GITHUB_REPO=https://${GH_TOKEN:-git}@github.com/${TARGET_REPO}.git
-  git clone --branch=$GH_PAGES_BRANCH --depth 1 $GITHUB_REPO $REMOTE_DIR
+  git clone --branch=$GH_PAGES_BRANCH --depth 1 "$GITHUB_REPO" $REMOTE_DIR
   rsync -r --exclude=.git --delete $OUTPUT_DIR/ $REMOTE_DIR/
   pushd $REMOTE_DIR > /dev/null
 
   git add -A
   git status -s
 
-  $@  # execute the function that was passed as an argument
+  $1  # execute the function that was passed as an argument
 
   popd > /dev/null
   rm -rf -- $REMOTE_DIR $OUTPUT_DIR && echo "Removed $REMOTE_DIR and $OUTPUT_DIR."
@@ -82,20 +84,20 @@ case "$1" in
     echo -e "Serving HTTP at \e[1;37m${local_ip}:${PORT}\e[0m."
 
     cleanup() {
-      cd "$rootPath" && rm -r "$developPath"
-      pgrep -f 'SimpleHTTPServer' && kill $(pgrep -f SimpleHTTPServer)
+      pkill -f $SERVER
+      cd "$rootPath" && rm -r "$developPath" && echo && exit 0
     }
 
     trap cleanup SIGINT
 
-    (pelican -rs $DEVELOP_CONF) &
-    (cd "$developPath"; python -m SimpleHTTPServer $PORT 1> /dev/null) &
+    (pelican -rs $DEVELOP_CONF 2> /dev/null) &
+    (cd "$developPath"; $PY_CMD -m $SERVER $PORT 1> /dev/null) &
     wait
     ;;
 
   *)
     echo "$usage"
-    exit 1
+    exit 2
     ;;
 
 esac
