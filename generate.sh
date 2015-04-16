@@ -39,7 +39,7 @@ generate_site() {
 
   # Clone the GitHub Pages branch and rsync it with the newly generated files
   GITHUB_REPO=https://${GH_TOKEN:-git}@github.com/${TARGET_REPO}.git
-  git clone --branch=$GH_PAGES_BRANCH --depth 1 "$GITHUB_REPO" $REMOTE_DIR
+  git clone --branch $GH_PAGES_BRANCH --depth 1 "$GITHUB_REPO" $REMOTE_DIR
   rsync -r --exclude=.git --delete $OUTPUT_DIR/ $REMOTE_DIR/
   pushd $REMOTE_DIR > /dev/null
 
@@ -81,7 +81,7 @@ case "$1" in
 
     # Seed directory with site content
     cd "$rootPath" && pelican -s $DEVELOP_CONF > /dev/null
-    echo -e "Serving HTTP at \e[1;37m${local_ip}:${PORT}\e[0m."
+    echo "Serving HTTP at $(tput bold)${local_ip}:${PORT}$(tput sgr0)."
 
     cleanup() {
       pkill -f $SERVER
