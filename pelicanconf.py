@@ -24,9 +24,9 @@ GOOGLE_FONTS = [
 SOCIAL_ICONS = [
     ('mailto:me@kevinyap.ca', 'Email (me@kevinyap.ca)', 'fa-envelope'),
     ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
-    ('http://plus.google.com/+KevinYapCA', 'Google+', 'fa-google-plus-square'),
     ('http://github.com/iKevinY', 'GitHub', 'fa-github'),
     ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa-soundcloud'),
+    ('/atom.xml', 'Atom Feed', 'fa-rss'),
 ]
 
 # Pelican settings
@@ -54,6 +54,7 @@ DIRECT_TEMPLATES = ['index', 'archives']
 CATEGORY_SAVE_AS = ''
 
 # Disable Atom feed generation
+FEED_ATOM = 'atom.xml'
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
