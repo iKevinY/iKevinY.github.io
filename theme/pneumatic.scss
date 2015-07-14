@@ -60,7 +60,6 @@ p {
 
 em { font-style: italic; }
 strong { font-weight: bold; }
-small { font-size: 80%; }
 
 blockquote {
 	margin: 20px 0 20px 3px;
@@ -134,7 +133,7 @@ table:not(.codehilitetable) {
 	th, td {
 	  padding: 12px 15px;
 	  text-align: left;
-	  border-bottom: 1px solid #E1E1E1;
+	  border-bottom: 1px solid #e1e1e1;
 
 	  &:first-child { padding-left: 0; }
 	  &:last-child { padding-right: 0; }
@@ -204,7 +203,6 @@ code {
 	margin: 12px 0;
 }
 
-.read-more { font-size: 90%; }
 .text-center { text-align: center; }
 
 
@@ -344,8 +342,6 @@ footer p {
 		text-align: center;
 		float: none;
 	}
-
-	h1 { font-size: 24px; }
 
 	#sidebar-divider { display: block; }
 }
