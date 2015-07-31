@@ -29,6 +29,8 @@ SOCIAL_ICONS = [
     ('/atom.xml', 'Atom Feed', 'fa-rss'),
 ]
 
+THEME_COLOR = '#FF8000'
+
 # Pelican settings
 RELATIVE_URLS = True
 SITEURL = 'http://localhost'
