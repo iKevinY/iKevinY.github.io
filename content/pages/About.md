@@ -10,9 +10,9 @@ These are some of the applications, websites, and technologies that I use on a r
 - [Sublime Text](http://www.sublimetext.com) -- source code editor with a wide variety of plugins available
 - [GitHub](https://github.com) -- online Git-based project hosting
 - [TotalTerminal](http://totalterminal.binaryage.com) -- hotkey-activatable terminal overlay
-- [f.lux](https://justgetflux.com) -- adjusts the colour temperature of displays at night to reduce eye strain
+- [f.lux](https://justgetflux.com) -- automatically adjust display colour temperature at night
 - [Rainwave](http://rainwave.cc) -- video game music Internet radio station
-- [Radium](http://catpigstudios.com) -- menu bar application for streaming Internet radio stations
+- [Overcast](http://overcast.fm) -- podcast player for iOS
 
 Here some books that I highly recommend reading:
 
