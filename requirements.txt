@@ -1,5 +1,5 @@
 cssmin==0.2.0
 Markdown==2.6.2
-pelican==3.6.2
+pelican==3.6.3
 typogrify==2.0.7
 webassets==0.10.1
