@@ -26,7 +26,10 @@ generate_site() {
   # Based on http://zonca.github.io/2013/09/automatically-build-pelican-and-publish-to-github-pages.html
   if [ "$TRAVIS" == "true" ]; then
     # Ensure that builds triggered by pull requests are not deployed
-    [ "$TRAVIS_PULL_REQUEST" != "false" ] && exit 0
+    if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+      echo "Successfully built pull request #$TRAVIS_PULL_REQUEST."
+      exit 0
+    fi
 
     echo "Deploying site to $GH_PAGES_BRANCH branch of $TARGET_REPO."
     git config --global user.email "travis@travis-ci.org"
