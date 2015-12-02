@@ -11,7 +11,7 @@ INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician fro
 
 SIDEBAR_LINKS = [
     '<a href="/about/">About</a>',
-    '<a href="/projects/">Projects</a>',
+    '<a href="/archive/">Archive</a>',
 ]
 
 ICONS_PATH = 'images/icons'
