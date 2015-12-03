@@ -1,9 +1,9 @@
 Title: About Me
 Slug: about
 
-I am a developer and musician from Vancouver, BC, and can be found as [@iKevinY](https://twitter.com/iKevinY) on most places online. I enjoy programming, composing music, and playing the piano. My avatar is a [lilac-breasted roller](https://en.wikipedia.org/wiki/Lilac-breasted_roller).
+I'm a software developer and musician from Vancouver, Canada, and can be found most places online as [iKevinY](https://twitter.com/iKevinY). The colourful bird pictured in my avatar is the [lilac-breasted roller](https://en.wikipedia.org/wiki/Lilac-breasted_roller).
 
-This website is generated with [Pelican](http://getpelican.com), a static site generator written in Python. It is hosted on [GitHub Pages](http://pages.github.com) and the source can be found in this [GitHub repository](https://github.com/iKevinY/iKevinY.github.io). Its theme is [Pneumatic](https://github.com/iKevinY/pneumatic), a modified version of a theme created by [Greg Reda](http://www.gregreda.com), which itself is built using [Skeleton](http://www.getskeleton.com). The syntax highlighting in code blocks uses Chris Kempson's [Eighties Dark](http://chriskempson.github.io/base16/#eighties) theme. Articles on this site are licensed under a [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) license.
+This website is generated with [Pelican](http://getpelican.com), hosted on [GitHub Pages](http://pages.github.com), and the [source code](https://github.com/iKevinY/iKevinY.github.io) is open sourced on GitHub. The site's theme is [Pneumatic](https://github.com/iKevinY/pneumatic), using [Eighties Dark](http://chriskempson.github.io/base16/#eighties) for syntax highlighting. Articles are licensed under a [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/) license.
 
 These are some of the applications, websites, and technologies that I use on a regular basis:
 
