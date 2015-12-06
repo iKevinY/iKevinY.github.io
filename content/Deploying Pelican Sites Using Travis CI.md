@@ -14,7 +14,7 @@ The `travis.yml` file works in stages. The `install` stage issues a `pip install
 
 One of the issues that I ran into in the process of setting this up was installing the `travis` gem, which is needed to encrypt the OAuth token that allows Travis to push to the GitHub repository. What ended up solving the problem in the end was updating the version of Ruby on my computer.
 
-Since I liked some of the features that I had previously included in my site generation Bash script, I rewrote Andrea's `deploy.sh` script to work similarly to my existing workflow. The entirety of the file can be found [in the GitHub repository](https://github.com/iKevinY/iKevinY.github.io/blob/src/deploy.sh) of my website's source. My rewritten script grabs the hash and message of the most recent commit to the source branch:
+Since I liked some of the features that I had previously included in my site generation Bash script, I rewrote Andrea's `deploy.sh` script to work similarly to my existing workflow. The entirety of the file can be found [in the GitHub repository](https://github.com/iKevinY/iKevinY.github.io/blob/src/generate.sh) of my website's source. My rewritten script grabs the hash and message of the most recent commit to the source branch:
 
 ```bash
 commitHash=`git rev-parse HEAD`
