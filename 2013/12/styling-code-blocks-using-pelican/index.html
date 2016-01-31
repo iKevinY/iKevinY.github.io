@@ -86,7 +86,7 @@
 	<div class="content">
 		<p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
 <p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
 
@@ -100,12 +100,12 @@
 6
 7
 8</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nc">.codehilitetable</span> <span class="p">{</span>
-    <span class="k">font-family</span><span class="o">:</span> <span class="s2">&quot;Source Code Pro&quot;</span><span class="o">,</span> <span class="k">monospace</span><span class="p">;</span>
-    <span class="k">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
-    <span class="k">overflow</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
-    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
-    <span class="k">border</span><span class="o">:</span> <span class="k">solid</span> <span class="m">1px</span> <span class="m">#d9d9d9</span><span class="p">;</span>
-    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">3px</span><span class="p">;</span>
+    <span class="nb">font-family</span><span class="o">:</span> <span class="s2">&quot;Source Code Pro&quot;</span><span class="o">,</span> <span class="nb">monospace</span><span class="p">;</span>
+    <span class="nb">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
+    <span class="nb">overflow</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nb">border</span><span class="o">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="m">#d9d9d9</span><span class="p">;</span>
+    <span class="nb">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">3px</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
@@ -126,18 +126,18 @@
 12
 13
 14</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nc">.linenos</span> <span class="p">{</span>
-    <span class="k">border-right</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#d9d9d9</span><span class="p">;</span>
-    <span class="k">background</span><span class="o">:</span> <span class="m">#eee</span><span class="p">;</span>
-    <span class="k">padding</span><span class="o">:</span> <span class="m">0.5em</span> <span class="m">0.8em</span><span class="p">;</span>
-    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
-    <span class="o">-</span><span class="n">khtml</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
-    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
-    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
-    <span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="nb">border-right</span><span class="o">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#d9d9d9</span><span class="p">;</span>
+    <span class="nb">background</span><span class="o">:</span> <span class="m">#eee</span><span class="p">;</span>
+    <span class="nb">padding</span><span class="o">:</span> <span class="m">0.5em</span> <span class="m">0.8em</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">khtml</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nc">.codehilite</span> <span class="p">{</span>
-    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="m">1em</span><span class="p">;</span>
+    <span class="nb">margin</span><span class="o">:</span> <span class="m">0</span> <span class="m">1em</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
