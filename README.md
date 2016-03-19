@@ -20,7 +20,7 @@ Commons Attribution License].
 [`src`]: https://github.com/iKevinY/iKevinY.github.io/tree/src
 [`master`]: https://github.com/iKevinY/iKevinY.github.io/tree/master
 [GitHub Pages]: http://pages.github.com
-[generate.sh]: https://github.com/iKevinY/iKevinY.github.io/blob/src/generate.sh#L62
+[generate.sh]: generate.sh#L62
 [travis-article]: http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/
-[MIT License]: http://github.com/iKevinY/iKevinY.github.io/blob/src/LICENSE
+[MIT License]: LICENSE
 [Creative Commons Attribution License]: http://creativecommons.org/licenses/by/4.0/
