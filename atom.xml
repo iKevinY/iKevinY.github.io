@@ -38,14 +38,14 @@
 &lt;h2&gt;To Merge or Not to&amp;nbsp;Merge&lt;/h2&gt;
 &lt;p&gt;Merging is the process of merging the commits made in two branches into one branch. This is done when a branch that is being worked on is deemed complete, and the changes are to be merged into the master branch. In the simplest case (where the only commits that have been made are in the topic branch), this is known as a fast-forward merge, and the commits are &amp;#8220;played on top of&amp;#8221; the master branch. Fast-forward merges can be performed automatically by Git and require no additional effort on the part of the user performing the merge. In other cases, merging either results in a merge commit or the manual resolution of merge conflicts (if the changes made in the branches contradict one&amp;nbsp;another).&lt;/p&gt;
 &lt;p&gt;Something that Git tutorials tend to gloss over is the rebase command. The reason for this is that rebasing involves &lt;em&gt;rewriting history&lt;/em&gt;. When you rebase a set of commits, they will change, and if the older set of commits have already been pushed to a remote repository that others have pulled from, pushing new changes will cause a break in continuity for others who try to pull these newly pushed commits. Because of this, it is recommended to only rebase local commits in most&amp;nbsp;cases.&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;git rebase -i HEAD~n  &lt;span class="c1"&gt;# rebase the last n commits&lt;/span&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git rebase -i HEAD~n  &lt;span class="c1"&gt;# rebase the last n commits&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;The &lt;code&gt;-i&lt;/code&gt; flag stands for &lt;em&gt;interactive&lt;/em&gt;. Upon executing the command, your &lt;code&gt;$EDITOR&lt;/code&gt; of choice will open with a list of commits from least recent to most recent preceded by the word&amp;nbsp;&amp;#8220;pick&amp;#8221;:&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;pick a5b977a Ensure all expected resource files exist
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pick a5b977a Ensure all expected resource files exist
 pick f08e801 Add problems 311–320
 pick 969f9e5 Update tests to ensure resource correspondence
 &lt;/pre&gt;&lt;/div&gt;
@@ -60,7 +60,7 @@ pick 969f9e5 Update tests to ensure resource correspondence
 &lt;p&gt;Typically, a project maintainer might ask for you to squash your pull request. What this actually involves doing is rebasing and using the &amp;#8220;squash&amp;#8221; command to turn multiple commits into just one or a couple logical commits. For example, if you wanted to turn the three commits listed above into one larger commit, you would edit the file to look like the&amp;nbsp;following:&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;pick a5b977a Ensure all expected resource files exist
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pick a5b977a Ensure all expected resource files exist
 squash f08e801 Add problems 311–320
 squash 969f9e5 Update tests to ensure resource correspondence
 &lt;/pre&gt;&lt;/div&gt;
@@ -78,7 +78,7 @@ squash 969f9e5 Update tests to ensure resource correspondence
 6
 7
 8
-9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
 &lt;span class="nb"&gt;cd&lt;/span&gt; PROJECT_NAME
 git branch my-feature
 git checkout my-feature
@@ -121,18 +121,18 @@ git push -u origin my-feature
 &lt;p&gt;One of the issues that I ran into in the process of setting this up was installing the &lt;code&gt;travis&lt;/code&gt; gem, which is needed to encrypt the OAuth token that allows Travis to push to the GitHub repository. What ended up solving the problem in the end was updating the version of Ruby on my&amp;nbsp;computer.&lt;/p&gt;
 &lt;p&gt;Since I liked some of the features that I had previously included in my site generation Bash script, I rewrote Andrea&amp;#8217;s &lt;code&gt;deploy.sh&lt;/code&gt; script to work similarly to my existing workflow. The entirety of the file can be found &lt;a href="https://github.com/iKevinY/iKevinY.github.io/blob/src/generate.sh"&gt;in the GitHub repository&lt;/a&gt; of my website&amp;#8217;s source. My rewritten script grabs the hash and message of the most recent commit to the source&amp;nbsp;branch:&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;commitHash&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git rev-parse HEAD&lt;span class="sb"&gt;`&lt;/span&gt;
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;commitHash&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git rev-parse HEAD&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;span class="nv"&gt;commitMessage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git log -1 --pretty&lt;span class="o"&gt;=&lt;/span&gt;%B&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;These variables are used during the &lt;code&gt;git commit&lt;/code&gt; command to create a descriptive commit message. The commit message in the source branch is used as the first line of the commit message, and the commit hash and Travis build number are included as the extended part of the commit&amp;nbsp;message:&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;git commit -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$c&lt;/span&gt;&lt;span class="s2"&gt;ommitMessage&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;Generated by commit &lt;/span&gt;&lt;span class="nv"&gt;$c&lt;/span&gt;&lt;span class="s2"&gt;ommitHash; pushed by Travis build &lt;/span&gt;$&lt;span class="s2"&gt;TRAVIS_BUILD_NUMBER.&amp;quot;&lt;/span&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git commit -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$commitMessage&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;Generated by commit &lt;/span&gt;&lt;span class="nv"&gt;$commitHash&lt;/span&gt;&lt;span class="s2"&gt;; pushed by Travis build &lt;/span&gt;&lt;span class="nv"&gt;$TRAVIS_BUILD_NUMBER&lt;/span&gt;&lt;span class="s2"&gt;.&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;There are a few minor changes I made to the &lt;code&gt;rsync&lt;/code&gt; and &lt;code&gt;git&lt;/code&gt; commands of Andrea&amp;#8217;s script as well. Within the &lt;code&gt;rsync&lt;/code&gt; command, I removed the asterisk from the source directory and added the &lt;code&gt;--delete&lt;/code&gt; flag to instruct the script to delete files in the destination directory that are not present in the source directory. Simply adding the &lt;code&gt;--delete&lt;/code&gt; flag to the version of the command present in Andrea&amp;#8217;s script will not affect the command as a result of the to the wildcard search caused by the&amp;nbsp;asterisk:&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;rsync -r --exclude&lt;span class="o"&gt;=&lt;/span&gt;.git --delete ../$PELICAN_OUTPUT_FOLDER/ ./
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -r --exclude&lt;span class="o"&gt;=&lt;/span&gt;.git --delete ../&lt;span class="nv"&gt;$PELICAN_OUTPUT_FOLDER&lt;/span&gt;/ ./
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
@@ -142,7 +142,7 @@ git push -u origin my-feature
 3
 4
 5
-6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ git status -s
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git status -s
 A  2014/06/deploying-pelican-sites-using-travis-ci/index.html
 A  2014/06/index.html
 M  2014/index.html
@@ -173,7 +173,7 @@ M  index.html
 11
 12
 13
-14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- digs the block in front&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;forward&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- moves forward&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;digUp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- digs the block above&lt;/span&gt;
@@ -197,7 +197,7 @@ M  index.html
 2
 3
 4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;end&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;forward&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detectUp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;digUp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;end&lt;/span&gt;
@@ -217,7 +217,7 @@ M  index.html
  8
  9
 10
-11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
     &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -245,7 +245,7 @@ M  index.html
 10
 11
 12
-13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="n"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;end&lt;/span&gt;
   &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
     &lt;span class="n"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- complete an extra mining iteration&lt;/span&gt;
@@ -268,7 +268,7 @@ M  index.html
 &lt;p&gt;Another benefit of learning programming through ComputerCraft is that ideas for new features or added functionality arise simply by using the program. Perhaps the mining script could be extended to instruct the Turtle to automatically return to the start of the branch when its inventory fills up or throw out unwanted materials and only keep ores. Maybe fuel could be a factor, and it could automatically consume any fuel sources that it mines in order to extend the mining expedition. This process of beginning with a basic program and expanding its functionality can be applied when programming independently of&amp;nbsp;ComputerCraft.&lt;/p&gt;
 &lt;p&gt;I believe that ComputerCraft is a great way to teach people who are already interested in Minecraft the basics of programming. Lua is a very beginner friendly language as, much like Logo, it features a syntax similar to normal English. Turtles will almost certainly more engaging to a novice programmer than a Lua prompt. The mod is not only limited to working with Turtles, either; a more traditional approach can be taken to the programming involved. There are a wide variety of programs that various people have written, from basic APIs to &lt;a href="https://github.com/oeed/PearOS"&gt;operating systems with GUIs&lt;/a&gt;. In this age of computing, more unorthodox approaches to teaching and learning can be experimented with, and with ComputerCraft, &lt;s&gt;the sky&lt;/s&gt; &lt;code&gt;Y = 255&lt;/code&gt; is the&amp;nbsp;limit.&lt;/p&gt;</summary></entry><entry><title>Styling Code Blocks Using Pelican</title><link href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" rel="alternate"></link><updated>2013-12-10T00:00:00-08:00</updated><author><name></name></author><id>tag:kevinyap.ca,2013-12-10:2013/12/styling-code-blocks-using-pelican/</id><summary type="html">&lt;p&gt;Although &lt;a href="http://studiostyl.es/schemes/monokai"&gt;Monokai&lt;/a&gt; is my colour scheme of choice when coding in &lt;a href="http://www.sublimetext.com"&gt;Sublime Text 2&lt;/a&gt;, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a &lt;a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/"&gt;blog post by Alex Peattie&lt;/a&gt; explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&amp;nbsp;future.&lt;/p&gt;
 &lt;p&gt;While Alex&amp;#8217;s tutorial implemented line numbering using &lt;span class="caps"&gt;CSS&lt;/span&gt;, the &lt;a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html"&gt;CodeHilite&lt;/a&gt; extension for &lt;a href="https://pypi.python.org/pypi/Markdown"&gt;Python-Markdown&lt;/a&gt; has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&amp;#8217;s &lt;code&gt;linenums&lt;/code&gt; setting needs to be set to &lt;code&gt;True&lt;/code&gt;. This can be done through the &lt;code&gt;MD_EXTENSIONS&lt;/code&gt; option in the settings file supplied to&amp;nbsp;Pelican.&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;codehilite(linenums = True)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;codehilite(linenums = True)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
@@ -281,7 +281,7 @@ M  index.html
 5
 6
 7
-8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nc"&gt;.codehilitetable&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nc"&gt;.codehilitetable&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nb"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Source Code Pro&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;monospace&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="nb"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;12px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="nb"&gt;overflow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;auto&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -307,7 +307,7 @@ M  index.html
 11
 12
 13
-14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nc"&gt;.linenos&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nc"&gt;.linenos&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nb"&gt;border-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1px&lt;/span&gt; &lt;span class="nb"&gt;solid&lt;/span&gt; &lt;span class="m"&gt;#d9d9d9&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="nb"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#eee&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="nb"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;0.5em&lt;/span&gt; &lt;span class="m"&gt;0.8em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -342,16 +342,16 @@ M  index.html
  9
 10
 11
-12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; $sourceDirectory
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$sourceDirectory&lt;/span&gt;
 &lt;span class="nv"&gt;commitHash&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;git rev-parse HEAD&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;cd&lt;/span&gt; $outputDirectory
+&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$outputDirectory&lt;/span&gt;
 git add -A
 git checkout master
 &lt;span class="nb"&gt;read&lt;/span&gt; -p &lt;span class="s2"&gt;&amp;quot;Extended commit message: &amp;quot;&lt;/span&gt; commitMessage
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$c&lt;/span&gt;&lt;span class="s2"&gt;ommitMessage&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
-    git commit -m &lt;span class="s2"&gt;&amp;quot;Generated by &lt;/span&gt;&lt;span class="nv"&gt;$c&lt;/span&gt;&lt;span class="s2"&gt;ommitHash&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$commitMessage&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    git commit -m &lt;span class="s2"&gt;&amp;quot;Generated by &lt;/span&gt;&lt;span class="nv"&gt;$commitHash&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;
-    git commit -m &lt;span class="s2"&gt;&amp;quot;Generated by &lt;/span&gt;&lt;span class="nv"&gt;$c&lt;/span&gt;&lt;span class="s2"&gt;ommitHash&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$c&lt;/span&gt;&lt;span class="s2"&gt;ommitMessage&amp;quot;&lt;/span&gt;
+    git commit -m &lt;span class="s2"&gt;&amp;quot;Generated by &lt;/span&gt;&lt;span class="nv"&gt;$commitHash&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$commitMessage&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;fi&lt;/span&gt;
 git push
 &lt;/pre&gt;&lt;/div&gt;
@@ -390,7 +390,7 @@ git push
 18
 19
 20
-21&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;iTunes&amp;quot;&lt;/span&gt;
+21&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;iTunes&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;sel&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;selection&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;sel&lt;/span&gt; &lt;span class="ow"&gt;is not&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
         &lt;span class="k"&gt;repeat&lt;/span&gt; &lt;span class="nv"&gt;with&lt;/span&gt; &lt;span class="nv"&gt;track&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;sel&lt;/span&gt;

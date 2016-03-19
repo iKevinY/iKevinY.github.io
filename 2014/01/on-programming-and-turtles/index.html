@@ -106,7 +106,7 @@
 11
 12
 13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span> <span class="c1">-- digs the block in front</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">forward</span><span class="p">()</span> <span class="c1">-- moves forward</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">digUp</span><span class="p">()</span> <span class="c1">-- digs the block above</span>
@@ -130,7 +130,7 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="k">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detect</span><span class="p">()</span> <span class="k">do</span> <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span> <span class="k">end</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">forward</span><span class="p">()</span>
   <span class="k">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detectUp</span><span class="p">()</span> <span class="k">do</span> <span class="n">turtle</span><span class="p">.</span><span class="n">digUp</span><span class="p">()</span> <span class="k">end</span>
@@ -150,7 +150,7 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="k">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detect</span><span class="p">()</span> <span class="k">do</span>
     <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
@@ -178,7 +178,7 @@
 10
 11
 12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">while</span> <span class="kc">true</span> <span class="k">do</span>
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">while</span> <span class="kc">true</span> <span class="k">do</span>
   <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span> <span class="k">do</span> <span class="n">miningIteration</span><span class="p">()</span> <span class="k">end</span>
   <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">then</span>
     <span class="n">miningIteration</span><span class="p">()</span> <span class="c1">-- complete an extra mining iteration</span>
