@@ -14,7 +14,4 @@ These are some of the applications, websites, and technologies that I use on a r
 - [Rainwave](http://rainwave.cc) -- video game music Internet radio station
 - [Overcast](http://overcast.fm) -- podcast player for iOS
 
-Here some books that I highly recommend reading:
-
-- [Code](http://www.amazon.com/dp/0735611319) -- Charles Petzold explains the design of computers and software in a manner accessible to even those without a background in computer science.
-- [The Signal and the Noise](http://www.amazon.com/dp/159420411X) -- Nate Silver discusses how mathematical models created using probability and statistics are applied to real-world situations.
+My [PGP fingerprint](https://keybase.io/ikeviny) is `9BD6 97EF 528B 303B 13B1 9572 A407 5683 03DB F75D`.
