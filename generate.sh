@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# This script was written to facilitate the deployment process of Pelican
+# websites using Travis CI. See this blog post for more information:
+# http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/
+
 usage="Usage: $(basename "$0") (deploy | diff | serve)
 
 Commands:
