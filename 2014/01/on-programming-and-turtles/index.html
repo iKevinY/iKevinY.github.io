@@ -23,7 +23,7 @@
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600|Source+Code+Pro" rel="stylesheet" type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/63ca6ae7a9.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
@@ -93,20 +93,7 @@
 <p>The terminology used in ComputerCraft is an obvious allusion to the programming language <a href="http://en.wikipedia.org/wiki/Logo_(programming_language)">Logo</a>, which was separated from other programming languages existent at the time by its use of &#8220;turtle graphics&#8221;. The language was largely designed for children and other people new to programming. In fact, its Wikipedia article states that &#8220;the design goals of Logo included accessible power and informative error messages&#8221; and that &#8220;virtual Turtles allowed for immediate visual feedback and debugging&#8221;. With Turtles, ComputerCraft allows a novice programmer to use kinaesthetic reasoning to debug the actions of a Turtle in a similar manner as Logo was envisioned to do. Given these points, it can be concluded that ComputerCraft very closely follows the design philosophy of Logo, essentially making it a modern version of what Logo was in the&nbsp;past.</p>
 <hr />
 <p>The first major Turtle program that I wrote was a branch mining script. My goal was to write a program that a swarm of Turtles could execute simultaneously to excavate an area for ores. I tend to be meticulous about following patterns when I mine, and when branch mining, this entails digging tunnels with torches every eight blocks. Here is a very basic Turtle script with this&nbsp;functionality.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span> <span class="c1">-- digs the block in front</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">forward</span><span class="p">()</span> <span class="c1">-- moves forward</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">digUp</span><span class="p">()</span> <span class="c1">-- digs the block above</span>
@@ -121,36 +108,22 @@
   <span class="k">if</span> <span class="n">miningComplete</span> <span class="k">then</span> <span class="k">break</span> <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>The function <code>miningIteration()</code> instructs the Turtle to dig the block in front of the Turtle, move forward, and then dig the block above itself. The function is repeated eight times and then the Turtle places a torch. While this is technically a functional mining script, there are a number of improvements that could be made. Here are a few that I implemented into my expanded branch mining&nbsp;script.</p>
 <p><a href="http://minecraft.gamepedia.com/Gravel">Gravel</a> is, in my opinion at least, the one thing in the game that is more annoying than <a href="http://minecraft.gamepedia.com/Creeper">Creepers</a>, because it often unexpectedly falls while mining which is can at times be startling. Turtles have an interesting behaviour when mining gravel. Consider the manner in which <code>miningIteration()</code> has been coded. On first inspection, it may seem that there is no fault in how this would execute: if gravel fell and was obstructing the path of the Turtle, <code>turtle.forward()</code> would simply fail and the following iteration would dig, and this would repeat until all the gravel was gone. However, the loop that instructs the Turtle to place a torch after each <code>miningIteration()</code> would increment even though the Turtle did not actually move anywhere and the next torch would be placed less than eight blocks&nbsp;away.</p>
 <p>There is a simple enough fix. The <a href="http://computercraft.info/wiki/Turtle_(API)">Turtle <span class="caps">API</span></a> contains functions that allow a Turtle to detect if there is a block in front of, above, or below itself. An improvement to the Turtle would be to detect if there is a block in front of the Turtle and if so, continue digging in front until it there is no block in front. To deal with overhead gravel, the same approach can be taken but by detecting blocks above the Turtle rather than in front of it. Here is the function rewritten to use these detection functions instead of movement&nbsp;functions.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="k">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detect</span><span class="p">()</span> <span class="k">do</span> <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span> <span class="k">end</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">forward</span><span class="p">()</span>
   <span class="k">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detectUp</span><span class="p">()</span> <span class="k">do</span> <span class="n">turtle</span><span class="p">.</span><span class="n">digUp</span><span class="p">()</span> <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>However, this function is still flawed, though the cause of the problem may not be obvious to someone unfamiliar with Minecraft. Although stationary blocks make up the crux of the game, there is another class of objects known as entities, which includes not only boats and minecarts but also falling sand and gravel. Entities have a position, velocity, and rotation, and are affected by the game&#8217;s physics. When the game logic detects that there is no stationary block underneath a sand or gravel block, it is converted into an entity and falls until it lands on another solid block (or falls through the <a href="http://minecraft.gamepedia.com/The_Void">Void</a>).</p>
 <p>If a Turtle were to execute the current version of <code>miningIteration()</code>, it would quickly become apparent that the Turtle still has problems with gravel. If it encountered a column of gravel above itself, it would move forward during the time that the gravel block above itself is was still falling, leaving a pillar of gravel in the middle of the branch mine. The reason for this is that directly after the Turtle finishes executing <code>turtle.digUp()</code>, the gravel block is still falling; therefore, <code>turtle.detectUp()</code> returns <code>false</code>. This causes the Turtle to continue mining instead of properly stopping to mine the gravel above it. This can be solved by pausing the script for just the right amount of time so that it can detect gravel after it had fallen. This timing turned out to be 0.2 seconds, so adding <code>sleep(0.2)</code> after the digging functions forces the Turtle to halt for a brief period of time, mining gravel&nbsp;correctly.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="k">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detect</span><span class="p">()</span> <span class="k">do</span>
     <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
@@ -162,23 +135,11 @@
   <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>Another interesting behaviour that needed to be debugged was directional-based. Minecraft has many direction-specific quirks due to the way that the game logic was programmed in. This usually results in either south or west sides of blocks being prioritized in some manner. <code>turtle.placeUp()</code> instructs a Turtle to place whatever is in the selected block of its inventory above itself. For solid blocks, this is straightforward. However, in the case of non-solid blocks like torches, they will snap to an adjacent block face. The west face is prioritized, followed by the east, north, and south faces&nbsp;successively.</p>
 <p>With regards to torch placement, this directional behaviour means that mining in the northwards and southwards direction requires no special treatment. In the remaining two directions, the torch will be placed on the block in front of the Turtle, and in the next iteration of mining, it will get mined along with the block it is attached to. On its own, ComputerCraft does not provide a way for Turtles to automatically determine what direction they are facing (additional mods can add additional types of Turtles to the game). Utilizing ComputerCraft&#8217;s <a href="http://computercraft.info/wiki/Gps_(API)"><span class="caps">GPS</span> <span class="caps">API</span></a> to determine the axis along which a Turtle is travelling would be the only way to add this functionality. As I do not have any <span class="caps">GPS</span> infrastructure in my world, I opted to have the Turtle simply prompt the user for the direction that it is facing and store it in the variable <code>direction</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">while</span> <span class="kc">true</span> <span class="k">do</span>
+<div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">true</span> <span class="k">do</span>
   <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span> <span class="k">do</span> <span class="n">miningIteration</span><span class="p">()</span> <span class="k">end</span>
   <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">then</span>
     <span class="n">miningIteration</span><span class="p">()</span> <span class="c1">-- complete an extra mining iteration</span>
@@ -192,7 +153,7 @@
   <span class="k">if</span> <span class="n">miningComplete</span> <span class="k">then</span> <span class="k">break</span> <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>With this revision, if the Turtle is facing in one of the two problematic directions, it will simply complete an extra iteration of mining and then move backwards one block. When <code>turtle.placeUp()</code> is called, the torch can no longer attach to the block in front (because it has been mined), so it gets placed on either the left or right wall, circumventing the issue of the torch being destroyed in the next iteration of&nbsp;mining.</p>
 <hr />

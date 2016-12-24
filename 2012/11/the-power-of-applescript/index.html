@@ -23,7 +23,7 @@
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600|Source+Code+Pro" rel="stylesheet" type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/63ca6ae7a9.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
@@ -91,27 +91,7 @@
 <p>The fix for this was simple enough. Instead of searching for the first apostrophe within the track title, I searched for the first space followed directly by an apostrophe, and altered the values that affect the length of the strings&nbsp;accordingly.</p>
 <p>All in all, the script was certainly not pretty, but it did the job. I didn&#8217;t notice any incorrectly reformatted names at first glance, but it is possible that a few oddly named songs were incorrectly renamed. I guess my point is that AppleScript was easy enough to work with (given rudimentary knowledge of how other programming languages function) that I was able to hack this very specifically-purposed script together in a short amount of time. Most of the code is based on words in English making it accessible to people who have never programmed before, and the AppleScript Editor gives an alert when saving or running the code if it is&nbsp;invalid.</p>
 <p>If you want to use the script to rename to your own tracks (or just to examine my shoddily thrown together code), here is the source code; to use the script, copy it into AppleScript Editor, select the tracks in iTunes, and run&nbsp;it.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;iTunes&quot;</span>
+<div class="highlight"><pre><span></span><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;iTunes&quot;</span>
     <span class="k">set</span> <span class="nv">sel</span> <span class="k">to</span> <span class="nv">selection</span>
     <span class="k">if</span> <span class="nv">sel</span> <span class="ow">is not</span> <span class="p">{}</span> <span class="k">then</span>
         <span class="k">repeat</span> <span class="nv">with</span> <span class="nv">track</span> <span class="k">in</span> <span class="nv">sel</span>
@@ -133,7 +113,6 @@
     <span class="k">end</span> <span class="k">if</span>
 <span class="k">end</span> <span class="k">tell</span>
 </pre></div>
-</td></tr></table>
 	</div>
 
 	<div id="related-articles">
