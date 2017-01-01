@@ -34,7 +34,7 @@ THEME_COLOR = '#FF8000'
 
 # Pelican settings
 RELATIVE_URLS = True
-SITEURL = 'http://localhost'
+SITEURL = 'http://kevinyap.ca'
 TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE = 'fs'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
