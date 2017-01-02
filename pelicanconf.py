@@ -21,7 +21,6 @@ GOOGLE_FONTS = [
     "Source Code Pro",
 ]
 
-FA_EMBED_CODE = '63ca6ae7a9'
 SOCIAL_ICONS = [
     ('mailto:me@kevinyap.ca', 'Email (me@kevinyap.ca)', 'fa-envelope'),
     ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
