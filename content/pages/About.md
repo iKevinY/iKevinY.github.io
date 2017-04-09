@@ -7,11 +7,11 @@ This website is generated with [Pelican](http://getpelican.com), hosted on [GitH
 
 These are some of the applications, websites, and technologies that I use on a regular basis:
 
-- [Sublime Text](http://www.sublimetext.com) -- source code editor with a wide variety of plugins available
+- [Sublime Text](https://www.sublimetext.com) -- text editor with a rich plugin ecosystem
 - [GitHub](https://github.com) -- online Git-based project hosting
-- [TotalTerminal](http://totalterminal.binaryage.com) -- hotkey-activatable terminal overlay
-- [f.lux](https://justgetflux.com) -- automatically adjust display colour temperature at night
-- [Rainwave](http://rainwave.cc) -- video game music Internet radio station
-- [Overcast](http://overcast.fm) -- podcast player for iOS
+- [Travis CI](https://travis-ci.org) -- continuous integration for GitHub projects
+- [TotalTerminal](https://totalterminal.binaryage.com) -- hotkey-activatable terminal overlay
+- [Tweetbot](https://tapbots.com/tweetbot/) -- Twitter client for iOS and macOS
+- [Overcast](https://overcast.fm) -- podcast player for iOS
 
 My [PGP fingerprint](https://keybase.io/ikeviny) is `9BD6 97EF 528B 303B 13B1 9572 A407 5683 03DB F75D`.
