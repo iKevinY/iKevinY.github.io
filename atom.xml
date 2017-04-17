@@ -1,5 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kevin Yap</title><link href="http://kevinyap.ca/" rel="alternate"></link><link href="http://kevinyap.ca/atom.xml" rel="self"></link><id>http://kevinyap.ca/</id><updated>2016-12-30T00:00:00-08:00</updated><entry><title>The Joy of Problem Solving</title><link href="http://kevinyap.ca/2016/12/the-joy-of-problem-solving/" rel="alternate"></link><published>2016-12-30T00:00:00-08:00</published><updated>2016-12-30T00:00:00-08:00</updated><author><name></name></author><id>tag:kevinyap.ca,2016-12-30:2016/12/the-joy-of-problem-solving/</id><summary type="html">&lt;p&gt;This past semester, I took one of my favourite computer science courses to date &amp;#8212; &lt;em&gt;Intermediate Algorithm Design and Analysis&lt;/em&gt;. The course helped me realize my passion for reasoning about interesting problems, and being able to convey ideas about these problems to others. After all, the human mind has evolved to be shockingly good at identifying patterns, and solving puzzles is one of many ways to scratch that itch. This is what I personally find so appealing about programming: a problem that may initially seem straightforward can almost always be approached from many different&amp;nbsp;angles.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kevin Yap</title><link href="http://kevinyap.ca/" rel="alternate"></link><link href="http://kevinyap.ca/atom.xml" rel="self"></link><id>http://kevinyap.ca/</id><updated>2017-04-17T00:00:00-07:00</updated><entry><title>Breaking the Enigma Code With Rust</title><link href="http://kevinyap.ca/2017/04/breaking-the-enigma-code-with-rust/" rel="alternate"></link><published>2017-04-17T00:00:00-07:00</published><updated>2017-04-17T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2017-04-17:2017/04/breaking-the-enigma-code-with-rust/</id><summary type="html">&lt;p&gt;If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War is probably one of the more &amp;#8220;exciting&amp;#8221; aspects of history, and while it goes without saying that war is terrible, a lot of technologies and even new fields of research are the product of wartime&amp;nbsp;conditions.&lt;/p&gt;
+&lt;p&gt;The Enigma machines are a series of electromechanical cipher machines that were famously used by Germany in World War &lt;span class="caps"&gt;II&lt;/span&gt; to encrypt military communications. Breaking the Enigma code had a huge impact on the Allies&amp;#8217; ability to win the war. Most of what I could write about the history of cracking Enigma is already covered by &lt;a href="https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma"&gt;this Wikipedia article&lt;/a&gt; (or if you prefer a more dramatized version, a &lt;a href="https://en.wikipedia.org/wiki/The_Imitation_Game"&gt;certain movie&lt;/a&gt; starring Benedict Cumberbatch), so I won&amp;#8217;t go over it in&amp;nbsp;detail.&lt;/p&gt;
+&lt;p&gt;Inspired by the &lt;a href="https://en.wikipedia.org/wiki/Colossus_computer"&gt;computers&lt;/a&gt; that were born out of cryptanalysis, I decided to write my own Enigma-cracking program in Rust &amp;#8212; &lt;a href="https://github.com/iKevinY/ultra"&gt; &lt;code&gt;ultra&lt;/code&gt;&lt;/a&gt;. &amp;#8220;Ultra secret&amp;#8221; was the classification level used by the Allies to refer to intelligence obtained via deciphering German communications at &lt;a href="https://en.wikipedia.org/wiki/Bletchley_Park"&gt;Bletchley Park&lt;/a&gt;. If the Germany had discovered that the Allies could read their messages, they easily could have switched to a completely new encryption method, nullifying all the effort spent breaking Enigma in the first&amp;nbsp;place.&lt;/p&gt;
+&lt;p&gt;To demonstrate how the Enigma cipher was employed, here is some example usage from &lt;code&gt;ultra&lt;/code&gt;. First, we encrypt this plaintext message using some random machine&amp;nbsp;settings:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ultra --randomize &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
+&lt;span class="s2"&gt;A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, for it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.&amp;quot;&lt;/span&gt;
+S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.
+&lt;span class="o"&gt;(&lt;/span&gt;Rotors: &lt;span class="m"&gt;215&lt;/span&gt;, Key Setting: YFI, Ring Setting: UZW&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When this ciphertext is encrypted using the same settings, we recover the original&amp;nbsp;message:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ultra --rotor&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;215&lt;/span&gt; --key&lt;span class="o"&gt;=&lt;/span&gt;YFI --ring&lt;span class="o"&gt;=&lt;/span&gt;UZW &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
+&lt;span class="s2"&gt;S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&amp;quot;&lt;/span&gt;
+A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, &lt;span class="k"&gt;for&lt;/span&gt; it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, let&amp;#8217;s attempt to decipher the message with no knowledge of the correct&amp;nbsp;settings:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ultra --decrypt &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
+&lt;span class="s2"&gt;S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&amp;quot;&lt;/span&gt;
+A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, &lt;span class="k"&gt;for&lt;/span&gt; it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
+&lt;span class="o"&gt;(&lt;/span&gt;Rotors: &lt;span class="m"&gt;215&lt;/span&gt;, Key Setting: EZI, Ring Setting: ATW&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We managed to recover the plaintext from nothing but the ciphertext! The decryption algorithm used in &lt;code&gt;ultra&lt;/code&gt; was largely inspired by some of James Lyon&amp;#8217;s articles on the Enigma machine on his website &lt;a href="http://practicalcryptography.com/ciphers/mechanical-era/enigma/"&gt;Practical Cryptography&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is important to make a distinction between the algorithm used by &lt;code&gt;ultra&lt;/code&gt; and the cryptanalysis that was performed at Bletchley Park. The methods that were actually used to crack Enigma during World War &lt;span class="caps"&gt;II&lt;/span&gt; involved intercepting messages where parts of the plaintext could be guessed, which mostly came in the form of weather reports and other routine&amp;nbsp;communications.&lt;/p&gt;
+&lt;p&gt;On the other hand, the way that &lt;code&gt;ultra&lt;/code&gt; deciphers messages is purely statistical. &lt;a href="https://github.com/iKevinY/ultra/blob/master/src/data/quadgrams.txt"&gt;This file&lt;/a&gt; contains a list of quadgrams (four-letter sequences) from a fairly sizeable English corpus, and their number of occurrences. According to this, the top 5 most common English quadgrams are &lt;em&gt;&lt;span class="caps"&gt;TION&lt;/span&gt;&lt;/em&gt;, &lt;em&gt;&lt;span class="caps"&gt;NTHE&lt;/span&gt;&lt;/em&gt;, &lt;em&gt;&lt;span class="caps"&gt;THER&lt;/span&gt;&lt;/em&gt;, &lt;em&gt;&lt;span class="caps"&gt;THAT&lt;/span&gt;&lt;/em&gt;, and &lt;em&gt;&lt;span class="caps"&gt;OFTH&lt;/span&gt;&lt;/em&gt;, which seems reasonable. At the bottom of the file, we find extremely uncommon quadgrams, such as &lt;em&gt;&lt;span class="caps"&gt;AAJZ&lt;/span&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;If we take a given piece of ciphertext and attempt to decrypt it with random Enigma settings, it will almost certainly look like gibberish. However, we know at least one configuration will produce something that seems like reasonable English: the one used to encrypt the message in the first place! Therefore, all we have to do is iterate through all possible machine settings, decrypt the ciphertext, compute a &amp;#8220;fitness score&amp;#8221; based on how similar it looks to English, and choose the setting that resulted in the best&amp;nbsp;score.&lt;/p&gt;
+&lt;p&gt;To come up with a fitness score, we use a statistical &lt;a href="https://en.wikipedia.org/wiki/Language_model"&gt;language model&lt;/a&gt;, and define the probability of any given phrase as the product of its component quadgrams (ignoring things like word boundaries). For example, the probability of the message &amp;#8220;&lt;span class="caps"&gt;APPLE&lt;/span&gt;&amp;#8221; would be calculated by taking the product of the probabilities of &lt;em&gt;&lt;span class="caps"&gt;APPL&lt;/span&gt;&lt;/em&gt; and &lt;em&gt;&lt;span class="caps"&gt;PPLE&lt;/span&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="math"&gt;$$\Pr(\text{APPLE}) = \Pr(\text{APPL}) \times \Pr(\text{PPLE})$$&lt;/div&gt;
+&lt;p&gt;The probability of a single quadgram is given by &lt;span class="math"&gt;\(\Pr(q) = \frac{C(q)}{N}\)&lt;/span&gt;, where &lt;span class="math"&gt;\(C(q)\)&lt;/span&gt; is the count of a given quadgram, and &lt;span class="math"&gt;\(N\)&lt;/span&gt; is the sum of all quadgram counts in our list. Because computers have finite floating-point precision, it is ill-advised to multiply several tiny floats together. Luckily, we can use logarithms to map these multiplications to additions, and because &lt;span class="math"&gt;\(\log(x) &amp;gt; \log(y)\)&lt;/span&gt; for all &lt;span class="math"&gt;\(x &amp;gt; y ≥ 0\)&lt;/span&gt;, it is fine to use this log probability as our fitness&amp;nbsp;function.&lt;/p&gt;
+&lt;div class="math"&gt;$$\log(\Pr(\text{APPLE})) = \log(\frac{C(\text{APPL})}{N}) + \log(\frac{C(\text{PPLE})}{N})$$&lt;/div&gt;
+&lt;p&gt;Using the identity &lt;span class="math"&gt;\(\log(\frac{a}{b}) = \log(a) - \log(b)\)&lt;/span&gt;, this can be simplified even&amp;nbsp;further:&lt;/p&gt;
+&lt;div class="math"&gt;$$\log(\Pr(\text{APPLE})) = \log(C(\text{APPL})) + \log(C(\text{PPLE})) - 2\log(N)$$&lt;/div&gt;
+&lt;p&gt;The final &lt;span class="math"&gt;\(\log(N)\)&lt;/span&gt; term will have a coefficient of the number of quadgrams in the input message. Because encrypting a message doesn&amp;#8217;t change its length, this term would only cause a constant difference in the fitness function, and can therefore be completely omitted. This leaves us with a simple fitness function: the sum of the log-counts of all quadgrams in the&amp;nbsp;message.&lt;/p&gt;
+&lt;p&gt;Typical usage of the M3 Enigma machine involved choosing 3 of 5 possible rotors. Because the order of the rotors matters, this comes out to 60 possible permutations. Each rotor has 26 different &amp;#8220;key settings&amp;#8221; (sometimes referred to as &amp;#8220;indicator settings&amp;#8221;) and 26 different &amp;#8220;ring settings&amp;#8221;, leaving us with &lt;span class="math"&gt;\(60 \times 26^6\)&lt;/span&gt;, or &lt;span class="math"&gt;\(18\,534\,946\,560\)&lt;/span&gt; possible rotor&amp;nbsp;configurations.&lt;/p&gt;
+&lt;p&gt;When you take into account the &lt;a href="https://en.wikipedia.org/wiki/Enigma_machine#Plugboard"&gt;plugboard&lt;/a&gt;, the number of settings is &lt;a href="http://crypto.stackexchange.com/questions/33628/how-many-possible-enigma-machine-settings"&gt;in the quintillions&lt;/a&gt;, so we won&amp;#8217;t even consider trying to break this using our ciphertext-only attack. However, this still leaves approximately 18 billion permutations. Even if it only took 1 microsecond to try each one, it would still take 5 hours to work through the entire problem space. Fortunately, with some clever optimization, we can reduce the number of permutations to just over 1.5&amp;nbsp;million.&lt;/p&gt;
+&lt;p&gt;We can search for the optimal rotors and key settings separately from their ring settings. The ring settings determine offsets for the rotors&amp;#8217; notches (the position at which the fast rotor advancing causes the middle rotor to advance, and likewise between the middle and the slow rotors). If we find the correct rotors and key settings with the wrong ring settings, the resulting plaintext will be somewhat correct, with errors where the rotors advanced in the wrong&amp;nbsp;place.&lt;/p&gt;
+&lt;p&gt;First, we check all possible rotor and key permutations, fixing the ring settings as &amp;#8220;&lt;span class="caps"&gt;AAA&lt;/span&gt;&amp;#8221;. We pick the best of those, and then try key and ring settings for the fast and middle rotors; the slow rotor doesn&amp;#8217;t &amp;#8220;turn&amp;#8221; any other rotors, so its ring setting doesn&amp;#8217;t influence the decryption, and therefore we can safely ignore it. This leaves us with a total of &lt;span class="math"&gt;\(60 \times 26^3 + 26^4\)&lt;/span&gt;, or &lt;span class="math"&gt;\(1\,511\,536\)&lt;/span&gt; settings to check &amp;#8212; a reasonable number to brute-force on a modern&amp;nbsp;computer.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Seeing as &lt;code&gt;ultra&lt;/code&gt; was my first real Rust project, I figured I would also share some thoughts I have about it. Perhaps Rust&amp;#8217;s primary selling point is memory safety. My introductory computer systems course was essentially one extended lecture about everything that can go wrong with &lt;code&gt;malloc&lt;/code&gt; and pointers. While being familiar with using Valgrind is neat, it&amp;#8217;s nice to not have to think about these things at all, and just focus on writing the&amp;nbsp;implementation.&lt;/p&gt;
+&lt;p&gt;In addition, between closures and iterators, Rust makes it easy to write functional code. Because of my prior experience with Python, Haskell, and &lt;a href="https://racket-lang.org"&gt;Racket&lt;/a&gt;, I felt right at home using Rust. Chaining together iterator adapters and collecting the result rather than iteratively pushing values into a vector with a for-loop reminded me of using list comprehensions in&amp;nbsp;Python.&lt;/p&gt;
+&lt;p&gt;The bulk of &lt;code&gt;ultra&lt;/code&gt;&lt;span class="quo"&gt;&amp;#8216;&lt;/span&gt;s decryption algorithm involves iterating over Enigma settings, running the ciphertext through it, and returning the one with the highest fitness score. This lends itself nicely to parallelization; by splitting up the work, each worker can compute the maximum of its subset of the work, and the final result is the max of &lt;em&gt;those&lt;/em&gt;&amp;nbsp;maximums.&lt;/p&gt;
+&lt;p&gt;Using the amazing &lt;a href="https://github.com/nikomatsakis/rayon"&gt;Rayon&lt;/a&gt; data parallelism library, many Rust iterators can be parallelized nearly effortlessly. With &lt;code&gt;ultra&lt;/code&gt;, I essentially just needed to import Rayon&amp;#8217;s prelude and add a couple of calls to &lt;code&gt;into_par_iter()&lt;/code&gt;. (I also had to collect into a vector because the result of &lt;code&gt;iproduct!&lt;/code&gt; can&amp;#8217;t be directly transformed into a parallel&amp;nbsp;iterator.)&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rayon&lt;/span&gt;::&lt;span class="n"&gt;prelude&lt;/span&gt;::&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rotor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;iproduct&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rotors&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;::&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;Vec&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// These two lines turn a normal&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;into_par_iter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;// iterator into a parallel one!&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max_by_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;|&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rotor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unwrap&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;What makes this feel magical is that I didn&amp;#8217;t even have to think about managing multi-threaded memory access; the parallelization just works, and all I had to do was add three lines of code. Languages with a rich library ecosystem tend to flourish, and the existence of cool libraries like Rayon gives me a lot of confidence in the future of&amp;nbsp;Rust.&lt;/p&gt;
+&lt;p&gt;Since Rust advertises itself as being &amp;#8220;blazingly fast&amp;#8221;, I decided to do some benchmarking by comparing James&amp;#8217; &lt;a href="http://practicalcryptography.com/cryptanalysis/breaking-machine-ciphers/cryptanalysis-enigma/#c-code-for-breaking-enigma"&gt;sample C code&lt;/a&gt; to sequential and parallel versions of &lt;code&gt;ultra&lt;/code&gt;. These are the times that I got while testing on my quad-core MacBook&amp;nbsp;Pro:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;&lt;/th&gt;
+&lt;th align="center"&gt;&lt;strong&gt;real (s)&lt;/strong&gt;&lt;/th&gt;
+&lt;th align="center"&gt;&lt;strong&gt;user (s)&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;C (reference)&lt;/td&gt;
+&lt;td align="center"&gt;43.8&lt;/td&gt;
+&lt;td align="center"&gt;43.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;Rust (sequential)&lt;/td&gt;
+&lt;td align="center"&gt;19.2&lt;/td&gt;
+&lt;td align="center"&gt;19.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;Rust (parallel)&lt;/td&gt;
+&lt;td align="center"&gt;4.5&lt;/td&gt;
+&lt;td align="center"&gt;28.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The sequential version of &lt;code&gt;ultra&lt;/code&gt; already runs about twice as fast as the C version, and after adding the parallelization described above, it jumps to nearly 10 times as&amp;nbsp;fast!&lt;/p&gt;
+&lt;p&gt;When writing &lt;code&gt;ultra&lt;/code&gt;, I didn&amp;#8217;t explicitly set out to implement a hyper-optimized version of James&amp;#8217; code. Instead, I used the description of the algorithm described in his blog post and wrote what I felt was idiomatic Rust. I think this nicely demonstrates the fact that Rust makes it easy to write programs that are readable and also&amp;nbsp;performant.&lt;/p&gt;
+&lt;p&gt;Cargo also plays a large role in making Rust nice work with. Nothing is more annoying than coming across an open source project that seems useful, but struggling to figure out how to even compile it. With a Rust project, however, you&amp;#8217;re essentially guaranteed that &lt;code&gt;cargo build&lt;/code&gt; will work &amp;#8212; no Makefiles or manual dependency management&amp;nbsp;required.&lt;/p&gt;
+&lt;p&gt;I really enjoyed learning about Rust while building &lt;a href="https://github.com/iKevinY/ultra"&gt;&lt;code&gt;ultra&lt;/code&gt;&lt;/a&gt;, and will definitely be using it more in the future. Given the results of Stack Overflow&amp;#8217;s recent &lt;a href="https://stackoverflow.com/insights/survey/2017"&gt;developer survey&lt;/a&gt;, it seems like Rust is growing in popularity &amp;#8212; it will be very exciting if it becomes adopted by&amp;nbsp;industry.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary></entry><entry><title>The Joy of Problem Solving</title><link href="http://kevinyap.ca/2016/12/the-joy-of-problem-solving/" rel="alternate"></link><published>2016-12-30T00:00:00-08:00</published><updated>2016-12-30T00:00:00-08:00</updated><author><name></name></author><id>tag:kevinyap.ca,2016-12-30:2016/12/the-joy-of-problem-solving/</id><summary type="html">&lt;p&gt;This past semester, I took one of my favourite computer science courses to date &amp;#8212; &lt;em&gt;Intermediate Algorithm Design and Analysis&lt;/em&gt;. The course helped me realize my passion for reasoning about interesting problems, and being able to convey ideas about these problems to others. After all, the human mind has evolved to be shockingly good at identifying patterns, and solving puzzles is one of many ways to scratch that itch. This is what I personally find so appealing about programming: a problem that may initially seem straightforward can almost always be approached from many different&amp;nbsp;angles.&lt;/p&gt;
 &lt;p&gt;One of the best ways to improve one&amp;#8217;s problem solving skills is being exposed to a lot of different problems and approaches to these problems. The web is a goldmine for this type of content, and I really enjoy reading long-form articles that go in-depth into a given topic. I have a lot of respect for anyone who can take a complex idea and distill it into something that is both approachable and engaging; this skill that I would like to perfect. After all, in the grand scheme of things, knowledge that cannot be shared is virtually&amp;nbsp;worthless.&lt;/p&gt;
 &lt;p&gt;After I moved my blog to Pelican, I wrote a few posts of this sort of explanatory nature, but haven&amp;#8217;t done so over the past couple of years. I think the problem is that whenever I set out to get some writing done, I imagined the final product as some sort of grandiose thinkpiece. This is clearly a flawed approach, as I didn&amp;#8217;t end up publishing any posts this year (apart from this one). Throughout high school, my ability to produce coherent essays at the last minute was something I prided myself upon. Now that I&amp;#8217;m studying computer science, proofs of correctness are the most writing I ever have to do, so I&amp;#8217;d really like to return to writing informative blog&amp;nbsp;posts.&lt;/p&gt;
 &lt;p&gt;Fortunately, the New Year is &lt;em&gt;that time&lt;/em&gt; where people arbitrarily decide to make drastic changes to their lives. I&amp;#8217;ve learned my lesson from last year, and this time around, I think I&amp;#8217;ll make some more general resolutions. I&amp;#8217;ll be trying out a few ideas from Alex Vermeer&amp;#8217;s page on &lt;a href="https://alexvermeer.com/life-hacking/"&gt;life hacking&lt;/a&gt;. I want my Twitter feed to be more of a stream of consciousness rather than meticulously curated timeline. I want to write a bunch of blog posts that other people (might) find useful. Let&amp;#8217;s see what comes of&amp;nbsp;2017.&lt;/p&gt;</summary></entry><entry><title>Reflections and Resolutions</title><link href="http://kevinyap.ca/2015/12/reflections-and-resolutions/" rel="alternate"></link><published>2015-12-31T00:00:00-08:00</published><updated>2015-12-31T00:00:00-08:00</updated><author><name></name></author><id>tag:kevinyap.ca,2015-12-31:2015/12/reflections-and-resolutions/</id><summary type="html">&lt;p&gt;It&amp;#8217;s already the last day of 2015, and I&amp;#8217;ve only published a single post this year (and on the first of January, no less). It turns out I&amp;#8217;m not actually limited to posting technical articles here, so I figured I would ramble on about various things from this year and set some goals for 2016. With any luck, this might even become a regular&amp;nbsp;occurrence!&lt;/p&gt;
