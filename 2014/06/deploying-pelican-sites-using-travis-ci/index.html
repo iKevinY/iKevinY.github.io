@@ -112,19 +112,14 @@
 </td></tr></table>
 
 <p>I also changed the flag on <code>git add</code> to <code>-A</code> in order to stage deleted files as well as added and modified ones and added the <code>git status -s</code> command which echos a nice overview of what changes were actually staged (which gets stored in Travis&#8217; build&nbsp;logs):</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git status -s
+<div class="codehilite"><pre><span></span>$ git status -s
 A  <span class="m">2014</span>/06/deploying-pelican-sites-using-travis-ci/index.html
 A  <span class="m">2014</span>/06/index.html
 M  <span class="m">2014</span>/index.html
 M  archive/index.html
 M  index.html
 </pre></div>
-</td></tr></table>
+
 
 <p>Since my version of <code>deploy.sh</code> was based on the script that I used to test and deploy changes locally, I wrote it so that it could be executed from a local development machine by checking against the <code>$TRAVIS</code> variable. When run locally, it can be used to check what changes would be pushed to the GitHub Pages branch given the modifications that have been made locally. In practice, it wouldn&#8217;t ever be useful to push changes manually since Travis would automatically repeat the exact same steps, but if the integration between GitHub and Travis were to ever stop working, I would still have a way to make modifications to the GitHub Pages&nbsp;branch.</p>
 	</div>

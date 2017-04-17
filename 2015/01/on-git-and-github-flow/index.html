@@ -110,9 +110,9 @@
 <h2>To Merge or Not to&nbsp;Merge</h2>
 <p>Merging is the process of merging the commits made in two branches into one branch. This is done when a branch that is being worked on is deemed complete, and the changes are to be merged into the master branch. In the simplest case (where the only commits that have been made are in the topic branch), this is known as a fast-forward merge, and the commits are &#8220;played on top of&#8221; the master branch. Fast-forward merges can be performed automatically by Git and require no additional effort on the part of the user performing the merge. In other cases, merging either results in a merge commit or the manual resolution of merge conflicts (if the changes made in the branches contradict one&nbsp;another).</p>
 <p>Something that Git tutorials tend to gloss over is the rebase command. The reason for this is that rebasing involves <em>rewriting history</em>. When you rebase a set of commits, they will change, and if the older set of commits have already been pushed to a remote repository that others have pulled from, pushing new changes will cause a break in continuity for others who try to pull these newly pushed commits. Because of this, it is recommended to only rebase local commits in most&nbsp;cases.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>git rebase -i HEAD~n  <span class="c1"># rebase the last n commits</span>
+<div class="codehilite"><pre><span></span>$ git rebase -i HEAD~n  <span class="c1"># rebase the last n commits</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>The <code>-i</code> flag stands for <em>interactive</em>. Upon executing the command, your <code>$EDITOR</code> of choice will open with a list of commits from least recent to most recent preceded by the word&nbsp;&#8220;pick&#8221;:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
