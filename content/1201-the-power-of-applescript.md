@@ -15,7 +15,8 @@ All in all, the script was certainly not pretty, but it did the job. I didn't no
 
 If you want to use the script to rename to your own tracks (or just to examine my shoddily thrown together code), here is the source code; to use the script, copy it into AppleScript Editor, select the tracks in iTunes, and run it.
 
-```applescript
+```
+#!applescript
 tell application "iTunes"
 	set sel to selection
 	if sel is not {} then

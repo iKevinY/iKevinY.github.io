@@ -15,7 +15,8 @@ While I use [GitHub for Mac](http://mac.github.com) to manage the repository for
 
 To achieve this, the script runs the following code after the `pelican` command generates the static site files.
 
-```bash
+```
+#!bash
 cd $sourceDirectory
 commitHash=$(git rev-parse HEAD)
 cd $outputDirectory

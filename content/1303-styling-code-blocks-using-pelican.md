@@ -5,7 +5,8 @@ Although [Monokai](http://studiostyl.es/schemes/monokai) is my colour scheme of 
 
 While Alex's tutorial implemented line numbering using CSS, the [CodeHilite](http://pythonhosted.org/Markdown/extensions/code_hilite.html) extension for [Python-Markdown](https://pypi.python.org/pypi/Markdown) has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite's `linenums` setting needs to be set to `True`. This can be done through the `MD_EXTENSIONS` option in the settings file supplied to Pelican.
 
-```python
+```
+#!python
 MD_EXTENSIONS = ['codehilite(linenums = True)']
 ```
 
@@ -13,7 +14,8 @@ The next step is to download a stylesheet that is compatible with Pygments. I us
 
 Some custom styling is then done in order to change the appearance of the code blocks. The following three blocks of code would be placed in the primary stylesheet of the site's theme. First of all, basic styling is added to the code block to control basic properties of the code, as well as create the border around the code block and ensure that it scrolls correctly if a line of code is too large for the block. While this is generally not an issue when being viewed on a computer screen, it is important for if the code is being viewed on a mobile device.
 
-```css
+```
+#!css
 .codehilitetable {
 	font-family: "Source Code Pro", monospace;
 	font-size: 12px;
@@ -28,7 +30,8 @@ Following this, the line numbering is styled by modifying the `linenos` class. T
 
 The horizontal margins of the `codehilite` class, which controls the code itself, are increased to add spacing between the code snippets and the line numbers.
 
-```css
+```
+#!css
 .linenos {
 	border-right: 1px solid #d9d9d9;
 	background: #eee;

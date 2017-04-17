@@ -19,7 +19,8 @@ The terminology used in ComputerCraft is an obvious allusion to the programming 
 
 The first major Turtle program that I wrote was a branch mining script. My goal was to write a program that a swarm of Turtles could execute simultaneously to excavate an area for ores. I tend to be meticulous about following patterns when I mine, and when branch mining, this entails digging tunnels with torches every eight blocks. Here is a very basic Turtle script with this functionality.
 
-```lua
+```
+#!lua
 function miningIteration()
   turtle.dig() -- digs the block in front
   turtle.forward() -- moves forward
@@ -42,7 +43,8 @@ The function `miningIteration()` instructs the Turtle to dig the block in front 
 
 There is a simple enough fix. The [Turtle API][16] contains functions that allow a Turtle to detect if there is a block in front of, above, or below itself. An improvement to the Turtle would be to detect if there is a block in front of the Turtle and if so, continue digging in front until it there is no block in front. To deal with overhead gravel, the same approach can be taken but by detecting blocks above the Turtle rather than in front of it. Here is the function rewritten to use these detection functions instead of movement functions.
 
-```lua
+```
+#!lua
 function miningIteration()
   while turtle.detect() do turtle.dig() end
   turtle.forward()
@@ -54,7 +56,8 @@ However, this function is still flawed, though the cause of the problem may not 
 
 If a Turtle were to execute the current version of `miningIteration()`, it would quickly become apparent that the Turtle still has problems with gravel. If it encountered a column of gravel above itself, it would move forward during the time that the gravel block above itself is was still falling, leaving a pillar of gravel in the middle of the branch mine. The reason for this is that directly after the Turtle finishes executing `turtle.digUp()`, the gravel block is still falling; therefore, `turtle.detectUp()` returns `false`. This causes the Turtle to continue mining instead of properly stopping to mine the gravel above it. This can be solved by pausing the script for just the right amount of time so that it can detect gravel after it had fallen. This timing turned out to be 0.2 seconds, so adding `sleep(0.2)` after the digging functions forces the Turtle to halt for a brief period of time, mining gravel correctly.
 
-```lua
+```
+#!lua
 function miningIteration()
   while turtle.detect() do
     turtle.dig()
@@ -72,7 +75,8 @@ Another interesting behaviour that needed to be debugged was directional-based. 
 
 With regards to torch placement, this directional behaviour means that mining in the northwards and southwards direction requires no special treatment. In the remaining two directions, the torch will be placed on the block in front of the Turtle, and in the next iteration of mining, it will get mined along with the block it is attached to. On its own, ComputerCraft does not provide a way for Turtles to automatically determine what direction they are facing (additional mods can add additional types of Turtles to the game). Utilizing ComputerCraft's [GPS API][18] to determine the axis along which a Turtle is travelling would be the only way to add this functionality. As I do not have any GPS infrastructure in my world, I opted to have the Turtle simply prompt the user for the direction that it is facing and store it in the variable `direction`.
 
-```lua
+```
+#!lua
 while true do
   for i = 1, 8 do miningIteration() end
   if direction == 1 or direction == 3 then
