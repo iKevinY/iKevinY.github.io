@@ -4,7 +4,7 @@
 	<!-- Basic Metas -->
 	<meta charset="utf-8">
 	<title>Breaking the Enigma Code With Rust | Kevin Yap</title>
-	<meta name="description" content="If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War ...">
+	<meta name="description" content="If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War …">
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
 	<meta name="twitter:domain" content="kevinyap.ca">
 	<meta name="twitter:site" content="@iKevinY">
 	<meta property="og:title" content="Breaking the Enigma Code With Rust">
-	<meta property="og:description" content="If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War ...">
+	<meta property="og:description" content="If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War …">
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2017/04/breaking-the-enigma-code-with-rust/">
@@ -125,7 +125,7 @@ A few miles south of Soledad, the Salinas River drops in close to the hillside b
 <p>When you take into account the <a href="https://en.wikipedia.org/wiki/Enigma_machine#Plugboard">plugboard</a>, the number of settings is <a href="http://crypto.stackexchange.com/questions/33628/how-many-possible-enigma-machine-settings">in the quintillions</a>, so we won&#8217;t even consider trying to break this using our ciphertext-only attack. However, this still leaves approximately 18 billion permutations. Even if it only took 1 microsecond to try each one, it would still take 5 hours to work through the entire problem space. Fortunately, with some clever optimization, we can reduce the number of permutations to just over 1.5&nbsp;million.</p>
 <p>We can search for the optimal rotors and key settings separately from their ring settings. The ring settings determine offsets for the rotors&#8217; notches (the position at which the fast rotor advancing causes the middle rotor to advance, and likewise between the middle and the slow rotors). If we find the correct rotors and key settings with the wrong ring settings, the resulting plaintext will be somewhat correct, with errors where the rotors advanced in the wrong&nbsp;place.</p>
 <p>First, we check all possible rotor and key permutations, fixing the ring settings as &#8220;<span class="caps">AAA</span>&#8221;. We pick the best of those, and then try key and ring settings for the fast and middle rotors; the slow rotor doesn&#8217;t &#8220;turn&#8221; any other rotors, so its ring setting doesn&#8217;t influence the decryption, and therefore we can safely ignore it. This leaves us with a total of <span class="math">\(60 \times 26^3 + 26^4\)</span>, or <span class="math">\(1\,511\,536\)</span> settings to check &#8212; a reasonable number to brute-force on a modern&nbsp;computer.</p>
-<hr />
+<hr>
 <p>Seeing as <code>ultra</code> was my first real Rust project, I figured I would also share some thoughts I have about it. Perhaps Rust&#8217;s primary selling point is memory safety. My introductory computer systems course was essentially one extended lecture about everything that can go wrong with <code>malloc</code> and pointers. While being familiar with using Valgrind is neat, it&#8217;s nice to not have to think about these things at all, and just focus on writing the&nbsp;implementation.</p>
 <p>In addition, between closures and iterators, Rust makes it easy to write functional code. Because of my prior experience with Python, Haskell, and <a href="https://racket-lang.org">Racket</a>, I felt right at home using Rust. Chaining together iterator adapters and collecting the result rather than iteratively pushing values into a vector with a for-loop reminded me of using list comprehensions in&nbsp;Python.</p>
 <p>The bulk of <code>ultra</code><span class="quo">&#8216;</span>s decryption algorithm involves iterating over Enigma settings, running the ciphertext through it, and returning the one with the highest fitness score. This lends itself nicely to parallelization; by splitting up the work, each worker can compute the maximum of its subset of the work, and the final result is the max of <em>those</em>&nbsp;maximums.</p>
@@ -190,11 +190,9 @@ A few miles south of Soledad, the Salinas River drops in close to the hillside b
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
