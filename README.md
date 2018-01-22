@@ -8,8 +8,8 @@ that Pelican uses to generate the static files which are automatically
 [pushed][generate.sh] to the [`master`] branch by Travis CI (see
 [this blog post][travis-article] for more information on the process).
 
-Code is licensed under the [MIT License], and articles under a [Creative
-Commons Attribution License].
+Code is licensed under the [MIT License], and articles under the [Creative
+Commons Attribution-ShareAlike License].
 
 [1]: http://img.shields.io/travis/iKevinY/iKevinY.github.io/src.svg?style=flat "Build Status"
 [2]: https://travis-ci.org/iKevinY/iKevinY.github.io
@@ -23,4 +23,4 @@ Commons Attribution License].
 [generate.sh]: generate.sh#L66
 [travis-article]: http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/
 [MIT License]: LICENSE
-[Creative Commons Attribution License]: http://creativecommons.org/licenses/by/4.0/
+[Creative Commons Attribution-ShareAlike License]: http://creativecommons.org/licenses/by-sa/4.0/
