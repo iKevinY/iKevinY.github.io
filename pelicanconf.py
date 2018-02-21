@@ -16,11 +16,6 @@ SIDEBAR_LINKS = [
 
 ICONS_PATH = 'images/icons'
 
-GOOGLE_FONTS = [
-    "Nunito Sans:300,700",
-    "Source Code Pro",
-]
-
 SOCIAL_ICONS = [
     ('mailto:me@kevinyap.ca', 'Email (me@kevinyap.ca)', 'fa-envelope'),
     ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
