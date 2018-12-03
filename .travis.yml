@@ -9,4 +9,4 @@ env:
 cache: pip
 install: make install
 script: make build
-after_success: make deploy
+after_success: 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make diff; else make deploy; fi'
