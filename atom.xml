@@ -1,5 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kevin Yap</title><link href="http://kevinyap.ca/" rel="alternate"></link><link href="http://kevinyap.ca/atom.xml" rel="self"></link><id>http://kevinyap.ca/</id><updated>2017-04-17T00:00:00-07:00</updated><entry><title>Breaking the Enigma Code With Rust</title><link href="http://kevinyap.ca/2017/04/breaking-the-enigma-code-with-rust/" rel="alternate"></link><published>2017-04-17T00:00:00-07:00</published><updated>2017-04-17T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2017-04-17:/2017/04/breaking-the-enigma-code-with-rust/</id><summary type="html">&lt;p&gt;If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War is probably one of the more &amp;#8220;exciting&amp;#8221; aspects of history, and while it goes without saying that war is terrible, a lot of technologies and even new fields of research are the product of wartime&amp;nbsp;conditions.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kevin Yap</title><link href="http://kevinyap.ca/" rel="alternate"></link><link href="http://kevinyap.ca/atom.xml" rel="self"></link><id>http://kevinyap.ca/</id><updated>2019-03-25T00:00:00-07:00</updated><entry><title>Rickety Roulette (picoCTF Writeup)</title><link href="http://kevinyap.ca/2019/03/rickety-roulette-picoctf-writeup/" rel="alternate"></link><published>2019-03-25T00:00:00-07:00</published><updated>2019-03-25T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2019-03-25:/2019/03/rickety-roulette-picoctf-writeup/</id><summary type="html">&lt;p&gt;Recently, I&amp;#8217;ve taken an interest in &lt;a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security"&gt;CTFs&lt;/a&gt;: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &amp;#8212; such as reverse engineering, binary exploitation, or cryptanalysis &amp;#8212; in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I&amp;#8217;ve taken an interest in &lt;a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security"&gt;CTFs&lt;/a&gt;: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &amp;#8212; such as reverse engineering, binary exploitation, or cryptanalysis &amp;#8212; in order to recover a &amp;#8220;flag&amp;#8221;: a password that follows a specific format, like &lt;code&gt;flag{s3cret_c0de}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;My university started a &lt;a href="https://ubcctf.github.io"&gt;&lt;span class="caps"&gt;CTF&lt;/span&gt; club&lt;/a&gt; last month, and since I&amp;#8217;m quite new to this field, I&amp;#8217;ve been working my way through &lt;a href="https://picoctf.com"&gt;picoCTF&lt;/a&gt;, which is an oft-recommended beginner resource. Since I haven&amp;#8217;t written any technical articles in a while, I thought it would be interesting to provide write-ups for some of the more interesting problems, starting with one called &lt;code&gt;roulette&lt;/code&gt;. (The source code as provided by picoCTF can be found &lt;a href="http://kevinyap.ca/files/roulette.c"&gt;here&lt;/a&gt;, in case you&amp;#8217;d like to try the challenge yourself&amp;nbsp;first.)&lt;/p&gt;
+&lt;p&gt;If we connect to the service, we see the&amp;nbsp;following:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Welcome to ONLINE ROULETTE!
+Here, have $3249 to start on the house! You&amp;#39;ll lose it all anyways &amp;gt;:)
+
+How much will you wager?
+Current Balance: $3249    Current Wins: 0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you enter an amount greater than your current balance, the program will reject your wager. Choosing a valid amount allows you to guess which number will come&amp;nbsp;up:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; 5000
+You can&amp;#39;t bet more than you have!
+How much will you wager?
+Current Balance: $3249   Current Wins: 0
+&amp;gt; 100
+Choose a number (1-36)
+&amp;gt; 1
+
+Spinning the Roulette for a chance to win $200!
+
+Roulette  :  2
+
+WRONG
+You&amp;#39;re never gonna win
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the off chance that you manage to guess the correct value, the program will fairly reward you with twice your wagered amount. We&amp;#8217;ve been told that the goal is to accrue $1 billion, and upon doing so, we&amp;#8217;ll be rewarded with the flag. With only a 1-in-36 chance of doubling our money, it&amp;#8217;s simply not possible to get anywhere close by pure chance. Therefore, we&amp;#8217;ll have to find a way to beat the&amp;nbsp;system.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s analyze the program piece-by-piece to see if we can identify any weaknesses (the code snippets I&amp;#8217;ve included in this post are slightly reformatted from the original source provided above, for space efficiency). For starters, here&amp;#8217;s the &lt;code&gt;main&lt;/code&gt; function:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define HOTSTREAK 3&lt;/span&gt;
+&lt;span class="cp"&gt;#define MAX_WINS 16&lt;/span&gt;
+&lt;span class="cp"&gt;#define ONE_BILLION 1000000000&lt;/span&gt;
+
+&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;cash&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;wins&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;cash&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_rand&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cash&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_bet&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;cash&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;choice&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_choice&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+    &lt;span class="n"&gt;play_roulette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wins&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;MAX_WINS&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Wow you won %lu times? Looks like its time for you cash you out.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;wins&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cash&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ONE_BILLION&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;*** Current Balance: $%lu ***&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cash&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wins&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;HOTSTREAK&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Wow, I can&amp;#39;t believe you did it.. You deserve this flag!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;print_flag&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Wait a second... You&amp;#39;re not even on a hotstreak! Get out of here cheater!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Haha, lost all the money I gave you already? See ya later!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The program gives us a random amount of money to start with, and as long as we still have money, allows us to keep play roulette. Of note is the call to &lt;code&gt;print_flag()&lt;/code&gt; &amp;#8212; getting the program to execute this function will give us our&amp;nbsp;flag.&lt;/p&gt;
+&lt;p&gt;If we have more than $1 billion dollars, we enter the part of the program that checks whether the flag should be printed or not. However, take note of the &lt;code&gt;wins &amp;gt;= HOTSTREAK&lt;/code&gt; check; if the current number of wins is less than 3, the system detects that we somehow tampered with our cash balance &lt;em&gt;without&lt;/em&gt; going through the hassle of actually winning multiple rounds in a row, accuses us of cheating, and kicks us&amp;nbsp;out.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s take a look at &lt;code&gt;get_bet()&lt;/code&gt; and see if there&amp;#8217;s anything we can exploit&amp;nbsp;there.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;get_bet&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;How much will you wager?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_long&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bet&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;cash&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;You can&amp;#39;t bet more than you have!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This looks pretty standard: continuously ask the player for their wager until they provide a valid bet, and then return that amount. One common bug in programs like this is the possibility of &lt;a href="https://en.wikipedia.org/wiki/Integer_overflow"&gt;integer overflow&lt;/a&gt;, so let&amp;#8217;s investigate &lt;code&gt;get_long()&lt;/code&gt; for&amp;nbsp;bugs.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;is_digit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;9&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;get_long&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;is_digit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getchar&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;is_digit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;LONG_MAX&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LONG_MAX&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;*=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getchar&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;\n&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getchar&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;get_long()&lt;/code&gt; iterates over the given input character-by-character, ignoring anything that isn&amp;#8217;t a digit, and gradually accumulates the value in &lt;code&gt;l&lt;/code&gt;. If it ever exceeds the value of &lt;code&gt;LONG_MAX&lt;/code&gt; (a constant provided by &lt;code&gt;limits.h&lt;/code&gt;), the balance is set to &lt;code&gt;LONG_MAX&lt;/code&gt;, presumably as an attempt to guard against interflow overflow&amp;nbsp;bugs.&lt;/p&gt;
+&lt;p&gt;However, it turns out this function is still exploitable. Since a &lt;code&gt;long&lt;/code&gt; is a signed value, exceeding &lt;code&gt;LONG_MAX&lt;/code&gt; will cause the value to &amp;#8220;wrap around&amp;#8221; to a negative number. We find that the program is compiled for 32-bit CPUs, so we simply need a value greater than 2³¹ − 1 =&amp;nbsp;2147483647:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+Current Balance: $4962   Current Wins: 0
+&amp;gt; 2500000000
+Choose a number (1-36)
+&amp;gt; 1
+
+Spinning the Roulette for a chance to win $705032704!
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Great, we&amp;#8217;ve found a way to effectively win as much money as we want, which means it&amp;#8217;s trivial to achieve a balance of $1 billion. However, there&amp;#8217;s still the issue of having to win at least 3 times &lt;em&gt;before&lt;/em&gt; reaching that amount (otherwise the cheat-detection will kick&amp;nbsp;in).&lt;/p&gt;
+&lt;p&gt;Of course, one approach we can take is to simply bet $0 over and over until we get lucky on the 1/36 dice roll three times, then trigger the overflow on our balance. However, the roulette program plays a &amp;#8220;fun&amp;#8221; animation when spinning the wheel that takes around 10 seconds, and the time we&amp;#8217;re allowed to stay connected to the service is limited to a few minutes, so it&amp;#8217;s still astronomically unlikely that we&amp;#8217;d be able to win enough times before being kicked out. We&amp;#8217;ll have to find a way to beat the&amp;nbsp;odds.&lt;/p&gt;
+&lt;p&gt;Recall that we get a random amount of money every time we connect to the roulette service. Let&amp;#8217;s take a closer look at the implementation of &lt;code&gt;get_rand()&lt;/code&gt;, the function that dictates our starting&amp;nbsp;balance:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;get_rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="kt"&gt;FILE&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/dev/urandom&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;r&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;fread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;fclose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;seed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt; &lt;span class="o"&gt;*=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;srand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It reads in some bytes from &lt;a href="https://en.wikipedia.org/wiki//dev/random"&gt;&lt;code&gt;/dev/urandom&lt;/code&gt;&lt;/a&gt;, truncates the result to the interval &lt;code&gt;[0, 5000)&lt;/code&gt;, and returns that as our starting&amp;nbsp;balance.&lt;/p&gt;
+&lt;p&gt;The bug here lies in one somewhat innocuous-looking call: &lt;code&gt;srand(seed)&lt;/code&gt;. This seeds the random number generation for the program, which by itself isn&amp;#8217;t a huge deal. However, remember that the value of &lt;code&gt;seed&lt;/code&gt; becomes our starting balance &amp;#8212; the program reveals the seed to&amp;nbsp;us!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;play_roulette()&lt;/code&gt; uses &lt;code&gt;rand()&lt;/code&gt; to choose which number the wheel lands on, and since we know the seed, the sequence of spins is actually deterministic! Let&amp;#8217;s write up a quick program to generate what values we should guess by taking the seed (our initial balance) as a command line argument, and then emulating the roulette logic to print the next few&amp;nbsp;results:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="cp"&gt;#define ROULETTE_SIZE 36&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;strtol&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;srand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%i&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;ROULETTE_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;However, if we use this program to choose our guesses, we find that we get the first one right, but after that it fails. Did we misunderstand the behaviour of the roulette program and just get lucky? Let&amp;#8217;s take a closer look at the &lt;code&gt;play_roulette&lt;/code&gt; function to see if we can figure out what went&amp;nbsp;wrong:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;play_roulette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Spinning the Roulette for a chance to win $%lu!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;spin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;ROULETTE_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;spin_roulette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;spin&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;spin&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;cash&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;wins&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;win_msgs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;NUM_WIN_MSGS&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lose_msgs1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;NUM_LOSE_MSGS&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+    &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lose_msgs2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;NUM_LOSE_MSGS&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It turns out that the program calls &lt;code&gt;rand()&lt;/code&gt; to pick random winning/losing messages to display to the player, and this advances the &lt;span class="caps"&gt;PRNG&lt;/span&gt;. Therefore, we should account for this by choosing every &lt;em&gt;other&lt;/em&gt; number produced by the program we wrote (assuming we always hit the winning branch; we would have to skip two &lt;span class="caps"&gt;RNG&lt;/span&gt; results if we ever&amp;nbsp;lose).&lt;/p&gt;
+&lt;p&gt;With this new insight, let&amp;#8217;s beat roulette for&amp;nbsp;good:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ nc 2018shell.picoctf.com 26662
+Welcome to ONLINE ROULETTE!
+Here, have $3249 to start on the house! You&amp;#39;ll lose it all anyways &amp;gt;:)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We pass the seed to the program we wrote to figure out which numbers to bet&amp;nbsp;on.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./rand &lt;span class="m"&gt;3249&lt;/span&gt;
+&lt;span class="m"&gt;9&lt;/span&gt;
+&lt;span class="m"&gt;29&lt;/span&gt;
+&lt;span class="m"&gt;6&lt;/span&gt;
+&lt;span class="m"&gt;29&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This tells us that the roulette will land on 9, 6, then 1, so let&amp;#8217;s guess&amp;nbsp;those!&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+Current Balance: $3249   Current Wins: 0
+&amp;gt; 0
+Choose a number (1-36)
+&amp;gt; 9
+
+Spinning the Roulette for a chance to win $0!
+
+Roulette  :  9
+
+Wow.. Nice One!
+
+How much will you wager?
+Current Balance: $3249   Current Wins: 1
+&amp;gt; 0
+Choose a number (1-36)
+&amp;gt; 6
+
+Spinning the Roulette for a chance to win $0!
+
+Roulette  :  6
+
+Alright, now you&amp;#39;re cooking!
+
+How much will you wager?
+Current Balance: $3249   Current Wins: 2
+&amp;gt; 0
+Choose a number (1-36)
+&amp;gt; 1
+
+Spinning the Roulette for a chance to win $0!
+
+Roulette  :  1
+
+You&amp;#39;re not cheating are you?
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now that we&amp;#8217;ve won three times, we just need to underflow our balance like we did earlier on (we guess a losing number so that our bet doesn&amp;#8217;t get re-added upon&amp;nbsp;winning):&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+Current Balance: $3249   Current Wins: 3
+&amp;gt; 2500000000
+Choose a number (1-36)
+&amp;gt; 1
+
+Spinning the Roulette for a chance to win $705032704!
+
+Roulette  :  12
+
+WRONG
+Just give up!
+
+*** Current Balance: $1794970545 ***
+Wow, I can&amp;#39;t believe you did it.. You deserve this flag!
+picoCTF{redacted}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Success! This was an interesting problem because all it took to find the vulnerabilities was a careful pass through the source code. In addition, both the bugs are things that could easily sneak their way into an actual codebase if not careful. For my next writeup, I&amp;#8217;m planning on tackling a problem that requires more sophisticated tooling and background&amp;nbsp;knowledge.&lt;/p&gt;</content></entry><entry><title>Breaking the Enigma Code With Rust</title><link href="http://kevinyap.ca/2017/04/breaking-the-enigma-code-with-rust/" rel="alternate"></link><published>2017-04-17T00:00:00-07:00</published><updated>2017-04-17T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2017-04-17:/2017/04/breaking-the-enigma-code-with-rust/</id><summary type="html">&lt;p&gt;If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War is probably one of the more &amp;#8220;exciting&amp;#8221; aspects of history, and while it goes without saying that war is terrible, a lot of technologies and even new fields of research are the product of wartime&amp;nbsp;conditions.&lt;/p&gt;
 &lt;p&gt;The Enigma machines are a series of electromechanical cipher machines that were famously used by Germany in World War &lt;span class="caps"&gt;II&lt;/span&gt; to encrypt military communications. Breaking the Enigma code had a huge impact on the Allies&amp;#8217; ability to win the war. Most of what I could write about the history of cracking Enigma is already covered by &lt;a href="https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma"&gt;this Wikipedia article&lt;/a&gt; (or if you prefer a more dramatized version, a &lt;a href="https://en.wikipedia.org/wiki/The_Imitation_Game"&gt;certain movie&lt;/a&gt; starring Benedict Cumberbatch), so I won&amp;#8217;t go over it in&amp;nbsp;detail.&lt;/p&gt;
 &lt;p&gt;Inspired by the &lt;a href="https://en.wikipedia.org/wiki/Colossus_computer"&gt;computers&lt;/a&gt; that were born out of cryptanalysis, I decided to write my own Enigma-cracking program in Rust &amp;#8212; &lt;a href="https://github.com/iKevinY/ultra"&gt; &lt;code&gt;ultra&lt;/code&gt;&lt;/a&gt;. &amp;#8220;Ultra secret&amp;#8221; was the classification level used by the Allies to refer to intelligence obtained via deciphering German communications at &lt;a href="https://en.wikipedia.org/wiki/Bletchley_Park"&gt;Bletchley Park&lt;/a&gt;. If the Germany had discovered that the Allies could read their messages, they easily could have switched to a completely new encryption method, nullifying all the effort spent breaking Enigma in the first&amp;nbsp;place.&lt;/p&gt;
 &lt;p&gt;To demonstrate how the Enigma cipher was employed, here is some example usage from &lt;code&gt;ultra&lt;/code&gt;. First, we encrypt this plaintext message using some random machine&amp;nbsp;settings:&lt;/p&gt;
