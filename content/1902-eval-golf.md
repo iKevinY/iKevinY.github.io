@@ -1,5 +1,5 @@
 Title: Eval Golf (PlaidCTF Writeup)
-Date: 2019-04-13
+Date: 2019-04-15
 Slug: eval-golf-plaidctf-writeup
 
 Sticking with the theme of CTF writeups, here's one of a fairly simple challenge from [PlaidCTF 2019](http://plaidctf.com). Given that Python is my programming language of choice, it was fun to work on a Python-based challenge (rather than the low-level exploits that are more common in CTFs).
