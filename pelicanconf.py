@@ -21,7 +21,7 @@ SOCIAL_ICONS = [
     ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
     ('http://github.com/iKevinY', 'GitHub', 'fa-github'),
     ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa-soundcloud'),
-    ('/atom.xml', 'Atom Feed', 'fa-rss'),
+    ('http://instagram.com/ikeviny', 'Instagram', 'fa-instagram'),
 ]
 
 THEME_COLOR = '#FF8000'
