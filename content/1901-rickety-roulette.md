@@ -7,7 +7,7 @@ My university started a [CTF club](https://ubcctf.github.io) last month, and sin
 
 If we connect to the service, we see the following:
 
-```
+```text
 Welcome to ONLINE ROULETTE!
 Here, have $3249 to start on the house! You'll lose it all anyways >:)
 
@@ -17,7 +17,7 @@ Current Balance: $3249    Current Wins: 0
 
 If you enter an amount greater than your current balance, the program will reject your wager. Choosing a valid amount allows you to guess which number will come up:
 
-```
+```text
 > 5000
 You can't bet more than you have!
 How much will you wager?
@@ -133,7 +133,7 @@ long get_long() {
 
 However, it turns out this function is still exploitable. Since a `long` is a signed value, exceeding `LONG_MAX` will cause the value to "wrap around" to a negative number. We find that the program is compiled for 32-bit CPUs, so we simply need a value greater than 2³¹ − 1 = 2147483647:
 
-```
+```text
 How much will you wager?
 Current Balance: $4962   Current Wins: 0
 > 2500000000
@@ -227,7 +227,7 @@ $ ./rand 3249
 
 This tells us that the roulette will land on 9, 6, then 1, so let's guess those!
 
-```
+```text
 How much will you wager?
 Current Balance: $3249   Current Wins: 0
 > 0
@@ -267,7 +267,7 @@ You're not cheating are you?
 
 Now that we've won three times, we just need to underflow our balance like we did earlier on (we guess a losing number so that our bet doesn't get re-added upon winning):
 
-```
+```text
 How much will you wager?
 Current Balance: $3249   Current Wins: 3
 > 2500000000
