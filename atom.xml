@@ -63,29 +63,29 @@
 &lt;p&gt;This &lt;span class="caps"&gt;22KB&lt;/span&gt; payload is accepted by the service and gives us our&amp;nbsp;flag!&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Rickety Roulette (picoCTF Writeup)</title><link href="http://kevinyap.ca/2019/03/rickety-roulette-picoctf-writeup/" rel="alternate"></link><published>2019-03-25T00:00:00-07:00</published><updated>2019-03-25T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2019-03-25:/2019/03/rickety-roulette-picoctf-writeup/</id><summary type="html">&lt;p&gt;Recently, I&amp;#8217;ve taken an interest in &lt;a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security"&gt;CTFs&lt;/a&gt;: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &amp;#8212; such as reverse engineering, binary exploitation, or cryptanalysis &amp;#8212; in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I&amp;#8217;ve taken an interest in &lt;a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security"&gt;CTFs&lt;/a&gt;: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &amp;#8212; such as reverse engineering, binary exploitation, or cryptanalysis &amp;#8212; in order to recover a &amp;#8220;flag&amp;#8221;: a password that follows a specific format, like &lt;code&gt;flag{s3cret_c0de}&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;My university started a &lt;a href="https://ubcctf.github.io"&gt;&lt;span class="caps"&gt;CTF&lt;/span&gt; club&lt;/a&gt; last month, and since I&amp;#8217;m quite new to this field, I&amp;#8217;ve been working my way through &lt;a href="https://picoctf.com"&gt;picoCTF&lt;/a&gt;, which is an oft-recommended beginner resource. Since I haven&amp;#8217;t written any technical articles in a while, I thought it would be interesting to provide write-ups for some of the more interesting problems, starting with one called &lt;code&gt;roulette&lt;/code&gt;. (The source code as provided by picoCTF can be found &lt;a href="http://kevinyap.ca/files/roulette.c"&gt;here&lt;/a&gt;, in case you&amp;#8217;d like to try the challenge yourself&amp;nbsp;first.)&lt;/p&gt;
 &lt;p&gt;If we connect to the service, we see the&amp;nbsp;following:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;ONLINE&lt;/span&gt; &lt;span class="n"&gt;ROULETTE&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
-&lt;span class="n"&gt;Here&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;have&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;3249&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="k"&gt;start&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;house&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;You&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;ll&lt;/span&gt; &lt;span class="n"&gt;lose&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="k"&gt;all&lt;/span&gt; &lt;span class="n"&gt;anyways&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;:)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Welcome to ONLINE ROULETTE!
+Here, have $3249 to start on the house! You&amp;#39;ll lose it all anyways &amp;gt;:)
 
-&lt;span class="n"&gt;How&lt;/span&gt; &lt;span class="n"&gt;much&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;wager&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;
-&lt;span class="k"&gt;Current&lt;/span&gt; &lt;span class="n"&gt;Balance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;3249&lt;/span&gt;    &lt;span class="k"&gt;Current&lt;/span&gt; &lt;span class="n"&gt;Wins&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+How much will you wager?
+Current Balance: $3249    Current Wins: 0
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;If you enter an amount greater than your current balance, the program will reject your wager. Choosing a valid amount allows you to guess which number will come&amp;nbsp;up:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;5000&lt;/span&gt;
-&lt;span class="nv"&gt;You&lt;/span&gt; &lt;span class="nv"&gt;can&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;t bet more than you have!&lt;/span&gt;
-&lt;span class="nv"&gt;How&lt;/span&gt; &lt;span class="nv"&gt;much&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;wager&lt;/span&gt;?
-&lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Balance&lt;/span&gt;: &lt;span class="mh"&gt;$3249&lt;/span&gt;   &lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Wins&lt;/span&gt;: &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-&lt;span class="nv"&gt;Choose&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; 5000
+You can&amp;#39;t bet more than you have!
+How much will you wager?
+Current Balance: $3249   Current Wins: 0
+&amp;gt; 100
+Choose a number (1-36)
+&amp;gt; 1
 
-&lt;span class="nv"&gt;Spinning&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;Roulette&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;chance&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;win&lt;/span&gt; &lt;span class="mh"&gt;$200&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+Spinning the Roulette for a chance to win $200!
 
-&lt;span class="nv"&gt;Roulette&lt;/span&gt;  :  &lt;span class="mi"&gt;2&lt;/span&gt;
+Roulette  :  2
 
-&lt;span class="nv"&gt;WRONG&lt;/span&gt;
-&lt;span class="nv"&gt;You&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;re never gonna win&lt;/span&gt;
+WRONG
+You&amp;#39;re never gonna win
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -180,13 +180,13 @@
 
 &lt;p&gt;&lt;code&gt;get_long()&lt;/code&gt; iterates over the given input character-by-character, ignoring anything that isn&amp;#8217;t a digit, and gradually accumulates the value in &lt;code&gt;l&lt;/code&gt;. If it ever exceeds the value of &lt;code&gt;LONG_MAX&lt;/code&gt; (a constant provided by &lt;code&gt;limits.h&lt;/code&gt;), the balance is set to &lt;code&gt;LONG_MAX&lt;/code&gt;, presumably as an attempt to guard against interflow overflow&amp;nbsp;bugs.&lt;/p&gt;
 &lt;p&gt;However, it turns out this function is still exploitable. Since a &lt;code&gt;long&lt;/code&gt; is a signed value, exceeding &lt;code&gt;LONG_MAX&lt;/code&gt; will cause the value to &amp;#8220;wrap around&amp;#8221; to a negative number. We find that the program is compiled for 32-bit CPUs, so we simply need a value greater than 2³¹ − 1 =&amp;nbsp;2147483647:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;How&lt;/span&gt; &lt;span class="nv"&gt;much&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;wager&lt;/span&gt;?
-&lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Balance&lt;/span&gt;: &lt;span class="mh"&gt;$4962&lt;/span&gt;   &lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Wins&lt;/span&gt;: &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2500000000&lt;/span&gt;
-&lt;span class="nv"&gt;Choose&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+Current Balance: $4962   Current Wins: 0
+&amp;gt; 2500000000
+Choose a number (1-36)
+&amp;gt; 1
 
-&lt;span class="nv"&gt;Spinning&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;Roulette&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;chance&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;win&lt;/span&gt; &lt;span class="mh"&gt;$705032704&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+Spinning the Roulette for a chance to win $705032704!
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -263,61 +263,61 @@ Here, have $3249 to start on the house! You&amp;#39;ll lose it all anyways &amp;
 
 
 &lt;p&gt;This tells us that the roulette will land on 9, 6, then 1, so let&amp;#8217;s guess&amp;nbsp;those!&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;How&lt;/span&gt; &lt;span class="nv"&gt;much&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;wager&lt;/span&gt;?
-&lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Balance&lt;/span&gt;: &lt;span class="mh"&gt;$3249&lt;/span&gt;   &lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Wins&lt;/span&gt;: &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="nv"&gt;Choose&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+Current Balance: $3249   Current Wins: 0
+&amp;gt; 0
+Choose a number (1-36)
+&amp;gt; 9
 
-&lt;span class="nv"&gt;Spinning&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;Roulette&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;chance&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;win&lt;/span&gt; &lt;span class="mh"&gt;$0&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+Spinning the Roulette for a chance to win $0!
 
-&lt;span class="nv"&gt;Roulette&lt;/span&gt;  :  &lt;span class="mi"&gt;9&lt;/span&gt;
+Roulette  :  9
 
-&lt;span class="nv"&gt;Wow&lt;/span&gt;.. &lt;span class="nv"&gt;Nice&lt;/span&gt; &lt;span class="nv"&gt;One&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+Wow.. Nice One!
 
-&lt;span class="nv"&gt;How&lt;/span&gt; &lt;span class="nv"&gt;much&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;wager&lt;/span&gt;?
-&lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Balance&lt;/span&gt;: &lt;span class="mh"&gt;$3249&lt;/span&gt;   &lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Wins&lt;/span&gt;: &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="nv"&gt;Choose&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+How much will you wager?
+Current Balance: $3249   Current Wins: 1
+&amp;gt; 0
+Choose a number (1-36)
+&amp;gt; 6
 
-&lt;span class="nv"&gt;Spinning&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;Roulette&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;chance&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;win&lt;/span&gt; &lt;span class="mh"&gt;$0&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+Spinning the Roulette for a chance to win $0!
 
-&lt;span class="nv"&gt;Roulette&lt;/span&gt;  :  &lt;span class="mi"&gt;6&lt;/span&gt;
+Roulette  :  6
 
-&lt;span class="nv"&gt;Alright&lt;/span&gt;, &lt;span class="nv"&gt;now&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;re cooking!&lt;/span&gt;
+Alright, now you&amp;#39;re cooking!
 
-&lt;span class="nv"&gt;How&lt;/span&gt; &lt;span class="nv"&gt;much&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;wager&lt;/span&gt;?
-&lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Balance&lt;/span&gt;: &lt;span class="mh"&gt;$3249&lt;/span&gt;   &lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Wins&lt;/span&gt;: &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="nv"&gt;Choose&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+How much will you wager?
+Current Balance: $3249   Current Wins: 2
+&amp;gt; 0
+Choose a number (1-36)
+&amp;gt; 1
 
-&lt;span class="nv"&gt;Spinning&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;Roulette&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;chance&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;win&lt;/span&gt; &lt;span class="mh"&gt;$0&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+Spinning the Roulette for a chance to win $0!
 
-&lt;span class="nv"&gt;Roulette&lt;/span&gt;  :  &lt;span class="mi"&gt;1&lt;/span&gt;
+Roulette  :  1
 
-&lt;span class="nv"&gt;You&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;re not cheating are you?&lt;/span&gt;
+You&amp;#39;re not cheating are you?
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now that we&amp;#8217;ve won three times, we just need to underflow our balance like we did earlier on (we guess a losing number so that our bet doesn&amp;#8217;t get re-added upon&amp;nbsp;winning):&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;How&lt;/span&gt; &lt;span class="nv"&gt;much&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;wager&lt;/span&gt;?
-&lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Balance&lt;/span&gt;: &lt;span class="mh"&gt;$3249&lt;/span&gt;   &lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Wins&lt;/span&gt;: &lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2500000000&lt;/span&gt;
-&lt;span class="nv"&gt;Choose&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+Current Balance: $3249   Current Wins: 3
+&amp;gt; 2500000000
+Choose a number (1-36)
+&amp;gt; 1
 
-&lt;span class="nv"&gt;Spinning&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;Roulette&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;chance&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;win&lt;/span&gt; &lt;span class="mh"&gt;$705032704&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+Spinning the Roulette for a chance to win $705032704!
 
-&lt;span class="nv"&gt;Roulette&lt;/span&gt;  :  &lt;span class="mi"&gt;12&lt;/span&gt;
+Roulette  :  12
 
-&lt;span class="nv"&gt;WRONG&lt;/span&gt;
-&lt;span class="nv"&gt;Just&lt;/span&gt; &lt;span class="nv"&gt;give&lt;/span&gt; &lt;span class="nv"&gt;up&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+WRONG
+Just give up!
 
-&lt;span class="o"&gt;***&lt;/span&gt; &lt;span class="nv"&gt;Current&lt;/span&gt; &lt;span class="nv"&gt;Balance&lt;/span&gt;: &lt;span class="mh"&gt;$1794970545&lt;/span&gt; &lt;span class="o"&gt;***&lt;/span&gt;
-&lt;span class="nv"&gt;Wow&lt;/span&gt;, &lt;span class="nv"&gt;I&lt;/span&gt; &lt;span class="nv"&gt;can&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;t believe you did it.. You deserve this flag!&lt;/span&gt;
-&lt;span class="nv"&gt;picoCTF&lt;/span&gt;{&lt;span class="nv"&gt;redacted&lt;/span&gt;}
+*** Current Balance: $1794970545 ***
+Wow, I can&amp;#39;t believe you did it.. You deserve this flag!
+picoCTF{redacted}
 &lt;/pre&gt;&lt;/div&gt;
 
 

@@ -86,29 +86,29 @@
 		<p>Recently, I&#8217;ve taken an interest in <a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security">CTFs</a>: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &#8212; such as reverse engineering, binary exploitation, or cryptanalysis &#8212; in order to recover a &#8220;flag&#8221;: a password that follows a specific format, like <code>flag{s3cret_c0de}</code>.</p>
 <p>My university started a <a href="https://ubcctf.github.io"><span class="caps">CTF</span> club</a> last month, and since I&#8217;m quite new to this field, I&#8217;ve been working my way through <a href="https://picoctf.com">picoCTF</a>, which is an oft-recommended beginner resource. Since I haven&#8217;t written any technical articles in a while, I thought it would be interesting to provide write-ups for some of the more interesting problems, starting with one called <code>roulette</code>. (The source code as provided by picoCTF can be found <a href="http://kevinyap.ca/files/roulette.c">here</a>, in case you&#8217;d like to try the challenge yourself&nbsp;first.)</p>
 <p>If we connect to the service, we see the&nbsp;following:</p>
-<div class="codehilite"><pre><span></span><span class="n">Welcome</span> <span class="k">to</span> <span class="n">ONLINE</span> <span class="n">ROULETTE</span><span class="o">!</span>
-<span class="n">Here</span><span class="p">,</span> <span class="n">have</span> <span class="err">$</span><span class="mi">3249</span> <span class="k">to</span> <span class="k">start</span> <span class="k">on</span> <span class="n">the</span> <span class="n">house</span><span class="o">!</span> <span class="n">You</span><span class="err">&#39;</span><span class="n">ll</span> <span class="n">lose</span> <span class="n">it</span> <span class="k">all</span> <span class="n">anyways</span> <span class="o">&gt;</span><span class="p">:)</span>
+<div class="codehilite"><pre><span></span>Welcome to ONLINE ROULETTE!
+Here, have $3249 to start on the house! You&#39;ll lose it all anyways &gt;:)
 
-<span class="n">How</span> <span class="n">much</span> <span class="n">will</span> <span class="n">you</span> <span class="n">wager</span><span class="o">?</span>
-<span class="k">Current</span> <span class="n">Balance</span><span class="p">:</span> <span class="err">$</span><span class="mi">3249</span>    <span class="k">Current</span> <span class="n">Wins</span><span class="p">:</span> <span class="mi">0</span>
+How much will you wager?
+Current Balance: $3249    Current Wins: 0
 </pre></div>
 
 
 <p>If you enter an amount greater than your current balance, the program will reject your wager. Choosing a valid amount allows you to guess which number will come&nbsp;up:</p>
-<div class="codehilite"><pre><span></span><span class="o">&gt;</span> <span class="mi">5000</span>
-<span class="nv">You</span> <span class="nv">can</span><span class="s1">&#39;</span><span class="s">t bet more than you have!</span>
-<span class="nv">How</span> <span class="nv">much</span> <span class="nv">will</span> <span class="nv">you</span> <span class="nv">wager</span>?
-<span class="nv">Current</span> <span class="nv">Balance</span>: <span class="mh">$3249</span>   <span class="nv">Current</span> <span class="nv">Wins</span>: <span class="mi">0</span>
-<span class="o">&gt;</span> <span class="mi">100</span>
-<span class="nv">Choose</span> <span class="nv">a</span> <span class="nv">number</span> <span class="ss">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">36</span><span class="ss">)</span>
-<span class="o">&gt;</span> <span class="mi">1</span>
+<div class="codehilite"><pre><span></span>&gt; 5000
+You can&#39;t bet more than you have!
+How much will you wager?
+Current Balance: $3249   Current Wins: 0
+&gt; 100
+Choose a number (1-36)
+&gt; 1
 
-<span class="nv">Spinning</span> <span class="nv">the</span> <span class="nv">Roulette</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">chance</span> <span class="nv">to</span> <span class="nv">win</span> <span class="mh">$200</span><span class="o">!</span>
+Spinning the Roulette for a chance to win $200!
 
-<span class="nv">Roulette</span>  :  <span class="mi">2</span>
+Roulette  :  2
 
-<span class="nv">WRONG</span>
-<span class="nv">You</span><span class="s1">&#39;</span><span class="s">re never gonna win</span>
+WRONG
+You&#39;re never gonna win
 </pre></div>
 
 
@@ -203,13 +203,13 @@
 
 <p><code>get_long()</code> iterates over the given input character-by-character, ignoring anything that isn&#8217;t a digit, and gradually accumulates the value in <code>l</code>. If it ever exceeds the value of <code>LONG_MAX</code> (a constant provided by <code>limits.h</code>), the balance is set to <code>LONG_MAX</code>, presumably as an attempt to guard against interflow overflow&nbsp;bugs.</p>
 <p>However, it turns out this function is still exploitable. Since a <code>long</code> is a signed value, exceeding <code>LONG_MAX</code> will cause the value to &#8220;wrap around&#8221; to a negative number. We find that the program is compiled for 32-bit CPUs, so we simply need a value greater than 2³¹ − 1 =&nbsp;2147483647:</p>
-<div class="codehilite"><pre><span></span><span class="nv">How</span> <span class="nv">much</span> <span class="nv">will</span> <span class="nv">you</span> <span class="nv">wager</span>?
-<span class="nv">Current</span> <span class="nv">Balance</span>: <span class="mh">$4962</span>   <span class="nv">Current</span> <span class="nv">Wins</span>: <span class="mi">0</span>
-<span class="o">&gt;</span> <span class="mi">2500000000</span>
-<span class="nv">Choose</span> <span class="nv">a</span> <span class="nv">number</span> <span class="ss">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">36</span><span class="ss">)</span>
-<span class="o">&gt;</span> <span class="mi">1</span>
+<div class="codehilite"><pre><span></span>How much will you wager?
+Current Balance: $4962   Current Wins: 0
+&gt; 2500000000
+Choose a number (1-36)
+&gt; 1
 
-<span class="nv">Spinning</span> <span class="nv">the</span> <span class="nv">Roulette</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">chance</span> <span class="nv">to</span> <span class="nv">win</span> <span class="mh">$705032704</span><span class="o">!</span>
+Spinning the Roulette for a chance to win $705032704!
 </pre></div>
 
 
@@ -286,61 +286,61 @@ Here, have $3249 to start on the house! You&#39;ll lose it all anyways &gt;:)
 
 
 <p>This tells us that the roulette will land on 9, 6, then 1, so let&#8217;s guess&nbsp;those!</p>
-<div class="codehilite"><pre><span></span><span class="nv">How</span> <span class="nv">much</span> <span class="nv">will</span> <span class="nv">you</span> <span class="nv">wager</span>?
-<span class="nv">Current</span> <span class="nv">Balance</span>: <span class="mh">$3249</span>   <span class="nv">Current</span> <span class="nv">Wins</span>: <span class="mi">0</span>
-<span class="o">&gt;</span> <span class="mi">0</span>
-<span class="nv">Choose</span> <span class="nv">a</span> <span class="nv">number</span> <span class="ss">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">36</span><span class="ss">)</span>
-<span class="o">&gt;</span> <span class="mi">9</span>
+<div class="codehilite"><pre><span></span>How much will you wager?
+Current Balance: $3249   Current Wins: 0
+&gt; 0
+Choose a number (1-36)
+&gt; 9
 
-<span class="nv">Spinning</span> <span class="nv">the</span> <span class="nv">Roulette</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">chance</span> <span class="nv">to</span> <span class="nv">win</span> <span class="mh">$0</span><span class="o">!</span>
+Spinning the Roulette for a chance to win $0!
 
-<span class="nv">Roulette</span>  :  <span class="mi">9</span>
+Roulette  :  9
 
-<span class="nv">Wow</span>.. <span class="nv">Nice</span> <span class="nv">One</span><span class="o">!</span>
+Wow.. Nice One!
 
-<span class="nv">How</span> <span class="nv">much</span> <span class="nv">will</span> <span class="nv">you</span> <span class="nv">wager</span>?
-<span class="nv">Current</span> <span class="nv">Balance</span>: <span class="mh">$3249</span>   <span class="nv">Current</span> <span class="nv">Wins</span>: <span class="mi">1</span>
-<span class="o">&gt;</span> <span class="mi">0</span>
-<span class="nv">Choose</span> <span class="nv">a</span> <span class="nv">number</span> <span class="ss">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">36</span><span class="ss">)</span>
-<span class="o">&gt;</span> <span class="mi">6</span>
+How much will you wager?
+Current Balance: $3249   Current Wins: 1
+&gt; 0
+Choose a number (1-36)
+&gt; 6
 
-<span class="nv">Spinning</span> <span class="nv">the</span> <span class="nv">Roulette</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">chance</span> <span class="nv">to</span> <span class="nv">win</span> <span class="mh">$0</span><span class="o">!</span>
+Spinning the Roulette for a chance to win $0!
 
-<span class="nv">Roulette</span>  :  <span class="mi">6</span>
+Roulette  :  6
 
-<span class="nv">Alright</span>, <span class="nv">now</span> <span class="nv">you</span><span class="s1">&#39;</span><span class="s">re cooking!</span>
+Alright, now you&#39;re cooking!
 
-<span class="nv">How</span> <span class="nv">much</span> <span class="nv">will</span> <span class="nv">you</span> <span class="nv">wager</span>?
-<span class="nv">Current</span> <span class="nv">Balance</span>: <span class="mh">$3249</span>   <span class="nv">Current</span> <span class="nv">Wins</span>: <span class="mi">2</span>
-<span class="o">&gt;</span> <span class="mi">0</span>
-<span class="nv">Choose</span> <span class="nv">a</span> <span class="nv">number</span> <span class="ss">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">36</span><span class="ss">)</span>
-<span class="o">&gt;</span> <span class="mi">1</span>
+How much will you wager?
+Current Balance: $3249   Current Wins: 2
+&gt; 0
+Choose a number (1-36)
+&gt; 1
 
-<span class="nv">Spinning</span> <span class="nv">the</span> <span class="nv">Roulette</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">chance</span> <span class="nv">to</span> <span class="nv">win</span> <span class="mh">$0</span><span class="o">!</span>
+Spinning the Roulette for a chance to win $0!
 
-<span class="nv">Roulette</span>  :  <span class="mi">1</span>
+Roulette  :  1
 
-<span class="nv">You</span><span class="s1">&#39;</span><span class="s">re not cheating are you?</span>
+You&#39;re not cheating are you?
 </pre></div>
 
 
 <p>Now that we&#8217;ve won three times, we just need to underflow our balance like we did earlier on (we guess a losing number so that our bet doesn&#8217;t get re-added upon&nbsp;winning):</p>
-<div class="codehilite"><pre><span></span><span class="nv">How</span> <span class="nv">much</span> <span class="nv">will</span> <span class="nv">you</span> <span class="nv">wager</span>?
-<span class="nv">Current</span> <span class="nv">Balance</span>: <span class="mh">$3249</span>   <span class="nv">Current</span> <span class="nv">Wins</span>: <span class="mi">3</span>
-<span class="o">&gt;</span> <span class="mi">2500000000</span>
-<span class="nv">Choose</span> <span class="nv">a</span> <span class="nv">number</span> <span class="ss">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">36</span><span class="ss">)</span>
-<span class="o">&gt;</span> <span class="mi">1</span>
+<div class="codehilite"><pre><span></span>How much will you wager?
+Current Balance: $3249   Current Wins: 3
+&gt; 2500000000
+Choose a number (1-36)
+&gt; 1
 
-<span class="nv">Spinning</span> <span class="nv">the</span> <span class="nv">Roulette</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">chance</span> <span class="nv">to</span> <span class="nv">win</span> <span class="mh">$705032704</span><span class="o">!</span>
+Spinning the Roulette for a chance to win $705032704!
 
-<span class="nv">Roulette</span>  :  <span class="mi">12</span>
+Roulette  :  12
 
-<span class="nv">WRONG</span>
-<span class="nv">Just</span> <span class="nv">give</span> <span class="nv">up</span><span class="o">!</span>
+WRONG
+Just give up!
 
-<span class="o">***</span> <span class="nv">Current</span> <span class="nv">Balance</span>: <span class="mh">$1794970545</span> <span class="o">***</span>
-<span class="nv">Wow</span>, <span class="nv">I</span> <span class="nv">can</span><span class="s1">&#39;</span><span class="s">t believe you did it.. You deserve this flag!</span>
-<span class="nv">picoCTF</span>{<span class="nv">redacted</span>}
+*** Current Balance: $1794970545 ***
+Wow, I can&#39;t believe you did it.. You deserve this flag!
+picoCTF{redacted}
 </pre></div>
 
 
