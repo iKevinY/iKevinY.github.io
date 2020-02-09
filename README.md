@@ -1,4 +1,4 @@
-# iKevinY.github.io [![1]][2] <img align="right" width=76 src="content/images/icons/apple-touch-icon-152x152.png?raw=true"/>
+# iKevinY.github.io [![1]][2] <img align="right" width=76 src="content/images/icons/apple-touch-icon.png?raw=true"/>
 
 This repository contains both the static site files and the source files used
 to generate **[kevinyap.ca]**. The website is generated with [Pelican] using a
