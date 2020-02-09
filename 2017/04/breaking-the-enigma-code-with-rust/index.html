@@ -73,26 +73,26 @@
 <p>The Enigma machines are a series of electromechanical cipher machines that were famously used by Germany in World War <span class="caps">II</span> to encrypt military communications. Breaking the Enigma code had a huge impact on the Allies&#8217; ability to win the war. Most of what I could write about the history of cracking Enigma is already covered by <a href="https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma">this Wikipedia article</a> (or if you prefer a more dramatized version, a <a href="https://en.wikipedia.org/wiki/The_Imitation_Game">certain movie</a> starring Benedict Cumberbatch), so I won&#8217;t go over it in&nbsp;detail.</p>
 <p>Inspired by the <a href="https://en.wikipedia.org/wiki/Colossus_computer">computers</a> that were born out of cryptanalysis, I decided to write my own Enigma-cracking program in Rust &#8212; <a href="https://github.com/iKevinY/ultra"> <code>ultra</code></a>. &#8220;Ultra secret&#8221; was the classification level used by the Allies to refer to intelligence obtained via deciphering German communications at <a href="https://en.wikipedia.org/wiki/Bletchley_Park">Bletchley Park</a>. If the Germany had discovered that the Allies could read their messages, they easily could have switched to a completely new encryption method, nullifying all the effort spent breaking Enigma in the first&nbsp;place.</p>
 <p>To demonstrate how the Enigma cipher was employed, here is some example usage from <code>ultra</code>. First, we encrypt this plaintext message using some random machine&nbsp;settings:</p>
-<div class="codehilite"><pre><span></span>$ ultra --randomize <span class="s2">&quot;\</span>
+<div class="codehilite"><pre><span></span><code>$ ultra --randomize <span class="s2">&quot;\</span>
 <span class="s2">A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, for it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.&quot;</span>
 S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.
 <span class="o">(</span>Rotors: <span class="m">215</span>, Key Setting: YFI, Ring Setting: UZW<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>When this ciphertext is encrypted using the same settings, we recover the original&nbsp;message:</p>
-<div class="codehilite"><pre><span></span>$ ultra --rotor<span class="o">=</span><span class="m">215</span> --key<span class="o">=</span>YFI --ring<span class="o">=</span>UZW <span class="s2">&quot;\</span>
+<div class="codehilite"><pre><span></span><code>$ ultra --rotor<span class="o">=</span><span class="m">215</span> --key<span class="o">=</span>YFI --ring<span class="o">=</span>UZW <span class="s2">&quot;\</span>
 <span class="s2">S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&quot;</span>
 A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, <span class="k">for</span> it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
-</pre></div>
+</code></pre></div>
 
 
 <p>Now, let&#8217;s attempt to decipher the message with no knowledge of the correct&nbsp;settings:</p>
-<div class="codehilite"><pre><span></span>$ ultra --decrypt <span class="s2">&quot;\</span>
+<div class="codehilite"><pre><span></span><code>$ ultra --decrypt <span class="s2">&quot;\</span>
 <span class="s2">S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&quot;</span>
 A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, <span class="k">for</span> it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
 <span class="o">(</span>Rotors: <span class="m">215</span>, Key Setting: EZI, Ring Setting: ATW<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>We managed to recover the plaintext from nothing but the ciphertext! The decryption algorithm used in <code>ultra</code> was largely inspired by some of James Lyon&#8217;s articles on the Enigma machine on his website <a href="http://practicalcryptography.com/ciphers/mechanical-era/enigma/">Practical Cryptography</a>.</p>
@@ -121,14 +121,14 @@ A few miles south of Soledad, the Salinas River drops in close to the hillside b
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">rayon</span>::<span class="n">prelude</span>::<span class="o">*</span><span class="p">;</span><span class="w"></span>
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">rayon</span>::<span class="n">prelude</span>::<span class="o">*</span><span class="p">;</span><span class="w"></span>
 
 <span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iproduct</span><span class="o">!</span><span class="p">(</span><span class="n">rotors</span><span class="p">.</span><span class="n">iter</span><span class="p">(),</span><span class="w"> </span><span class="n">keys</span><span class="p">.</span><span class="n">iter</span><span class="p">())</span><span class="w"></span>
 <span class="w">    </span><span class="p">.</span><span class="n">collect</span>::<span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w">  </span><span class="c1">// These two lines turn a normal</span>
 <span class="w">    </span><span class="p">.</span><span class="n">into_par_iter</span><span class="p">()</span><span class="w">      </span><span class="c1">// iterator into a parallel one!</span>
 <span class="w">    </span><span class="p">.</span><span class="n">max_by_key</span><span class="p">(</span><span class="o">|&amp;</span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">})</span><span class="w"></span>
 <span class="w">    </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>What makes this feel magical is that I didn&#8217;t even have to think about managing multi-threaded memory access; the parallelization just works, and all I had to do was add three lines of code. Languages with a rich library ecosystem tend to flourish, and the existence of cool libraries like Rayon gives me a lot of confidence in the future of&nbsp;Rust.</p>

@@ -72,16 +72,16 @@
 		<p>Recently, I&#8217;ve taken an interest in <a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security">CTFs</a>: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &#8212; such as reverse engineering, binary exploitation, or cryptanalysis &#8212; in order to recover a &#8220;flag&#8221;: a password that follows a specific format, like <code>flag{s3cret_c0de}</code>.</p>
 <p>My university started a <a href="https://ubcctf.github.io"><span class="caps">CTF</span> club</a> last month, and since I&#8217;m quite new to this field, I&#8217;ve been working my way through <a href="https://picoctf.com">picoCTF</a>, which is an oft-recommended beginner resource. Since I haven&#8217;t written any technical articles in a while, I thought it would be interesting to provide write-ups for some of the more interesting problems, starting with one called <code>roulette</code>. (The source code as provided by picoCTF can be found <a href="http://kevinyap.ca/files/roulette.c">here</a>, in case you&#8217;d like to try the challenge yourself&nbsp;first.)</p>
 <p>If we connect to the service, we see the&nbsp;following:</p>
-<div class="codehilite"><pre><span></span>Welcome to ONLINE ROULETTE!
+<div class="codehilite"><pre><span></span><code>Welcome to ONLINE ROULETTE!
 Here, have $3249 to start on the house! You&#39;ll lose it all anyways &gt;:)
 
 How much will you wager?
 Current Balance: $3249    Current Wins: 0
-</pre></div>
+</code></pre></div>
 
 
 <p>If you enter an amount greater than your current balance, the program will reject your wager. Choosing a valid amount allows you to guess which number will come&nbsp;up:</p>
-<div class="codehilite"><pre><span></span>&gt; 5000
+<div class="codehilite"><pre><span></span><code>&gt; 5000
 You can&#39;t bet more than you have!
 How much will you wager?
 Current Balance: $3249   Current Wins: 0
@@ -95,12 +95,12 @@ Roulette  :  2
 
 WRONG
 You&#39;re never gonna win
-</pre></div>
+</code></pre></div>
 
 
 <p>On the off chance that you manage to guess the correct value, the program will fairly reward you with twice your wagered amount. We&#8217;ve been told that the goal is to accrue $1 billion, and upon doing so, we&#8217;ll be rewarded with the flag. With only a 1-in-36 chance of doubling our money, it&#8217;s simply not possible to get anywhere close by pure chance. Therefore, we&#8217;ll have to find a way to beat the&nbsp;system.</p>
 <p>Let&#8217;s analyze the program piece-by-piece to see if we can identify any weaknesses (the code snippets I&#8217;ve included in this post are slightly reformatted from the original source provided above, for space efficiency). For starters, here&#8217;s the <code>main</code> function:</p>
-<div class="codehilite"><pre><span></span><span class="cp">#define HOTSTREAK 3</span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define HOTSTREAK 3</span>
 <span class="cp">#define MAX_WINS 16</span>
 <span class="cp">#define ONE_BILLION 1000000000</span>
 
@@ -137,13 +137,13 @@ You&#39;re never gonna win
   <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Haha, lost all the money I gave you already? See ya later!&quot;</span><span class="p">);</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The program gives us a random amount of money to start with, and as long as we still have money, allows us to keep play roulette. Of note is the call to <code>print_flag()</code> &#8212; getting the program to execute this function will give us our&nbsp;flag.</p>
 <p>If we have more than $1 billion dollars, we enter the part of the program that checks whether the flag should be printed or not. However, take note of the <code>wins &gt;= HOTSTREAK</code> check; if the current number of wins is less than 3, the system detects that we somehow tampered with our cash balance <em>without</em> going through the hassle of actually winning multiple rounds in a row, accuses us of cheating, and kicks us&nbsp;out.</p>
 <p>Let&#8217;s take a look at <code>get_bet()</code> and see if there&#8217;s anything we can exploit&nbsp;there.</p>
-<div class="codehilite"><pre><span></span><span class="kt">long</span> <span class="nf">get_bet</span><span class="p">()</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">long</span> <span class="nf">get_bet</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">puts</span><span class="p">(</span><span class="s">&quot;How much will you wager?&quot;</span><span class="p">);</span>
     <span class="kt">long</span> <span class="n">bet</span> <span class="o">=</span> <span class="n">get_long</span><span class="p">();</span>
@@ -154,11 +154,11 @@ You&#39;re never gonna win
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>This looks pretty standard: continuously ask the player for their wager until they provide a valid bet, and then return that amount. One common bug in programs like this is the possibility of <a href="https://en.wikipedia.org/wiki/Integer_overflow">integer overflow</a>, so let&#8217;s investigate <code>get_long()</code> for&nbsp;bugs.</p>
-<div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">is_digit</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span> <span class="nf">is_digit</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="sc">&#39;0&#39;</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -184,25 +184,25 @@ You&#39;re never gonna win
 
   <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><code>get_long()</code> iterates over the given input character-by-character, ignoring anything that isn&#8217;t a digit, and gradually accumulates the value in <code>l</code>. If it ever exceeds the value of <code>LONG_MAX</code> (a constant provided by <code>limits.h</code>), the balance is set to <code>LONG_MAX</code>, presumably as an attempt to guard against interflow overflow&nbsp;bugs.</p>
 <p>However, it turns out this function is still exploitable. Since a <code>long</code> is a signed value, exceeding <code>LONG_MAX</code> will cause the value to &#8220;wrap around&#8221; to a negative number. We find that the program is compiled for 32-bit CPUs, so we simply need a value greater than 2³¹ − 1 =&nbsp;2147483647:</p>
-<div class="codehilite"><pre><span></span>How much will you wager?
+<div class="codehilite"><pre><span></span><code>How much will you wager?
 Current Balance: $4962   Current Wins: 0
 &gt; 2500000000
 Choose a number (1-36)
 &gt; 1
 
 Spinning the Roulette for a chance to win $705032704!
-</pre></div>
+</code></pre></div>
 
 
 <p>Great, we&#8217;ve found a way to effectively win as much money as we want, which means it&#8217;s trivial to achieve a balance of $1 billion. However, there&#8217;s still the issue of having to win at least 3 times <em>before</em> reaching that amount (otherwise the cheat-detection will kick&nbsp;in).</p>
 <p>Of course, one approach we can take is to simply bet $0 over and over until we get lucky on the 1/36 dice roll three times, then trigger the overflow on our balance. However, the roulette program plays a &#8220;fun&#8221; animation when spinning the wheel that takes around 10 seconds, and the time we&#8217;re allowed to stay connected to the service is limited to a few minutes, so it&#8217;s still astronomically unlikely that we&#8217;d be able to win enough times before being kicked out. We&#8217;ll have to find a way to beat the&nbsp;odds.</p>
 <p>Recall that we get a random amount of money every time we connect to the roulette service. Let&#8217;s take a closer look at the implementation of <code>get_rand()</code>, the function that dictates our starting&nbsp;balance:</p>
-<div class="codehilite"><pre><span></span><span class="kt">long</span> <span class="nf">get_rand</span><span class="p">()</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">long</span> <span class="nf">get_rand</span><span class="p">()</span> <span class="p">{</span>
   <span class="kt">long</span> <span class="n">seed</span><span class="p">;</span>
   <span class="kt">FILE</span><span class="o">*</span> <span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;/dev/urandom&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">);</span>
   <span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">seed</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">seed</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
@@ -212,13 +212,13 @@ Spinning the Roulette for a chance to win $705032704!
   <span class="n">srand</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
   <span class="k">return</span> <span class="n">seed</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>It reads in some bytes from <a href="https://en.wikipedia.org/wiki//dev/random"><code>/dev/urandom</code></a>, truncates the result to the interval <code>[0, 5000)</code>, and returns that as our starting&nbsp;balance.</p>
 <p>The bug here lies in one somewhat innocuous-looking call: <code>srand(seed)</code>. This seeds the random number generation for the program, which by itself isn&#8217;t a huge deal. However, remember that the value of <code>seed</code> becomes our starting balance &#8212; the program reveals the seed to&nbsp;us!</p>
 <p><code>play_roulette()</code> uses <code>rand()</code> to choose which number the wheel lands on, and since we know the seed, the sequence of spins is actually deterministic! Let&#8217;s write up a quick program to generate what values we should guess by taking the seed (our initial balance) as a command line argument, and then emulating the roulette logic to print the next few&nbsp;results:</p>
-<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define ROULETTE_SIZE 36</span>
@@ -233,11 +233,11 @@ Spinning the Roulette for a chance to win $705032704!
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>However, if we use this program to choose our guesses, we find that we get the first one right, but after that it fails. Did we misunderstand the behaviour of the roulette program and just get lucky? Let&#8217;s take a closer look at the <code>play_roulette</code> function to see if we can figure out what went&nbsp;wrong:</p>
-<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">play_roulette</span><span class="p">(</span><span class="kt">long</span> <span class="n">choice</span><span class="p">,</span> <span class="kt">long</span> <span class="n">bet</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">play_roulette</span><span class="p">(</span><span class="kt">long</span> <span class="n">choice</span><span class="p">,</span> <span class="kt">long</span> <span class="n">bet</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Spinning the Roulette for a chance to win $%lu!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bet</span><span class="p">);</span>
   <span class="kt">long</span> <span class="n">spin</span> <span class="o">=</span> <span class="p">(</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="n">ROULETTE_SIZE</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
   <span class="n">spin_roulette</span><span class="p">(</span><span class="n">spin</span><span class="p">);</span>
@@ -250,29 +250,29 @@ Spinning the Roulette for a chance to win $705032704!
     <span class="n">puts</span><span class="p">(</span><span class="n">lose_msgs2</span><span class="p">[</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="n">NUM_LOSE_MSGS</span><span class="p">]);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>It turns out that the program calls <code>rand()</code> to pick random winning/losing messages to display to the player, and this advances the <span class="caps">PRNG</span>. Therefore, we should account for this by choosing every <em>other</em> number produced by the program we wrote (assuming we always hit the winning branch; we would have to skip two <span class="caps">RNG</span> results if we ever&nbsp;lose).</p>
 <p>With this new insight, let&#8217;s beat roulette for&nbsp;good:</p>
-<div class="codehilite"><pre><span></span>$ nc 2018shell.picoctf.com 26662
+<div class="codehilite"><pre><span></span><code>$ nc 2018shell.picoctf.com 26662
 Welcome to ONLINE ROULETTE!
 Here, have $3249 to start on the house! You&#39;ll lose it all anyways &gt;:)
-</pre></div>
+</code></pre></div>
 
 
 <p>We pass the seed to the program we wrote to figure out which numbers to bet&nbsp;on.</p>
-<div class="codehilite"><pre><span></span>$ ./rand <span class="m">3249</span>
+<div class="codehilite"><pre><span></span><code>$ ./rand <span class="m">3249</span>
 <span class="m">9</span>
 <span class="m">29</span>
 <span class="m">6</span>
 <span class="m">29</span>
 <span class="m">1</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>This tells us that the roulette will land on 9, 6, then 1, so let&#8217;s guess&nbsp;those!</p>
-<div class="codehilite"><pre><span></span>How much will you wager?
+<div class="codehilite"><pre><span></span><code>How much will you wager?
 Current Balance: $3249   Current Wins: 0
 &gt; 0
 Choose a number (1-36)
@@ -307,11 +307,11 @@ Spinning the Roulette for a chance to win $0!
 Roulette  :  1
 
 You&#39;re not cheating are you?
-</pre></div>
+</code></pre></div>
 
 
 <p>Now that we&#8217;ve won three times, we just need to underflow our balance like we did earlier on (we guess a losing number so that our bet doesn&#8217;t get re-added upon&nbsp;winning):</p>
-<div class="codehilite"><pre><span></span>How much will you wager?
+<div class="codehilite"><pre><span></span><code>How much will you wager?
 Current Balance: $3249   Current Wins: 3
 &gt; 2500000000
 Choose a number (1-36)
@@ -327,7 +327,7 @@ Just give up!
 *** Current Balance: $1794970545 ***
 Wow, I can&#39;t believe you did it.. You deserve this flag!
 picoCTF{redacted}
-</pre></div>
+</code></pre></div>
 
 
 <p>Success! This was an interesting problem because all it took to find the vulnerabilities was a careful pass through the source code. In addition, both the bugs are things that could easily sneak their way into an actual codebase if not careful. For my next writeup, I&#8217;m planning on tackling a problem that requires more sophisticated tooling and background&nbsp;knowledge.</p>

@@ -36,7 +36,7 @@
 &lt;p&gt;If you want to see what all of this looks like in action, I created a &lt;a href="https://www.twitch.tv/collections/cspts5QT3RUiTA"&gt;collection of my streamed attempts here&lt;/a&gt;. I&amp;#8217;m also hoping to upload a slower, narrated solve that goes through the concepts discussed in this post (I attempted to do this earlier today, but accidentally just created a 40-minute long silent&amp;nbsp;film).&lt;/p&gt;
 &lt;p&gt;Happy Advent of Coding!&amp;nbsp;🎄&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Eval Golf (PlaidCTF Writeup)</title><link href="http://kevinyap.ca/2019/04/eval-golf-plaidctf-writeup/" rel="alternate"></link><published>2019-04-15T00:00:00-07:00</published><updated>2019-04-15T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2019-04-15:/2019/04/eval-golf-plaidctf-writeup/</id><summary type="html">&lt;p&gt;Sticking with the theme of &lt;span class="caps"&gt;CTF&lt;/span&gt; writeups, here&amp;#8217;s one of a fairly simple challenge from &lt;a href="http://plaidctf.com"&gt;PlaidCTF 2019&lt;/a&gt;. Given that Python is my programming language of choice, it was fun to work on a Python-based challenge (rather than the low-level exploits that …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sticking with the theme of &lt;span class="caps"&gt;CTF&lt;/span&gt; writeups, here&amp;#8217;s one of a fairly simple challenge from &lt;a href="http://plaidctf.com"&gt;PlaidCTF 2019&lt;/a&gt;. Given that Python is my programming language of choice, it was fun to work on a Python-based challenge (rather than the low-level exploits that are more common in&amp;nbsp;CTFs).&lt;/p&gt;
 &lt;p&gt;The service that we&amp;#8217;re trying to retrieve the flag from executes this&amp;nbsp;script:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/usr/bin/env python3&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;exit&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;secret&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;secret_value_for_password&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;exec&lt;/span&gt;
@@ -57,7 +57,7 @@
 &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Nope. No hacking.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The obvious thing to exploit here is the line containing &lt;code&gt;eval()&lt;/code&gt;, which of course is extremely dangerous to use when paired with user-input. However, there are are a couple of safeguards in place that make our job a little more&amp;nbsp;difficult.&lt;/p&gt;
@@ -65,14 +65,14 @@
 &lt;p&gt;Unfortunately, the code that&amp;#8217;s supposed to &amp;#8220;make sure [the input] is a number&amp;#8221; is not actually doing that. What it&amp;#8217;s actually doing is restricting the length of the input to 10 characters. Interestingly though, since &lt;code&gt;count_digits&lt;/code&gt; is actually set to the length of &lt;code&gt;set(inp)&lt;/code&gt;, the actual restriction is only that our input consists of 10 or fewer &lt;em&gt;distinct characters&lt;/em&gt; (ie. reusing the same character more than once doesn&amp;#8217;t contribute to our&amp;nbsp;&amp;#8220;limit&amp;#8221;).&lt;/p&gt;
 &lt;p&gt;The string &lt;code&gt;secret_value_for_password&lt;/code&gt; contains 15 characters, which means it will be rejected. Somehow we need to find a way to &lt;a href="https://en.wikipedia.org/wiki/Code_golf"&gt;golf down&lt;/a&gt; the unique characters in our&amp;nbsp;payload.&lt;/p&gt;
 &lt;p&gt;The first that comes to mind is to build up each character of our secret value one-by-one using &lt;a href="https://docs.python.org/3/library/functions.html#chr"&gt;&lt;code&gt;chr()&lt;/code&gt;&lt;/a&gt;, which takes in a number and returns the character corresponding to that &lt;span class="caps"&gt;ASCII&lt;/span&gt; value. Of course, we can represent any number we want by summing &lt;code&gt;1&lt;/code&gt; with itself a bunch of times, which helps us not use up precious unique&amp;nbsp;characters.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;secret_value_for_password&amp;#39;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;secret_value_for_password&amp;#39;&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;codepoints&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;+&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;1&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;+&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;chr(&lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;)&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;codepoints&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;secret_value_for_password&amp;#39;&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="mi"&gt;7&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Excellent, we&amp;#8217;ve managed to put together &lt;code&gt;secret_value_for_password&lt;/code&gt; using only seven different characters! The problem here is that this payload will set &lt;code&gt;val&lt;/code&gt; to the string literal &lt;code&gt;secret_value_for_password&lt;/code&gt;, rather than than the value of that variable itself. We could fix this by wrapping the entire payload in &lt;code&gt;eval()&lt;/code&gt;, but since we haven&amp;#8217;t used any of the characters in &lt;code&gt;eval&lt;/code&gt; yet, this would bump us up to 11 characters &amp;#8212; just above our&amp;nbsp;limit.&lt;/p&gt;
@@ -81,7 +81,7 @@
 &lt;p&gt;The trick here is figuring out a way to represent &lt;code&gt;1&lt;/code&gt; in Python with the following pool of characters: &lt;code&gt;()+chreval&lt;/code&gt;. Having worked with Python enough, I suspected the solution was something to do with truthiness. If we could somehow get an expression to evaluate to something &lt;code&gt;True&lt;/code&gt;, we could sum up &lt;em&gt;that expression&lt;/em&gt; as a replacement for using the character 1 (because in Python, &lt;code&gt;True + True = 2&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;The magic bullet here was the built-in &lt;a href="https://docs.python.org/3/library/functions.html#all"&gt;&lt;code&gt;all()&lt;/code&gt;&lt;/a&gt;, which returns &lt;code&gt;True&lt;/code&gt; if all elements of the input iterable are truthy (or if the iterable itself is empty). We already have the characters &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;l&lt;/code&gt; from our call to &lt;code&gt;eval&lt;/code&gt;, and we can simply pass in &lt;code&gt;()&lt;/code&gt; (the empty tuple). That is, &lt;code&gt;all(())&lt;/code&gt; serves as our substitute for the character &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;With this change, our payload contains exactly 10 unique characters. Putting this all together, we arrive at our final exploit (using &lt;a href="https://github.com/Gallopsled/pwntools"&gt;&lt;code&gt;pwntools&lt;/code&gt;&lt;/a&gt; to execute&amp;nbsp;it):&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pwn&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pwn&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 
 &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;secret_value_for_password&amp;quot;&lt;/span&gt;
 
@@ -92,22 +92,22 @@
 &lt;span class="n"&gt;conn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;canyouguessme.pwni.ng&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12349&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sendline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interactive&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This &lt;span class="caps"&gt;22KB&lt;/span&gt; payload is accepted by the service and gives us our&amp;nbsp;flag!&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Rickety Roulette (picoCTF Writeup)</title><link href="http://kevinyap.ca/2019/03/rickety-roulette-picoctf-writeup/" rel="alternate"></link><published>2019-03-25T00:00:00-07:00</published><updated>2019-03-25T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2019-03-25:/2019/03/rickety-roulette-picoctf-writeup/</id><summary type="html">&lt;p&gt;Recently, I&amp;#8217;ve taken an interest in &lt;a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security"&gt;CTFs&lt;/a&gt;: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &amp;#8212; such as reverse engineering, binary exploitation, or cryptanalysis &amp;#8212; in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I&amp;#8217;ve taken an interest in &lt;a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security"&gt;CTFs&lt;/a&gt;: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &amp;#8212; such as reverse engineering, binary exploitation, or cryptanalysis &amp;#8212; in order to recover a &amp;#8220;flag&amp;#8221;: a password that follows a specific format, like &lt;code&gt;flag{s3cret_c0de}&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;My university started a &lt;a href="https://ubcctf.github.io"&gt;&lt;span class="caps"&gt;CTF&lt;/span&gt; club&lt;/a&gt; last month, and since I&amp;#8217;m quite new to this field, I&amp;#8217;ve been working my way through &lt;a href="https://picoctf.com"&gt;picoCTF&lt;/a&gt;, which is an oft-recommended beginner resource. Since I haven&amp;#8217;t written any technical articles in a while, I thought it would be interesting to provide write-ups for some of the more interesting problems, starting with one called &lt;code&gt;roulette&lt;/code&gt;. (The source code as provided by picoCTF can be found &lt;a href="http://kevinyap.ca/files/roulette.c"&gt;here&lt;/a&gt;, in case you&amp;#8217;d like to try the challenge yourself&amp;nbsp;first.)&lt;/p&gt;
 &lt;p&gt;If we connect to the service, we see the&amp;nbsp;following:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Welcome to ONLINE ROULETTE!
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Welcome to ONLINE ROULETTE!
 Here, have $3249 to start on the house! You&amp;#39;ll lose it all anyways &amp;gt;:)
 
 How much will you wager?
 Current Balance: $3249    Current Wins: 0
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;If you enter an amount greater than your current balance, the program will reject your wager. Choosing a valid amount allows you to guess which number will come&amp;nbsp;up:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; 5000
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt; 5000
 You can&amp;#39;t bet more than you have!
 How much will you wager?
 Current Balance: $3249   Current Wins: 0
@@ -121,12 +121,12 @@ Roulette  :  2
 
 WRONG
 You&amp;#39;re never gonna win
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;On the off chance that you manage to guess the correct value, the program will fairly reward you with twice your wagered amount. We&amp;#8217;ve been told that the goal is to accrue $1 billion, and upon doing so, we&amp;#8217;ll be rewarded with the flag. With only a 1-in-36 chance of doubling our money, it&amp;#8217;s simply not possible to get anywhere close by pure chance. Therefore, we&amp;#8217;ll have to find a way to beat the&amp;nbsp;system.&lt;/p&gt;
 &lt;p&gt;Let&amp;#8217;s analyze the program piece-by-piece to see if we can identify any weaknesses (the code snippets I&amp;#8217;ve included in this post are slightly reformatted from the original source provided above, for space efficiency). For starters, here&amp;#8217;s the &lt;code&gt;main&lt;/code&gt; function:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define HOTSTREAK 3&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;#define HOTSTREAK 3&lt;/span&gt;
 &lt;span class="cp"&gt;#define MAX_WINS 16&lt;/span&gt;
 &lt;span class="cp"&gt;#define ONE_BILLION 1000000000&lt;/span&gt;
 
@@ -163,13 +163,13 @@ You&amp;#39;re never gonna win
   &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Haha, lost all the money I gave you already? See ya later!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The program gives us a random amount of money to start with, and as long as we still have money, allows us to keep play roulette. Of note is the call to &lt;code&gt;print_flag()&lt;/code&gt; &amp;#8212; getting the program to execute this function will give us our&amp;nbsp;flag.&lt;/p&gt;
 &lt;p&gt;If we have more than $1 billion dollars, we enter the part of the program that checks whether the flag should be printed or not. However, take note of the &lt;code&gt;wins &amp;gt;= HOTSTREAK&lt;/code&gt; check; if the current number of wins is less than 3, the system detects that we somehow tampered with our cash balance &lt;em&gt;without&lt;/em&gt; going through the hassle of actually winning multiple rounds in a row, accuses us of cheating, and kicks us&amp;nbsp;out.&lt;/p&gt;
 &lt;p&gt;Let&amp;#8217;s take a look at &lt;code&gt;get_bet()&lt;/code&gt; and see if there&amp;#8217;s anything we can exploit&amp;nbsp;there.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;get_bet&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;get_bet&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;How much will you wager?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_long&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -180,11 +180,11 @@ You&amp;#39;re never gonna win
     &lt;span class="p"&gt;}&lt;/span&gt;
   &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This looks pretty standard: continuously ask the player for their wager until they provide a valid bet, and then return that amount. One common bug in programs like this is the possibility of &lt;a href="https://en.wikipedia.org/wiki/Integer_overflow"&gt;integer overflow&lt;/a&gt;, so let&amp;#8217;s investigate &lt;code&gt;get_long()&lt;/code&gt; for&amp;nbsp;bugs.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;is_digit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;is_digit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;9&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
@@ -210,25 +210,25 @@ You&amp;#39;re never gonna win
 
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;code&gt;get_long()&lt;/code&gt; iterates over the given input character-by-character, ignoring anything that isn&amp;#8217;t a digit, and gradually accumulates the value in &lt;code&gt;l&lt;/code&gt;. If it ever exceeds the value of &lt;code&gt;LONG_MAX&lt;/code&gt; (a constant provided by &lt;code&gt;limits.h&lt;/code&gt;), the balance is set to &lt;code&gt;LONG_MAX&lt;/code&gt;, presumably as an attempt to guard against interflow overflow&amp;nbsp;bugs.&lt;/p&gt;
 &lt;p&gt;However, it turns out this function is still exploitable. Since a &lt;code&gt;long&lt;/code&gt; is a signed value, exceeding &lt;code&gt;LONG_MAX&lt;/code&gt; will cause the value to &amp;#8220;wrap around&amp;#8221; to a negative number. We find that the program is compiled for 32-bit CPUs, so we simply need a value greater than 2³¹ − 1 =&amp;nbsp;2147483647:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;How much will you wager?
 Current Balance: $4962   Current Wins: 0
 &amp;gt; 2500000000
 Choose a number (1-36)
 &amp;gt; 1
 
 Spinning the Roulette for a chance to win $705032704!
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Great, we&amp;#8217;ve found a way to effectively win as much money as we want, which means it&amp;#8217;s trivial to achieve a balance of $1 billion. However, there&amp;#8217;s still the issue of having to win at least 3 times &lt;em&gt;before&lt;/em&gt; reaching that amount (otherwise the cheat-detection will kick&amp;nbsp;in).&lt;/p&gt;
 &lt;p&gt;Of course, one approach we can take is to simply bet $0 over and over until we get lucky on the 1/36 dice roll three times, then trigger the overflow on our balance. However, the roulette program plays a &amp;#8220;fun&amp;#8221; animation when spinning the wheel that takes around 10 seconds, and the time we&amp;#8217;re allowed to stay connected to the service is limited to a few minutes, so it&amp;#8217;s still astronomically unlikely that we&amp;#8217;d be able to win enough times before being kicked out. We&amp;#8217;ll have to find a way to beat the&amp;nbsp;odds.&lt;/p&gt;
 &lt;p&gt;Recall that we get a random amount of money every time we connect to the roulette service. Let&amp;#8217;s take a closer look at the implementation of &lt;code&gt;get_rand()&lt;/code&gt;, the function that dictates our starting&amp;nbsp;balance:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;get_rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="nf"&gt;get_rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="kt"&gt;FILE&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/dev/urandom&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;r&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="n"&gt;fread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -238,13 +238,13 @@ Spinning the Roulette for a chance to win $705032704!
   &lt;span class="n"&gt;srand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;It reads in some bytes from &lt;a href="https://en.wikipedia.org/wiki//dev/random"&gt;&lt;code&gt;/dev/urandom&lt;/code&gt;&lt;/a&gt;, truncates the result to the interval &lt;code&gt;[0, 5000)&lt;/code&gt;, and returns that as our starting&amp;nbsp;balance.&lt;/p&gt;
 &lt;p&gt;The bug here lies in one somewhat innocuous-looking call: &lt;code&gt;srand(seed)&lt;/code&gt;. This seeds the random number generation for the program, which by itself isn&amp;#8217;t a huge deal. However, remember that the value of &lt;code&gt;seed&lt;/code&gt; becomes our starting balance &amp;#8212; the program reveals the seed to&amp;nbsp;us!&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;play_roulette()&lt;/code&gt; uses &lt;code&gt;rand()&lt;/code&gt; to choose which number the wheel lands on, and since we know the seed, the sequence of spins is actually deterministic! Let&amp;#8217;s write up a quick program to generate what values we should guess by taking the seed (our initial balance) as a command line argument, and then emulating the roulette logic to print the next few&amp;nbsp;results:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="cp"&gt;#define ROULETTE_SIZE 36&lt;/span&gt;
@@ -259,11 +259,11 @@ Spinning the Roulette for a chance to win $705032704!
 
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;However, if we use this program to choose our guesses, we find that we get the first one right, but after that it fails. Did we misunderstand the behaviour of the roulette program and just get lucky? Let&amp;#8217;s take a closer look at the &lt;code&gt;play_roulette&lt;/code&gt; function to see if we can figure out what went&amp;nbsp;wrong:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;play_roulette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;play_roulette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;choice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Spinning the Roulette for a chance to win $%lu!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;bet&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;spin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;ROULETTE_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="n"&gt;spin_roulette&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;spin&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -276,29 +276,29 @@ Spinning the Roulette for a chance to win $705032704!
     &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lose_msgs2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;NUM_LOSE_MSGS&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
   &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;It turns out that the program calls &lt;code&gt;rand()&lt;/code&gt; to pick random winning/losing messages to display to the player, and this advances the &lt;span class="caps"&gt;PRNG&lt;/span&gt;. Therefore, we should account for this by choosing every &lt;em&gt;other&lt;/em&gt; number produced by the program we wrote (assuming we always hit the winning branch; we would have to skip two &lt;span class="caps"&gt;RNG&lt;/span&gt; results if we ever&amp;nbsp;lose).&lt;/p&gt;
 &lt;p&gt;With this new insight, let&amp;#8217;s beat roulette for&amp;nbsp;good:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ nc 2018shell.picoctf.com 26662
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ nc 2018shell.picoctf.com 26662
 Welcome to ONLINE ROULETTE!
 Here, have $3249 to start on the house! You&amp;#39;ll lose it all anyways &amp;gt;:)
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We pass the seed to the program we wrote to figure out which numbers to bet&amp;nbsp;on.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./rand &lt;span class="m"&gt;3249&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ./rand &lt;span class="m"&gt;3249&lt;/span&gt;
 &lt;span class="m"&gt;9&lt;/span&gt;
 &lt;span class="m"&gt;29&lt;/span&gt;
 &lt;span class="m"&gt;6&lt;/span&gt;
 &lt;span class="m"&gt;29&lt;/span&gt;
 &lt;span class="m"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This tells us that the roulette will land on 9, 6, then 1, so let&amp;#8217;s guess&amp;nbsp;those!&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;How much will you wager?
 Current Balance: $3249   Current Wins: 0
 &amp;gt; 0
 Choose a number (1-36)
@@ -333,11 +333,11 @@ Spinning the Roulette for a chance to win $0!
 Roulette  :  1
 
 You&amp;#39;re not cheating are you?
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now that we&amp;#8217;ve won three times, we just need to underflow our balance like we did earlier on (we guess a losing number so that our bet doesn&amp;#8217;t get re-added upon&amp;nbsp;winning):&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;How much will you wager?
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;How much will you wager?
 Current Balance: $3249   Current Wins: 3
 &amp;gt; 2500000000
 Choose a number (1-36)
@@ -353,33 +353,33 @@ Just give up!
 *** Current Balance: $1794970545 ***
 Wow, I can&amp;#39;t believe you did it.. You deserve this flag!
 picoCTF{redacted}
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Success! This was an interesting problem because all it took to find the vulnerabilities was a careful pass through the source code. In addition, both the bugs are things that could easily sneak their way into an actual codebase if not careful. For my next writeup, I&amp;#8217;m planning on tackling a problem that requires more sophisticated tooling and background&amp;nbsp;knowledge.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Breaking the Enigma Code With Rust</title><link href="http://kevinyap.ca/2017/04/breaking-the-enigma-code-with-rust/" rel="alternate"></link><published>2017-04-17T00:00:00-07:00</published><updated>2017-04-17T00:00:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2017-04-17:/2017/04/breaking-the-enigma-code-with-rust/</id><summary type="html">&lt;p&gt;If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If I had to pick something from the humanities to study in university, I would probably go with history. Not only is history interesting in and of itself, but having a good grasp on history clarifies a lot of modern geopolitics. War is probably one of the more &amp;#8220;exciting&amp;#8221; aspects of history, and while it goes without saying that war is terrible, a lot of technologies and even new fields of research are the product of wartime&amp;nbsp;conditions.&lt;/p&gt;
 &lt;p&gt;The Enigma machines are a series of electromechanical cipher machines that were famously used by Germany in World War &lt;span class="caps"&gt;II&lt;/span&gt; to encrypt military communications. Breaking the Enigma code had a huge impact on the Allies&amp;#8217; ability to win the war. Most of what I could write about the history of cracking Enigma is already covered by &lt;a href="https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma"&gt;this Wikipedia article&lt;/a&gt; (or if you prefer a more dramatized version, a &lt;a href="https://en.wikipedia.org/wiki/The_Imitation_Game"&gt;certain movie&lt;/a&gt; starring Benedict Cumberbatch), so I won&amp;#8217;t go over it in&amp;nbsp;detail.&lt;/p&gt;
 &lt;p&gt;Inspired by the &lt;a href="https://en.wikipedia.org/wiki/Colossus_computer"&gt;computers&lt;/a&gt; that were born out of cryptanalysis, I decided to write my own Enigma-cracking program in Rust &amp;#8212; &lt;a href="https://github.com/iKevinY/ultra"&gt; &lt;code&gt;ultra&lt;/code&gt;&lt;/a&gt;. &amp;#8220;Ultra secret&amp;#8221; was the classification level used by the Allies to refer to intelligence obtained via deciphering German communications at &lt;a href="https://en.wikipedia.org/wiki/Bletchley_Park"&gt;Bletchley Park&lt;/a&gt;. If the Germany had discovered that the Allies could read their messages, they easily could have switched to a completely new encryption method, nullifying all the effort spent breaking Enigma in the first&amp;nbsp;place.&lt;/p&gt;
 &lt;p&gt;To demonstrate how the Enigma cipher was employed, here is some example usage from &lt;code&gt;ultra&lt;/code&gt;. First, we encrypt this plaintext message using some random machine&amp;nbsp;settings:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ultra --randomize &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ultra --randomize &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
 &lt;span class="s2"&gt;A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, for it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.&amp;quot;&lt;/span&gt;
 S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.
 &lt;span class="o"&gt;(&lt;/span&gt;Rotors: &lt;span class="m"&gt;215&lt;/span&gt;, Key Setting: YFI, Ring Setting: UZW&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;When this ciphertext is encrypted using the same settings, we recover the original&amp;nbsp;message:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ultra --rotor&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;215&lt;/span&gt; --key&lt;span class="o"&gt;=&lt;/span&gt;YFI --ring&lt;span class="o"&gt;=&lt;/span&gt;UZW &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ultra --rotor&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;215&lt;/span&gt; --key&lt;span class="o"&gt;=&lt;/span&gt;YFI --ring&lt;span class="o"&gt;=&lt;/span&gt;UZW &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
 &lt;span class="s2"&gt;S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&amp;quot;&lt;/span&gt;
 A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, &lt;span class="k"&gt;for&lt;/span&gt; it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now, let&amp;#8217;s attempt to decipher the message with no knowledge of the correct&amp;nbsp;settings:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ultra --decrypt &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ultra --decrypt &lt;span class="s2"&gt;&amp;quot;\&lt;/span&gt;
 &lt;span class="s2"&gt;S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&amp;quot;&lt;/span&gt;
 A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, &lt;span class="k"&gt;for&lt;/span&gt; it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
 &lt;span class="o"&gt;(&lt;/span&gt;Rotors: &lt;span class="m"&gt;215&lt;/span&gt;, Key Setting: EZI, Ring Setting: ATW&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;We managed to recover the plaintext from nothing but the ciphertext! The decryption algorithm used in &lt;code&gt;ultra&lt;/code&gt; was largely inspired by some of James Lyon&amp;#8217;s articles on the Enigma machine on his website &lt;a href="http://practicalcryptography.com/ciphers/mechanical-era/enigma/"&gt;Practical Cryptography&lt;/a&gt;.&lt;/p&gt;
@@ -408,14 +408,14 @@ A few miles south of Soledad, the Salinas River drops in close to the hillside b
 4
 5
 6
-7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rayon&lt;/span&gt;::&lt;span class="n"&gt;prelude&lt;/span&gt;::&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rayon&lt;/span&gt;::&lt;span class="n"&gt;prelude&lt;/span&gt;::&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rotor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;iproduct&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rotors&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;::&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;Vec&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// These two lines turn a normal&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;into_par_iter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;// iterator into a parallel one!&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max_by_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;|&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rotor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unwrap&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;What makes this feel magical is that I didn&amp;#8217;t even have to think about managing multi-threaded memory access; the parallelization just works, and all I had to do was add three lines of code. Languages with a rich library ecosystem tend to flourish, and the existence of cool libraries like Rayon gives me a lot of confidence in the future of&amp;nbsp;Rust.&lt;/p&gt;
@@ -546,17 +546,17 @@ A few miles south of Soledad, the Salinas River drops in close to the hillside b
 &lt;h2&gt;To Merge or Not to&amp;nbsp;Merge&lt;/h2&gt;
 &lt;p&gt;Merging is the process of merging the commits made in two branches into one branch. This is done when a branch that is being worked on is deemed complete, and the changes are to be merged into the master branch. In the simplest case (where the only commits that have been made are in the topic branch), this is known as a fast-forward merge, and the commits are &amp;#8220;played on top of&amp;#8221; the master branch. Fast-forward merges can be performed automatically by Git and require no additional effort on the part of the user performing the merge. In other cases, merging either results in a merge commit or the manual resolution of merge conflicts (if the changes made in the branches contradict one&amp;nbsp;another).&lt;/p&gt;
 &lt;p&gt;Something that Git tutorials tend to gloss over is the rebase command. The reason for this is that rebasing involves &lt;em&gt;rewriting history&lt;/em&gt;. When you rebase a set of commits, they will change, and if the older set of commits have already been pushed to a remote repository that others have pulled from, pushing new changes will cause a break in continuity for others who try to pull these newly pushed commits. Because of this, it is recommended to only rebase local commits in most&amp;nbsp;cases.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git rebase -i HEAD~n  &lt;span class="c1"&gt;# rebase the last n commits&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ git rebase -i HEAD~n  &lt;span class="c1"&gt;# rebase the last n commits&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The &lt;code&gt;-i&lt;/code&gt; flag stands for &lt;em&gt;interactive&lt;/em&gt;. Upon executing the command, your &lt;code&gt;$EDITOR&lt;/code&gt; of choice will open with a list of commits from least recent to most recent preceded by the word&amp;nbsp;&amp;#8220;pick&amp;#8221;:&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pick a5b977a Ensure all expected resource files exist
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pick a5b977a Ensure all expected resource files exist
 pick f08e801 Add problems 311–320
 pick 969f9e5 Update tests to ensure resource correspondence
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;Below the list of commits are some instructions about rebasing, including the available commands. To actually rebase, you make changes to the text in the editor and then close it. Here are the operations that you can&amp;nbsp;perform:&lt;/p&gt;
@@ -568,10 +568,10 @@ pick 969f9e5 Update tests to ensure resource correspondence
 &lt;p&gt;Typically, a project maintainer might ask for you to squash your pull request. What this actually involves doing is rebasing and using the &amp;#8220;squash&amp;#8221; command to turn multiple commits into just one or a couple logical commits. For example, if you wanted to turn the three commits listed above into one larger commit, you would edit the file to look like the&amp;nbsp;following:&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pick a5b977a Ensure all expected resource files exist
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pick a5b977a Ensure all expected resource files exist
 squash f08e801 Add problems 311–320
 squash 969f9e5 Update tests to ensure resource correspondence
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;Upon closing the editor, a new editor will open up that allows you to edit the commit message of the newly created single commit. The commit messages of each of the commits being squashed are included for the sake of convenience, and when the editor is closed, the non-commented lines become the new commit&amp;nbsp;message.&lt;/p&gt;
@@ -586,7 +586,7 @@ squash 969f9e5 Update tests to ensure resource correspondence
 6
 7
 8
-9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
 &lt;span class="nb"&gt;cd&lt;/span&gt; PROJECT_NAME
 git branch my-feature
 git checkout my-feature
@@ -595,7 +595,7 @@ rm silly-file.txt
 git add -A
 git commit
 git push -u origin my-feature
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;ol&gt;
@@ -629,29 +629,29 @@ git push -u origin my-feature
 &lt;p&gt;One of the issues that I ran into in the process of setting this up was installing the &lt;code&gt;travis&lt;/code&gt; gem, which is needed to encrypt the OAuth token that allows Travis to push to the GitHub repository. What ended up solving the problem in the end was updating the version of Ruby on my&amp;nbsp;computer.&lt;/p&gt;
 &lt;p&gt;Since I liked some of the features that I had previously included in my site generation Bash script, I rewrote Andrea&amp;#8217;s &lt;code&gt;deploy.sh&lt;/code&gt; script to work similarly to my existing workflow. The entirety of the file can be found &lt;a href="https://github.com/iKevinY/iKevinY.github.io/blob/src/generate.sh"&gt;in the GitHub repository&lt;/a&gt; of my website&amp;#8217;s source. My rewritten script grabs the hash and message of the most recent commit to the source&amp;nbsp;branch:&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
-2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;commitHash&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git rev-parse HEAD&lt;span class="sb"&gt;`&lt;/span&gt;
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;commitHash&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git rev-parse HEAD&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;span class="nv"&gt;commitMessage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git log -1 --pretty&lt;span class="o"&gt;=&lt;/span&gt;%B&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;These variables are used during the &lt;code&gt;git commit&lt;/code&gt; command to create a descriptive commit message. The commit message in the source branch is used as the first line of the commit message, and the commit hash and Travis build number are included as the extended part of the commit&amp;nbsp;message:&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git commit -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$commitMessage&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;Generated by commit &lt;/span&gt;&lt;span class="nv"&gt;$commitHash&lt;/span&gt;&lt;span class="s2"&gt;; pushed by Travis build &lt;/span&gt;&lt;span class="nv"&gt;$TRAVIS_BUILD_NUMBER&lt;/span&gt;&lt;span class="s2"&gt;.&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git commit -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$commitMessage&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;Generated by commit &lt;/span&gt;&lt;span class="nv"&gt;$commitHash&lt;/span&gt;&lt;span class="s2"&gt;; pushed by Travis build &lt;/span&gt;&lt;span class="nv"&gt;$TRAVIS_BUILD_NUMBER&lt;/span&gt;&lt;span class="s2"&gt;.&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;There are a few minor changes I made to the &lt;code&gt;rsync&lt;/code&gt; and &lt;code&gt;git&lt;/code&gt; commands of Andrea&amp;#8217;s script as well. Within the &lt;code&gt;rsync&lt;/code&gt; command, I removed the asterisk from the source directory and added the &lt;code&gt;--delete&lt;/code&gt; flag to instruct the script to delete files in the destination directory that are not present in the source directory. Simply adding the &lt;code&gt;--delete&lt;/code&gt; flag to the version of the command present in Andrea&amp;#8217;s script will not affect the command as a result of the to the wildcard search caused by the&amp;nbsp;asterisk:&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -r --exclude&lt;span class="o"&gt;=&lt;/span&gt;.git --delete ../&lt;span class="nv"&gt;$PELICAN_OUTPUT_FOLDER&lt;/span&gt;/ ./
-&lt;/pre&gt;&lt;/div&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rsync -r --exclude&lt;span class="o"&gt;=&lt;/span&gt;.git --delete ../&lt;span class="nv"&gt;$PELICAN_OUTPUT_FOLDER&lt;/span&gt;/ ./
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;I also changed the flag on &lt;code&gt;git add&lt;/code&gt; to &lt;code&gt;-A&lt;/code&gt; in order to stage deleted files as well as added and modified ones and added the &lt;code&gt;git status -s&lt;/code&gt; command which echos a nice overview of what changes were actually staged (which gets stored in Travis&amp;#8217; build&amp;nbsp;logs):&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git status -s
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ git status -s
 A  &lt;span class="m"&gt;2014&lt;/span&gt;/06/deploying-pelican-sites-using-travis-ci/index.html
 A  &lt;span class="m"&gt;2014&lt;/span&gt;/06/index.html
 M  &lt;span class="m"&gt;2014&lt;/span&gt;/index.html
 M  archive/index.html
 M  index.html
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Since my version of &lt;code&gt;deploy.sh&lt;/code&gt; was based on the script that I used to test and deploy changes locally, I wrote it so that it could be executed from a local development machine by checking against the &lt;code&gt;$TRAVIS&lt;/code&gt; variable. When run locally, it can be used to check what changes would be pushed to the GitHub Pages branch given the modifications that have been made locally. In practice, it wouldn&amp;#8217;t ever be useful to push changes manually since Travis would automatically repeat the exact same steps, but if the integration between GitHub and Travis were to ever stop working, I would still have a way to make modifications to the GitHub Pages&amp;nbsp;branch.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>On Programming and Turtles</title><link href="http://kevinyap.ca/2014/01/on-programming-and-turtles/" rel="alternate"></link><published>2014-01-05T00:00:00-08:00</published><updated>2014-01-05T00:00:00-08:00</updated><author><name></name></author><id>tag:kevinyap.ca,2014-01-05:/2014/01/on-programming-and-turtles/</id><summary type="html">&lt;p&gt;Minecraft is one of my favourite games. &lt;a href="https://minecraft.net/stats"&gt;Over 13 million&lt;/a&gt; copies have been sold for the &lt;span class="caps"&gt;PC&lt;/span&gt; alone &amp;#8212; an impressive statistic considering the game was in alpha merely three years ago. Minecraft&amp;#8217;s popularity is due primarily to its open-ended nature. The …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Minecraft is one of my favourite games. &lt;a href="https://minecraft.net/stats"&gt;Over 13 million&lt;/a&gt; copies have been sold for the &lt;span class="caps"&gt;PC&lt;/span&gt; alone &amp;#8212; an impressive statistic considering the game was in alpha merely three years ago. Minecraft&amp;#8217;s popularity is due primarily to its open-ended nature. The ever-growing variety of blocks appeals to those who enjoy the building aspect of the game, and survival mode only augments the gratification of building by having the player work for their building materials. As for PvP combat, there are numerous community-created custom maps with their own unique rulesets. Expanding on this, through the use of elaborate server-side modding, Minecraft functions more as a game engine than a standalone game, enabling players with unmodded clients to instantly connect to a server and play game modes such as a Minecraft version of the Hunger Games. There is a niche in the game for every type of&amp;nbsp;player.&lt;/p&gt;
@@ -676,7 +676,7 @@ M  index.html
 11
 12
 13
-14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- digs the block in front&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;forward&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- moves forward&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;digUp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- digs the block above&lt;/span&gt;
@@ -690,7 +690,7 @@ M  index.html
   &lt;span class="c1"&gt;-- Assume miningComplete is controlled by external logic&lt;/span&gt;
   &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;miningComplete&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt; &lt;span class="kr"&gt;break&lt;/span&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;span class="kr"&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;The function &lt;code&gt;miningIteration()&lt;/code&gt; instructs the Turtle to dig the block in front of the Turtle, move forward, and then dig the block above itself. The function is repeated eight times and then the Turtle places a torch. While this is technically a functional mining script, there are a number of improvements that could be made. Here are a few that I implemented into my expanded branch mining&amp;nbsp;script.&lt;/p&gt;
@@ -700,12 +700,12 @@ M  index.html
 2
 3
 4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="kr"&gt;while&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
   &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;forward&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="kr"&gt;while&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detectUp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;digUp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;span class="kr"&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;However, this function is still flawed, though the cause of the problem may not be obvious to someone unfamiliar with Minecraft. Although stationary blocks make up the crux of the game, there is another class of objects known as entities, which includes not only boats and minecarts but also falling sand and gravel. Entities have a position, velocity, and rotation, and are affected by the game&amp;#8217;s physics. When the game logic detects that there is no stationary block underneath a sand or gravel block, it is converted into an entity and falls until it lands on another solid block (or falls through the &lt;a href="http://minecraft.gamepedia.com/The_Void"&gt;Void&lt;/a&gt;).&lt;/p&gt;
@@ -720,7 +720,7 @@ M  index.html
  8
  9
 10
-11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="kr"&gt;while&lt;/span&gt; &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
     &lt;span class="n"&gt;turtle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -731,7 +731,7 @@ M  index.html
     &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;span class="kr"&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;Another interesting behaviour that needed to be debugged was directional-based. Minecraft has many direction-specific quirks due to the way that the game logic was programmed in. This usually results in either south or west sides of blocks being prioritized in some manner. &lt;code&gt;turtle.placeUp()&lt;/code&gt; instructs a Turtle to place whatever is in the selected block of its inventory above itself. For solid blocks, this is straightforward. However, in the case of non-solid blocks like torches, they will snap to an adjacent block face. The west face is prioritized, followed by the east, north, and south faces&amp;nbsp;successively.&lt;/p&gt;
@@ -748,7 +748,7 @@ M  index.html
 10
 11
 12
-13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
   &lt;span class="kr"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt; &lt;span class="n"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
   &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt;
     &lt;span class="n"&gt;miningIteration&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;-- complete an extra mining iteration&lt;/span&gt;
@@ -761,7 +761,7 @@ M  index.html
   &lt;span class="kr"&gt;end&lt;/span&gt;
   &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;miningComplete&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt; &lt;span class="kr"&gt;break&lt;/span&gt; &lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;span class="kr"&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;With this revision, if the Turtle is facing in one of the two problematic directions, it will simply complete an extra iteration of mining and then move backwards one block. When &lt;code&gt;turtle.placeUp()&lt;/code&gt; is called, the torch can no longer attach to the block in front (because it has been mined), so it gets placed on either the left or right wall, circumventing the issue of the torch being destroyed in the next iteration of&amp;nbsp;mining.&lt;/p&gt;
@@ -771,8 +771,8 @@ M  index.html
 &lt;p&gt;Another benefit of learning programming through ComputerCraft is that ideas for new features or added functionality arise simply by using the program. Perhaps the mining script could be extended to instruct the Turtle to automatically return to the start of the branch when its inventory fills up or throw out unwanted materials and only keep ores. Maybe fuel could be a factor, and it could automatically consume any fuel sources that it mines in order to extend the mining expedition. This process of beginning with a basic program and expanding its functionality can be applied when programming independently of&amp;nbsp;ComputerCraft.&lt;/p&gt;
 &lt;p&gt;I believe that ComputerCraft is a great way to teach people who are already interested in Minecraft the basics of programming. Lua is a very beginner friendly language as, much like Logo, it features a syntax similar to normal English. Turtles will almost certainly more engaging to a novice programmer than a Lua prompt. The mod is not only limited to working with Turtles, either; a more traditional approach can be taken to the programming involved. There are a wide variety of programs that various people have written, from basic APIs to &lt;a href="https://github.com/oeed/PearOS"&gt;operating systems with GUIs&lt;/a&gt;. In this age of computing, more unorthodox approaches to teaching and learning can be experimented with, and with ComputerCraft, &lt;s&gt;the sky&lt;/s&gt; &lt;code&gt;Y = 255&lt;/code&gt; is the&amp;nbsp;limit.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Styling Code Blocks Using Pelican</title><link href="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/" rel="alternate"></link><published>2013-12-10T00:00:00-08:00</published><updated>2013-12-10T00:00:00-08:00</updated><author><name></name></author><id>tag:kevinyap.ca,2013-12-10:/2013/12/styling-code-blocks-using-pelican/</id><summary type="html">&lt;p&gt;Although &lt;a href="http://studiostyl.es/schemes/monokai"&gt;Monokai&lt;/a&gt; is my colour scheme of choice when coding in &lt;a href="http://www.sublimetext.com"&gt;Sublime Text 2&lt;/a&gt;, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Although &lt;a href="http://studiostyl.es/schemes/monokai"&gt;Monokai&lt;/a&gt; is my colour scheme of choice when coding in &lt;a href="http://www.sublimetext.com"&gt;Sublime Text 2&lt;/a&gt;, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a &lt;a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/"&gt;blog post by Alex Peattie&lt;/a&gt; explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&amp;nbsp;future.&lt;/p&gt;
 &lt;p&gt;While Alex&amp;#8217;s tutorial implemented line numbering using &lt;span class="caps"&gt;CSS&lt;/span&gt;, the &lt;a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html"&gt;CodeHilite&lt;/a&gt; extension for &lt;a href="https://pypi.python.org/pypi/Markdown"&gt;Python-Markdown&lt;/a&gt; has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&amp;#8217;s &lt;code&gt;linenums&lt;/code&gt; setting needs to be set to &lt;code&gt;True&lt;/code&gt;. This can be done through the &lt;code&gt;MD_EXTENSIONS&lt;/code&gt; option in the settings file supplied to&amp;nbsp;Pelican.&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;codehilite(linenums = True)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;codehilite(linenums = True)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;The next step is to download a stylesheet that is compatible with Pygments. I used the one &lt;a href="https://github.com/richleland/pygments-css/blob/master/github.css"&gt;linked in Alex&amp;#8217;s tutorial&lt;/a&gt;, but deleted the first line of the file because I did not need to change the background colour of the code block. This stylesheet should be linked to in the base template file of your website &amp;#8212; &lt;code&gt;base.html&lt;/code&gt; for the theme that I am currently&amp;nbsp;using.&lt;/p&gt;
@@ -784,7 +784,7 @@ M  index.html
 5
 6
 7
-8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;codehilitetable&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;codehilitetable&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Source Code Pro&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;monospace&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;overflow&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;auto&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -792,7 +792,7 @@ M  index.html
     &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;solid&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="mh"&gt;#d9d9d9&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;border-radius&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;Following this, the line numbering is styled by modifying the &lt;code&gt;linenos&lt;/code&gt; class. The background of the numbering is made grey, the sides of the actual line numbers are padded, and a border is added separating the numbering from the actual code. The multitude of vendor-prefixed &lt;code&gt;user-select&lt;/code&gt; properties are added in order to make the line numbers unselectable making selecting and copying code a lot&amp;nbsp;easier.&lt;/p&gt;
@@ -810,7 +810,7 @@ M  index.html
 11
 12
 13
-14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;linenos&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+14&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;linenos&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;border-right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="kc"&gt;solid&lt;/span&gt; &lt;span class="mh"&gt;#d9d9d9&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;#eee&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;padding&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt; &lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -824,7 +824,7 @@ M  index.html
 &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;codehilite&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;margin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;After following these steps, everything should be working properly. Of course, the stylesheet used and properties of the code blocks can be changed depending on personal&amp;nbsp;preference.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Hosting With GitHub Pages</title><link href="http://kevinyap.ca/2013/12/hosting-with-github-pages/" rel="alternate"></link><published>2013-12-07T00:00:00-08:00</published><updated>2013-12-07T00:00:00-08:00</updated><author><name></name></author><id>tag:kevinyap.ca,2013-12-07:/2013/12/hosting-with-github-pages/</id><summary type="html">&lt;p&gt;Over the past couple of days, I made the switch to using GitHub as the hosting platform for my website by using &lt;a href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;. This felt like a natural progression as I already used GitHub for version control for the source of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Over the past couple of days, I made the switch to using GitHub as the hosting platform for my website by using &lt;a href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;. This felt like a natural progression as I already used GitHub for version control for the source of my website. I initially thought the move would be confusing and time-consuming, but after the &lt;span class="caps"&gt;DNS&lt;/span&gt; changes propagated, everything was up and running just as it had been before the&amp;nbsp;move.&lt;/p&gt;
@@ -845,7 +845,7 @@ M  index.html
  9
 10
 11
-12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$sourceDirectory&lt;/span&gt;
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$sourceDirectory&lt;/span&gt;
 &lt;span class="nv"&gt;commitHash&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;git rev-parse HEAD&lt;span class="k"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$outputDirectory&lt;/span&gt;
 git add -A
@@ -857,7 +857,7 @@ git checkout master
     git commit -m &lt;span class="s2"&gt;&amp;quot;Generated by &lt;/span&gt;&lt;span class="nv"&gt;$commitHash&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$commitMessage&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;fi&lt;/span&gt;
 git push
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;The command &lt;code&gt;git rev-parse HEAD&lt;/code&gt; returns the hash of the last commit in the Git repository&amp;#8217;s history and is stored in the variable &lt;code&gt;$commitHash&lt;/code&gt;. The directory is then changed to &lt;code&gt;output/&lt;/code&gt; and &lt;code&gt;git checkout&lt;/code&gt; is run to ensure the branch that changes will be committed to is the &lt;code&gt;master&lt;/code&gt; branch (not that it should change, but in case I were to accidentally change branches manually, this would prevents anything problematic from happening). Any changes made are then added via &lt;code&gt;git add -A&lt;/code&gt;.&lt;/p&gt;
@@ -893,7 +893,7 @@ git push
 18
 19
 20
-21&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;iTunes&amp;quot;&lt;/span&gt;
+21&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;iTunes&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;sel&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;selection&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;sel&lt;/span&gt; &lt;span class="ow"&gt;is not&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
         &lt;span class="k"&gt;repeat&lt;/span&gt; &lt;span class="nv"&gt;with&lt;/span&gt; &lt;span class="nv"&gt;track&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;sel&lt;/span&gt;
@@ -914,7 +914,7 @@ git push
         &lt;span class="k"&gt;end&lt;/span&gt; &lt;span class="k"&gt;repeat&lt;/span&gt;
     &lt;span class="k"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt; &lt;span class="k"&gt;tell&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</content><category term="misc"></category></entry><entry><title>Hello, Blogosphere!</title><link href="http://kevinyap.ca/2011/10/hello-blogosphere/" rel="alternate"></link><published>2011-10-15T19:35:00-07:00</published><updated>2011-10-15T19:35:00-07:00</updated><author><name></name></author><id>tag:kevinyap.ca,2011-10-15:/2011/10/hello-blogosphere/</id><summary type="html">&lt;p&gt;After much consideration, I&amp;#8217;ve finally decided to start a blog. One reason is to expand my writing skills (I don&amp;#8217;t write nearly enough), but the main reason I&amp;#8217;ve decided to do so is because I now have my own …&lt;/p&gt;</summary><content type="html">&lt;p&gt;After much consideration, I&amp;#8217;ve finally decided to start a blog. One reason is to expand my writing skills (I don&amp;#8217;t write nearly enough), but the main reason I&amp;#8217;ve decided to do so is because I now have my own space on the Internet to write about, well, anything&amp;nbsp;really.&lt;/p&gt;
 &lt;p&gt;I suppose this is the obligatory mini-biography post, so here goes. I&amp;#8217;m a high school student living in Vancouver, Canada. I quite enjoy school, which I suppose is a good quality. I play the piano, and my favourite sport (to play) is Ultimate Frisbee, which is apparently very popular in the Pacific Northwest, something I wasn&amp;#8217;t aware of until I started playing. Music is one of my passions, and I enjoy composing music in my free time. I&amp;#8217;m also very interested in programming, and there&amp;#8217;s quite a story behind how I became interested in&amp;nbsp;it.&lt;/p&gt;
 &lt;p&gt;One Christmas, I got an iPod Touch as a present from my parents. It was a first generation iPod Touch, only running iPhone &lt;span class="caps"&gt;OS&lt;/span&gt; 1.1 at the time (it wasn&amp;#8217;t even called iOS back then). It was an amazing device, but the issue was there were no apps for it. The concept of third-party apps wasn&amp;#8217;t even existent. iPhone &lt;span class="caps"&gt;OS&lt;/span&gt; 1.1.3 added &amp;#8220;Web Clips&amp;#8221;, which were essentially pseudo-apps, or in other words, glorified bookmarks. What was truly amazing, though, was the release of iPhone &lt;span class="caps"&gt;OS&lt;/span&gt; 2.0. This &lt;span class="caps"&gt;OS&lt;/span&gt; update contained the debut of the App Store, and it was outstanding. The fact that you could find a game that looked interesting, buy it, and have it playable within a matter of minutes was mind-blowing. To put icing on the cake, the highly awaited games such as Enigmo and Super Monkey Ball were only $10 each, much less than games on any other console (although now, they&amp;#8217;re $1 and $3 respectively; that&amp;#8217;s a blog post for another time). Most apps and games were around the $3–5 range at the time, and only your Apple &lt;span class="caps"&gt;ID&lt;/span&gt; password stood between you and a shiny new program for your&amp;nbsp;iDevice.&lt;/p&gt;

@@ -91,7 +91,7 @@
 11
 12
 13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kr">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span> <span class="c1">-- digs the block in front</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">forward</span><span class="p">()</span> <span class="c1">-- moves forward</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">digUp</span><span class="p">()</span> <span class="c1">-- digs the block above</span>
@@ -105,7 +105,7 @@
   <span class="c1">-- Assume miningComplete is controlled by external logic</span>
   <span class="kr">if</span> <span class="n">miningComplete</span> <span class="kr">then</span> <span class="kr">break</span> <span class="kr">end</span>
 <span class="kr">end</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>The function <code>miningIteration()</code> instructs the Turtle to dig the block in front of the Turtle, move forward, and then dig the block above itself. The function is repeated eight times and then the Turtle places a torch. While this is technically a functional mining script, there are a number of improvements that could be made. Here are a few that I implemented into my expanded branch mining&nbsp;script.</p>
@@ -115,12 +115,12 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kr">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="kr">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detect</span><span class="p">()</span> <span class="kr">do</span> <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span> <span class="kr">end</span>
   <span class="n">turtle</span><span class="p">.</span><span class="n">forward</span><span class="p">()</span>
   <span class="kr">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detectUp</span><span class="p">()</span> <span class="kr">do</span> <span class="n">turtle</span><span class="p">.</span><span class="n">digUp</span><span class="p">()</span> <span class="kr">end</span>
 <span class="kr">end</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>However, this function is still flawed, though the cause of the problem may not be obvious to someone unfamiliar with Minecraft. Although stationary blocks make up the crux of the game, there is another class of objects known as entities, which includes not only boats and minecarts but also falling sand and gravel. Entities have a position, velocity, and rotation, and are affected by the game&#8217;s physics. When the game logic detects that there is no stationary block underneath a sand or gravel block, it is converted into an entity and falls until it lands on another solid block (or falls through the <a href="http://minecraft.gamepedia.com/The_Void">Void</a>).</p>
@@ -135,7 +135,7 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kr">function</span> <span class="nf">miningIteration</span><span class="p">()</span>
   <span class="kr">while</span> <span class="n">turtle</span><span class="p">.</span><span class="n">detect</span><span class="p">()</span> <span class="kr">do</span>
     <span class="n">turtle</span><span class="p">.</span><span class="n">dig</span><span class="p">()</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
@@ -146,7 +146,7 @@
     <span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
   <span class="kr">end</span>
 <span class="kr">end</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>Another interesting behaviour that needed to be debugged was directional-based. Minecraft has many direction-specific quirks due to the way that the game logic was programmed in. This usually results in either south or west sides of blocks being prioritized in some manner. <code>turtle.placeUp()</code> instructs a Turtle to place whatever is in the selected block of its inventory above itself. For solid blocks, this is straightforward. However, in the case of non-solid blocks like torches, they will snap to an adjacent block face. The west face is prioritized, followed by the east, north, and south faces&nbsp;successively.</p>
@@ -163,7 +163,7 @@
 10
 11
 12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">while</span> <span class="kc">true</span> <span class="kr">do</span>
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kr">while</span> <span class="kc">true</span> <span class="kr">do</span>
   <span class="kr">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span> <span class="kr">do</span> <span class="n">miningIteration</span><span class="p">()</span> <span class="kr">end</span>
   <span class="kr">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">3</span> <span class="kr">then</span>
     <span class="n">miningIteration</span><span class="p">()</span> <span class="c1">-- complete an extra mining iteration</span>
@@ -176,7 +176,7 @@
   <span class="kr">end</span>
   <span class="kr">if</span> <span class="n">miningComplete</span> <span class="kr">then</span> <span class="kr">break</span> <span class="kr">end</span>
 <span class="kr">end</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <p>With this revision, if the Turtle is facing in one of the two problematic directions, it will simply complete an extra iteration of mining and then move backwards one block. When <code>turtle.placeUp()</code> is called, the torch can no longer attach to the block in front (because it has been mined), so it gets placed on either the left or right wall, circumventing the issue of the torch being destroyed in the next iteration of&nbsp;mining.</p>
