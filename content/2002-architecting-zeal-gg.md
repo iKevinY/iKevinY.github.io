@@ -1,5 +1,6 @@
 Title: Architecting zeal.gg
 Date: 2020-03-01
+Slug: architecting-zeal-gg
 
 Back while I was interning at Riot Games, I spent one weekend throwing together a prototype for what would eventually become [zeal.gg](https://zeal.gg). The purpose of it was to graph the [solo queue ranking](https://support-leagueoflegends.riotgames.com/hc/en-us/articles/204010760) of our intern cohort while we were working there, since like most of the League of Legends population, a handful of us got really competitive about it.
 
