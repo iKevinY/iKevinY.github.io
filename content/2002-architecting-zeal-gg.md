@@ -49,11 +49,13 @@ Why React and not something like Angular or Vue? I learned React for the stuff I
 
 There were a few non-trivial things that I had to solve when building the site. Figuring out solutions to these was truly the fun part, and also demonstrates why good design work is so important when it comes to software engineering.
 
+
 ### No User Logins
 
 I knew from the very start that I did _not_ want to support any sort of user logins or anything related; I wasn't about to put myself in the position where I had to start worrying about credentials for a site this simple. The Riot API actually supports a feature where players can "verify" their identity by logging into League and entering a code that is provided by a third-party tool -- I briefly considered somehow making use of this, but quickly decided the complexity was not at all worth it.
 
 As a result, this meant that leaderboards are completely immutable. I had a few people request the ability to, say, add or edit the players contained in a single leaderboard, which isn't possible under this model. I figured that being able to just create a new leaderboard with the updated player set would be good enough, and I still believe this is the case.
+
 
 ### Nice Leaderboard URLs
 
@@ -72,6 +74,7 @@ To solve this problem, I used [nginx](http://nginx.org), which sits at the very 
 
 This comes with another unintended benefit. Another approach could have just been to have the Flask workers themselves serve the static files. However, by siloing off requests to the API and letting nginx serve the frontend, it means that the website remains responsive regardless of how much load is on the API at any given point in time.
 
+
 ### Global Timeout State
 
 In my initial vision for the site, I wanted to refresh everyone's data on a periodic basis, so there would be no need for a manual refresh button on leaderboards. However, the site quickly scaled to a point where I would far exceed my allotted rate limit if I were to do this on anywhere near a regular-enough basis. This was exacerbated by the fact that people would often create a leaderboard to try out the site, and never come back. Would I then be on the hook for refreshing this data? I iterated on solutions to this -- tracking which leaderboards were visited and keeping maintaining a set of "active players", whose data _would_ be refreshed, while letting others rest dormant.
@@ -79,6 +82,7 @@ In my initial vision for the site, I wanted to refresh everyone's data on a peri
 In the end, though, manual refreshes work just fine from a UX perspective, and this is how most League websites operate anyways. The new problem was needing to add a timeout for said refreshes; it would be a waste to allow someone to repeatedly request a leaderboard refresh, since rank data changes on the order of minutes to hours. Since there are multiple instances of the backend running (and requests are distributed across them), simply storing in-memory whether a leaderboard is on its cooldown period won't work.
 
 This is where having Redis around was perfect. The "timeout" of a leaderboard isn't something that I would really want to store within Postgres, but it was perfectly suitable for Redis. The backend writes a value keyed on a leaderboard's unique ID when a refresh is triggered, with the corresponding expiry; upon loading a leaderboard, the existence of that key is checked to determine whether refreshing should be allowed. Redis' native key expiry made this very simple to implement.
+
 
 ### Long-Running Refreshes
 
@@ -91,6 +95,13 @@ My solution to this was to use a job queue to run refresh operations in the back
 Kicking off a refresh causes the backend to create a new "refresh leaderboard" job and return UUID of the job to the frontend. The API exposes a "job status" endpoint, which gets polled every couple of seconds. When the job has completed, the frontend redirects the user to the page corresponding to the newly-minted leaderboard.
 
 This is simply an implementation detail and not exposed to the end-user. I draw a loading bar on the frontend that slowly progresses to give the impression that it's only making a single, long-running request to the backend, which I'm particularly proud of.
+
+
+### Site Announcements
+
+I realized pretty early on that I would need some way of pushing notifications to the site, to alert users in case of an impending maintenance period or to outline new features. However, I didn't want to simply hard-code alerts and have to redeploy the site whenever they changed; I wanted some way of generating them dynamically.
+
+Since I had already created a [subreddit](https://www.reddit.com/r/zealgg/) to discuss changes to the site, I decided to leverage it. I added an endpoint to the backend that uses Reddit's API to check for any posts pinned on the subreddit. The frontend calls that endpoint, and if it finds a pinned post, it displays an alert using the title of the post as the alert text, and links to the full post for futher context.
 
 ----
 
