@@ -84,17 +84,17 @@ In the end, though, manual refreshes work just fine from a UX perspective, and t
 This is where having Redis around was perfect. The "timeout" of a leaderboard isn't something that I would really want to store within Postgres, but it was perfectly suitable for Redis. The backend writes a value keyed on a leaderboard's unique ID when a refresh is triggered, with the corresponding expiry; upon loading a leaderboard, the existence of that key is checked to determine whether refreshing should be allowed. Redis' native key expiry made this very simple to implement.
 
 
-### Long-Running Refreshes
+### Long-Running Operations
 
-Refreshing a leaderboard can take a while, as the bottleneck is the Riot API. I have leaderboards capped at 12 players, meaning a single refresh might require as many as 12 different request to the Riot API. Parallelizing these requests would help a bit, but the response time of an external API isn't something that I want bogging down my own API's response time.
+Creating and refreshing a leaderboard can take a while, as the bottleneck is the Riot API. I have leaderboards capped at 12 players, meaning a single request might require as many as 12 different calls to the Riot API. Parallelizing would help a bit, but the response time of an external API isn't something that I wanted bogging down my own API.
 
 To make matters even more worse, since Flask handles requests synchronously, waiting for all external API calls to resolve before completing the request would hog up the backend for much too long, and the performance of the site would be abysmal.
 
-My solution to this was to use a job queue to run refresh operations in the background. [`RQ`](https://github.com/rq/rq) is a Python library that essentially lets function invocations be queued up as jobs instead of being executed in the current process, and it's backed by Redis.
+My solution to this was to use a job queue to run these operations in the background. [`RQ`](https://github.com/rq/rq) is a Python library that essentially lets function invocations be queued up as jobs instead of being executed in the current process, and it's backed by Redis.
 
-Kicking off a refresh causes the backend to create a new "refresh leaderboard" job and return UUID of the job to the frontend. The API exposes a "job status" endpoint, which gets polled every couple of seconds. When the job has completed, the frontend redirects the user to the page corresponding to the newly-minted leaderboard.
+When a user tries to make a new leaderboard or refresh an existing one, the frontend calls an API endpoint that creates a new "create/refresh leaderboard" job. The API exposes a "job status" endpoint, which gets polled every couple of seconds. When the job has completed, the frontend either redirects the user to the new leaderboard or reloads the page to reflect the refreshed data.
 
-This is simply an implementation detail and not exposed to the end-user. I draw a loading bar on the frontend that slowly progresses to give the impression that it's only making a single, long-running request to the backend, which I'm particularly proud of.
+This is simply an implementation detail that is not exposed to the end-user, and I'm particularly proud with how it turned out from a UX perspective. When creating a leaderboard, I draw a loading bar that slowly progresses to give the impression that it's only making a single, long-running request. When refreshing a leaderboard, the refresh icon spins until the job completes and the page reloads.
 
 
 ### Site Announcements
