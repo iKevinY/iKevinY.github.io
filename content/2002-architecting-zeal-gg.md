@@ -19,6 +19,8 @@ I learned a ton building the site; taking an idea from inception to production i
 
 For personal projects, I almost always use Heroku, mostly because I don't want to have to worry about manually managing the uptime of all of the processes / databases involved; this is something that I will happily pay Heroku to do for me.
 
+Heroku greatly simplifies my deployment story. I actually have two apps in the same [pipeline](https://devcenter.heroku.com/articles/pipelines) -- one for staging and one for production. Changes pushed to `master` are automatically built and deployed to the staging site, which has its own staging database. Once I am confident that changes are stable, I use Heroku's CLI tool to "promote" that build to the production app, where it is deployed to the main site.
+
 ### Flask
 
 Python is slow: we've all heard it before. However, I am extremely comfortable with Python and its ecosystem, so that's what the backend is written in. While it would have been cool to write my backend in Rust (the other language I like using for side projects), I suspect the MVP would have taken far more than a single weekend, and I likely would have lost interest in the project before even making.
