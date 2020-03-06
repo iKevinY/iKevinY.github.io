@@ -18,10 +18,10 @@ ICONS_PATH = 'images/icons'
 
 SOCIAL_ICONS = [
     ('mailto:me@kevinyap.ca', 'Email (me@kevinyap.ca)', 'fa-envelope'),
-    ('http://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
-    ('http://github.com/iKevinY', 'GitHub', 'fa-github'),
-    ('http://soundcloud.com/iKevinY', 'SoundCloud', 'fa-soundcloud'),
-    ('http://instagram.com/ikeviny', 'Instagram', 'fa-instagram'),
+    ('https://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
+    ('https://github.com/iKevinY', 'GitHub', 'fa-github'),
+    ('https://instagram.com/ikeviny', 'Instagram', 'fa-instagram'),
+    ('/atom.xml', 'Atom Feed', 'fa-feed'),
 ]
 
 THEME_COLOR = '#FF8000'
