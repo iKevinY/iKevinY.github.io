@@ -17,10 +17,10 @@ SIDEBAR_LINKS = [
 ICONS_PATH = 'images/icons'
 
 SOCIAL_ICONS = [
-    ('mailto:me@kevinyap.ca', 'Email (me@kevinyap.ca)', 'fa-envelope'),
     ('https://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
     ('https://github.com/iKevinY', 'GitHub', 'fa-github'),
     ('https://instagram.com/ikeviny', 'Instagram', 'fa-instagram'),
+    ('https://buttondown.email/iKevinY', 'Newsletter', 'fa-newspaper-o'),
     ('/atom.xml', 'Atom Feed', 'fa-feed'),
 ]
 
