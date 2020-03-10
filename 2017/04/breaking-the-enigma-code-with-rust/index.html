@@ -55,10 +55,10 @@
 			</div>
 
 			<div id="social">
-				<a href="mailto:me@kevinyap.ca" title="Email (me@kevinyap.ca)" class="icon fa fa-envelope"></a>
 				<a href="https://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
 				<a href="https://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
 				<a href="https://instagram.com/ikeviny" title="Instagram" class="icon fa fa-instagram"></a>
+				<a href="https://buttondown.email/iKevinY" title="Newsletter" class="icon fa fa-newspaper-o"></a>
 				<a href="/atom.xml" title="Atom Feed" class="icon fa fa-feed"></a>
 			</div>
 
@@ -126,7 +126,7 @@ A few miles south of Soledad, the Salinas River drops in close to the hillside b
 <span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iproduct</span><span class="o">!</span><span class="p">(</span><span class="n">rotors</span><span class="p">.</span><span class="n">iter</span><span class="p">(),</span><span class="w"> </span><span class="n">keys</span><span class="p">.</span><span class="n">iter</span><span class="p">())</span><span class="w"></span>
 <span class="w">    </span><span class="p">.</span><span class="n">collect</span>::<span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w">  </span><span class="c1">// These two lines turn a normal</span>
 <span class="w">    </span><span class="p">.</span><span class="n">into_par_iter</span><span class="p">()</span><span class="w">      </span><span class="c1">// iterator into a parallel one!</span>
-<span class="w">    </span><span class="p">.</span><span class="n">max_by_key</span><span class="p">(</span><span class="o">|&amp;</span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">})</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">max_by_key</span><span class="p">(</span><span class="o">|&amp;</span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">})</span><span class="w"></span>
 <span class="w">    </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table>
