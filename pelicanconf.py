@@ -26,6 +26,8 @@ SOCIAL_ICONS = [
 
 THEME_COLOR = '#FF8000'
 
+BUTTONDOWN_LINK = 'https://buttondown.email/iKevinY'
+
 # Pelican settings
 RELATIVE_URLS = True
 SITEURL = 'http://kevinyap.ca'
