@@ -33,7 +33,7 @@ RELATIVE_URLS = True
 SITEURL = 'http://kevinyap.ca'
 TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE = 'fs'
-DEFAULT_DATE_FORMAT = '%B %d, %Y'
+DEFAULT_DATE_FORMAT = '%B %-d, %Y'
 DEFAULT_PAGINATION = False
 SUMMARY_MAX_LENGTH = 42
 
