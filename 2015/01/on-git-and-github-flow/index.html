@@ -95,9 +95,8 @@
 <h2>To Merge or Not to&nbsp;Merge</h2>
 <p>Merging is the process of merging the commits made in two branches into one branch. This is done when a branch that is being worked on is deemed complete, and the changes are to be merged into the master branch. In the simplest case (where the only commits that have been made are in the topic branch), this is known as a fast-forward merge, and the commits are &#8220;played on top of&#8221; the master branch. Fast-forward merges can be performed automatically by Git and require no additional effort on the part of the user performing the merge. In other cases, merging either results in a merge commit or the manual resolution of merge conflicts (if the changes made in the branches contradict one&nbsp;another).</p>
 <p>Something that Git tutorials tend to gloss over is the rebase command. The reason for this is that rebasing involves <em>rewriting history</em>. When you rebase a set of commits, they will change, and if the older set of commits have already been pushed to a remote repository that others have pulled from, pushing new changes will cause a break in continuity for others who try to pull these newly pushed commits. Because of this, it is recommended to only rebase local commits in most&nbsp;cases.</p>
-<div class="codehilite"><pre><span></span><code>$ git rebase -i HEAD~n  <span class="c1"># rebase the last n commits</span>
+<div class="sh codehilite"><pre><span></span><code>$ git rebase -i HEAD~n  <span class="c1"># rebase the last n commits</span>
 </code></pre></div>
-
 
 <p>The <code>-i</code> flag stands for <em>interactive</em>. Upon executing the command, your <code>$EDITOR</code> of choice will open with a list of commits from least recent to most recent preceded by the word&nbsp;&#8220;pick&#8221;:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -107,7 +106,6 @@ pick f08e801 Add problems 311–320
 pick 969f9e5 Update tests to ensure resource correspondence
 </code></pre></div>
 </td></tr></table>
-
 <p>Below the list of commits are some instructions about rebasing, including the available commands. To actually rebase, you make changes to the text in the editor and then close it. Here are the operations that you can&nbsp;perform:</p>
 <ul>
 <li>Delete the line, which will remove the commit&nbsp;entirely.</li>
@@ -122,7 +120,6 @@ squash f08e801 Add problems 311–320
 squash 969f9e5 Update tests to ensure resource correspondence
 </code></pre></div>
 </td></tr></table>
-
 <p>Upon closing the editor, a new editor will open up that allows you to edit the commit message of the newly created single commit. The commit messages of each of the commits being squashed are included for the sake of convenience, and when the editor is closed, the non-commented lines become the new commit&nbsp;message.</p>
 <p>I mentioned before that rebasing should only be done with local changes that have not been pushed to a remote repository, but in a pull request, by definition, the commits have already been pushed to your fork of the main repository. In this case, it is fine to rebase and push, since it can be assumed that people have not been actively making changes on the feature/fix branch that your pull request is based on. However, Git will not let you push the rebased commits using <code>git push</code> out of safety; you have to use <code>git push -f</code> to <em>force</em> the push to&nbsp;happen.</p>
 <h2>Putting It All&nbsp;Together</h2>
@@ -146,7 +143,6 @@ git commit
 git push -u origin my-feature
 </code></pre></div>
 </td></tr></table>
-
 <ol>
 <li>Clone your fork to your local development&nbsp;machine.</li>
 <li>Change the current directory to the project&nbsp;folder.</li>

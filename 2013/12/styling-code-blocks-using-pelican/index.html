@@ -74,7 +74,6 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
-
 <p>The next step is to download a stylesheet that is compatible with Pygments. I used the one <a href="https://github.com/richleland/pygments-css/blob/master/github.css">linked in Alex&#8217;s tutorial</a>, but deleted the first line of the file because I did not need to change the background colour of the code block. This stylesheet should be linked to in the base template file of your website &#8212; <code>base.html</code> for the theme that I am currently&nbsp;using.</p>
 <p>Some custom styling is then done in order to change the appearance of the code blocks. The following three blocks of code would be placed in the primary stylesheet of the site&#8217;s theme. First of all, basic styling is added to the code block to control basic properties of the code, as well as create the border around the code block and ensure that it scrolls correctly if a line of code is too large for the block. While this is generally not an issue when being viewed on a computer screen, it is important for if the code is being viewed on a mobile&nbsp;device.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -94,7 +93,6 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
-
 <p>Following this, the line numbering is styled by modifying the <code>linenos</code> class. The background of the numbering is made grey, the sides of the actual line numbers are padded, and a border is added separating the numbering from the actual code. The multitude of vendor-prefixed <code>user-select</code> properties are added in order to make the line numbers unselectable making selecting and copying code a lot&nbsp;easier.</p>
 <p>The horizontal margins of the <code>codehilite</code> class, which controls the code itself, are increased to add spacing between the code snippets and the line&nbsp;numbers.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -126,7 +124,6 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
-
 <p>After following these steps, everything should be working properly. Of course, the stylesheet used and properties of the code blocks can be changed depending on personal&nbsp;preference.</p>
 	</div>
 
