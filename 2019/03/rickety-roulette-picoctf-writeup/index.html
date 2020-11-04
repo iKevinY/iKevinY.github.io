@@ -117,7 +117,7 @@ You&#39;re never gonna win
 
     <span class="k">if</span> <span class="p">(</span><span class="n">wins</span> <span class="o">&gt;=</span> <span class="n">MAX_WINS</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Wow you won %lu times? Looks like its time for you cash you out.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">wins</span><span class="p">);</span>
-      <span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+      <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">cash</span> <span class="o">&gt;</span> <span class="n">ONE_BILLION</span><span class="p">)</span> <span class="p">{</span>
@@ -128,7 +128,7 @@ You&#39;re never gonna win
         <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Wait a second... You&#39;re not even on a hotstreak! Get out of here cheater!&quot;</span><span class="p">);</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -202,7 +202,7 @@ Spinning the Roulette for a chance to win $705032704!
   <span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">seed</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">seed</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
   <span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
   <span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span> <span class="o">%</span> <span class="mi">5000</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">seed</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">seed</span> <span class="o">*=</span> <span class="mi">-1</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">seed</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">seed</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   <span class="n">srand</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
   <span class="k">return</span> <span class="n">seed</span><span class="p">;</span>
 <span class="p">}</span>
