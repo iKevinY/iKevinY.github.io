@@ -71,19 +71,19 @@
 	<div class="content">
 		<p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
 <p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
 <p>The next step is to download a stylesheet that is compatible with Pygments. I used the one <a href="https://github.com/richleland/pygments-css/blob/master/github.css">linked in Alex&#8217;s tutorial</a>, but deleted the first line of the file because I did not need to change the background colour of the code block. This stylesheet should be linked to in the base template file of your website &#8212; <code>base.html</code> for the theme that I am currently&nbsp;using.</p>
 <p>Some custom styling is then done in order to change the appearance of the code blocks. The following three blocks of code would be placed in the primary stylesheet of the site&#8217;s theme. First of all, basic styling is added to the code block to control basic properties of the code, as well as create the border around the code block and ensure that it scrolls correctly if a line of code is too large for the block. While this is generally not an issue when being viewed on a computer screen, it is important for if the code is being viewed on a mobile&nbsp;device.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">codehilitetable</span> <span class="p">{</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">codehilitetable</span> <span class="p">{</span>
     <span class="k">font-family</span><span class="p">:</span> <span class="s2">&quot;Source Code Pro&quot;</span><span class="p">,</span> <span class="kc">monospace</span><span class="p">;</span>
     <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
     <span class="k">overflow</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
@@ -95,20 +95,20 @@
 </td></tr></table>
 <p>Following this, the line numbering is styled by modifying the <code>linenos</code> class. The background of the numbering is made grey, the sides of the actual line numbers are padded, and a border is added separating the numbering from the actual code. The multitude of vendor-prefixed <code>user-select</code> properties are added in order to make the line numbers unselectable making selecting and copying code a lot&nbsp;easier.</p>
 <p>The horizontal margins of the <code>codehilite</code> class, which controls the code itself, are increased to add spacing between the code snippets and the line&nbsp;numbers.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">linenos</span> <span class="p">{</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">linenos</span> <span class="p">{</span>
     <span class="k">border-right</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#d9d9d9</span><span class="p">;</span>
     <span class="k">background</span><span class="p">:</span> <span class="mh">#eee</span><span class="p">;</span>
     <span class="k">padding</span><span class="p">:</span> <span class="mf">0.5</span><span class="kt">em</span> <span class="mf">0.8</span><span class="kt">em</span><span class="p">;</span>

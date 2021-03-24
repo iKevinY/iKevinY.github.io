@@ -99,9 +99,9 @@
 </code></pre></div>
 
 <p>The <code>-i</code> flag stands for <em>interactive</em>. Upon executing the command, your <code>$EDITOR</code> of choice will open with a list of commits from least recent to most recent preceded by the word&nbsp;&#8220;pick&#8221;:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>pick a5b977a Ensure all expected resource files exist
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>pick a5b977a Ensure all expected resource files exist
 pick f08e801 Add problems 311–320
 pick 969f9e5 Update tests to ensure resource correspondence
 </code></pre></div>
@@ -113,9 +113,9 @@ pick 969f9e5 Update tests to ensure resource correspondence
 <li>Rearrange the lines, which will rearrange the order of the&nbsp;commits.</li>
 </ul>
 <p>Typically, a project maintainer might ask for you to squash your pull request. What this actually involves doing is rebasing and using the &#8220;squash&#8221; command to turn multiple commits into just one or a couple logical commits. For example, if you wanted to turn the three commits listed above into one larger commit, you would edit the file to look like the&nbsp;following:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>pick a5b977a Ensure all expected resource files exist
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>pick a5b977a Ensure all expected resource files exist
 squash f08e801 Add problems 311–320
 squash 969f9e5 Update tests to ensure resource correspondence
 </code></pre></div>
@@ -124,15 +124,15 @@ squash 969f9e5 Update tests to ensure resource correspondence
 <p>I mentioned before that rebasing should only be done with local changes that have not been pushed to a remote repository, but in a pull request, by definition, the commits have already been pushed to your fork of the main repository. In this case, it is fine to rebase and push, since it can be assumed that people have not been actively making changes on the feature/fix branch that your pull request is based on. However, Git will not let you push the rebased commits using <code>git push</code> out of safety; you have to use <code>git push -f</code> to <em>force</em> the push to&nbsp;happen.</p>
 <h2>Putting It All&nbsp;Together</h2>
 <p>After forking the project on GitHub, the typical GitHub workflow might look something like&nbsp;this:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
 <span class="nb">cd</span> PROJECT_NAME
 git branch my-feature
 git checkout my-feature

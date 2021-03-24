@@ -76,18 +76,18 @@
 <p>I created an <span class="caps">SSH</span> key so that I do not have to manually authenticate every time <code>git push</code> is run by my site generation script. (Also because I have two-factor authentication enabled on my GitHub account.) While this did not work initially, it turns out that I was using the wrong remote <span class="caps">URL</span>; the proper <span class="caps">URL</span> to use over <span class="caps">SSH</span> (which in retrospect is quite obvious) is <code>ssh://git@github.com:user/repo.git</code>, rather than the <span class="caps">HTTPS</span> <span class="caps">URL</span> that is shown by default on the right side of the page when browsing the repository on&nbsp;GitHub.</p>
 <p>While I use <a href="http://mac.github.com">GitHub for Mac</a> to manage the repository for the source files (the <code>src</code> branch), the repository for the <code>output/</code> directory is only modified by the site generation script. Making use of <a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavoured Markdown</a>, the commit messages in the <code>master</code> branch contain links to the most recent commit in the <code>src</code> branch. When viewing the <code>master</code> branch on GitHub, the <a href="http://en.wikipedia.org/wiki/SHA-1"><span class="caps">SHA</span> hashes</a> automagically link to the corresponding commits in the <code>src</code> branch that generated the changes in the static site files, making it easy to determine what changes in the source files led to changes in the generated&nbsp;files.</p>
 <p>To achieve this, the script runs the following code after the <code>pelican</code> command generates the static site&nbsp;files.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$sourceDirectory</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$sourceDirectory</span>
 <span class="nv">commitHash</span><span class="o">=</span><span class="k">$(</span>git rev-parse HEAD<span class="k">)</span>
 <span class="nb">cd</span> <span class="nv">$outputDirectory</span>
 git add -A

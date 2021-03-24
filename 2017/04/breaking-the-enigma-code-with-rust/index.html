@@ -82,13 +82,13 @@ S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz u
 <p>When this ciphertext is encrypted using the same settings, we recover the original&nbsp;message:</p>
 <div class="codehilite"><pre><span></span><code>$ ultra --rotor<span class="o">=</span><span class="m">215</span> --key<span class="o">=</span>YFI --ring<span class="o">=</span>UZW <span class="s2">&quot;\</span>
 <span class="s2">S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&quot;</span>
-A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, <span class="k">for</span> it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
+A few miles south of Soledad, the Salinas River drops <span class="k">in</span> close to the hillside bank and runs deep and green. The water is warm too, <span class="k">for</span> it has slipped twinkling over the yellow sands <span class="k">in</span> the sunlight before reaching the narrow pool.
 </code></pre></div>
 
 <p>Now, let&#8217;s attempt to decipher the message with no knowledge of the correct&nbsp;settings:</p>
 <div class="codehilite"><pre><span></span><code>$ ultra --decrypt <span class="s2">&quot;\</span>
 <span class="s2">S rkz yypvn dsory vc Xbjvauu, yos Tlkdcmx Qpwcd tpgsf zj euqpp op vvd iwuffxjz umes nmk yamh zkdq vwk vavwc. Nkh fmyzp gk rfhe sgx, qth ml psm qasmrkl npmhsxdou jqwx hba eiyeur qtoci kq lqb hxqczkqn mdodir scdmsprt ddm ywnbgz uemo.&quot;</span>
-A few miles south of Soledad, the Salinas River drops in close to the hillside bank and runs deep and green. The water is warm too, <span class="k">for</span> it has slipped twinkling over the yellow sands in the sunlight before reaching the narrow pool.
+A few miles south of Soledad, the Salinas River drops <span class="k">in</span> close to the hillside bank and runs deep and green. The water is warm too, <span class="k">for</span> it has slipped twinkling over the yellow sands <span class="k">in</span> the sunlight before reaching the narrow pool.
 <span class="o">(</span>Rotors: <span class="m">215</span>, Key Setting: EZI, Ring Setting: ATW<span class="o">)</span>
 </code></pre></div>
 
@@ -112,13 +112,13 @@ A few miles south of Soledad, the Salinas River drops in close to the hillside b
 <p>In addition, between closures and iterators, Rust makes it easy to write functional code. Because of my prior experience with Python, Haskell, and <a href="https://racket-lang.org">Racket</a>, I felt right at home using Rust. Chaining together iterator adapters and collecting the result rather than iteratively pushing values into a vector with a for-loop reminded me of using list comprehensions in&nbsp;Python.</p>
 <p>The bulk of <code>ultra</code><span class="quo">&#8216;</span>s decryption algorithm involves iterating over Enigma settings, running the ciphertext through it, and returning the one with the highest fitness score. This lends itself nicely to parallelization; by splitting up the work, each worker can compute the maximum of its subset of the work, and the final result is the max of <em>those</em>&nbsp;maximums.</p>
 <p>Using the amazing <a href="https://github.com/nikomatsakis/rayon">Rayon</a> data parallelism library, many Rust iterators can be parallelized nearly effortlessly. With <code>ultra</code>, I essentially just needed to import Rayon&#8217;s prelude and add a couple of calls to <code>into_par_iter()</code>. (I also had to collect into a vector because the result of <code>iproduct!</code> can&#8217;t be directly transformed into a parallel&nbsp;iterator.)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">rayon</span>::<span class="n">prelude</span>::<span class="o">*</span><span class="p">;</span><span class="w"></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">rayon</span>::<span class="n">prelude</span>::<span class="o">*</span><span class="p">;</span><span class="w"></span>
 
 <span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iproduct</span><span class="o">!</span><span class="p">(</span><span class="n">rotors</span><span class="p">.</span><span class="n">iter</span><span class="p">(),</span><span class="w"> </span><span class="n">keys</span><span class="p">.</span><span class="n">iter</span><span class="p">())</span><span class="w"></span>
 <span class="w">    </span><span class="p">.</span><span class="n">collect</span>::<span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w">  </span><span class="c1">// These two lines turn a normal</span>
