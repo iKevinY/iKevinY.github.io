@@ -25,5 +25,5 @@ jobs:
           folder: output # The folder the action should deploy.
    
       - name: Display Diff
-        if: github.ref != 'refs/heads/src' || github.event_name == 'pull_request
+        if: github.ref != 'refs/heads/src' || github.event_name == 'pull_request'
         run: make diff
