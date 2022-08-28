@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+        with:
+          submodules: 'true'
 
       - name: Install Dependencies
         uses: ruby/setup-ruby@v1
@@ -20,7 +22,7 @@ jobs:
       - run: make install
       
       - name: Build Site
-        run: pelican -s publishconf.py
+        run: make build
       
       - name: Deploy from src
         uses: JamesIves/github-pages-deploy-action@v4
