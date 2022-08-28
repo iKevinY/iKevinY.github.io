@@ -21,7 +21,7 @@ Commons Attribution-ShareAlike License].
 [Pneumatic]: https://github.com/iKevinY/pneumatic
 [`src`]: https://github.com/iKevinY/iKevinY.github.io/tree/src
 [`gh-pages`]: https://github.com/iKevinY/iKevinY.github.io/tree/gh-pages
-[GitHub Actions](/.github/workflows/build.yml)
+[GitHub Actions]: /.github/workflows/build.yml
 [GitHub Pages]: http://pages.github.com
 [`generate.sh`]: generate.sh#L66
 [travis-article]: http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/
