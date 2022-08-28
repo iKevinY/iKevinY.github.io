@@ -20,7 +20,7 @@ jobs:
       - run: make install
       
       - name: Build Site
-        run: make build
+        run: pelican -s publishconf.py
       
       - name: Deploy from src
         uses: JamesIves/github-pages-deploy-action@v4
