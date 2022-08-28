@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>Architecting zeal.gg | Kevin Yap</title>
+	<meta name="description" content="Back while I was interning at Riot Games, I spent one weekend throwing together a prototype for what would eventually become zeal.gg. The purpose of it was to graph the solo queue ranking of our intern cohort while we were working …">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="Architecting zeal.gg">
+	<meta property="og:description" content="Back while I was interning at Riot Games, I spent one weekend throwing together a prototype for what would eventually become zeal.gg. The purpose of it was to graph the solo queue ranking of our intern cohort while we were working …">
+	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2020/03/architecting-zeal-gg/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+	<meta name="theme-color" content="#FF8000">
+
+	<meta name="msapplication-TileColor" content="#FF8000">
+	<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/images/icons/mstile-small.png">
+	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
+	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
+	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar.png"></a>
+			<div id="name"><a href="/">Kevin Yap</a></div>
+			<div id="bio">Developer and musician from&nbsp;Vancouver, BC.</div>
+
+			<div id="sidebar-links">
+				<a href="/about/">About</a>&nbsp;|&nbsp;<a href="/archive/">Archive</a>
+			</div>
+
+			<div id="social">
+				<a href="https://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="https://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+				<a href="https://instagram.com/ikeviny" title="Instagram" class="icon fa fa-instagram"></a>
+				<a href="https://buttondown.email/iKevinY" title="Newsletter" class="icon fa fa-newspaper-o"></a>
+				<a href="/atom.xml" title="Atom Feed" class="icon fa fa-feed"></a>
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+	<h1 class="title"><a href="/2020/03/architecting-zeal-gg/" title="Permalink to Architecting zeal.gg">Architecting&nbsp;zeal.gg</a></h1>
+	<time class="date" datetime="2020-03-01 00:00:00-08:00">March 1, 2020</time>
+	<div class="content">
+		<p>Back while I was interning at Riot Games, I spent one weekend throwing together a prototype for what would eventually become <a href="https://zeal.gg">zeal.gg</a>. The purpose of it was to graph the <a href="https://support-leagueoflegends.riotgames.com/hc/en-us/articles/204010760">solo queue ranking</a> of our intern cohort while we were working there, since like most of the League of Legends population, a handful of us got really competitive about&nbsp;it.</p>
+<p>I ended up registering the domain name for fun; <em>Zeal</em> is an item you can purchase in the game, and I was surprised to find that such a short domain name wasn&#8217;t taken yet. Having a nice domain gave me grander ambitions for the site &#8212; I wanted to polish it up and make it available for other League players to use with their friend groups as&nbsp;well.</p>
+<p>This was the perfect task to occupy my free time, since I ended up taking the fall semester of my the final year of my undergrad off. While the initial <span class="caps">MVP</span> was a single page that graphed our ranks, the final product would need a landing page where anyone could create a leaderboard for their own friend&nbsp;group.</p>
+<p>I worked on final version of the site during November and December, and made an <a href="https://www.reddit.com/r/leagueoflegends/comments/agp6qj/introducing_zealgg_custom_solo_queue_leaderboards">announcement on /r/leagueoflegends</a> the week before the new ranked season started the following January. To my surprise, over 10k people visited the site on the day I made the post, and I continued to have hundreds of consistent users for weeks afterwards! To top it all off, it still hasn&#8217;t gone down yet: a mild reassurance that I at least somewhat know what I&#8217;m doing in this&nbsp;profession.</p>
+<h2>The&nbsp;Stack</h2>
+<p>I learned a ton building the site; taking an idea from inception to production involves so much more than anything taught in school (which is the reason that working on personal projects is an oft-encouraged activity for those trying to break into the industry). I&#8217;ve been asked on a number of occasions about the tech stack powering the site, so here it&nbsp;is.</p>
+<h3>Heroku</h3>
+<p>For personal projects, I almost always use Heroku, mostly because I don&#8217;t want to have to worry about manually managing the uptime of all of the processes / databases involved; this is something that I will happily pay Heroku to do for&nbsp;me.</p>
+<p>Heroku greatly simplifies my deployment story. I actually have two apps in the same <a href="https://devcenter.heroku.com/articles/pipelines">pipeline</a> &#8212; one for staging and one for production. Changes pushed to <code>master</code> are automatically built and deployed to the staging site, which has its own staging database. Once I am confident that changes are stable, I use Heroku&#8217;s <span class="caps">CLI</span> tool to &#8220;promote&#8221; that build to the production app, where it is deployed to the main&nbsp;site.</p>
+<h3>Flask</h3>
+<p>Python is slow: we&#8217;ve all heard it before. However, I am extremely comfortable with Python and its ecosystem, so that&#8217;s what the backend is written in. While it would have been cool to write my backend in Rust (the other language I like using for side projects), I suspect the <span class="caps">MVP</span> would have taken far more than a single weekend, and I likely would have lost interest in the project before even&nbsp;making.</p>
+<p>In my opinion, pick whatever stack you&#8217;re most comfortable with and roll with it. I honestly don&#8217;t think the choice of backend server technology is anywhere close to one of the most important choices when it comes to personal projects &#8212; let&#8217;s be honest, most side projects will be measuring performance on the order of <span class="caps">QPM</span> rather than <span class="caps">QPS</span>.</p>
+<h3>Postgres</h3>
+<p>Unsurprisingly, this is where the data for the backend is stored. This includes things like tables containing player info, rank information per player per day, and which players should be associated with which leaderboards. Postgres is my go-to database whenever I need one. I get to use <a href="https://eggerapps.at/postico/">Postico</a> which is a really nice macOS application, and Heroku has first-class support for hosted Postgres&nbsp;instances.</p>
+<p>It might have been cool to experiment with something like <a href="https://www.timescale.com">TimescaleDB</a>, given the fact that the site is essentially a time series graph of people&#8217;s ranks and also that it&#8217;s backed by Postgres, but I decided it wasn&#8217;t worth the extra overhead of figuring out how to deploy and work with it. Vanilla Postgres is virtually always good&nbsp;enough.</p>
+<h3>Redis</h3>
+<p>zeal.gg is simple enough that I probably didn&#8217;t anything more than Flask <span class="amp">&amp;</span> Postgres to back it, but I actually <em>did</em> want to experiment with Redis, as it&#8217;s a solid piece of technology, and probably has the <a href="https://github.com/antirez/redis">cleanest codebase</a> out of any C project that I know of. zeal.gg uses Redis to do some simple caching, act as a small state-store across backend <span class="caps">API</span> instances, and also to power a job queue (more on that&nbsp;later).</p>
+<h3>React</h3>
+<p>The frontend of the site is built in React, with Chart.js doing the heavy-lifting for drawing the actual graphs. My data visualization skills are nowhere near good enough to have leveraged the power offered by something like&nbsp;D3.</p>
+<p>Why React and not something like Angular or Vue? I learned React for the stuff I was working on at Riot at the time, and having a frontend framework under my belt was the sole reason it was possible for me to build a site like this in the first&nbsp;place.</p>
+<h2>Technical Decisions <span class="amp">&amp;</span>&nbsp;Challenges</h2>
+<p>There were a few non-trivial things that I had to solve when building the site. Figuring out solutions to these was truly the fun part, and also demonstrates why good design work is so important when it comes to software&nbsp;engineering.</p>
+<h3>No User&nbsp;Logins</h3>
+<p>I knew from the very start that I did <em>not</em> want to support any sort of user logins or anything related; I wasn&#8217;t about to put myself in the position where I had to start worrying about credentials for a site this simple. The Riot <span class="caps">API</span> actually supports a feature where players can &#8220;verify&#8221; their identity by logging into League and entering a code that is provided by a third-party tool &#8212; I briefly considered somehow making use of this, but quickly decided the complexity was not at all worth&nbsp;it.</p>
+<p>As a result, this meant that leaderboards are completely immutable. I had a few people request the ability to, say, add or edit the players contained in a single leaderboard, which isn&#8217;t possible under this model. I figured that being able to just create a new leaderboard with the updated player set would be good enough, and I still believe this is the&nbsp;case.</p>
+<h3>Nice Leaderboard&nbsp;URLs</h3>
+<p>One feature that I definitely wanted included in zeal.gg was having short URLs for each leaderboard, inspired by link shorteners. While having the leaderboard URLs simply be the concatenation of the player names contained within that leaderboard, this wasn&#8217;t ideal. The URLs would be very long, and since people can rename their accounts, the same <span class="caps">URL</span> would break if a single player decided to change their name. Because the backend tracks players by their account <span class="caps">ID</span>, it is able to still recognize a single player across name changes, so having the notion of a mapping between &#8220;accounts&#8221; and &#8220;leaderboards&#8221; was definitely the way to&nbsp;go.</p>
+<p>For some background, the leaderboard links look like <code>zeal.gg/BnIS8Hr</code>. To generate these links, I hash a concatenation of all the player IDs that a given leaderboards comprises. The list is sorted to ensures that different permutations of the same players will be pointed to the same leaderboard, and a connector character is used to join the IDs to prevents situations where a leaderboard with players <code>AB</code> <span class="amp">&amp;</span> <code>C</code> and <code>A</code> <span class="amp">&amp;</span> <code>BC</code> are treated as&nbsp;equivalent.</p>
+<p>When a user attempts to create a new leaderboard, I generate the corresponding hash, and take the first 7 characters of its base64 encoding. If this ends up colliding with an existing leaderboard (unlikely but possible), I take more characters of the hash until we reach a unique <span class="caps">URL</span>. While this feels a bit hacky and there&#8217;s probably a better way to do it, it seems to do the&nbsp;job.</p>
+<h3>All the World on One&nbsp;Dyno</h3>
+<p>One caveat with using Heroku is that I wanted to deploy the entire site within a single &#8220;project&#8221;. However, only one dyno within any given project can function as the &#8220;web&#8221; dyno (which serves <span class="caps">HTTP</span> requests), so it was not feasible to spin up the frontend and backend on different dynos: there could only be&nbsp;one.</p>
+<p>To solve this problem, I used <a href="http://nginx.org">nginx</a>, which sits at the very front of Heroku. The dyno spins up four nginx workers and four instances of the  <span class="caps">API</span> (which compensated for the fact that Flask handles requests synchronously), and directs any requests to <code>/api/*</code> to one of them. All other requests are routed to serve the static React frontend that is built during the site&nbsp;deploy.</p>
+<p>This comes with another unintended benefit. Another approach could have just been to have the Flask workers themselves serve the static files. However, by siloing off requests to the <span class="caps">API</span> and letting nginx serve the frontend, it means that the website remains responsive regardless of how much load is on the <span class="caps">API</span> at any given point in&nbsp;time.</p>
+<h3>Global Timeout&nbsp;State</h3>
+<p>In my initial vision for the site, I wanted to refresh everyone&#8217;s data on a periodic basis, so there would be no need for a manual refresh button on leaderboards. However, the site quickly scaled to a point where I would far exceed my allotted rate limit if I were to do this on anywhere near a regular-enough basis. This was exacerbated by the fact that people would often create a leaderboard to try out the site, and never come back. Would I then be on the hook for refreshing this data? I iterated on solutions to this &#8212; tracking which leaderboards were visited and keeping maintaining a set of &#8220;active players&#8221;, whose data <em>would</em> be refreshed, while letting others rest&nbsp;dormant.</p>
+<p>In the end, though, manual refreshes work just fine from a <span class="caps">UX</span> perspective, and this is how most League websites operate anyways. The new problem was needing to add a timeout for said refreshes; it would be a waste to allow someone to repeatedly request a leaderboard refresh, since rank data changes on the order of minutes to hours. Since there are multiple instances of the backend running (and requests are distributed across them), simply storing in-memory whether a leaderboard is on its cooldown period won&#8217;t&nbsp;work.</p>
+<p>This is where having Redis around was perfect. The &#8220;timeout&#8221; of a leaderboard isn&#8217;t something that I would really want to store within Postgres, but it was perfectly suitable for Redis. The backend writes a value keyed on a leaderboard&#8217;s unique <span class="caps">ID</span> when a refresh is triggered, with the corresponding expiry; upon loading a leaderboard, the existence of that key is checked to determine whether refreshing should be allowed. Redis&#8217; native key expiry made this very simple to&nbsp;implement.</p>
+<h3>Long-Running&nbsp;Operations</h3>
+<p>Creating and refreshing a leaderboard can take a while, as the bottleneck is the Riot <span class="caps">API</span>. I have leaderboards capped at 12 players, meaning a single request might require as many as 12 different calls to the Riot <span class="caps">API</span>. Parallelizing would help a bit, but the response time of an external <span class="caps">API</span> isn&#8217;t something that I wanted bogging down my own <span class="caps">API</span>.</p>
+<p>To make matters even more worse, since Flask handles requests synchronously, waiting for all external <span class="caps">API</span> calls to resolve before completing the request would hog up the backend for much too long, and the performance of the site would be&nbsp;abysmal.</p>
+<p>My solution to this was to use a job queue to run these operations in the background. <a href="https://github.com/rq/rq"><code>RQ</code></a> is a Python library that essentially lets function invocations be queued up as jobs instead of being executed in the current process, and it&#8217;s backed by&nbsp;Redis.</p>
+<p>When a user tries to make a new leaderboard or refresh an existing one, the frontend calls an <span class="caps">API</span> endpoint that creates a new &#8220;create/refresh leaderboard&#8221; job. The <span class="caps">API</span> exposes a &#8220;job status&#8221; endpoint, which gets polled every couple of seconds. When the job has completed, the frontend either redirects the user to the new leaderboard or reloads the page to reflect the refreshed&nbsp;data.</p>
+<p>This is simply an implementation detail that is not exposed to the end-user, and I&#8217;m particularly proud with how it turned out from a <span class="caps">UX</span> perspective. When creating a leaderboard, I draw a loading bar that slowly progresses to give the impression that it&#8217;s only making a single, long-running request. When refreshing a leaderboard, the refresh icon spins until the job completes and the page&nbsp;reloads.</p>
+<h3>Site&nbsp;Announcements</h3>
+<p>I realized pretty early on that I would need some way of pushing notifications to the site, to alert users in case of an impending maintenance period or to outline new features. However, I didn&#8217;t want to simply hard-code alerts and have to redeploy the site whenever they changed; I wanted some way of generating them&nbsp;dynamically.</p>
+<p>Since I had already created a <a href="https://www.reddit.com/r/zealgg/">subreddit</a> to discuss changes to the site, I decided to leverage it. I added an endpoint to the backend that uses Reddit&#8217;s <span class="caps">API</span> to check for any posts pinned on the subreddit. The frontend calls that endpoint, and if it finds a pinned post, it displays an alert using the title of the post as the alert text, and links to the full post for futher&nbsp;context.</p>
+<hr>
+<p>Even though zeal.gg is pretty straightforward at its core, it fills a niche that, to the best of my knowledge, wasn&#8217;t served by any other of the multitude of League of Legends websites out there. Figuring out that I had the skills to go from <em>&#8220;this would be a cool idea to make for my friends&#8221;</em> to a site that tens of thousands of League players around the world decided to check out cured my imposter syndrome for a fleeting&nbsp;moment.</p>
+<p>At some point, when I feel like it&#8217;s not worth paying the few dollars a month to host the site anymore, I&#8217;ll get around to open-sourcing the repository. For now though, I&#8217;m keeping the code private, mostly to protect everyone else from laying their eyes upon the monstrosity of the main leaderboard React&nbsp;component.</p>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2021/01/building-a-hackintosh/" id="next-neighbour">&laquo; Building a Hackintosh</a>
+		<a href="/2020/02/the-year-of-communication/" id="prev-neighbour">The Year of Communication &raquo;</a>
+	</div>
+
+
+			<hr>
+		</article>
+
+		<footer>
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div>
+
+
+</body>
+</html>

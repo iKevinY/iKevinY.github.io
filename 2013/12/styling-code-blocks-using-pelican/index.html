@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>Styling Code Blocks Using Pelican | Kevin Yap</title>
+	<meta name="description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and …">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="Styling Code Blocks Using Pelican">
+	<meta property="og:description" content="Although Monokai is my colour scheme of choice when coding in Sublime Text 2, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and …">
+	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+	<meta name="theme-color" content="#FF8000">
+
+	<meta name="msapplication-TileColor" content="#FF8000">
+	<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/images/icons/mstile-small.png">
+	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
+	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
+	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar.png"></a>
+			<div id="name"><a href="/">Kevin Yap</a></div>
+			<div id="bio">Developer and musician from&nbsp;Vancouver, BC.</div>
+
+			<div id="sidebar-links">
+				<a href="/about/">About</a>&nbsp;|&nbsp;<a href="/archive/">Archive</a>
+			</div>
+
+			<div id="social">
+				<a href="https://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="https://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+				<a href="https://instagram.com/ikeviny" title="Instagram" class="icon fa fa-instagram"></a>
+				<a href="https://buttondown.email/iKevinY" title="Newsletter" class="icon fa fa-newspaper-o"></a>
+				<a href="/atom.xml" title="Atom Feed" class="icon fa fa-feed"></a>
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+	<h1 class="title"><a href="/2013/12/styling-code-blocks-using-pelican/" title="Permalink to Styling Code Blocks Using Pelican">Styling Code Blocks Using&nbsp;Pelican</a></h1>
+	<time class="date" datetime="2013-12-10 00:00:00-08:00">December 10, 2013</time>
+	<div class="content">
+		<p>Although <a href="http://studiostyl.es/schemes/monokai">Monokai</a> is my colour scheme of choice when coding in <a href="http://www.sublimetext.com">Sublime Text 2</a>, it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a <a href="http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/">blog post by Alex Peattie</a> explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the&nbsp;future.</p>
+<p>While Alex&#8217;s tutorial implemented line numbering using <span class="caps">CSS</span>, the <a href="http://pythonhosted.org/Markdown/extensions/code_hilite.html">CodeHilite</a> extension for <a href="https://pypi.python.org/pypi/Markdown">Python-Markdown</a> has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite&#8217;s <code>linenums</code> setting needs to be set to <code>True</code>. This can be done through the <code>MD_EXTENSIONS</code> option in the settings file supplied to&nbsp;Pelican.</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!python</span>
+<span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;codehilite(linenums = True)&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>The next step is to download a stylesheet that is compatible with Pygments. I used the one <a href="https://github.com/richleland/pygments-css/blob/master/github.css">linked in Alex&#8217;s tutorial</a>, but deleted the first line of the file because I did not need to change the background colour of the code block. This stylesheet should be linked to in the base template file of your website &#8212; <code>base.html</code> for the theme that I am currently&nbsp;using.</p>
+<p>Some custom styling is then done in order to change the appearance of the code blocks. The following three blocks of code would be placed in the primary stylesheet of the site&#8217;s theme. First of all, basic styling is added to the code block to control basic properties of the code, as well as create the border around the code block and ensure that it scrolls correctly if a line of code is too large for the block. While this is generally not an issue when being viewed on a computer screen, it is important for if the code is being viewed on a mobile&nbsp;device.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">#!css</span>
+<span class="na">.codehilitetable</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nl">font-family:</span><span class="w"> </span><span class="err">&quot;</span><span class="nf">Source</span><span class="w"> </span><span class="no">Code</span><span class="w"> </span><span class="no">Pro</span><span class="err">&quot;</span><span class="p">,</span><span class="w"> </span><span class="no">monospace</span><span class="c1">;</span>
+<span class="w">    </span><span class="nl">font-size:</span><span class="w"> </span><span class="err">12</span><span class="nf">px</span><span class="c1">;</span>
+<span class="w">    </span><span class="nl">overflow:</span><span class="w"> </span><span class="nf">auto</span><span class="c1">;</span>
+<span class="w">    </span><span class="nl">display:</span><span class="w"> </span><span class="nf">block</span><span class="c1">;</span>
+<span class="w">    </span><span class="nl">border:</span><span class="w"> </span><span class="nf">solid</span><span class="w"> </span><span class="mi">1</span><span class="no">px</span><span class="w"> </span><span class="c1">#d9d9d9;</span>
+<span class="w">    </span><span class="nl">border-radius:</span><span class="w"> </span><span class="err">3</span><span class="nf">px</span><span class="c1">;</span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Following this, the line numbering is styled by modifying the <code>linenos</code> class. The background of the numbering is made grey, the sides of the actual line numbers are padded, and a border is added separating the numbering from the actual code. The multitude of vendor-prefixed <code>user-select</code> properties are added in order to make the line numbers unselectable making selecting and copying code a lot&nbsp;easier.</p>
+<p>The horizontal margins of the <code>codehilite</code> class, which controls the code itself, are increased to add spacing between the code snippets and the line&nbsp;numbers.</p>
+<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="o">!</span><span class="nt">css</span><span class="w"></span>
+<span class="p">.</span><span class="nc">linenos</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">border-right</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#d9d9d9</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#eee</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">em</span><span class="w"> </span><span class="mf">0.8</span><span class="kt">em</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kp">-webkit-</span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kp">-khtml-</span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kp">-moz-</span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kp">-ms-</span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">user-select</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="p">.</span><span class="nc">codehilite</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>After following these steps, everything should be working properly. Of course, the stylesheet used and properties of the code blocks can be changed depending on personal&nbsp;preference.</p>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2014/01/on-programming-and-turtles/" id="next-neighbour">&laquo; On Programming and Turtles</a>
+		<a href="/2013/12/hosting-with-github-pages/" id="prev-neighbour">Hosting With GitHub Pages &raquo;</a>
+	</div>
+
+
+			<hr>
+		</article>
+
+		<footer>
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div>
+
+
+</body>
+</html>

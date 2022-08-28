@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>Deploying Pelican Sites Using Travis CI | Kevin Yap</title>
+	<meta name="description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on GitHub Pages. Even though Pelican is a static site generator, adding Travis …">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="Deploying Pelican Sites Using Travis CI">
+	<meta property="og:description" content="After learning about Travis CI through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow based on GitHub Pages. Even though Pelican is a static site generator, adding Travis …">
+	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+	<meta name="theme-color" content="#FF8000">
+
+	<meta name="msapplication-TileColor" content="#FF8000">
+	<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/images/icons/mstile-small.png">
+	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
+	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
+	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar.png"></a>
+			<div id="name"><a href="/">Kevin Yap</a></div>
+			<div id="bio">Developer and musician from&nbsp;Vancouver, BC.</div>
+
+			<div id="sidebar-links">
+				<a href="/about/">About</a>&nbsp;|&nbsp;<a href="/archive/">Archive</a>
+			</div>
+
+			<div id="social">
+				<a href="https://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="https://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+				<a href="https://instagram.com/ikeviny" title="Instagram" class="icon fa fa-instagram"></a>
+				<a href="https://buttondown.email/iKevinY" title="Newsletter" class="icon fa fa-newspaper-o"></a>
+				<a href="/atom.xml" title="Atom Feed" class="icon fa fa-feed"></a>
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+	<h1 class="title"><a href="/2014/06/deploying-pelican-sites-using-travis-ci/" title="Permalink to Deploying Pelican Sites Using Travis CI">Deploying Pelican Sites Using Travis <span class="caps">CI</span></a></h1>
+	<time class="date" datetime="2014-06-11 00:00:00-07:00">June 11, 2014</time>
+	<div class="content">
+		<p>After learning about Travis <span class="caps">CI</span> through browsing open-source projects on GitHub, I became interested in seeing if it was possible to incorporate it into my already existing workflow <a href="http://kevinyap.ca/2013/12/hosting-with-github-pages/">based on GitHub Pages</a>. Even though Pelican is a static site generator, adding Travis <span class="caps">CI</span> into the mix would allow changes to the theme or content to be made from anywhere that can push to a Git repository &#8212; even directly from the GitHub website &#8212; and the newly generated files would be pushed to the live server in a fairly timely manner, almost like a WordPress site. Thankfully, quite a few other people had already combined Pelican and Travis <span class="caps">CI</span>, so setting it up was fairly&nbsp;straightforward.</p>
+<p>Most of the solutions that I found suggested using the <a href="https://github.com/davisp/ghp-import"><code>ghp-import</code></a> package to handle pushing to the GitHub repository. I was not satisfied with this solution as I wanted to keep intact the incremental changes being tracked by the repository itself (one of the upsides of using GitHub Pages as a host, in my opinion). I came across <a href="http://zonca.github.io/2013/09/automatically-build-pelican-and-publish-to-github-pages.html">Andrea Zonca&#8217;s post</a>, which described a setup using <code>rsync</code> and <code>git clone</code> to update the branch. Since his blog post is written in a very detailed manner, I won&#8217;t rewrite it here verbatim. In&nbsp;short:</p>
+<ol>
+<li>Add <code>.travis.yml</code> (which describes to Travis how to build your project) and <code>requirements.txt</code> (which lists the packages to be installed via pip) to the source file branch of your site&#8217;s&nbsp;repository.</li>
+<li>Create an OAuth token from your <a href="https://github.com/settings/applications">GitHub applications page</a> which gets used by Travis to push changes to the GitHub Pages branch of your&nbsp;repository.</li>
+<li>Install the <code>travis</code> gem and encrypt the OAuth token using the <code>travis encrypt</code> command.</li>
+<li>Enable Travis <span class="caps">CI</span> for the repository and push&nbsp;changes.</li>
+</ol>
+<p>The <code>travis.yml</code> file works in stages. The <code>install</code> stage issues a <code>pip install</code> command which references <code>requirements.txt</code> for the list of packages to install. After that comes the <code>script</code> stage, which serves as the actual build phase for the project. Most projects would run tests here, but in this case, it executes the <code>pelican</code> command in order to generate the static site files. Following the build, <code>after_success</code> can be given commands to run which are executed after the build itself, and this is when new site files are pushed to the GitHub&nbsp;repository.</p>
+<p>One of the issues that I ran into in the process of setting this up was installing the <code>travis</code> gem, which is needed to encrypt the OAuth token that allows Travis to push to the GitHub repository. What ended up solving the problem in the end was updating the version of Ruby on my&nbsp;computer.</p>
+<p>Since I liked some of the features that I had previously included in my site generation Bash script, I rewrote Andrea&#8217;s <code>deploy.sh</code> script to work similarly to my existing workflow. The entirety of the file can be found <a href="https://github.com/iKevinY/iKevinY.github.io/blob/src/generate.sh">in the GitHub repository</a> of my website&#8217;s source. My rewritten script grabs the hash and message of the most recent commit to the source&nbsp;branch:</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!bash</span>
+<span class="nv">commitHash</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD<span class="sb">`</span>
+<span class="nv">commitMessage</span><span class="o">=</span><span class="sb">`</span>git log -1 --pretty<span class="o">=</span>%B<span class="sb">`</span>
+</code></pre></div>
+
+<p>These variables are used during the <code>git commit</code> command to create a descriptive commit message. The commit message in the source branch is used as the first line of the commit message, and the commit hash and Travis build number are included as the extended part of the commit&nbsp;message:</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!bash</span>
+git commit -m <span class="s2">&quot;</span><span class="nv">$commitMessage</span><span class="s2">&quot;</span> -m <span class="s2">&quot;Generated by commit </span><span class="nv">$commitHash</span><span class="s2">; pushed by Travis build </span><span class="nv">$TRAVIS_BUILD_NUMBER</span><span class="s2">.&quot;</span>
+</code></pre></div>
+
+<p>There are a few minor changes I made to the <code>rsync</code> and <code>git</code> commands of Andrea&#8217;s script as well. Within the <code>rsync</code> command, I removed the asterisk from the source directory and added the <code>--delete</code> flag to instruct the script to delete files in the destination directory that are not present in the source directory. Simply adding the <code>--delete</code> flag to the version of the command present in Andrea&#8217;s script will not affect the command as a result of the to the wildcard search caused by the&nbsp;asterisk:</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!bash</span>
+rsync -r --exclude<span class="o">=</span>.git --delete ../<span class="nv">$PELICAN_OUTPUT_FOLDER</span>/ ./
+</code></pre></div>
+
+<p>I also changed the flag on <code>git add</code> to <code>-A</code> in order to stage deleted files as well as added and modified ones and added the <code>git status -s</code> command which echos a nice overview of what changes were actually staged (which gets stored in Travis&#8217; build&nbsp;logs):</p>
+<div class="codehilite"><pre><span></span><code>$ git status -s
+A  <span class="m">2014</span>/06/deploying-pelican-sites-using-travis-ci/index.html
+A  <span class="m">2014</span>/06/index.html
+M  <span class="m">2014</span>/index.html
+M  archive/index.html
+M  index.html
+</code></pre></div>
+
+<p>Since my version of <code>deploy.sh</code> was based on the script that I used to test and deploy changes locally, I wrote it so that it could be executed from a local development machine by checking against the <code>$TRAVIS</code> variable. When run locally, it can be used to check what changes would be pushed to the GitHub Pages branch given the modifications that have been made locally. In practice, it wouldn&#8217;t ever be useful to push changes manually since Travis would automatically repeat the exact same steps, but if the integration between GitHub and Travis were to ever stop working, I would still have a way to make modifications to the GitHub Pages&nbsp;branch.</p>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2014/06/eulerpy-streamlining-project-euler/" id="next-neighbour">&laquo; EulerPy — Streamlining Project Euler</a>
+		<a href="/2014/01/on-programming-and-turtles/" id="prev-neighbour">On Programming and Turtles &raquo;</a>
+	</div>
+
+
+			<hr>
+		</article>
+
+		<footer>
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div>
+
+
+</body>
+</html>

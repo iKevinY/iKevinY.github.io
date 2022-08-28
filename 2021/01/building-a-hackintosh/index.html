@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>Building a Hackintosh | Kevin Yap</title>
+	<meta name="description" content="2020 was an exciting year for Mac users because Apple finally released computers powered by their own custom silicon. Despite this, for some reason, it was the year that I finally caved and decided to build a Hackintosh. For about 7 years …">
+	<meta name="author" content="Kevin Yap">
+	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@iKevinY">
+	<meta name="twitter:domain" content="kevinyap.ca">
+	<meta name="twitter:site" content="@iKevinY">
+	<meta property="og:title" content="Building a Hackintosh">
+	<meta property="og:description" content="2020 was an exciting year for Mac users because Apple finally released computers powered by their own custom silicon. Despite this, for some reason, it was the year that I finally caved and decided to build a Hackintosh. For about 7 years …">
+	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://kevinyap.ca/2021/01/building-a-hackintosh/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+	<meta name="theme-color" content="#FF8000">
+
+	<meta name="msapplication-TileColor" content="#FF8000">
+	<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/images/icons/mstile-small.png">
+	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
+	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
+	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar.png"></a>
+			<div id="name"><a href="/">Kevin Yap</a></div>
+			<div id="bio">Developer and musician from&nbsp;Vancouver, BC.</div>
+
+			<div id="sidebar-links">
+				<a href="/about/">About</a>&nbsp;|&nbsp;<a href="/archive/">Archive</a>
+			</div>
+
+			<div id="social">
+				<a href="https://twitter.com/iKevinY" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="https://github.com/iKevinY" title="GitHub" class="icon fa fa-github"></a>
+				<a href="https://instagram.com/ikeviny" title="Instagram" class="icon fa fa-instagram"></a>
+				<a href="https://buttondown.email/iKevinY" title="Newsletter" class="icon fa fa-newspaper-o"></a>
+				<a href="/atom.xml" title="Atom Feed" class="icon fa fa-feed"></a>
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+	<h1 class="title"><a href="/2021/01/building-a-hackintosh/" title="Permalink to Building a Hackintosh">Building a&nbsp;Hackintosh</a></h1>
+	<time class="date" datetime="2021-01-23 00:00:00-08:00">January 23, 2021</time>
+	<div class="content">
+		<p>2020 was an exciting year for Mac users because Apple finally released computers powered by their own custom silicon. Despite this, for some reason, it was the year that I finally caved and decided to build a Hackintosh. For about 7 years, I only ever owned laptops, and the 15&#8221; MacBook Pro was what I used as a &#8220;desktop substitute&#8221;. I liked the idea of using a portable as my primary machine, as it meant that whether I was at home, at school, or traveling, I would have access to all of my files. In addition, the most intensive activities that I used my computer for were compiling code and playing League — both workloads that MacBook Pro can easily&nbsp;handle.</p>
+<p>However, when Riot released <span class="caps">VALORANT</span>, that was the first <span class="caps">PC</span> game that pushed the performance of the machine. To Riot&#8217;s credit, the game is impressively well-optimized for lower-spec devices, and I was used to playing on minimal graphical settings from my Team Fortress 2 days (loading custom ultra-low spec configs to gain every last frame), but once I started streaming gameplay for archival purposes, that really started to push the limits of the&nbsp;laptop.</p>
+<p>Perhaps the straw that finally broke the camel&#8217;s back is that one day I noticed that my laptop kind of… rocked back and forth on a flat surface, and it turns out that was because the battery was starting to bulge. Feeling guilty that this was probably a result of me stressing it whilst in clamshell mode for several hours at a time, I decided it was time to build a real desktop <span class="caps">PC</span> to play the games that I wanted to play. Since one of my other friends who feels equally strongly about macOS built a dual-booting Hackintosh earlier this year without much trouble (allegedly), I was convinced. Also, Apple&#8217;s move to ditch Intel and move to native silicon suggests that macOS compatibility will only become worse as time goes on, meaning I might as well get in on the action&nbsp;now.</p>
+<h2>Onto the&nbsp;Build</h2>
+<p>In terms of hardware, I decided to choose a part list nearly identical to <a href="https://infinitediaries.net/my-2020-hackintosh-hardware-spec/">another one</a> that I found online that reportedly had good compatibility with macOS. My only non-negotiable was having Thunderbolt 3 support; without it, running my UltraWide monitor at native resolution would be a huge hassle. As nice as it would have been use an <span class="caps">AMD</span> <span class="caps">CPU</span> or an <span class="caps">NVIDIA</span> <span class="caps">GPU</span>, the benefits did not outweigh the lack of easy compatibility in my mind, so an i9-9900K and the <span class="caps">RX</span> 5700 <span class="caps">XT</span> was the best I could do. Since every build needs a spec list, here we&nbsp;go:</p>
+<ul>
+<li><em>Motherboard</em>: Gigabyte Z390 Aorus&nbsp;Ultra</li>
+<li><em><span class="caps">CPU</span></em>: Intel Core&nbsp;i9-9900K</li>
+<li><em><span class="caps">GPU</span></em>: Gigabyte Aorus Radeon <span class="caps">RX</span> 5700 <span class="caps">XT</span></li>
+<li><em><span class="caps">RAM</span></em>: 4×<span class="caps">16GB</span> 3600MHz <span class="caps">DDR4</span> HyperX&nbsp;Fury</li>
+<li><em>Storage</em>: Samsung 970 <span class="caps">EVO</span> <span class="caps">2TB</span> (macOS), <span class="caps">500GB</span>&nbsp;(Windows)</li>
+<li><em>Case</em>: Fractal Design Meshify&nbsp;C</li>
+<li><em><span class="caps">PSU</span></em>: Seasonic Prime 850&nbsp;Titanium</li>
+<li><em><span class="caps">TB3</span> Card</em>: Gigabyte Titan Ridge&nbsp;2.0</li>
+<li><em><span class="caps">CPU</span> Cooler</em>: Noctua <span class="caps">NH</span>-D15</li>
+<li><em>Case Fans</em>: 3× Noctua <span class="caps">NF</span>-A14, 1× Noctua <span class="caps">NF</span>-<span class="caps">S12A</span></li>
+</ul>
+<p>Building a <span class="caps">PC</span> feels like a rite of passage of sorts for the types of people who spend the majority of their waking hours using a computer, so I was very excited to finally get to partake in it. Having not ever built a computer before, I prepared by watching far too many build videos (primarily from Vancouver-based <a href="https://www.youtube.com/user/LinusTechTips">Linus Tech Tips</a>).</p>
+<p>The build itself went fairly smoothly, with the exception of the fact that the Noctua <span class="caps">CPU</span> cooler I went with is so incredibly massive that once it&#8217;s installed, it&#8217;s very tough to access a lot of other parts of the motherboard, including the PCIe release tab. This was an issue when I first booted the system and the <span class="caps">GPU</span> fan was spinning at 100% and I thought I might have had a faulty card, but somehow after installing some drivers on the Windows side, it thankfully fixed&nbsp;itself.</p>
+<p>Rather miraculously, Thunderbolt worked without having to do anything special, and was able to drive my monitor at full resolution. For some reason, though, <span class="caps">USB</span> doesn&#8217;t work over Thunderbolt, and I figure it has something to do with the <span class="caps">USB</span> cable connected to the Titan Ridge card. However, I didn&#8217;t want to fiddle with the internal cabling anymore, so I decided to just connect all my peripherals over <span class="caps">USB</span> like&nbsp;normal.</p>
+<p>I couldn&#8217;t get OpenCore (the macOS bootloader) to work the first few times I tried, despite my friend telling me nothing special was required other than &#8220;following <a href="https://dortania.github.io/OpenCore-Install-Guide/">the guide</a>&#8220;, so I gave up on it for a couple weeks, as I was mostly focused on preparing for <a href="https://na.leagueoflegends.com/en-us/news/game-updates/worlds-2020-clash-details/">Clash tournaments</a> in League, which Windows was perfectly capable of&nbsp;running.</p>
+<p>After reading through the guide more carefully, it turns out I had everything right except for missing a boot argument that was required for Navi GPUs (which the <span class="caps">RX</span> 5700 <span class="caps">XT</span> is). Making that fix allowed macOS to install, and to my delight, basically everything worked perfectly out of the box, including things like iMessage and iCloud — even native Screen Sharing — which apparently takes extra fiddling for some people&#8217;s&nbsp;builds.</p>
+<p>My delight quickly turned into panic when I tried booting back into Windows, though, and found that choosing that boot option from the <span class="caps">BIOS</span> would just infinitely loop me back to the <span class="caps">BIOS</span>. This was compounded by the fact that I was doing this on a Friday evening, and was due to play in the next round of Clash tournaments the next day, and while I <em>could</em> have played on macOS, I had grown used to my Windows setup for&nbsp;League.</p>
+<p>After half an hour of frantic Googling, I was pretty confident that the OpenCore installation process had somehow destroyed Windows&#8217; <span class="caps">EFI</span> bootloader, and that was why I was hitting a boot loop. I took the <span class="caps">USB</span> drive that I had stuck OpenCore on and reformatted it with a fresh copy of the Windows 10 installation media, which was funny because that drive <em>already had</em> Windows 10 on it before I replaced <em>that</em> with OpenCore (I only had one <span class="caps">USB</span> drive in my apartment). After booting from the installation media, I was able to restore things back to&nbsp;normal.</p>
+<h2>My Debugging&nbsp;Experiences</h2>
+<p>This is the part of the blog post where I describe the problems I ran into, and hope that Google picks up on keywords so that other people can find the&nbsp;fixes.</p>
+<h3>Unable to boot Windows after installing&nbsp;macOS</h3>
+<p>This was the issue that I talked about a bit earlier, where after successfully booting macOS for the first time, I was unable to actually boot back into Windows. I think what caused this was me deleting the <code>MICROSOFT</code> folder from the <span class="caps">EFI</span>, though I can&#8217;t remember if I actually did this, or if it was a side effect of the installation process. Either way, it wasn&#8217;t present, and I needed to boot from Windows installation media to properly reinstate the boot&nbsp;info.</p>
+<p><a href="https://www.reddit.com/r/hackintosh/comments/hn3gwr/accidentally_deleted_microsoft_folder_from_efi/">This Reddit post</a> is what I referenced, which boils down to entering Command Prompt from the installation media and using <code>diskpart</code> to find the system and Windows partitions, then running <code>bcdboot</code> against the system partition to set up the boot files&nbsp;properly.</p>
+<h3>Clamped Audio in&nbsp;macOS</h3>
+<p>This one was a bit weirder; when I thought everything was working properly, I noticed that I couldn&#8217;t raise the volume past ~5 &#8220;ticks&#8221; of the macOS volume picker; any louder and the meter would go up, but the volume would stay the same. In addition, when watching YouTube, louder moments would create a sort of &#8220;audio rubberbanding&#8221; where the volume would adjust itself below this imaginary threshold, but at slightly different times in each audio channel, making it very&nbsp;annoying.</p>
+<p>The solution to this ended up being a bad layout <span class="caps">ID</span>, and the OpenCore post-install guide actually <a href="https://dortania.github.io/OpenCore-Post-Install/universal/audio.html#finding-your-layout-id">explains how to solve this</a>. However, their proposal to try all valid layout IDs for your audio codec was off-putting, since that would&#8217;ve meant trial-and-erroring over 10 different options, so I put off making this fix initially. However, another Reddit thread suggested just trying layout 7 (ie. adding <code>alcid=7</code> as one of the <code>boot-args</code>, and it turns out that did the&nbsp;trick.</p>
+<h3>Mounting macOS <span class="caps">EFI</span> partition from&nbsp;Windows</h3>
+<p>Later on, I was attempting to mess with my OpenCore configuration to get OpenCanopy working for a more visually appealing boot screen, but OpenCore wasn&#8217;t happy with the new configuration and fatal error&#8217;d immediately when trying to start up, meaning it was impossible to boot macOS at&nbsp;all.</p>
+<p>Fortunately, it&#8217;s still possible to boot directly into Windows from the <span class="caps">BIOS</span>&#8217; boot selector, and then from Windows you can mount macOS&#8217; <span class="caps">EFI</span> partition and undo bad configuration changes from Windows. I followed the instructions on <a href="https://manjaro.site/how-to-mount-macos-efi-partition-from-windows-10/">this page</a> to do so: essentially, using <code>diskpart</code> to find and mount the Hackintosh disk and then the <span class="caps">EFI</span> partition, then doing normal Windows file operations to restore the configuration files back to a bootable&nbsp;state.</p>
+<h3>Cursed Audio&nbsp;Crash</h3>
+<p>The one rather severe issue that I started to notice a couple of months in was that sometimes when attempting to stream Advent of Code, my computer would lock up, but not in the way that I&#8217;m used to. The screen would freeze, and audio that was playing began to stutter slightly before completely cutting out. However, the <span class="caps">OS</span> would never fully get to a kernel panic, so a hard power cycle was the only way to recover. Rather obnoxiously, this happened very infrequently (only twice out of the 25 days that I streamed Advent of Code), so it was difficult to root cause or debug. In addition, since it never actually panicked, there wasn&#8217;t any useful information in Console.app to make heads or tails&nbsp;of.</p>
+<p>There were a couple of clues that helped narrow down the cause; namely, the fact that the freeze only seemed to happen while I had Twitch Studio (the broadcasting software I use on macOS) open suggested it was somehow related to a more intensive system process, and the strange audio behaviour made me suggest that the audio stack was to&nbsp;blame.</p>
+<p>After some searching, I stumbled upon <a href="https://www.reddit.com/r/hackintosh/comments/dmn84u/rx_vega_64_freezes_system_during_hw_accel_encode/">this Reddit post</a> in which someone with an <span class="caps">RX</span> Vega 64 (a similar graphics card to my own) had system freezes when performing hardware-accelerated audio encoding. They recommended running a <code>log</code> command to stream kernel-related logs to a file, such that when the crash occurred, it would dump the logs before the system failed, meaning information would be captured even though no kernel panic was actually&nbsp;produced.</p>
+<p>Fortunately, the crash <em>did</em> happen during a day where I happened to remember to run the command at startup, and much like the discussion that went on in the comments of that Reddit post, the logs right before the crash seemed to be audio-related, and <code>AppleGFXHDA.kext</code> was the culprit. I disabled the extension by renaming it (which meant I had to first disable <span class="caps">SIP</span>, something I didn&#8217;t initially intend to do on my Hackintosh), and I haven&#8217;t witnessed the crash since, so I&#8217;m guessing that solved&nbsp;it.</p>
+<hr>
+<p>All in all, building a Hackintosh was a really fun experience, and I realized just how sheltered I was from the whole world of &#8220;how modern PCs really work&#8221;. I always just nodded my head and pretended to understand when people at work or friends would talk about their <em><span class="caps">BIOS</span></em> and stuff like that, but now I can at least sort of join in on those discussions. Of course, now I&#8217;m a bit sad that I won&#8217;t be able to justify buying an M1 Mac anytime&nbsp;soon.</p>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2020/03/architecting-zeal-gg/" id="prev-neighbour">Architecting zeal.gg &raquo;</a>
+	</div>
+
+	<div class="admonition">
+		<p>
+			I'm experimenting with an email newsletter where I post less structured thoughts on a more
+			regular basis. <a href="https://buttondown.email/iKevinY">Subscribe here if you're interested!</a>
+		</p>
+	</div>
+
+			<hr>
+		</article>
+
+		<footer>
+			<p>Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.</p>
+		</footer>
+	</div>
+
+
+</body>
+</html>
