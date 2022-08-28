@@ -1,4 +1,4 @@
 [submodule "pneumatic"]
 	path = pneumatic
-	url = git://github.com/iKevinY/pneumatic.git
+	url = https://github.com/iKevinY/pneumatic.git
 	branch = iKevinY.github.io
