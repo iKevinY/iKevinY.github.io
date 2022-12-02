@@ -74,3 +74,11 @@ There isn't really a sure-fire procedure for "writing the correct program", so I
 If you want to see what all of this looks like in action, I created a [collection of my streamed attempts here](https://www.twitch.tv/collections/cspts5QT3RUiTA). I'm also hoping to upload a slower, narrated solve that goes through the concepts discussed in this post (I attempted to do this earlier today, but accidentally just created a 40-minute long silent film).
 
 Happy Advent of Coding! 🎄
+
+----
+
+**Edit: December 2, 2022**
+
+It's been a few years since I wrote this post, and figured it was due for an update! Both [betaveros](https://blog.vero.site/post/advent-leaderboard) and [mcpower](https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661), two people who perform *significantly* better on the global leaderboard than I do, have written their own posts with tips and tricks for going quickly; I highly recommend giving them a read.
+
+Also, for 2022, I'm [streaming my attempts on YouTube](https://www.youtube.com/@iKevinY) -- come watch if you're interested!
