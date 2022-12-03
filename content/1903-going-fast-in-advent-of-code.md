@@ -77,7 +77,7 @@ Happy Advent of Coding! 🎄
 
 ----
 
-**Edit: December 2, 2022**
+*Edit: (December 2, 2022)*
 
 It's been a few years since I wrote this post, and figured it was due for an update! Both [betaveros](https://blog.vero.site/post/advent-leaderboard) and [mcpower](https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661), two people who perform *significantly* better on the global leaderboard than I do, have written their own posts with tips and tricks for going quickly; I highly recommend giving them a read.
 
