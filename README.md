@@ -13,7 +13,7 @@ push the website (see [this blog post][travis-article] for more details).
 Code is licensed under the [MIT License], and articles under the [Creative
 Commons Attribution-ShareAlike License].
 
-[1]: https://img.shields.io/github/workflow/status/iKevinY/iKevinY.github.io/Pelican%20Build "Build Status"
+[1]: https://img.shields.io/github/actions/workflow/status/iKevinY/iKevinY.github.io/build.yml?branch=src "Build Status"
 [2]: https://github.com/iKevinY/iKevinY.github.io/actions
 
 [kevinyap.ca]: http://kevinyap.ca
