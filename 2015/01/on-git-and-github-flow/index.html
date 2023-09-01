@@ -95,7 +95,7 @@
 <h2>To Merge or Not to&nbsp;Merge</h2>
 <p>Merging is the process of merging the commits made in two branches into one branch. This is done when a branch that is being worked on is deemed complete, and the changes are to be merged into the master branch. In the simplest case (where the only commits that have been made are in the topic branch), this is known as a fast-forward merge, and the commits are &#8220;played on top of&#8221; the master branch. Fast-forward merges can be performed automatically by Git and require no additional effort on the part of the user performing the merge. In other cases, merging either results in a merge commit or the manual resolution of merge conflicts (if the changes made in the branches contradict one&nbsp;another).</p>
 <p>Something that Git tutorials tend to gloss over is the rebase command. The reason for this is that rebasing involves <em>rewriting history</em>. When you rebase a set of commits, they will change, and if the older set of commits have already been pushed to a remote repository that others have pulled from, pushing new changes will cause a break in continuity for others who try to pull these newly pushed commits. Because of this, it is recommended to only rebase local commits in most&nbsp;cases.</p>
-<div class="codehilite"><pre><span></span><code>$ git rebase -i HEAD~n  <span class="c1"># rebase the last n commits</span>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>HEAD~n<span class="w">  </span><span class="c1"># rebase the last n commits</span>
 </code></pre></div>
 
 <p>The <code>-i</code> flag stands for <em>interactive</em>. Upon executing the command, your <code>$EDITOR</code> of choice will open with a list of commits from least recent to most recent preceded by the word&nbsp;&#8220;pick&#8221;:</p>
@@ -123,15 +123,15 @@ squash 969f9e5 Update tests to ensure resource correspondence
 <h2>Putting It All&nbsp;Together</h2>
 <p>After forking the project on GitHub, the typical GitHub workflow might look something like&nbsp;this:</p>
 <div class="codehilite"><pre><span></span><code><span class="ch">#!sh</span>
-git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
-<span class="nb">cd</span> PROJECT_NAME
-git branch my-feature
-git checkout my-feature
-nano README.md
-rm silly-file.txt
-git add -A
-git commit
-git push -u origin my-feature
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
+<span class="nb">cd</span><span class="w"> </span>PROJECT_NAME
+git<span class="w"> </span>branch<span class="w"> </span>my-feature
+git<span class="w"> </span>checkout<span class="w"> </span>my-feature
+nano<span class="w"> </span>README.md
+rm<span class="w"> </span>silly-file.txt
+git<span class="w"> </span>add<span class="w"> </span>-A
+git<span class="w"> </span>commit
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>my-feature
 </code></pre></div>
 
 <ol>
