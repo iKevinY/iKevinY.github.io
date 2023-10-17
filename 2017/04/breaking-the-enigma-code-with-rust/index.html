@@ -94,16 +94,16 @@ A<span class="w"> </span>few<span class="w"> </span>miles<span class="w"> </span
 <p>On the other hand, the way that <code>ultra</code> deciphers messages is purely statistical. <a href="https://github.com/iKevinY/ultra/blob/master/src/data/quadgrams.txt">This file</a> contains a list of quadgrams (four-letter sequences) from a fairly sizeable English corpus, and their number of occurrences. According to this, the top 5 most common English quadgrams are <em><span class="caps">TION</span></em>, <em><span class="caps">NTHE</span></em>, <em><span class="caps">THER</span></em>, <em><span class="caps">THAT</span></em>, and <em><span class="caps">OFTH</span></em>, which seems reasonable. At the bottom of the file, we find extremely uncommon quadgrams, such as <em><span class="caps">AAJZ</span></em>.</p>
 <p>If we take a given piece of ciphertext and attempt to decrypt it with random Enigma settings, it will almost certainly look like gibberish. However, we know at least one configuration will produce something that seems like reasonable English: the one used to encrypt the message in the first place! Therefore, all we have to do is iterate through all possible machine settings, decrypt the ciphertext, compute a &#8220;fitness score&#8221; based on how similar it looks to English, and choose the setting that resulted in the best&nbsp;score.</p>
 <p>To come up with a fitness score, we use a statistical <a href="https://en.wikipedia.org/wiki/Language_model">language model</a>, and define the probability of any given phrase as the product of its component quadgrams (ignoring things like word boundaries). For example, the probability of the message &#8220;<span class="caps">APPLE</span>&#8221; would be calculated by taking the product of the probabilities of <em><span class="caps">APPL</span></em> and <em><span class="caps">PPLE</span></em>.</p>
-<div class="math">$$\Pr(\text{APPLE}) = \Pr(\text{APPL}) \times \Pr(\text{PPLE})$$</div>
-<p>The probability of a single quadgram is given by <span class="math">\(\Pr(q) = \frac{C(q)}{N}\)</span>, where <span class="math">\(C(q)\)</span> is the count of a given quadgram, and <span class="math">\(N\)</span> is the sum of all quadgram counts in our list. Because computers have finite floating-point precision, it is ill-advised to multiply several tiny floats together. Luckily, we can use logarithms to map these multiplications to additions, and because <span class="math">\(\log(x) &gt; \log(y)\)</span> for all <span class="math">\(x &gt; y ≥ 0\)</span>, it is fine to use this log probability as our fitness&nbsp;function.</p>
-<div class="math">$$\log(\Pr(\text{APPLE})) = \log(\frac{C(\text{APPL})}{N}) + \log(\frac{C(\text{PPLE})}{N})$$</div>
-<p>Using the identity <span class="math">\(\log(\frac{a}{b}) = \log(a) - \log(b)\)</span>, this can be simplified even&nbsp;further:</p>
-<div class="math">$$\log(\Pr(\text{APPLE})) = \log(C(\text{APPL})) + \log(C(\text{PPLE})) - 2\log(N)$$</div>
-<p>The final <span class="math">\(\log(N)\)</span> term will have a coefficient of the number of quadgrams in the input message. Because encrypting a message doesn&#8217;t change its length, this term would only cause a constant difference in the fitness function, and can therefore be completely omitted. This leaves us with a simple fitness function: the sum of the log-counts of all quadgrams in the&nbsp;message.</p>
-<p>Typical usage of the M3 Enigma machine involved choosing 3 of 5 possible rotors. Because the order of the rotors matters, this comes out to 60 possible permutations. Each rotor has 26 different &#8220;key settings&#8221; (sometimes referred to as &#8220;indicator settings&#8221;) and 26 different &#8220;ring settings&#8221;, leaving us with <span class="math">\(60 \times 26^6\)</span>, or <span class="math">\(18\,534\,946\,560\)</span> possible rotor&nbsp;configurations.</p>
+<p>$$\Pr(\text{<span class="caps">APPLE</span>}) = \Pr(\text{<span class="caps">APPL</span>}) \times \Pr(\text{<span class="caps">PPLE</span>})$$</p>
+<p>The probability of a single quadgram is given by $\Pr(q) = \frac{C(q)}{N}$, where $C(q)$ is the count of a given quadgram, and $N$ is the sum of all quadgram counts in our list. Because computers have finite floating-point precision, it is ill-advised to multiply several tiny floats together. Luckily, we can use logarithms to map these multiplications to additions, and because $\log(x) &gt; \log(y)$ for all $x &gt; y ≥ 0$, it is fine to use this log probability as our fitness&nbsp;function.</p>
+<p>$$\log(\Pr(\text{<span class="caps">APPLE</span>})) = \log(\frac{C(\text{<span class="caps">APPL</span>})}{N}) + \log(\frac{C(\text{<span class="caps">PPLE</span>})}{N})$$</p>
+<p>Using the identity $\log(\frac{a}{b}) = \log(a) - \log(b)$, this can be simplified even&nbsp;further:</p>
+<p>$$\log(\Pr(\text{<span class="caps">APPLE</span>})) = \log(C(\text{<span class="caps">APPL</span>})) + \log(C(\text{<span class="caps">PPLE</span>})) -&nbsp;2\log(N)$$</p>
+<p>The final $\log(N)$ term will have a coefficient of the number of quadgrams in the input message. Because encrypting a message doesn&#8217;t change its length, this term would only cause a constant difference in the fitness function, and can therefore be completely omitted. This leaves us with a simple fitness function: the sum of the log-counts of all quadgrams in the&nbsp;message.</p>
+<p>Typical usage of the M3 Enigma machine involved choosing 3 of 5 possible rotors. Because the order of the rotors matters, this comes out to 60 possible permutations. Each rotor has 26 different &#8220;key settings&#8221; (sometimes referred to as &#8220;indicator settings&#8221;) and 26 different &#8220;ring settings&#8221;, leaving us with $60 \times 26^6$, or $18\,534\,946\,560$ possible rotor&nbsp;configurations.</p>
 <p>When you take into account the <a href="https://en.wikipedia.org/wiki/Enigma_machine#Plugboard">plugboard</a>, the number of settings is <a href="http://crypto.stackexchange.com/questions/33628/how-many-possible-enigma-machine-settings">in the quintillions</a>, so we won&#8217;t even consider trying to break this using our ciphertext-only attack. However, this still leaves approximately 18 billion permutations. Even if it only took 1 microsecond to try each one, it would still take 5 hours to work through the entire problem space. Fortunately, with some clever optimization, we can reduce the number of permutations to just over 1.5&nbsp;million.</p>
 <p>We can search for the optimal rotors and key settings separately from their ring settings. The ring settings determine offsets for the rotors&#8217; notches (the position at which the fast rotor advancing causes the middle rotor to advance, and likewise between the middle and the slow rotors). If we find the correct rotors and key settings with the wrong ring settings, the resulting plaintext will be somewhat correct, with errors where the rotors advanced in the wrong&nbsp;place.</p>
-<p>First, we check all possible rotor and key permutations, fixing the ring settings as &#8220;<span class="caps">AAA</span>&#8221;. We pick the best of those, and then try key and ring settings for the fast and middle rotors; the slow rotor doesn&#8217;t &#8220;turn&#8221; any other rotors, so its ring setting doesn&#8217;t influence the decryption, and therefore we can safely ignore it. This leaves us with a total of <span class="math">\(60 \times 26^3 + 26^4\)</span>, or <span class="math">\(1\,511\,536\)</span> settings to check &#8212; a reasonable number to brute-force on a modern&nbsp;computer.</p>
+<p>First, we check all possible rotor and key permutations, fixing the ring settings as &#8220;<span class="caps">AAA</span>&#8221;. We pick the best of those, and then try key and ring settings for the fast and middle rotors; the slow rotor doesn&#8217;t &#8220;turn&#8221; any other rotors, so its ring setting doesn&#8217;t influence the decryption, and therefore we can safely ignore it. This leaves us with a total of $60 \times 26^3 + 26^4$, or $1\,511\,536$ settings to check &#8212; a reasonable number to brute-force on a modern&nbsp;computer.</p>
 <hr>
 <p>Seeing as <code>ultra</code> was my first real Rust project, I figured I would also share some thoughts I have about it. Perhaps Rust&#8217;s primary selling point is memory safety. My introductory computer systems course was essentially one extended lecture about everything that can go wrong with <code>malloc</code> and pointers. While being familiar with using Valgrind is neat, it&#8217;s nice to not have to think about these things at all, and just focus on writing the&nbsp;implementation.</p>
 <p>In addition, between closures and iterators, Rust makes it easy to write functional code. Because of my prior experience with Python, Haskell, and <a href="https://racket-lang.org">Racket</a>, I felt right at home using Rust. Chaining together iterator adapters and collecting the result rather than iteratively pushing values into a vector with a for-loop reminded me of using list comprehensions in&nbsp;Python.</p>
@@ -124,26 +124,26 @@ A<span class="w"> </span>few<span class="w"> </span>miles<span class="w"> </span
 <table>
 <thead>
 <tr>
-<th align="left"></th>
-<th align="center"><strong>real (s)</strong></th>
-<th align="center"><strong>user (s)</strong></th>
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>real (s)</strong></th>
+<th style="text-align: center;"><strong>user (s)</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">C (reference)</td>
-<td align="center">43.8</td>
-<td align="center">43.4</td>
+<td style="text-align: left;">C (reference)</td>
+<td style="text-align: center;">43.8</td>
+<td style="text-align: center;">43.4</td>
 </tr>
 <tr>
-<td align="left">Rust (sequential)</td>
-<td align="center">19.2</td>
-<td align="center">19.0</td>
+<td style="text-align: left;">Rust (sequential)</td>
+<td style="text-align: center;">19.2</td>
+<td style="text-align: center;">19.0</td>
 </tr>
 <tr>
-<td align="left">Rust (parallel)</td>
-<td align="center">4.5</td>
-<td align="center">28.4</td>
+<td style="text-align: left;">Rust (parallel)</td>
+<td style="text-align: center;">4.5</td>
+<td style="text-align: center;">28.4</td>
 </tr>
 </tbody>
 </table>
@@ -151,61 +151,6 @@ A<span class="w"> </span>few<span class="w"> </span>miles<span class="w"> </span
 <p>When writing <code>ultra</code>, I didn&#8217;t explicitly set out to implement a hyper-optimized version of James&#8217; code. Instead, I used the description of the algorithm described in his blog post and wrote what I felt was idiomatic Rust. I think this nicely demonstrates the fact that Rust makes it easy to write programs that are readable and also&nbsp;performant.</p>
 <p>Cargo also plays a large role in making Rust nice work with. Nothing is more annoying than coming across an open source project that seems useful, but struggling to figure out how to even compile it. With a Rust project, however, you&#8217;re essentially guaranteed that <code>cargo build</code> will work &#8212; no Makefiles or manual dependency management&nbsp;required.</p>
 <p>I really enjoyed learning about Rust while building <a href="https://github.com/iKevinY/ultra"><code>ultra</code></a>, and will definitely be using it more in the future. Given the results of Stack Overflow&#8217;s recent <a href="https://stackoverflow.com/insights/survey/2017">developer survey</a>, it seems like Rust is growing in popularity &#8212; it will be very exciting if it becomes adopted by&nbsp;industry.</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
 	</div>
 
 	<div id="related-articles">
