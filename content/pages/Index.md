@@ -2,7 +2,7 @@ Title: Index Page
 Slug: .
 Template: index
 
-## 👋 Hi! I'm Kevin, or `@iKevinY` on most corners of the Internet.
+<h2 style="padding-bottom: 10px">👋 Hi! I'm Kevin, or <code>@iKevinY</code> on most corners of the Internet.</h2>
 
 I'm a software engineer from [Vancouver, Canada](https://en.wikipedia.org/wiki/Vancouver). I'm currently working in Toronto at [MLSE Digital Labs](https://www.mlsedigital.com/) on software projects that power the Toronto Maple Leafs, Toronto Raptors, Scotiabank Arena, and more. 🍁
 
