@@ -10,11 +10,6 @@ GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
 MASTODON_URL = "https://mastodon.social/@iKevinY"
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
 
-SIDEBAR_LINKS = [
-    '<a href="/about/">About</a>',
-    '<a href="/archive/">Archive</a>',
-]
-
 ICONS_PATH = 'images/icons'
 
 SOCIAL_ICONS = [
@@ -51,7 +46,7 @@ YEAR_ARCHIVE_SAVE_AS = '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 
 # Disable authors, categories, tags, and category pages
-DIRECT_TEMPLATES = ['index', 'archives']
+DIRECT_TEMPLATES = ['archives']
 CATEGORY_SAVE_AS = ''
 
 # Disable Atom feed generation
