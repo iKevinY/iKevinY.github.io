@@ -2,9 +2,9 @@ Title: Index Page
 Slug: .
 Template: index
 
-<h2 style="padding-bottom: 10px">👋 Hi! I'm Kevin, or <code style="background: rgba(255,217,174,1); color: #444;">@iKevinY</code> on most corners of the Internet.</h2>
+<h2 style="padding-bottom: 10px">👋 Hi! I'm Kevin, or <code style="background: rgba(255,217,174,1); color: #444;">@iKevinY</code> in most other places online.</h2>
 
-I'm a software engineer currently building projects at [MLSE Digital Labs](https://www.mlsedigital.com/) that power the Toronto Maple Leafs, Toronto Raptors, and more. 🍁
+I'm a software engineer currently building projects at [MLSE Digital Labs](https://www.mlsedigital.com/) that power the Toronto Maple Leafs, Toronto Raptors, and more.
 
 Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io), and advanced [Confidential Computing](https://cloud.google.com/confidential-computing) and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability at [Google](https://www.google.com/).
 
