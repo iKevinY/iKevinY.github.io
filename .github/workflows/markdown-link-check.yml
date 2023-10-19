@@ -1,0 +1,22 @@
+# Check for broken links in articles + pages on push and weekly.
+name: Check Markdown Links
+
+on:
+  pull_request:
+  push:
+    branches:
+    - src
+  schedule:
+  # Run every Monday at midnight UTC
+  - cron: "0 0 * * 1"
+
+jobs:
+  markdown-link-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'yes'
+        use-verbose-mode: 'yes'
+        folder-path: 'content'
