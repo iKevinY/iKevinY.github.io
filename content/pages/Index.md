@@ -6,7 +6,7 @@ Template: index
 
 I'm a software engineer currently building projects at [MLSE Digital Labs](https://www.mlsedigital.com/) that power the Toronto Maple Leafs, Toronto Raptors, and more.
 
-Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io), advanced [Confidential Computing](https://cloud.google.com/confidential-computing) and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability. I also interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/) while studying computer science at [UBC](https://www.ubc.ca/).
+Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io), advanced [Confidential Computing](https://cloud.google.com/confidential-computing), and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability. I also interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/) while studying computer science at [UBC](https://www.ubc.ca/).
 
 Outside of programming, I like to play and watch games with [complex](https://magic.wizards.com/), [emergent](https://www.leagueoflegends.com/) [interactions](https://teamfighttactics.leagueoflegends.com/), and games that require [precise](https://www.celestegame.com/) [execution](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee).
 
