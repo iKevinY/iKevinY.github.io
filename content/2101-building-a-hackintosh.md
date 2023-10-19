@@ -54,7 +54,7 @@ This was the issue that I talked about a bit earlier, where after successfully b
 
 This one was a bit weirder; when I thought everything was working properly, I noticed that I couldn't raise the volume past ~5 "ticks" of the macOS volume picker; any louder and the meter would go up, but the volume would stay the same. In addition, when watching YouTube, louder moments would create a sort of "audio rubberbanding" where the volume would adjust itself below this imaginary threshold, but at slightly different times in each audio channel, making it very annoying.
 
-The solution to this ended up being a bad layout ID, and the OpenCore post-install guide actually [explains how to solve this](https://dortania.github.io/OpenCore-Post-Install/universal/audio.html#finding-your-layout-id). However, their proposal to try all valid layout IDs for your audio codec was off-putting, since that would've meant trial-and-erroring over 10 different options, so I put off making this fix initially. However, another Reddit thread suggested just trying layout 7 (ie. adding `alcid=7` as one of the `boot-args`, and it turns out that did the trick.
+The solution to this ended up being a bad layout ID, and the OpenCore post-install guide actually [explains how to solve this](https://dortania.github.io/OpenCore-Post-Install/universal/audio.html#finding-your-layout-id). However, their proposal to try all valid layout IDs for your audio codec was off-putting, since that would've meant trial-and-erroring over 10 different options, so I put off making this fix initially. However, another Reddit thread suggested just trying layout 7 (ie. adding `alcid=7` as one of the `boot-args`), and it turns out that did the trick.
 
 
 ### Mounting macOS EFI partition from Windows
