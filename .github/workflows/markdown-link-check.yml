@@ -18,5 +18,5 @@ jobs:
     - uses: gaurav-nelson/github-action-markdown-link-check@v1
       with:
         use-quiet-mode: 'yes'
-        use-verbose-mode: 'yes'
         folder-path: 'content'
+        config-file: '.mlc_config.json'
