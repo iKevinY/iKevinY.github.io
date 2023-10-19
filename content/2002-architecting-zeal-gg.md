@@ -2,7 +2,7 @@ Title: Architecting zeal.gg
 Date: 2020-03-01
 Slug: architecting-zeal-gg
 
-Back while I was interning at Riot Games, I spent one weekend throwing together a prototype for what would eventually become [zeal.gg](https://zeal.gg). The purpose of it was to graph the [solo queue ranking](https://support-leagueoflegends.riotgames.com/hc/en-us/articles/204010760) of our intern cohort while we were working there, since like most of the League of Legends population, a handful of us got really competitive about it.
+Back while I was interning at Riot Games, I spent one weekend throwing together a prototype for what would eventually become [zeal.gg](https://zeal.gg). The purpose of it was to graph the [solo queue ranking](https://support-leagueoflegends.riotgames.com/hc/en-us/articles/4406004330643-Ranked-Tiers-Divisions-and-Queues) of our intern cohort while we were working there, since like most of the League of Legends population, a handful of us got really competitive about it.
 
 I ended up registering the domain name for fun; _Zeal_ is an item you can purchase in the game, and I was surprised to find that such a short domain name wasn't taken yet. Having a nice domain gave me grander ambitions for the site -- I wanted to polish it up and make it available for other League players to use with their friend groups as well.
 

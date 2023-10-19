@@ -1,7 +1,7 @@
 Title: On Programming and Turtles
 Date: 2014-01-05
 
-Minecraft is one of my favourite games. [Over 13 million][1] copies have been sold for the PC alone -- an impressive statistic considering the game was in alpha merely three years ago. Minecraft's popularity is due primarily to its open-ended nature. The ever-growing variety of blocks appeals to those who enjoy the building aspect of the game, and survival mode only augments the gratification of building by having the player work for their building materials. As for PvP combat, there are numerous community-created custom maps with their own unique rulesets. Expanding on this, through the use of elaborate server-side modding, Minecraft functions more as a game engine than a standalone game, enabling players with unmodded clients to instantly connect to a server and play game modes such as a Minecraft version of the Hunger Games. There is a niche in the game for every type of player.
+Minecraft is one of my favourite games. At the time of writing, over 13 million copies have been sold for the PC alone -- an impressive statistic considering the game was in alpha merely three years ago. Minecraft's popularity is due primarily to its open-ended nature. The ever-growing variety of blocks appeals to those who enjoy the building aspect of the game, and survival mode only augments the gratification of building by having the player work for their building materials. As for PvP combat, there are numerous community-created custom maps with their own unique rulesets. Expanding on this, through the use of elaborate server-side modding, Minecraft functions more as a game engine than a standalone game, enabling players with unmodded clients to instantly connect to a server and play game modes such as a Minecraft version of the Hunger Games. There is a niche in the game for every type of player.
 
 Added in Minecraft Alpha 1.0.1, Redstone opened up an entirely new world in terms of gameplay. [Redstone Dust][2] carries a Redstone current between various Redstone components while [Redstone Torches][3] function as a [signal inverter][4]. In conjunction with one another, it is possible to construct elementary logic gates, and therefore, fully functional [ALUs][5] and other more complex circuits. This means that Minecraft is Turing-complete, but I digress.
 
@@ -104,13 +104,12 @@ Another benefit of learning programming through ComputerCraft is that ideas for 
 
 I believe that ComputerCraft is a great way to teach people who are already interested in Minecraft the basics of programming. Lua is a very beginner friendly language as, much like Logo, it features a syntax similar to normal English. Turtles will almost certainly more engaging to a novice programmer than a Lua prompt. The mod is not only limited to working with Turtles, either; a more traditional approach can be taken to the programming involved. There are a wide variety of programs that various people have written, from basic APIs to [operating systems with GUIs][22]. In this age of computing, more unorthodox approaches to teaching and learning can be experimented with, and with ComputerCraft, <s>the sky</s> `Y = 255` is the limit.
 
-[1]:  https://minecraft.net/stats
 [2]:  http://minecraft.gamepedia.com/Redstone#Redstone_Dust
 [3]:  http://minecraft.gamepedia.com/Redstone_Torch
 [4]:  http://en.wikipedia.org/wiki/Inverter_(logic_gate)
 [5]:  http://en.wikipedia.org/wiki/Arithmetic_logic_unit
-[6]:  http://en.wikipedia.org/wiki/De_Morgan%27s_laws)
-[7]:  http://www.guudelp.com
+[6]:  http://en.wikipedia.org/wiki/De_Morgan%27s_laws
+[7]:  https://www.mindcracklp.com/
 [8]:  http://feed-the-beast.com
 [9]:  http://www.computercraft.info
 [10]: http://www.computercraft.info/dan200/
@@ -124,5 +123,5 @@ I believe that ComputerCraft is a great way to teach people who are already inte
 [18]: http://computercraft.info/wiki/Gps_(API)
 [19]: http://www.reddit.com/r/Minecraft/comments/1pk6zl/learning_logic_gates_in_electronics_class/
 [20]: http://www.reddit.com/r/Minecraft/comments/1dvpnj/today_my_teacher_used_minecraft_to_teach/
-[21]: http://minecraftedu.com
+[21]: https://minecraft.fandom.com/wiki/MinecraftEdu
 [22]: https://github.com/oeed/PearOS

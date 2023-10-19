@@ -1,4 +1,9 @@
 {
+    "ignorePatterns": [
+        {
+            "pattern": "^https://support-leagueoflegends.riotgames.com/hc/en-us/article"
+        }
+    ],
     "replacementPatterns": [
         {
             "pattern": "^{static}/",

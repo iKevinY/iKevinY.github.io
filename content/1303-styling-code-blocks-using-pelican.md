@@ -3,14 +3,14 @@ Date: 2013-12-10
 
 Although [Monokai](http://studiostyl.es/schemes/monokai) is my colour scheme of choice when coding in [Sublime Text 2](http://www.sublimetext.com), it was not the best option for displaying code blocks on my website. Favouring a lighter colour scheme, I opted to use a GitHub style colour scheme and also add line numbers (because why not). Referring to a [blog post by Alex Peattie](http://alexpeattie.com/blog/github-style-syntax-highlighting-with-pygments/) explaining how to implement this using Pygments, I made some modifications to make it work with my website. While the process is largely the same as what he already explained, I felt like writing this Pelican-specific guide on the off chance that it might be useful to somebody in the future.
 
-While Alex's tutorial implemented line numbering using CSS, the [CodeHilite](http://pythonhosted.org/Markdown/extensions/code_hilite.html) extension for [Python-Markdown](https://pypi.python.org/pypi/Markdown) has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite's `linenums` setting needs to be set to `True`. This can be done through the `MD_EXTENSIONS` option in the settings file supplied to Pelican.
+While Alex's tutorial implemented line numbering using CSS, the [CodeHilite](https://python-markdown.github.io/extensions/code_hilite/) extension for [Python-Markdown](https://pypi.python.org/pypi/Markdown) has the option to add line numbers automatically, which saves a bit of work. To enable them, CodeHilite's `linenums` setting needs to be set to `True`. This can be done through the `MD_EXTENSIONS` option in the settings file supplied to Pelican.
 
 ```
 #!python
 MD_EXTENSIONS = ['codehilite(linenums = True)']
 ```
 
-The next step is to download a stylesheet that is compatible with Pygments. I used the one [linked in Alex's tutorial](https://github.com/richleland/pygments-css/blob/master/github.css), but deleted the first line of the file because I did not need to change the background colour of the code block. This stylesheet should be linked to in the base template file of your website -- `base.html` for the theme that I am currently using.
+The next step is to download a stylesheet that is compatible with Pygments. I used the one [linked in Alex's tutorial](https://github.com/richleland/pygments-css/blob/146708f9003299106baf05987abf393eae4424fc/github.css), but deleted the first line of the file because I did not need to change the background colour of the code block. This stylesheet should be linked to in the base template file of your website -- `base.html` for the theme that I am currently using.
 
 Some custom styling is then done in order to change the appearance of the code blocks. The following three blocks of code would be placed in the primary stylesheet of the site's theme. First of all, basic styling is added to the code block to control basic properties of the code, as well as create the border around the code block and ensure that it scrolls correctly if a line of code is too large for the block. While this is generally not an issue when being viewed on a computer screen, it is important for if the code is being viewed on a mobile device.
 
