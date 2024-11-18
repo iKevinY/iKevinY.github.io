@@ -13,11 +13,11 @@ INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician fro
 ICONS_PATH = 'images/icons'
 
 SOCIAL_ICONS = [
-    ('https://twitter.com/iKevinY', 'Twitter', 'fa-twitter'),
-    ('https://github.com/iKevinY', 'GitHub', 'fa-github'),
-    ('https://instagram.com/ikeviny', 'Instagram', 'fa-instagram'),
-    ('https://buttondown.email/iKevinY', 'Newsletter', 'fa-newspaper-o'),
-    ('/atom.xml', 'Atom Feed', 'fa-feed'),
+    ('https://bsky.app/profile/ikeviny.bsky.social', 'Bluesky', 'fa-brands fa-bluesky'),
+    ('https://github.com/iKevinY', 'GitHub', 'fa-brands fa-github'),
+    ('https://instagram.com/ikeviny', 'Instagram', 'fa-brands fa-instagram'),
+    ('https://buttondown.email/iKevinY', 'Newsletter', 'fa-solid fa-newspaper'),
+    ('/atom.xml', 'Atom Feed', 'fa-solid fa-feed'),
 ]
 
 THEME_COLOR = '#FF8000'
