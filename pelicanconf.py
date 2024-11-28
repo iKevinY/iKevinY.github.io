@@ -13,7 +13,7 @@ INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician fro
 ICONS_PATH = 'images/icons'
 
 SOCIAL_ICONS = [
-    ('https://bsky.app/profile/ikeviny.bsky.social', 'Bluesky', 'fa-brands fa-bluesky'),
+    ('https://bsky.app/profile/kevinyap.ca', 'Bluesky', 'fa-brands fa-bluesky'),
     ('https://github.com/iKevinY', 'GitHub', 'fa-brands fa-github'),
     ('https://instagram.com/ikeviny', 'Instagram', 'fa-brands fa-instagram'),
     ('https://buttondown.email/iKevinY', 'Newsletter', 'fa-solid fa-newspaper'),
