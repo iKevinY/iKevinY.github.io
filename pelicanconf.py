@@ -6,6 +6,7 @@ FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a hre
 
 SITE_AUTHOR = 'Kevin Yap'
 TWITTER_USERNAME = '@iKevinY'
+BLUESKY_HANDLE = 'kevinyap.ca'
 GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
 MASTODON_URL = "https://mastodon.social/@iKevinY"
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
