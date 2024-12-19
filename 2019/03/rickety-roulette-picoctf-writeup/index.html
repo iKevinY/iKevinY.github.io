@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2019/03/rickety-roulette-picoctf-writeup/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -316,13 +318,12 @@ picoCTF{redacted}
 
 <p>Success! This was an interesting problem because all it took to find the vulnerabilities was a careful pass through the source code. In addition, both the bugs are things that could easily sneak their way into an actual codebase if not careful. For my next writeup, I&#8217;m planning on tackling a problem that requires more sophisticated tooling and background&nbsp;knowledge.</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2019/04/eval-golf-plaidctf-writeup/" id="next-neighbour">&laquo; Eval Golf (PlaidCTF Writeup)</a>
 		<a href="/2017/04/breaking-the-enigma-code-with-rust/" id="prev-neighbour">Breaking the Enigma Code With Rust &raquo;</a>
 	</div>
-
-
 			<hr>
 		</article>
 
@@ -331,6 +332,36 @@ picoCTF{redacted}
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>

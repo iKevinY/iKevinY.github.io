@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2015/12/reflections-and-resolutions/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -81,13 +83,12 @@
 <p>As it turns out, natural languages are pretty important as well for communicating with fellow Earth-dwellers. As far as language acquisition goes, the younger the better, so the best time to learn a new language is now, not later. I&#8217;ve always been fascinated by Japanese due to the combination of logographic (kanji) and syllabic (kana) characters used in its writing system. It&#8217;s been a long time since I&#8217;ve learned a new language so I&#8217;m not sure how much progress I will make, but my final resolution for the new year is to begin learning&nbsp;Japanese.</p>
 <p>Here&#8217;s to a great 2016,&nbsp;everyone!</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2016/12/the-joy-of-problem-solving/" id="next-neighbour">&laquo; The Joy of Problem Solving</a>
 		<a href="/2015/01/on-git-and-github-flow/" id="prev-neighbour">On Git and GitHub Flow &raquo;</a>
 	</div>
-
-
 			<hr>
 		</article>
 
@@ -96,6 +97,36 @@
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>

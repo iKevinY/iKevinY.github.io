@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2013/12/styling-code-blocks-using-pelican/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -106,13 +108,12 @@
 
 <p>After following these steps, everything should be working properly. Of course, the stylesheet used and properties of the code blocks can be changed depending on personal&nbsp;preference.</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2014/01/on-programming-and-turtles/" id="next-neighbour">&laquo; On Programming and Turtles</a>
 		<a href="/2013/12/hosting-with-github-pages/" id="prev-neighbour">Hosting With GitHub Pages &raquo;</a>
 	</div>
-
-
 			<hr>
 		</article>
 
@@ -121,6 +122,36 @@
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>

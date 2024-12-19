@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2021/01/building-a-hackintosh/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -109,18 +111,11 @@
 <hr>
 <p>All in all, building a Hackintosh was a really fun experience, and I realized just how sheltered I was from the whole world of &#8220;how modern PCs really work&#8221;. I always just nodded my head and pretended to understand when people at work or friends would talk about their <em><span class="caps">BIOS</span></em> and stuff like that, but now I can at least sort of join in on those discussions. Of course, now I&#8217;m a bit sad that I won&#8217;t be able to justify buying an M1 Mac anytime&nbsp;soon.</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2020/03/architecting-zeal-gg/" id="prev-neighbour">Architecting zeal.gg &raquo;</a>
 	</div>
-
-	<div class="admonition">
-		<p>
-			I'm experimenting with an email newsletter where I post less structured thoughts on a more
-			regular basis. <a href="https://buttondown.email/iKevinY">Subscribe here if you're interested!</a>
-		</p>
-	</div>
-
 			<hr>
 		</article>
 
@@ -129,6 +124,36 @@
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>

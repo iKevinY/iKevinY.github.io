@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2014/06/eulerpy-streamlining-project-euler/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -76,13 +78,12 @@
 <p>Having just been introduced to Travis <span class="caps">CI</span> after setting it up to <a href="http://kevinyap.ca/2014/06/deploying-pelican-sites-using-travis-ci/">automatically deploy</a> the latest version of my website, I figured it would be interesting to set it up for EulerPy as well. I ended up writting a couple of simple tests to ensure anyone updating <code>problems.txt</code> had not transcribed the problems in an errant&nbsp;fashion.</p>
 <p>Hopefully there aren&#8217;t too many <em>faux pas</em> in my coding, as EulerPy is one of my first Python&nbsp;projects.</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2015/01/on-git-and-github-flow/" id="next-neighbour">&laquo; On Git and GitHub Flow</a>
 		<a href="/2014/06/deploying-pelican-sites-using-travis-ci/" id="prev-neighbour">Deploying Pelican Sites Using Travis CI &raquo;</a>
 	</div>
-
-
 			<hr>
 		</article>
 
@@ -91,6 +92,36 @@
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>

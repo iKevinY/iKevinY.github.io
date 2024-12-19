@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2014/01/on-programming-and-turtles/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -144,13 +146,12 @@
 <p>Another benefit of learning programming through ComputerCraft is that ideas for new features or added functionality arise simply by using the program. Perhaps the mining script could be extended to instruct the Turtle to automatically return to the start of the branch when its inventory fills up or throw out unwanted materials and only keep ores. Maybe fuel could be a factor, and it could automatically consume any fuel sources that it mines in order to extend the mining expedition. This process of beginning with a basic program and expanding its functionality can be applied when programming independently of&nbsp;ComputerCraft.</p>
 <p>I believe that ComputerCraft is a great way to teach people who are already interested in Minecraft the basics of programming. Lua is a very beginner friendly language as, much like Logo, it features a syntax similar to normal English. Turtles will almost certainly more engaging to a novice programmer than a Lua prompt. The mod is not only limited to working with Turtles, either; a more traditional approach can be taken to the programming involved. There are a wide variety of programs that various people have written, from basic APIs to <a href="https://github.com/oeed/PearOS">operating systems with GUIs</a>. In this age of computing, more unorthodox approaches to teaching and learning can be experimented with, and with ComputerCraft, <s>the sky</s> <code>Y = 255</code> is the&nbsp;limit.</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2014/06/deploying-pelican-sites-using-travis-ci/" id="next-neighbour">&laquo; Deploying Pelican Sites Using Travis CI</a>
 		<a href="/2013/12/styling-code-blocks-using-pelican/" id="prev-neighbour">Styling Code Blocks Using Pelican &raquo;</a>
 	</div>
-
-
 			<hr>
 		</article>
 
@@ -159,6 +160,36 @@
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>

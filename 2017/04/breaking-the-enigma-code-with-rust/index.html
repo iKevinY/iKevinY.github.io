@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2017/04/breaking-the-enigma-code-with-rust/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -152,13 +154,12 @@ A<span class="w"> </span>few<span class="w"> </span>miles<span class="w"> </span
 <p>Cargo also plays a large role in making Rust nice work with. Nothing is more annoying than coming across an open source project that seems useful, but struggling to figure out how to even compile it. With a Rust project, however, you&#8217;re essentially guaranteed that <code>cargo build</code> will work &#8212; no Makefiles or manual dependency management&nbsp;required.</p>
 <p>I really enjoyed learning about Rust while building <a href="https://github.com/iKevinY/ultra"><code>ultra</code></a>, and will definitely be using it more in the future. Given the results of Stack Overflow&#8217;s recent <a href="https://stackoverflow.com/insights/survey/2017">developer survey</a>, it seems like Rust is growing in popularity &#8212; it will be very exciting if it becomes adopted by&nbsp;industry.</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2019/03/rickety-roulette-picoctf-writeup/" id="next-neighbour">&laquo; Rickety Roulette (picoCTF Writeup)</a>
 		<a href="/2016/12/the-joy-of-problem-solving/" id="prev-neighbour">The Joy of Problem Solving &raquo;</a>
 	</div>
-
-
 			<hr>
 		</article>
 
@@ -167,6 +168,36 @@ A<span class="w"> </span>few<span class="w"> </span>miles<span class="w"> </span
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>

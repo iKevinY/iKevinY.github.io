@@ -19,10 +19,12 @@
 	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar.png">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="http://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">
+	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
@@ -107,13 +109,12 @@
 <p>It&#8217;s been a few years since I wrote this post, and figured it was due for an update! Both <a href="https://blog.vero.site/post/advent-leaderboard">betaveros</a> and <a href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a>, two people who perform <em>significantly</em> better on the global leaderboard than I do, have written their own posts with tips and tricks for going quickly; I highly recommend giving them a&nbsp;read.</p>
 <p>Also, for 2022, I&#8217;m <a href="https://www.youtube.com/@iKevinY">streaming my attempts on YouTube</a> &#8212; come watch if you&#8217;re&nbsp;interested!</p>
 	</div>
+	<div id="bluesky-comments"></div>
 
 	<div id="related-articles">
 		<a href="/2020/02/the-year-of-communication/" id="next-neighbour">&laquo; The Year of Communication</a>
 		<a href="/2019/04/eval-golf-plaidctf-writeup/" id="prev-neighbour">Eval Golf (PlaidCTF Writeup) &raquo;</a>
 	</div>
-
-
 			<hr>
 		</article>
 
@@ -122,6 +123,36 @@
 		</footer>
 	</div>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
 
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
+			
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
 </body>
 </html>
