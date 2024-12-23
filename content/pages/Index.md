@@ -4,11 +4,11 @@ Template: index
 
 <h2 style="font-size: 21px; text-align: center; padding-bottom: 10px">👋 Hi! I'm Kevin, or <code style="background: rgba(255,217,174,1); color: #444;">@iKevinY</code> in most corners of the Internet.</h2>
 
-I'm currently building software at [MLSE Digital Labs](https://www.mlsedigital.com/). I helped design an [interactive gaming experience](https://www.sportsbusinessjournal.com/Articles/2024/01/19/maple-leafs-mlse-arena-showdown) that can simultaneously support thousands of fans inside of Scotiabank Arena, as well as optimized the network requests in a real-time web application, resulting in over an order of magnitude of cost-savings.
+I'm a software engineer currently building interactive experiences and web applications for fans of the Toronto Maple Leafs and Toronto Raptors at [MLSE Digital Labs](https://www.mlsedigital.com/).
 
-Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io), advanced [Confidential Computing](https://cloud.google.com/confidential-computing), and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability. I also interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/) while studying computer science at [UBC](https://www.ubc.ca/). I also created [zeal.gg](https://zeal.gg/), a site for tracking the League of Legends ranked climb.
+Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io), advanced [Confidential Computing](https://cloud.google.com/security/products/confidential-computing), and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability. I interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/) while studying computer science at [UBC](https://www.ubc.ca/).
 
-Outside of programming, I like to play and watch games with [complex](https://magic.wizards.com/), [emergent](https://www.leagueoflegends.com/) [interactions](https://teamfighttactics.leagueoflegends.com/), and games that require [precise](https://www.celestegame.com/) [execution](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee).
+I also created [zeal.gg](https://zeal.gg/), a site for tracking the League of Legends ranked climb.
 
 Here are some things I've written (browse the [full archive here](https://kevinyap.ca/archive/)):
 
