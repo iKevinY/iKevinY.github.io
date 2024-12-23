@@ -1,15 +1,13 @@
 # Theme-specific settings
 SITENAME = 'Kevin Yap'
 DOMAIN = 'kevinyap.ca'
-BIO_TEXT = 'Developer and musician from&nbsp;Vancouver, BC.'
-FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://pages.github.com">GitHub&nbsp;Pages</a>.'
 
 SITE_AUTHOR = 'Kevin Yap'
 TWITTER_USERNAME = '@iKevinY'
 BLUESKY_HANDLE = 'kevinyap.ca'
 GOOGLE_PLUS_URL = 'https://plus.google.com/+KevinYapCA'
 MASTODON_URL = "https://mastodon.social/@iKevinY"
-INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a developer and musician from Vancouver, BC.'
+INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a software engineer from Vancouver, Canada.'
 
 ICONS_PATH = 'images/icons'
 
@@ -82,7 +80,7 @@ extras = ['CNAME', 'favicon.ico', 'keybase.txt', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['assets', 'neighbors', 'render_math']
+PLUGINS = ['assets', 'neighbors', 'render_math', 'pelican-readtime']
 ASSET_SOURCE_PATHS = ['static']
 ASSET_CONFIG = [
     ('cache', False),
