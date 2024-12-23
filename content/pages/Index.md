@@ -6,7 +6,7 @@ Template: index
 
 I'm a software engineer currently building interactive experiences and web applications for fans of the Toronto Maple Leafs and Toronto Raptors at [MLSE Digital Labs](https://www.mlsedigital.com/).
 
-Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io), advanced [Confidential Computing](https://cloud.google.com/security/products/confidential-computing), and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability. I interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/) while studying computer science at [UBC](https://www.ubc.ca/).
+Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io); advanced [Confidential Computing](https://cloud.google.com/security/products/confidential-computing) and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability at Google; and interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/) while studying computer science at [UBC](https://www.ubc.ca/).
 
 I also created [zeal.gg](https://zeal.gg/), a site for tracking the League of Legends ranked climb.
 
