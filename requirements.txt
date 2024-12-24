@@ -1,5 +1,7 @@
 cssmin==0.2.0
 Markdown==3.5.1
+packaging==24.2  # required by render-math 1.0.4
 pelican==4.9.1
+pelican-render-math==1.0.4
 typogrify==2.0.7
 webassets==0.12.1
