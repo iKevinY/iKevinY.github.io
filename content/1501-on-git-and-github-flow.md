@@ -48,7 +48,6 @@ $ git rebase -i HEAD~n  # rebase the last n commits
 The `-i` flag stands for *interactive*. Upon executing the command, your `$EDITOR` of choice will open with a list of commits from least recent to most recent preceded by the word "pick":
 
 ```
-#!text
 pick a5b977a Ensure all expected resource files exist
 pick f08e801 Add problems 311–320
 pick 969f9e5 Update tests to ensure resource correspondence
@@ -63,7 +62,6 @@ Below the list of commits are some instructions about rebasing, including the av
 Typically, a project maintainer might ask for you to squash your pull request. What this actually involves doing is rebasing and using the "squash" command to turn multiple commits into just one or a couple logical commits. For example, if you wanted to turn the three commits listed above into one larger commit, you would edit the file to look like the following:
 
 ```
-#!text
 pick a5b977a Ensure all expected resource files exist
 squash f08e801 Add problems 311–320
 squash 969f9e5 Update tests to ensure resource correspondence
@@ -77,8 +75,7 @@ I mentioned before that rebasing should only be done with local changes that hav
 
 After forking the project on GitHub, the typical GitHub workflow might look something like this:
 
-```
-#!sh
+```sh
 git clone https://github.com/YOUR_GITHUB_USERNAME/PROJECT_NAME.git
 cd PROJECT_NAME
 git branch my-feature

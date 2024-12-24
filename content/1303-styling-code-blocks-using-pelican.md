@@ -30,8 +30,7 @@ Following this, the line numbering is styled by modifying the `linenos` class. T
 
 The horizontal margins of the `codehilite` class, which controls the code itself, are increased to add spacing between the code snippets and the line numbers.
 
-```
-#!css
+```css
 .linenos {
 	border-right: 1px solid #d9d9d9;
 	background: #eee;

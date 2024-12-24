@@ -73,8 +73,7 @@ The bulk of `ultra`'s decryption algorithm involves iterating over Enigma settin
 
 Using the amazing [Rayon](https://github.com/nikomatsakis/rayon) data parallelism library, many Rust iterators can be parallelized nearly effortlessly. With `ultra`, I essentially just needed to import Rayon's prelude and add a couple of calls to `into_par_iter()`. (I also had to collect into a vector because the result of `iproduct!` can't be directly transformed into a parallel iterator.)
 
-```
-#!rust
+```rust
 use rayon::prelude::*;
 
 let (rotor, key) = iproduct!(rotors.iter(), keys.iter())
