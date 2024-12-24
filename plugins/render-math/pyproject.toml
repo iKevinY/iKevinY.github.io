@@ -1,0 +1,122 @@
+[project]
+name = "pelican-render-math"
+version = "1.0.4"
+description = "Render mathematics in Pelican site content"
+authors = [{name = "Pelican Dev Team", email = "authors@getpelican.com"}]
+license = {text = "AGPL-3.0"}
+readme = "README.md"
+keywords = ["pelican", "plugin", "math"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Framework :: Pelican",
+    "Framework :: Pelican :: Plugins",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = "~=3.9"
+dependencies = [
+    "pelican>=4.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/pelican-plugins/render-math"
+"Issue Tracker" = "https://github.com/pelican-plugins/render-math/issues"
+Funding = "https://donate.getpelican.com/"
+
+[project.optional-dependencies]
+markdown = ["markdown>=3.4"]
+
+[tool.pdm]
+
+[tool.pdm.dev-dependencies]
+lint = [
+    "invoke>=2.2",
+    "ruff>=0.7.2,<0.8.0",
+]
+test = [
+    "markdown>=3.4",
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-sugar>=1.0",
+]
+
+[tool.pdm.build]
+source-includes = [
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+]
+includes = ["pelican/"]
+excludes = ["**/.DS_Store", "tasks.py"]
+
+[tool.autopub]
+project-name = "Render Math"
+git-username = "botpub"
+git-email = "52496925+botpub@users.noreply.github.com"
+append-github-contributor = true
+version-strings = ["pelican/plugins/render_math/version.py"]
+
+[tool.ruff.lint]
+select = [
+  "B",   # flake8-bugbear
+  "BLE", # flake8-blind-except
+  "C4",  # flake8-comprehensions
+  "D",   # pydocstyle
+  "E",   # pycodestyle
+  "F",   # pyflakes
+  "I",   # isort
+  "ICN", # flake8-import-conventions
+  "ISC", # flake8-implicit-str-concat
+  "PGH", # pygrep-hooks
+  "PL",  # pylint
+  "RET", # flake8-return
+  "RUF", # ruff-specific rules
+  "SIM", # flake8-simplify
+  "T10", # flake8-debugger
+  "T20", # flake8-print
+  "TID", # flake8-tidy-imports
+  "TRY", # tryceratops
+  "UP",  # pyupgrade
+  "W",   # pycodestyle
+  "YTT", # flake8-2020
+]
+
+ignore = [
+  "C417",    # unnecessary `map` usage
+  "D100",    # missing docstring in public module
+  "D101",    # missing docstring in public class
+  "D102",    # missing docstring in public method
+  "D104",    # missing docstring in public package
+  "D107",    # missing docstring in __init__
+  "D203",    # blank line before class docstring
+  "D213",    # multi-line docstring summary should start at the second line
+  "E501",    # line-length maximum exceeded
+  "ISC001",  # disabled so `ruff format` works without warning
+  "PLR0912", # too many branches
+  "PLR0915", # too many statements
+  "PLR1714", # consider merging multiple comparisons
+  "PLR2004", # Magic value used in comparison
+  "PLW2901", # `for` loop variable `value` overwritten by assignment target
+  "T201",    # print statement found
+  "TRY003",  # long messages outside the exception class
+  "TRY301",  # abstract `raise` to an inner function
+  "UP031",   # use format specifiers instead of percent format
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["pelican"]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
