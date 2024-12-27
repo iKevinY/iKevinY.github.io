@@ -232,8 +232,8 @@ A<span class="w"> </span>few<span class="w"> </span>miles<span class="w"> </span
 		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
 		document.addEventListener('DOMContentLoaded', function() {
 			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
-			const author = document.querySelector("meta[property='bsky:handlea']")?.getAttribute("content");
-			
+			const author = document.querySelector("meta[property='bsky:handle']")?.getAttribute("content");
+
 			const config = {
 				commentFilters: [
 					BlueskyComments.Filters.NoPins,
