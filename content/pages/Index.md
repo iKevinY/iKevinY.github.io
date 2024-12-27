@@ -12,5 +12,6 @@ I also created [zeal.gg](https://zeal.gg/), a site for tracking the League of Le
 
 Here are some things I've written (browse the [full archive here](https://kevinyap.ca/archive/)):
 
+- [**Blue Skies Ahead**](https://kevinyap.ca/2024/12/blue-skies-ahead) (2024)
 - [**Architecting zeal.gg**](https://kevinyap.ca/2020/03/architecting-zeal-gg) (2020)
 - [**Going Fast in Advent of Code**](https://kevinyap.ca/2019/12/going-fast-in-advent-of-code) (2019)
