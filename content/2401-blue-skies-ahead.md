@@ -1,5 +1,6 @@
 Title: Blue Skies Ahead
 Date: 2024-12-27
+Bluesky: https://bsky.app/profile/kevinyap.ca/post/3lecfoyk4ak2h
 
 I joined Twitter in December of 2008, making me 12 years old at the time. Funnily enough, the fact that I signed up before turning 13 caused issues nearly a decade later, when my account got locked due to some automated process flagging me as an *under-13-year-old* per [COPPA](https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act), and some manual intervention was needed to unlock my account. It also means that I've been on Twitter for more than half of my life — a wild realization.
 
