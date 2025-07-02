@@ -10,7 +10,7 @@ Before this, I spearheaded a product rewrite at [Freshline](https://freshline.io
 
 I also created [zeal.gg](https://zeal.gg/), a site for tracking the League of Legends ranked climb.
 
-Here are some things I've written (browse the [full archive here](https://kevinyap.ca/archive/)):
+Here are some things I've written (or browse the [full archive](https://kevinyap.ca/archive/)):
 
 - [**Blue Skies Ahead**](https://kevinyap.ca/2024/12/blue-skies-ahead) (2024)
 - [**Architecting zeal.gg**](https://kevinyap.ca/2020/03/architecting-zeal-gg) (2020)
