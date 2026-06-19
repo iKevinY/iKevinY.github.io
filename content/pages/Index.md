@@ -12,6 +12,6 @@ In my free time, I enjoy playing [Magic: The Gathering](https://en.wikipedia.org
 
 Here are some things I've written (or browse the [full archive](https://kevinyap.ca/archive/)):
 
-- [**Blue Skies Ahead**](https://kevinyap.ca/2024/12/blue-skies-ahead) (2024)
+- [**Building a Better RCQ Locator**](https://kevinyap.ca/2026/06/building-a-better-rcq-locator/) (2026)
 - [**Architecting zeal.gg**](https://kevinyap.ca/2020/03/architecting-zeal-gg) (2020)
 - [**Going Fast in Advent of Code**](https://kevinyap.ca/2019/12/going-fast-in-advent-of-code) (2019)
