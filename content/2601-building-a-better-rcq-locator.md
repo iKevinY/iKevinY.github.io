@@ -1,6 +1,7 @@
 Title: Building a Better RCQ Locator
 Date: 2026-06-19
 Summary: I built a website for finding Regional Championship Qualifiers for Magic: The Gathering that you can check out at https://surveil.land.
+Bluesky: https://bsky.app/profile/kevinyap.ca/post/3monwf77f4k2q
 
 !!! note ""
     **TLDR**: I built a website for finding Regional Championship Qualifiers for Magic: The Gathering that you can check out at [**surveil.land**](https://surveil.land/).
