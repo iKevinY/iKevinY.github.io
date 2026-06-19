@@ -1,6 +1,5 @@
 Title: Building a Better RCQ Locator
 Date: 2026-06-19
-Status: draft
 Summary: I built a website for finding Regional Championship Qualifiers for Magic: The Gathering that you can check out at https://surveil.land.
 
 !!! note ""
@@ -42,13 +41,13 @@ As I mentioned earlier, the list of events is virtually static, especially when 
 
 The lower the maintenance overhead of a project is (both in terms of time and money), the more confident I can be about it not becoming vaporware. In this new era of LLM-driven development, there are orders of magnitudes more hobby projects appearing, but I anticipate they will just as quickly rot and disappear once tech debt and/or hosting fees begin to rack up. I take a lot of pride in developing long-lasting projects ([zeal.gg](https://zeal.gg/) has been up and running for almost a decade now).
 
-I wanted it to be as simple and easy-to-use as possible for finding RCQs, à la the "Drivable RCQs" shortcut that Spicerack had. While whatever infrastructure supports serving *just* RCQs could easily serve all the events that are in Wizards' event locator, I figured people who are interested in non-competitive events can use their site directly (I'm not trying to completely invalidate its existence).
+I wanted it to be as simple and easy-to-use as possible for finding RCQs, à la the "Drivable RCQs" shortcut that Spicerack had. While whatever infrastructure supports serving only RCQs could easily serve all the events that are in Wizards' event locator, I figured people who are interested in non-competitive events can use their site directly (I'm not trying to completely invalidate its existence).
 
 Any good side project also affords the opportunity to play around with new technology, and since I wrote zeal.gg, lots of things have changed. The above constraints led me to building on top of Cloudflare's infrastructure because I hadn't tried out Cloudflare Pages, Workers, or R2 before.
 
 The idea behind it was for the frontend to just be a single static page. This page would read in JSON blobs from R2 buckets that contained all the event information. These blobs would be periodically updated by some workers that would poll the event locator API to see if any new events needed to be added to the payload (or removed since they had happened in the past).
 
-I also decided to get a bit fancy and chop up the globe into different "tiles" keyed by latitude/longitude. Then, based on the location and radius that the user inputs, the frontend will request the "correct" JSON blobs that span the search region: in the best case, only a single file (because the entire area is encompassed by a single tile), and in the worst case, four files (the center of the circle is near the vertex where 4 tiles meet). This is overkill for a couple thousand events, which could comfortably fit in a single JSON file, but this design adds some flexibility in case the number of events shoots up dramatically, if for example new regions are added, Wizards decides to run more RCQs, or I decide to index more types of events in the future.
+I also decided to get a bit fancy and chop up the globe into different "tiles" keyed by latitude/longitude. Then, based on the location and radius that the user inputs, the frontend will request the "correct" JSON blobs that span the search region: in the best case, only a single file (because the entire area is encompassed by a single tile), and in the worst case, four files (if the center of the circle is near the vertex where 4 tiles meet). This is overkill for a couple thousand events, which could comfortably fit in a single JSON file, but this design adds some flexibility in case the number of events shoots up dramatically, if for example new regions are added, Wizards decides to run more RCQs, or I decide to index more types of events in the future.
 
 ---
 
