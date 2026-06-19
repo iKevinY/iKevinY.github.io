@@ -14,7 +14,6 @@ ICONS_PATH = 'images/icons'
 SOCIAL_ICONS = [
     ('https://bsky.app/profile/kevinyap.ca', 'Bluesky', 'fa-brands fa-bluesky'),
     ('https://github.com/iKevinY', 'GitHub', 'fa-brands fa-github'),
-    ('https://instagram.com/ikeviny', 'Instagram', 'fa-brands fa-instagram'),
     ('https://buttondown.email/iKevinY', 'Newsletter', 'fa-solid fa-newspaper'),
     ('/atom.xml', 'Atom Feed', 'fa-solid fa-feed'),
 ]
