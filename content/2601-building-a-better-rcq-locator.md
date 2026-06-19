@@ -20,7 +20,7 @@ Each event only hands out invites to the top 1 to 4 players, depending on the re
 
 ---
 
-To their credit, Wizards of the Coast (the company that created and runs Magic: The Gathering) has an [event locator app](https://locator.wizards.com/) that lets you punch in your address and receive a list of of nearby events. You can then filter by format, event type, etc. This is a great tool for, say, if you move to a new city or are visiting and want to look up what LGSes are near you and what days they hold Commander nights or other weeklies on. This is a nice service, but there are a couple of problems with it when it comes to finding RCQs.
+To their credit, Wizards of the Coast (the company that runs Magic: The Gathering) has an [event locator app](https://locator.wizards.com/) that lets you punch in your address and receive a list of of nearby events. You can then filter by format, event type, etc. This is a great tool for, say, if you move to a new city or are visiting and want to look up what LGSes are near you and what days they hold Commander nights or other weeklies on. This is a nice service, but there are a couple of problems with it when it comes to finding RCQs.
 
 Firstly, the maximum distance you can search is a radius of 100 miles (160 km). Living in Toronto, I'm fortunate enough that there's a wealth of stores close to me that all host RCQs, but people who live in sparser geographical regions like the US will often drive hours to stores in other cities to attend these events, and a 100 mile search isn't big enough to catch all potential destinations.
 
