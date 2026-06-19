@@ -2,7 +2,8 @@ Title: Building a Better RCQ Locator
 Date: 2026-06-19
 Status: draft
 
-> **TLDR**: I built a website for finding Regional Championship Qualifiers for Magic: The Gathering that you can check out at [**surveil.land**](https://surveil.land/).
+!!! note
+    **TLDR**: I built a website for finding Regional Championship Qualifiers for Magic: The Gathering that you can check out at [**surveil.land**](https://surveil.land/).
 
 Over the last few years, I've gotten into Magic: The Gathering. While there are many different ways to play Magic, from being a collector to showing up to Commander nights play with new people, what I primarily get out of Magic is scratching the competitive itch that I used to satisfy through a truly mind-numbing amount of hours playing League of Legends trying to climb that ranked ladder (which, incidentally, [led to the side project](https://kevinyap.ca/2020/03/architecting-zeal-gg/) that has been sitting at the bottom of my resume ever since).
 
