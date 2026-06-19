@@ -16,7 +16,7 @@ Alas, while I was fortunate enough to qualify for the [Canadian RC](https://magi
 
 One of the frustrating parts of this system is earning your qualification to the RC in the first place. By its very nature, there is some inherent variance in every game of Magic: The Gathering; even amongst top players, the better player is not going to win 100% of their games -- sometimes they'll get unlucky with their card draws (this isn't even taking into account the possibilities for misplays or not seeing certain winning lines 7+ hours into a grueling tournament day). Then there's the concept of the "event metagame": the deck that you chose to bring to the event will have good and bad matchups into other decks, and it's entirely possible that by the graces of the tournament pairing software, you luck into all of your good or all of your bad matchups on any given day.
 
-Each event only hands out invites to the top 1 to 4 players, depending on the region and the attendance count, so it's truly a numbers game. As a result, qualifying tends to require attending multiple RCQs until you get the right alignment of 1) having the proper preparation, 2) playing well on the day, but also 3) getting somewhat fortunate with your matchups.
+Each event only hands out invites to the top 1 to 4 players, depending on the region and the attendance count, so it's truly a numbers game. As a result, qualifying tends to require attending multiple RCQs until you get the right alignment of a) having the proper preparation, b) playing well on the day, and c) getting somewhat fortunate with your matchups.
 
 ---
 
