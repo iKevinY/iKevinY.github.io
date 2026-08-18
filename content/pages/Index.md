@@ -4,9 +4,9 @@ Template: index
 
 <h2 style="font-size: 21px; text-align: center; padding-bottom: 10px">👋 Hi! I'm Kevin, or <code style="background: rgba(255,217,174,1); color: #444;">@iKevinY</code> in most corners of the Internet.</h2>
 
-I'm currently a software engineer at [Relay.app](https://www.relay.app/) building AI agents that work for everyone.
+I'm a software developer based out of Toronto working on [Google Chrome](https://google.com/chrome/).
 
-Before this, I was the technical lead for [Fan Access](https://fanaccess.ca/), a fan engagement platform for the Toronto Maple Leafs and Toronto Raptors built by [MLSE Digital Labs](https://www.mlsedigital.com/). I also spearheaded a product rewrite at [Freshline](https://freshline.io), and advanced [Confidential Computing](https://cloud.google.com/security/products/confidential-computing) and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability at Google. While studying computer science at [UBC](https://www.ubc.ca/), I interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/).
+Before this, I built AI agents that worked for everyone at [Relay.app](https://www.relay.app/). I was also the technical lead for [Fan Access](https://fanaccess.ca/), a fan engagement platform for the Toronto Maple Leafs and Toronto Raptors built by [MLSE Digital Labs](https://www.mlsedigital.com/), spearheaded a product rewrite at [Freshline](https://freshline.io), and advanced [Confidential Computing](https://cloud.google.com/security/products/confidential-computing) and improved [Gmail](https://en.wikipedia.org/wiki/Gmail) deliverability at Google. While studying computer science at [UBC](https://www.ubc.ca/), I interned at [Riot Games](https://www.riotgames.com/) and [Axiom Zen](https://www.axiomzen.com/).
 
 In my free time, I enjoy playing [Magic: The Gathering](https://en.wikipedia.org/wiki/Magic:_The_Gathering) (with aspirations to reach the [Pro Tour](https://magic.gg/pro-tour)) and [rock climbing](https://en.wikipedia.org/wiki/Bouldering). I also created [zeal.gg](https://zeal.gg/), a site for tracking the League of Legends ranked climb, and [surveil.land](https://surveil.land/), a locator for competitive MTG events.
 
