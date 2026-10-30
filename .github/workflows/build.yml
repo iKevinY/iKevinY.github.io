@@ -7,7 +7,8 @@ permissions:
   contents: write
 jobs:
   pelican-build:
-    runs-on: ubuntu-latest
+    # Ruby 3.0 is unavailable on Ubuntu 26.04 and newer runner images.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
