@@ -7,6 +7,9 @@ contains two distinct branches; the [`src`] branch contains the source files
 that Pelican uses to generate the static files, and the [`gh-pages`] branch,
 which [GitHub Actions] uses to deploy the site.
 
+The customized theme is vendored in [`pneumatic/`](pneumatic/). Edit its
+templates and styles directly in this repository alongside the site content.
+
 Prior to GitHub Actions, [`generate.sh`] was used by Travis CI to build and
 push the website (see [this blog post][travis-article] for more details).
 
@@ -18,7 +21,7 @@ Commons Attribution-ShareAlike License].
 
 [kevinyap.ca]: http://kevinyap.ca
 [Pelican]: http://getpelican.com
-[Pneumatic]: https://github.com/iKevinY/pneumatic
+[Pneumatic]: pneumatic/
 [`src`]: https://github.com/iKevinY/iKevinY.github.io/tree/src
 [`gh-pages`]: https://github.com/iKevinY/iKevinY.github.io/tree/gh-pages
 [GitHub Actions]: /.github/workflows/build.yml

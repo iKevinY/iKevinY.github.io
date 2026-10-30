@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Writing | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+	<h1 class="page-title">Writing</h1>
+	<div class="content">
+		{% for article in articles | sort(attribute='date', reverse=True) %}
+		<div class="archive-link">
+			<a href="/{{ article.url }}">
+				<h3>{{ article.title }}</h3>
+				<div class="archive-meta">
+					{{ article.locale_date }}
+					{% if article.readtime %}
+					&thinsp; &bull; &thinsp; {{article.readtime.minutes}} min read
+					{% endif %}
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
+{% endblock %}

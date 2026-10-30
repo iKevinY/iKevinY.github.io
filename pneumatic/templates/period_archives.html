@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Archive for {{ period | reverse | join(' ') }} | {{ SITENAME }}{% endblock %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+	<h1 class="page-title">Archive for {{ period | reverse | join(' ') }}</h1>
+	<div class="content">
+	{% for year, _ in dates | groupby('date.year') %}
+		{% for month, articles in dates | groupby('date.month') %}
+			{% if not period[1] %}
+			<h2><a href="/{{ articles[0].date.strftime('%Y/%m') }}/">{{ articles[0].date.strftime('%B') }}</a></h2>
+			{% endif %}
+			{% for article in articles | sort(attribute='date') %}
+			<div class="archive-link">
+				<a href="/{{ article.url }}">
+					<h3>{{ article.title }}</h3>
+					<div class="archive-meta">
+						{{ article.locale_date }}
+						{% if article.readtime %}
+						&thinsp; &bull; &thinsp; {{article.readtime.minutes}} min read
+						{% endif %}
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		{% endfor %}
+	{% endfor %}
+	</div>
+	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
+{% endblock %}

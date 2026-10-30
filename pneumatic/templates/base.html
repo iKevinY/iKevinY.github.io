@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="description" content="{% block description %}{% endblock %}">
+	<meta name="author" content="{{ SITE_AUTHOR }}">
+	<link rel="author" href="{{ GOOGLE_PLUS_URL }}"/>
+	{% if MASTODON_URL %}<link rel="me" href="{{ MASTODON_URL }}">{% endif %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:domain" content="{{ DOMAIN }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:image" content="{{ SITEURL }}/{{ ICONS_PATH }}/avatar-opengraph.png">
+	<meta name="twitter:image:alt" content="Avatar of {{ SITE_AUTHOR }}">
+	<meta property="og:image" content="{{ SITEURL }}/{{ ICONS_PATH }}/avatar-opengraph.png">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Avatar of {{ SITE_AUTHOR }}">
+
+	{% block meta %}{% endblock %}
+
+	<!-- Stylesheets and Web Fonts -->
+	{% assets filters="scss, cssmin", output="style.min.css", "pneumatic.scss", "pygments.css" %}
+	<link href="/{{ ASSET_URL }}" rel="stylesheet">
+	{% endassets %}
+	{% if GOOGLE_FONTS %}
+	<link href="https://fonts.googleapis.com/css?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}" rel="stylesheet" type="text/css">
+	{% endif %}
+	{% if SOCIAL_ICONS %}
+	{% if FA_EMBED_CODE %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/{{ FA_EMBED_CODE }}.css">
+	{% else %}
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	{% endif %}
+	{% endif %}
+	{% if article %}
+	<link rel="stylesheet" href="/theme/bluesky-comments.css">
+	{% endif %}
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/{{ ICONS_PATH }}/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/{{ ICONS_PATH }}/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/{{ ICONS_PATH }}/favicon-32x32.png" sizes="32x32">
+	<meta name="theme-color" content="{{ THEME_COLOR }}">
+
+	<meta name="msapplication-TileColor" content="{{ THEME_COLOR }}">
+	<meta name="msapplication-TileImage" content="/{{ ICONS_PATH }}/mstile-144x144.png">
+	{% for name, size in (('square70x70', 'small'), ('square150x150', 'medium'), ('wide310x150', 'wide'), ('square310x310', 'large')) %}
+	<meta name="msapplication-{{ name }}logo" content="/{{ ICONS_PATH }}/mstile-{{ size }}.png">
+	{% endfor %}
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/{{ ICONS_PATH }}/avatar.png"></a>
+			<a href="/">home</a> &bull;
+			<a href="/archive">writing</a>
+		</header>
+
+		<article>
+			{% block content %}{% endblock %}
+			<hr>
+		</article>
+
+		<footer>
+			{% if SOCIAL_ICONS %}
+			<div id="social">
+				{% for link, title, icon in SOCIAL_ICONS %}
+				<a href="{{ link }}" title="{{ title }}" class="icon {{ icon }}"></a>
+				{% endfor %}
+			</div>
+			{% endif %}
+		</footer>
+	</div>
+
+	{% if article %}
+	<script type="importmap">
+		{
+			"imports": {
+				"react": "https://esm.sh/react@18",
+				"react-dom": "https://esm.sh/react-dom@18"
+			}
+		}
+	</script>
+
+	<script type="module">
+		import { BlueskyComments } from '/theme/js/bluesky-comments.min.js';
+		document.addEventListener('DOMContentLoaded', function() {
+			const uri = document.querySelector("meta[property='bsky:url']")?.getAttribute("content");
+			const author = document.querySelector("meta[property='bsky:handle']")?.getAttribute("content");
+
+			const config = {
+				commentFilters: [
+					BlueskyComments.Filters.NoPins,
+					BlueskyComments.Filters.MinCharacterCountFilter(5),
+				]
+			};
+
+			if (uri) {
+				config.uri = uri;
+			} else if (author) {
+				config.author = author;
+			}
+
+			BlueskyComments.init('bluesky-comments', config);
+		});
+	</script>
+	{% endif %}
+</body>
+</html>

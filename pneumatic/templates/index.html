@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ SITENAME }}{% endblock %}
+{% block description %}{{ INDEX_DESCRIPTION }}{% endblock %}
+
+{% block meta %}
+	<!-- Open Graph -->
+	<meta property="og:title" content="{{ SITENAME }}">
+	<meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ SITEURL }}">
+{% endblock %}
+
+{% block content %}
+	{{ page.content }}
+	<br>
+{% endblock %}

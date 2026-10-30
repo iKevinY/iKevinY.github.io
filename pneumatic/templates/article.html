@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
+{% block description %}{{ article.summary | striptags }}{% endblock %}
+
+{% block meta %}
+	<!-- Open Graph -->
+	<meta property="og:title" content="{{ article.title|striptags }}">
+	<meta property="og:description" content="{{ article.summary|striptags }}">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
+	{% if article.bluesky %}
+	<meta property="bsky:url" content="{{ article.bluesky }}">
+	{% endif %}
+	{% if BLUESKY_HANDLE %}
+	<meta property="bsky:handle" content="{{ BLUESKY_HANDLE }}">
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<h1 class="title"><a href="/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
+	<time class="date" datetime="{{ article.date }}">{{ article.locale_date }}</time>
+	<div class="content">
+		{{ article.content }}
+	</div>
+	<div id="bluesky-comments"></div>
+
+	{% if article.next_article or article.prev_article %}
+	<div id="related-articles">
+		{% if article.next_article %}
+		<a href="/{{ article.next_article.url}}" id="next-neighbour">&laquo; {{ article.next_article.title | striptags }}</a>
+		{% endif %}
+		{% if article.prev_article %}
+		<a href="/{{ article.prev_article.url}}" id="prev-neighbour">{{ article.prev_article.title | striptags }} &raquo;</a>
+		{% endif %}
+	</div>
+	{% endif %}
+{% endblock %}
