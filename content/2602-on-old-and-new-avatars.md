@@ -1,5 +1,6 @@
 Title: On Old and New Avatars
 Date: 2026-10-30
+Bluesky: https://bsky.app/profile/kevinyap.ca/post/3mz33ptcqzk2y
 
 For the entirety of my online life, I’ve had the same avatar. It’s an image of a [lilac-breasted roller](https://en.wikipedia.org/wiki/Lilac-breasted_roller), which I chose as a teenager because I liked birds and thought this one was very floofy and colourful. For a while, I’ve been thinking about updating it to something new, but have been reluctant to do so mostly because of the stickiness of having used it *everywhere* for so long.
 
