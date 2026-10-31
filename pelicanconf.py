@@ -1,3 +1,5 @@
+from pathlib import Path
+
 # Theme-specific settings
 SITENAME = 'Kevin Yap'
 DOMAIN = 'kevinyap.ca'
@@ -77,6 +79,27 @@ IGNORE_FILES = ['.DS_Store', 'pneumatic.scss', 'pygments.css']
 
 extras = ['CNAME', 'favicon.ico', 'keybase.txt', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
+
+# Publish avatar exports and expose their actual file sizes to the avatar page.
+AVATAR_EXPORTS = []
+for size in (128, 256, 512, 1024, 2020):
+    avatar_name = 'avatar' if size == 2020 else f'avatar-{size}'
+    variants = []
+    for suffix, extension, transparent in (
+        ('', 'png', True),
+        ('-opaque', 'png', False),
+        ('', 'jpg', False),
+    ):
+        avatar_path = f'assets/avatar/{avatar_name}{suffix}.{extension}'
+        STATIC_PATHS.append(f'../{avatar_path}')
+        EXTRA_PATH_METADATA[f'../{avatar_path}'] = {'path': avatar_path}
+        variants.append({
+            'url': f'/{avatar_path}',
+            'format': extension.upper(),
+            'transparent': transparent,
+            'bytes': (Path(__file__).resolve().parent / avatar_path).stat().st_size,
+        })
+    AVATAR_EXPORTS.append({'size': size, 'variants': variants})
 
 PLUGIN_PATHS = ['plugins']
 PLUGINS = ['assets', 'neighbors', 'render_math', 'pelican-readtime']

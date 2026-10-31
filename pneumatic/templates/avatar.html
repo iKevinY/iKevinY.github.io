@@ -1,0 +1,16 @@
+{% extends 'page.html' %}
+
+{% block page_content %}
+	{{ super() }}
+	{% for group in AVATAR_EXPORTS %}
+	<h2>{{ group.size }} × {{ group.size }}</h2>
+	<div class="avatar-variants">
+		{% for variant in group.variants %}
+		<figure>
+			<a class="avatar-preview{% if variant.transparent %} avatar-preview--transparent{% endif %}" href="{{ variant.url }}"><img src="{{ variant.url }}" width="{{ group.size }}" height="{{ group.size }}" alt="{{ 'Transparent bird avatar' if variant.transparent else 'Bird avatar on white' }}, {{ group.size }} × {{ group.size }} pixels."{% if group.size != 128 %} loading="lazy"{% endif %}></a>
+			<figcaption title="{{ variant.bytes }} bytes">{{ variant.format }} · {{ variant.bytes | filesizeformat }}</figcaption>
+		</figure>
+		{% endfor %}
+	</div>
+	{% endfor %}
+{% endblock %}

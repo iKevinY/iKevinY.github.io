@@ -14,7 +14,9 @@
 {% block content %}
 	<h1 class="title"><a href="/{{ page.url }}" title="{{ page.title | striptags }}">{{ page.title }}</a></h1>
 	<div class="content">
+		{% block page_content %}
 		{{ page.content }}
+		{% endblock %}
 	</div>
 	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
 {% endblock %}

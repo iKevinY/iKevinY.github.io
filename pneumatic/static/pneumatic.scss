@@ -342,6 +342,38 @@ footer p {
 	hr { margin: 25px 10px; }
 }
 
+.avatar-variants {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 16px;
+	margin-bottom: 2em;
+
+	figure { min-width: 0; }
+
+	figcaption {
+		margin-top: 8px;
+		font-size: 0.8em;
+		text-align: center;
+		color: #555;
+	}
+}
+
+.avatar-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 1;
+	border: 1px solid #e1e1e1;
+	background: #fff;
+
+	img { height: auto; }
+}
+
+.avatar-preview--transparent {
+	background-image: repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%);
+	background-size: 16px 16px;
+}
+
 .page-title {
 	margin-bottom: 20px;
 }
