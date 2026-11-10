@@ -8,6 +8,34 @@
 	<meta name="author" content="Kevin Yap">
 	<link rel="author" href="https://plus.google.com/+KevinYapCA"/>
 <link rel="me" href="https://mastodon.social/@iKevinY">	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="light dark">
+	<script>
+		(() => {
+			const root = document.documentElement;
+			const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+			try {
+				const saved = localStorage.getItem('theme');
+				if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+			} catch (_) {}
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const toggle = document.getElementById('theme-toggle');
+				const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : systemTheme.matches;
+				const updateToggle = () => {
+					toggle.setAttribute('aria-pressed', String(isDark()));
+					toggle.title = `Switch to ${isDark() ? 'light' : 'dark'} mode`;
+				};
+				toggle.addEventListener('click', () => {
+					root.dataset.theme = isDark() ? 'light' : 'dark';
+					try { localStorage.setItem('theme', root.dataset.theme); } catch (_) {}
+					updateToggle();
+				});
+				systemTheme.addEventListener('change', updateToggle);
+				updateToggle();
+				toggle.hidden = false;
+			});
+		})();
+	</script>
 
 	<!-- Twitter Cards and Open Graph -->
 	<meta name="twitter:card" content="summary_large_image">
@@ -54,6 +82,15 @@
 			<a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar.png"></a>
 			<a href="/">home</a> &bull;
 			<a href="/archive">writing</a>
+			<button id="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch to dark mode" hidden>
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path class="theme-icon-moon" d="M20.9 13.3A9 9 0 0 1 10.7 3.1 9 9 0 1 0 20.9 13.3Z"/>
+					<g class="theme-icon-sun">
+						<circle cx="12" cy="12" r="4"/>
+						<path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+					</g>
+				</svg>
+			</button>
 		</header>
 
 		<article>
