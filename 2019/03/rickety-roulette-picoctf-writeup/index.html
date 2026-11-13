@@ -42,9 +42,9 @@
 	<meta name="twitter:creator" content="@iKevinY">
 	<meta name="twitter:domain" content="kevinyap.ca">
 	<meta name="twitter:site" content="@iKevinY">
-	<meta name="twitter:image" content="http://kevinyap.ca/images/icons/avatar-opengraph.png">
+	<meta name="twitter:image" content="https://kevinyap.ca/images/icons/avatar-opengraph.png">
 	<meta name="twitter:image:alt" content="Avatar of Kevin Yap">
-	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar-opengraph.png">
+	<meta property="og:image" content="https://kevinyap.ca/images/icons/avatar-opengraph.png">
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
@@ -54,7 +54,7 @@
 	<meta property="og:title" content="Rickety Roulette (picoCTF Writeup)">
 	<meta property="og:description" content="Recently, I’ve taken an interest in CTFs: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods — such as reverse engineering, binary exploitation, or cryptanalysis — in …">
 	<meta property="og:type" content="article">
-	<meta property="og:url" content="http://kevinyap.ca/2019/03/rickety-roulette-picoctf-writeup/">
+	<meta property="og:url" content="https://kevinyap.ca/2019/03/rickety-roulette-picoctf-writeup/">
 	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
@@ -74,7 +74,9 @@
 	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
 	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
 	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
-</head>
+  <link rel="site.standard.document" href="at://did:plc:kewhcp362af66czceva4dhrl/site.standard.document/3n2667nddzj2q">
+    <link rel="site.standard.publication" href="at://did:plc:kewhcp362af66czceva4dhrl/site.standard.publication/3n2662rvrcc2z">
+  </head>
 
 <body>
 	<div class="container">
@@ -98,10 +100,10 @@
 	<time class="date" datetime="2019-03-25 00:00:00-07:00">March 25, 2019</time>
 	<div class="content">
 		<p>Recently, I&#8217;ve taken an interest in <a href="https://en.wikipedia.org/wiki/Capture_the_flag#Computer_security">CTFs</a>: computer security competitions with tasks that have been specifically designed to have a specific weakness. The goal is to exploit these weaknesses through various methods &#8212; such as reverse engineering, binary exploitation, or cryptanalysis &#8212; in order to recover a &#8220;flag&#8221;: a password that follows a specific format, like <code>flag{s3cret_c0de}</code>.</p>
-<p>My university started a <a href="https://ubcctf.github.io"><span class="caps">CTF</span> club</a> last month, and since I&#8217;m quite new to this field, I&#8217;ve been working my way through <a href="https://picoctf.com">picoCTF</a>, which is an oft-recommended beginner resource. Since I haven&#8217;t written any technical articles in a while, I thought it would be interesting to provide write-ups for some of the more interesting problems, starting with one called <code>roulette</code>. (The source code as provided by picoCTF can be found <a href="http://kevinyap.ca/files/roulette.c">here</a>, in case you&#8217;d like to try the challenge yourself&nbsp;first.)</p>
+<p>My university started a <a href="https://ubcctf.github.io"><span class="caps">CTF</span> club</a> last month, and since I&#8217;m quite new to this field, I&#8217;ve been working my way through <a href="https://picoctf.com">picoCTF</a>, which is an oft-recommended beginner resource. Since I haven&#8217;t written any technical articles in a while, I thought it would be interesting to provide write-ups for some of the more interesting problems, starting with one called <code>roulette</code>. (The source code as provided by picoCTF can be found <a href="https://kevinyap.ca/files/roulette.c">here</a>, in case you&#8217;d like to try the challenge yourself&nbsp;first.)</p>
 <p>If we connect to the service, we see the&nbsp;following:</p>
 <div class="codehilite"><pre><span></span><code>Welcome to ONLINE ROULETTE!
-Here, have $3249 to start on the house! You&#39;ll lose it all anyways &gt;:)
+Here, have $3249 to start on the house! You'll lose it all anyways &gt;:)
 
 How much will you wager?
 Current Balance: $3249    Current Wins: 0
@@ -109,7 +111,7 @@ Current Balance: $3249    Current Wins: 0
 
 <p>If you enter an amount greater than your current balance, the program will reject your wager. Choosing a valid amount allows you to guess which number will come&nbsp;up:</p>
 <div class="codehilite"><pre><span></span><code>&gt; 5000
-You can&#39;t bet more than you have!
+You can't bet more than you have!
 How much will you wager?
 Current Balance: $3249   Current Wins: 0
 &gt; 100
@@ -121,7 +123,7 @@ Spinning the Roulette for a chance to win $200!
 Roulette  :  2
 
 WRONG
-You&#39;re never gonna win
+You're never gonna win
 </code></pre></div>
 
 <p>On the off chance that you manage to guess the correct value, the program will fairly reward you with twice your wagered amount. We&#8217;ve been told that the goal is to accrue $1 billion, and upon doing so, we&#8217;ll be rewarded with the flag. With only a 1-in-36 chance of doubling our money, it&#8217;s simply not possible to get anywhere close by pure chance. Therefore, we&#8217;ll have to find a way to beat the&nbsp;system.</p>
@@ -144,23 +146,23 @@ You&#39;re never gonna win
 <span class="w">    </span><span class="n">play_roulette</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span><span class="w"> </span><span class="n">bet</span><span class="p">);</span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wins</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">MAX_WINS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Wow you won %lu times? Looks like its time for you cash you out.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wins</span><span class="p">);</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">"Wow you won %lu times? Looks like its time for you cash you out.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">wins</span><span class="p">);</span>
 <span class="w">      </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cash</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ONE_BILLION</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;*** Current Balance: $%lu ***</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cash</span><span class="p">);</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">"*** Current Balance: $%lu ***</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">cash</span><span class="p">);</span>
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wins</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">HOTSTREAK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;Wow, I can&#39;t believe you did it.. You deserve this flag!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">puts</span><span class="p">(</span><span class="s">"Wow, I can't believe you did it.. You deserve this flag!"</span><span class="p">);</span>
 <span class="w">        </span><span class="n">print_flag</span><span class="p">();</span>
 <span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;Wait a second... You&#39;re not even on a hotstreak! Get out of here cheater!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">puts</span><span class="p">(</span><span class="s">"Wait a second... You're not even on a hotstreak! Get out of here cheater!"</span><span class="p">);</span>
 <span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;Haha, lost all the money I gave you already? See ya later!&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puts</span><span class="p">(</span><span class="s">"Haha, lost all the money I gave you already? See ya later!"</span><span class="p">);</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -170,12 +172,12 @@ You&#39;re never gonna win
 <p>Let&#8217;s take a look at <code>get_bet()</code> and see if there&#8217;s anything we can exploit&nbsp;there.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">get_bet</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;How much will you wager?&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">"How much will you wager?"</span><span class="p">);</span>
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">bet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_long</span><span class="p">();</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bet</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">cash</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">bet</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;You can&#39;t bet more than you have!&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">puts</span><span class="p">(</span><span class="s">"You can't bet more than you have!"</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -183,11 +185,11 @@ You&#39;re never gonna win
 
 <p>This looks pretty standard: continuously ask the player for their wager until they provide a valid bet, and then return that amount. One common bug in programs like this is the possibility of <a href="https://en.wikipedia.org/wiki/Integer_overflow">integer overflow</a>, so let&#8217;s investigate <code>get_long()</code> for&nbsp;bugs.</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">is_digit</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;9&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sc">'0'</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">'9'</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">long</span><span class="w"> </span><span class="nf">get_long</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"&gt; "</span><span class="p">);</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
@@ -199,11 +201,11 @@ You&#39;re never gonna win
 <span class="w">      </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LONG_MAX</span><span class="p">;</span>
 <span class="w">      </span><span class="k">break</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">l</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">l</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="p">;</span>
 <span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getchar</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">)</span>
 <span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getchar</span><span class="p">();</span>
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
@@ -226,7 +228,7 @@ Spinning the Roulette for a chance to win $705032704!
 <p>Recall that we get a random amount of money every time we connect to the roulette service. Let&#8217;s take a closer look at the implementation of <code>get_rand()</code>, the function that dictates our starting&nbsp;balance:</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">get_rand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">seed</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;/dev/urandom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">"/dev/urandom"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">);</span>
 <span class="w">  </span><span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">seed</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
 <span class="w">  </span><span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
 <span class="w">  </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span>
@@ -249,7 +251,7 @@ Spinning the Roulette for a chance to win $705032704!
 <span class="w">  </span><span class="n">srand</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
 
 <span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">ROULETTE_SIZE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">ROULETTE_SIZE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -258,7 +260,7 @@ Spinning the Roulette for a chance to win $705032704!
 
 <p>However, if we use this program to choose our guesses, we find that we get the first one right, but after that it fails. Did we misunderstand the behaviour of the roulette program and just get lucky? Let&#8217;s take a closer look at the <code>play_roulette</code> function to see if we can figure out what went&nbsp;wrong:</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">play_roulette</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">choice</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">bet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Spinning the Roulette for a chance to win $%lu!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bet</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"Spinning the Roulette for a chance to win $%lu!</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bet</span><span class="p">);</span>
 <span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">spin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">ROULETTE_SIZE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">  </span><span class="n">spin_roulette</span><span class="p">(</span><span class="n">spin</span><span class="p">);</span>
 
@@ -276,7 +278,7 @@ Spinning the Roulette for a chance to win $705032704!
 <p>With this new insight, let&#8217;s beat roulette for&nbsp;good:</p>
 <div class="codehilite"><pre><span></span><code>$ nc 2018shell.picoctf.com 26662
 Welcome to ONLINE ROULETTE!
-Here, have $3249 to start on the house! You&#39;ll lose it all anyways &gt;:)
+Here, have $3249 to start on the house! You'll lose it all anyways &gt;:)
 </code></pre></div>
 
 <p>We pass the seed to the program we wrote to figure out which numbers to bet&nbsp;on.</p>
@@ -311,7 +313,7 @@ Spinning the Roulette for a chance to win $0!
 
 Roulette  :  6
 
-Alright, now you&#39;re cooking!
+Alright, now you're cooking!
 
 How much will you wager?
 Current Balance: $3249   Current Wins: 2
@@ -323,7 +325,7 @@ Spinning the Roulette for a chance to win $0!
 
 Roulette  :  1
 
-You&#39;re not cheating are you?
+You're not cheating are you?
 </code></pre></div>
 
 <p>Now that we&#8217;ve won three times, we just need to underflow our balance like we did earlier on (we guess a losing number so that our bet doesn&#8217;t get re-added upon&nbsp;winning):</p>
@@ -341,7 +343,7 @@ WRONG
 Just give up!
 
 *** Current Balance: $1794970545 ***
-Wow, I can&#39;t believe you did it.. You deserve this flag!
+Wow, I can't believe you did it.. You deserve this flag!
 picoCTF{redacted}
 </code></pre></div>
 

