@@ -12,7 +12,7 @@
     "standard:verify-live": "node standard-site.mjs verify-live"
   },
   "devDependencies": {
-    "@atproto/api": "0.18.17",
+    "@atproto/api": "0.30.3",
     "sequoia-cli": "0.5.8"
   }
 }
