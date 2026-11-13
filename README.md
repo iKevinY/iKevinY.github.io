@@ -13,13 +13,16 @@ templates and styles directly in this repository alongside the site content.
 Prior to GitHub Actions, [`generate.sh`] was used by Travis CI to build and
 push the website (see [this blog post][travis-article] for more details).
 
+Standard.site publishing uses Sequoia. See [publishing/README.md](publishing/README.md)
+for setup, deployment, and verification.
+
 Code is licensed under the [MIT License], and articles under the [Creative
 Commons Attribution-ShareAlike License].
 
 [1]: https://img.shields.io/github/actions/workflow/status/iKevinY/iKevinY.github.io/build.yml?branch=src "Build Status"
 [2]: https://github.com/iKevinY/iKevinY.github.io/actions
 
-[kevinyap.ca]: http://kevinyap.ca
+[kevinyap.ca]: https://kevinyap.ca
 [Pelican]: http://getpelican.com
 [Pneumatic]: pneumatic/
 [`src`]: https://github.com/iKevinY/iKevinY.github.io/tree/src

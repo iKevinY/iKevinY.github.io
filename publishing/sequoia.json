@@ -1,0 +1,20 @@
+{
+  "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
+  "identity": "kevinyap.ca",
+  "siteUrl": "https://kevinyap.ca",
+  "publicationUri": "at://did:plc:kewhcp362af66czceva4dhrl/site.standard.publication/kevinyap-ca",
+  "contentDir": ".sequoia/content",
+  "imagesDir": "../content/images",
+  "publicDir": "../content/extra",
+  "outputDir": "../output",
+  "pathPrefix": "",
+  "frontmatter": {
+    "slugField": "path"
+  },
+  "textContentField": "textContent",
+  "publishContent": true,
+  "autoSync": false,
+  "bluesky": {
+    "enabled": false
+  }
+}

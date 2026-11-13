@@ -12,6 +12,7 @@ MASTODON_URL = "https://mastodon.social/@iKevinY"
 INDEX_DESCRIPTION = 'Website and blog of Kevin Yap, a software engineer from Vancouver, Canada.'
 
 ICONS_PATH = 'images/icons'
+OPENGRAPH_IMAGE = f'{ICONS_PATH}/avatar-opengraph.png'
 
 SOCIAL_ICONS = [
     ('https://bsky.app/profile/kevinyap.ca', 'Bluesky', 'fa-brands fa-bluesky'),
@@ -26,7 +27,7 @@ BUTTONDOWN_LINK = 'https://buttondown.email/iKevinY'
 
 # Pelican settings
 RELATIVE_URLS = True
-SITEURL = 'http://kevinyap.ca'
+SITEURL = 'https://kevinyap.ca'
 TIMEZONE = 'America/Vancouver'
 DEFAULT_DATE = 'fs'
 DEFAULT_DATE_FORMAT = '%B %-d, %Y'
@@ -102,7 +103,8 @@ for size in (128, 256, 512, 1024, 2020):
     AVATAR_EXPORTS.append({'size': size, 'variants': variants})
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['assets', 'neighbors', 'render_math', 'pelican-readtime']
+PLUGINS = ['assets', 'neighbors', 'render_math', 'pelican-readtime', 'standard_site']
+STANDARD_SITE_EXPORT_PATH = 'publishing/.sequoia/content'
 ASSET_SOURCE_PATHS = ['static']
 ASSET_CONFIG = [
     ('cache', False),

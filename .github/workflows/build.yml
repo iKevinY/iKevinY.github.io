@@ -1,17 +1,33 @@
 name: Pelican Build
 on:
+  pull_request:
+  workflow_dispatch:
   push:
     branches:
       - src
 permissions:
   contents: write
+concurrency:
+  group: pelican-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   pelican-build:
     # Ruby 3.0 is unavailable on Ubuntu 26.04 and newer runner images.
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: publishing/package-lock.json
 
       - name: Install Dependencies
         uses: ruby/setup-ruby@v1
@@ -19,16 +35,37 @@ jobs:
           ruby-version: '3.0' # Not needed with a .ruby-version file
           
       - run: make install
-      
+      - run: npm --prefix publishing ci --ignore-scripts
+
       - name: Build Site
         run: make build
+
+      - name: Preview Standard.site documents
+        run: npm --prefix publishing run standard:preview
+
+      - name: Check Standard.site credentials
+        id: standard-site
+        if: github.ref == 'refs/heads/src' && github.event_name != 'pull_request'
+        env:
+          ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
+        run: |
+          if [ -n "$ATP_APP_PASSWORD" ]; then
+            echo 'enabled=true' >> "$GITHUB_OUTPUT"
+          else
+            echo '::notice::Standard.site publishing is inactive. Add the ATP_APP_PASSWORD repository secret to enable it.'
+          fi
+
+      - name: Publish and verify Standard.site documents
+        if: steps.standard-site.outputs.enabled == 'true'
+        env:
+          ATP_IDENTIFIER: kevinyap.ca
+          ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
+        run: npm --prefix publishing run standard:publish
       
       - name: Deploy from src
         uses: JamesIves/github-pages-deploy-action@v4
         if: github.ref == 'refs/heads/src' && github.event_name != 'pull_request'
         with:
           folder: output # The folder the action should deploy.
-   
-      - name: Display Diff
-        if: github.ref != 'refs/heads/src' || github.event_name == 'pull_request'
-        run: make diff
+          branch: gh-pages
+          clean-exclude: .well-known

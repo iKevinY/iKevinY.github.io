@@ -3,3 +3,6 @@ output/
 remote/
 *.DS_Store
 *.pyc
+publishing/node_modules/
+publishing/.sequoia/
+publishing/.sequoia-state.json

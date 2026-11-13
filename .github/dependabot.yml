@@ -8,3 +8,9 @@ updates:
   open-pull-requests-limit: 10
   reviewers:
   - iKevinY
+- package-ecosystem: npm
+  directory: "/publishing"
+  schedule:
+    interval: weekly
+  reviewers:
+  - iKevinY
