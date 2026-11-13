@@ -28,6 +28,9 @@ function runSequoia(args, env = process.env) {
 export function publicationParts(config) {
   const match = config.publicationUri.match(/^at:\/\/(did:plc:[a-z2-7]+)\/site\.standard\.publication\/([a-zA-Z0-9._~:-]+)$/);
   if (!match) throw new Error('Invalid publicationUri in sequoia.json');
+  if (!/^[234567abcdefghij][234567abcdefghijklmnopqrstuvwxyz]{12}$/.test(match[2])) {
+    throw new Error('publicationUri must use a valid TID record key in sequoia.json');
+  }
   return { did: match[1], rkey: match[2] };
 }
 

@@ -11,6 +11,8 @@ npm --prefix publishing run standard:preview
 
 Preview works offline. Configuration is in [sequoia.json](sequoia.json);
 dependencies, generated exports, and publishing state stay in this directory.
+The publication key was generated once with the AT Protocol SDK's `TID.nextStr()`
+and is reused across deployments.
 Article covers use the same `OPENGRAPH_IMAGE` as the website (`avatar-opengraph.png`).
 Publishing adds a `site.standard.publication` discovery link to every HTML page;
 the `.well-known` endpoint remains the publication verification source.

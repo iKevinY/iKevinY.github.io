@@ -2,7 +2,7 @@
   "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
   "identity": "kevinyap.ca",
   "siteUrl": "https://kevinyap.ca",
-  "publicationUri": "at://did:plc:kewhcp362af66czceva4dhrl/site.standard.publication/kevinyap-ca",
+  "publicationUri": "at://did:plc:kewhcp362af66czceva4dhrl/site.standard.publication/3n2662rvrcc2z",
   "contentDir": ".sequoia/content",
   "imagesDir": "../content/images",
   "publicDir": "../content/extra",
